@@ -67,7 +67,8 @@
 
 /* USER CODE BEGIN (2) */
 void sci_display(sciBASE_t *sci, char*buf,int buf_len);
-void waitmsbyhet(int delay);
+void waitmsbyhet(int num, int delay);
+void hetRamInit(void);
 /* USER CODE END */
 
 int main(void)
@@ -78,24 +79,28 @@ int main(void)
 
     gioInit();
     hetInit();
+    hetRamInit();
     sciInit();
 
     sprintf(buf,"Init Success!!\n\r\0");
     buf_len=strlen(buf);
     sci_display(sciREG1,buf,buf_len);
 
-    gioSetBit(gioPORTA,0,1);
+   // gioSetBit(gioPORTA,0,1);
 
     for(;;){
-      /*  sprintf(buf,"wait start\n\r\0");
+        sprintf(buf,"wait start\n\r\0");
         buf_len=strlen(buf);
-        sci_display(sciREG1,buf,buf_len);*/
+        sci_display(sciREG1,buf,buf_len);
 
-        waitmsbyhet(40);
-       /* sprintf(buf,"wait END\n\r\0");
+        waitmsbyhet(0,1000);
+
+        sprintf(buf,"wait END\n\r\0");
         buf_len=strlen(buf);
-        sci_display(sciREG1,buf,buf_len);*/
-        gioToggleBit(gioPORTA,0);
+        sci_display(sciREG1,buf,buf_len);
+
+        waitmsbyhet(1,1000);
+        //gioToggleBit(gioPORTA,0);
     }
 /* USER CODE END */
 
@@ -115,10 +120,26 @@ void sci_display(sciBASE_t *sci, char*buf,int buf_len){
 void set_HetTimer(hetRAMBASE_t* hetRAM, int delay){
     hetRAM->Instruction[0]->Control=delay;
 }*/
-void waitmsbyhet(int delay){
+void waitmsbyhet(int num, int delay){
     delay*=5000;
-    hetRAM1->Instruction[0].Data=0;
-    while(((hetRAM1->Instruction[0].Data)>>7)<delay)
+    hetRAM1->Instruction[num].Data=0;
+    while(((hetRAM1->Instruction[num].Data)>>7)<delay)
         ;
 }
+
+void hetRamInit(void)
+{
+    //hetINSTRUCTION_t instructions[]
+    hetREG1->GCR=(hetREG1->GCR)&0xFFFFFFFE;
+    //memset(hetRAM->Instruction[0x0])
+    hetRAM1->Instruction[0].Program=0x00002C80U;
+    hetRAM1->Instruction[0].Control=0x01FFFFFFU;
+    hetRAM1->Instruction[0].Data=0xFFFFFF80U;
+
+    hetRAM1->Instruction[1].Program=0x00000C80U;
+    hetRAM1->Instruction[1].Control=0x01FFFFFFU;
+    hetRAM1->Instruction[1].Data=0xFFFFFF80U;
+    hetREG1->GCR=(hetREG1->GCR)|0x00000001;
+}
+
 /* USER CODE END */

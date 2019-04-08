@@ -1,18 +1,13 @@
 
-**** Build of configuration Debug for project notify_test ****
+**** Clean-only build of configuration Debug for project notify_test ****
 
-/home/koitt/ti/ccsv8/utils/bin/gmake -k -j 4 all -O 
+/home/koitt/ti/ccsv8/utils/bin/gmake -k -j 4 clean -O 
  
-Building file: "../source/HL_sys_main.c"
-Invoking: ARM Compiler
-"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/bin/armcl" -mv7R5 --code_state=32 --float_support=VFPv3D16 --include_path="/home/koitt/proj_test/notify_test" --include_path="/home/koitt/proj_test/notify_test/include" --include_path="/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="source/HL_sys_main.d_raw" --obj_directory="source"  "../source/HL_sys_main.c"
-Finished building: "../source/HL_sys_main.c"
- 
-Building target: "notify_test.out"
-Invoking: ARM Linker
-"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/bin/armcl" -mv7R5 --code_state=32 --float_support=VFPv3D16 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"notify_test.map" --heap_size=0x800 --stack_size=0x800 -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/lib" -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="notify_test_linkInfo.xml" --rom_model --be32 -o "notify_test.out" "./source/HL_epc.obj" "./source/HL_errata.obj" "./source/HL_esm.obj" "./source/HL_nmpu.obj" "./source/HL_notification.obj" "./source/HL_pinmux.obj" "./source/HL_sci.obj" "./source/HL_sys_core.obj" "./source/HL_sys_dma.obj" "./source/HL_sys_intvecs.obj" "./source/HL_sys_main.obj" "./source/HL_sys_mpu.obj" "./source/HL_sys_pcr.obj" "./source/HL_sys_phantom.obj" "./source/HL_sys_pmm.obj" "./source/HL_sys_pmu.obj" "./source/HL_sys_startup.obj" "./source/HL_sys_vim.obj" "./source/HL_system.obj" "./source/os_croutine.obj" "./source/os_event_groups.obj" "./source/os_heap.obj" "./source/os_list.obj" "./source/os_mpu_wrappers.obj" "./source/os_port.obj" "./source/os_portasm.obj" "./source/os_queue.obj" "./source/os_tasks.obj" "./source/os_timer.obj" "../source/HL_sys_link.cmd"  -llibc.a 
-<Linking>
-Finished building target: "notify_test.out"
+rm -rf  "notify_test.hex"  "notify_test.out" 
+rm -rf "source/HL_epc.obj" "source/HL_errata.obj" "source/HL_esm.obj" "source/HL_nmpu.obj" "source/HL_notification.obj" "source/HL_pinmux.obj" "source/HL_sci.obj" "source/HL_sys_core.obj" "source/HL_sys_dma.obj" "source/HL_sys_intvecs.obj" "source/HL_sys_main.obj" "source/HL_sys_mpu.obj" "source/HL_sys_pcr.obj" "source/HL_sys_phantom.obj" "source/HL_sys_pmm.obj" "source/HL_sys_pmu.obj" "source/HL_sys_startup.obj" "source/HL_sys_vim.obj" "source/HL_system.obj" "source/os_croutine.obj" "source/os_event_groups.obj" "source/os_heap.obj" "source/os_list.obj" "source/os_mpu_wrappers.obj" "source/os_port.obj" "source/os_portasm.obj" "source/os_queue.obj" "source/os_tasks.obj" "source/os_timer.obj" 
+rm -rf "source/HL_epc.d" "source/HL_errata.d" "source/HL_esm.d" "source/HL_nmpu.d" "source/HL_notification.d" "source/HL_pinmux.d" "source/HL_sci.d" "source/HL_sys_dma.d" "source/HL_sys_main.d" "source/HL_sys_pcr.d" "source/HL_sys_phantom.d" "source/HL_sys_pmm.d" "source/HL_sys_startup.d" "source/HL_sys_vim.d" "source/HL_system.d" "source/os_croutine.d" "source/os_event_groups.d" "source/os_heap.d" "source/os_list.d" "source/os_mpu_wrappers.d" "source/os_port.d" "source/os_queue.d" "source/os_tasks.d" "source/os_timer.d" 
+rm -rf "source/HL_sys_core.d" "source/HL_sys_intvecs.d" "source/HL_sys_mpu.d" "source/HL_sys_pmu.d" "source/os_portasm.d" 
+Finished clean
  
 
 **** Build Finished ****
