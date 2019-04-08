@@ -109,8 +109,8 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
          0xFFFFFF80U,
         /* Reserved */
         0x00000000U
-    }
-#if 0
+    },
+
     /* DJZ: PWM 0 -> Period
     *         - Instruction                  = 2
     *         - Next instruction             = 3
@@ -1063,8 +1063,7 @@ static const hetINSTRUCTION_t het1PROGRAM[58U] =
         0x00000000U,
         /* Reserved */
         0x00000000U
-    },
-#endif
+    }
 };
 
 

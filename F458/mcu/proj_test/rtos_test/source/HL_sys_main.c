@@ -74,11 +74,11 @@
 
 /* USER CODE BEGIN (2) */
 void init_all(void);
-void init_het_Cnt2(void);
 void sci_display(char* buf, int len);
 void motor_bldc(void* pbParameters);
 void wait_ms(int num, int delay);
 void motor_servo(void* pbParameters);
+void hetRamInit(void);
 
 int throttle;
 int rudder;
@@ -105,7 +105,7 @@ int main(void)
     buf_len=strlen(buf);
     sci_display(buf,buf_len);
 */
-    bldc_sem=xSemaphoreCreateBinary();
+    bldc_sem=xSemaphoreCreateBinary();//이진세마포어 2개 생성 각각
     servo_sem=xSemaphoreCreateBinary();
 
     if(xTaskCreate(motor_bldc,"bldc",configMINIMAL_STACK_SIZE*2,NULL,1,bldc_Handle)!=pdPASS){
@@ -226,7 +226,7 @@ void init_all(void){
     etpwmInit();
     ecapInit();
     hetInit();
-    //init_het_Cnt2();
+    hetRamInit();
     sciInit();
     _enable_interrupt_();
     etpwmStartTBCLK();
@@ -237,13 +237,6 @@ void init_all(void){
     init_back_flag=1;
 }
 
-void init_het_Cnt2(void){
-    hetREG1->GCR=(hetREG1->GCR)&0xFFFFFFFE;
-    hetRAM1->Instruction[1].Program=0x00004C80U;//다음실행될 명령어,형재 명령어 설정
-    hetRAM1->Instruction[1].Control=0x01FFFFFFU;//Control
-    hetRAM1->Instruction[1].Data=0xFFFFFF80U;
-    hetREG1->GCR=(hetREG1->GCR)|0x00000001;
-}
 
 void ecapNotification(ecapBASE_t *ecap, uint16 flag)
 {
@@ -288,6 +281,9 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
         sci_display(buf,buf_len);
 
         rudder=(cap[1]-cap[0])/VCLK3_FREQ;
+        if(rudder<950){//신호 끊겼을 때 중립처리
+            rudder=1500;
+        }
 
         sprintf(buf,"cap2 output rudder:%d\n\r\0",rudder);
         buf_len=strlen(buf);
@@ -295,5 +291,18 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
         xSemaphoreGiveFromISR(servo_sem,&cap_Give);
     }
     portYIELD_FROM_ISR(cap_Give);
+}
+
+void hetRamInit(void)
+{
+    hetREG1->GCR=(hetREG1->GCR)&0xFFFFFFFE;
+    hetRAM1->Instruction[0].Program=0x00002C80U;
+    hetRAM1->Instruction[0].Control=0x01FFFFFFU;
+    hetRAM1->Instruction[0].Data=0xFFFFFF80U;
+
+    hetRAM1->Instruction[1].Program=0x00000C80U;
+    hetRAM1->Instruction[1].Control=0x01FFFFFFU;
+    hetRAM1->Instruction[1].Data=0xFFFFFF80U;
+    hetREG1->GCR=(hetREG1->GCR)|0x00000001;
 }
 /* USER CODE END */
