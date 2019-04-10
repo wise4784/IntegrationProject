@@ -79,16 +79,16 @@ void etpwmInit(void)
     etpwmREG4->TBCTL = (uint16)0U << 7U;
 
     /** - Sets time-base clock prescale bits */
-    etpwmREG4->TBCTL |= (uint16)((uint16)1U << 10U);
+    etpwmREG4->TBCTL |= (uint16)((uint16)0U << 10U);
 
     /** - Sets time period or frequency for ETPWM block both PWMA and PWMB*/
-    etpwmREG4->TBPRD = 18749U;
+    etpwmREG4->TBPRD = 37499U;
 
     /** - Setup the duty cycle for PWMA */
-    etpwmREG4->CMPA = 18750U;
+    etpwmREG4->CMPA = 0U;
 
     /** - Setup the duty cycle for PWMB */
-    etpwmREG4->CMPB = 9375U;
+    etpwmREG4->CMPB = 18750U;
 
     /** - Force EPWMxA output high when counter reaches zero and low when counter reaches Compare A value */
     etpwmREG4->AQCTLA = ((uint16)((uint16)ActionQual_Set   << 0U)
