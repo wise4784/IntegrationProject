@@ -1,47 +1,3 @@
-/** @file HL_sys_main.c 
-*   @brief Application main file
-*   @date 11-Dec-2018
-*   @version 04.07.01
-*
-*   This file contains an empty main function,
-*   which can be used for the application.
-*/
-
-/* 
-* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com  
-* 
-* 
-*  Redistribution and use in source and binary forms, with or without 
-*  modification, are permitted provided that the following conditions 
-*  are met:
-*
-*    Redistributions of source code must retain the above copyright 
-*    notice, this list of conditions and the following disclaimer.
-*
-*    Redistributions in binary form must reproduce the above copyright
-*    notice, this list of conditions and the following disclaimer in the 
-*    documentation and/or other materials provided with the   
-*    distribution.
-*
-*    Neither the name of Texas Instruments Incorporated nor the names of
-*    its contributors may be used to endorse or promote products derived
-*    from this software without specific prior written permission.
-*
-*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
-*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
-*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
-*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
-*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
-*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*
-*/
-
-
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
 
@@ -59,31 +15,19 @@
 #include <string.h>
 /* USER CODE END */
 
-/** @fn void main(void)
-*   @brief Application main function
-*   @note This function is empty by default.
-*
-*   This function is called after startup.
-*   The user can use this function to implement the application.
-*/
-
 /* USER CODE BEGIN (2) */
+// UART 통신 함수
 void sci_display_data(sciBASE_t *sci, uint8 *data, uint32 len);
 void sci_display_txt(sciBASE_t *sci, uint8 *txt, uint32 len);
 
-// 딜레이 함수
-void wait(uint32);
+void wait(uint32); // 딜레이 함수
 
-// 브레이크 동작확인 함수 (Active High)
-void check_break(void);
+void check_break(void); // 브레이크 동작확인 함수 (Active High)
 
-// pwm 클럭은 1Mhz
-// 모터 pwm 변경 함수
-// 주파수 = period * 0.000001
-void chg_pwm(etpwmBASE_t *etpwm, uint16 period, int duty);
-
-// 모터를 일정한 속도로 회전
-void const_velocity(void);
+void chg_pwm(etpwmBASE_t *etpwm, uint32 pwm_freq, uint8 *duty); // pwm 클럭은 1Mhz
+                                                                         // 모터 pwm 변경 함수
+                                                                         // 주파수 = period * 0.000001
+void const_velocity(float preVel, float setVel); // 모터를 일정한 속도로 회전
 
 /*  Pin 설정
  *  GPIOA_3 -> BREAK
@@ -94,59 +38,87 @@ void const_velocity(void);
  *  eQEP1_A -> Hall_A
  *  eQEP1_B -> Hall_B
  */
+char buf[128] = {0};
+unsigned int buflen = 0;
+
+uint32 pcnt;    // 엔코더 cnt값
+float velocity; // 엔코더가 측정한 속도값
+uint16 ppr = 3000; // 엔코더 ppr
+
+    // index(z상) 이 있으니까 1바퀴당 pcnt값 구할 수 있음.
+    // ppr = 3000, 감속비 24, Quadrature 모드
+    // 1 res의 pcnt = 3000 * 24 * 4
+    // 1 res의 pcnt = 288000
+
+#define Ki = 0;
+#define Kp = 2;
+#define Kd = 1;
+
+float setVal;
+float error[2];
 /* USER CODE END */
 
 int main(void)
 {
 /* USER CODE BEGIN (3) */
     sciInit();
+    sprintf(buf, "sci_Init\n\r\0");
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
     gioInit();
-    gioSetBit(gioPORTA, 5, 1);
-    gioSetBit(gioPORTA, 3, 0);
-    //주기 1ms 주파수 1khz
+    sprintf(buf, "gio_Init\n\r\0");
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+    // VCLK3 - 37.5Mhz
+    uint32 VCLK3_freq = 150000000 / ((systemREG2->CLK2CNTRL & 0x0000000FU) + 1);
+//********************** EPWM 관련 *********************************//
+    // PWM 주기 1ms 주파수 1khz
     etpwmInit();
-//    etpwmStopTBCLK();
+    // PWM period : 1ms
+    // etpwmREG4->TBPRD = (VCLK3_freq / 1000) - 1;
+    uint32 PWM_freq = etpwmREG4->TBPRD + 1;
+    uint8 duty = 0;
+    sprintf(buf, "pwm_Init : %d Khz\t set Duty : %d\n\r\0", PWM_freq / 1000, duty);
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+//*********************** EQEP 관련 *********************************//
     QEPInit();
-    eqepSetUnitPeriod(eqepREG1, 375000);
+    // Unit - 375khz
+    uint32 Unit_freq = VCLK3_freq / 100;
+    // Count 초기화 주기 10ms
+    eqepSetUnitPeriod(eqepREG1, Unit_freq);
 
-//    chg_pwm(etpwmREG4, 37500, 1);
+    float ppd = 360 / ((float)ppr * 24 * 4); // 엔코더 1ch 펄스당 degree
 
-    // 유저 버튼 누를때까지 대기
-    while(gioGetBit(gioPORTB,4) == 1)
-        ;
-
-    //eqepSetCapturePeriod(eqepREG1, 37500);
-//    etpwmStartTBCLK();
-
-//    chg_pwm(etpwmREG4, 37500, 10);
-//    etpwmREG4->CMPA = 37500;
+    float c_time = Unit_freq / VCLK3_freq;
+    sprintf(buf, "QEP_Init\t set UNIT_TIME : %d msec\n\r\0", 1000 * c_time);
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
     eqepEnableCounter(eqepREG1);
     eqepEnableUnitTimer(eqepREG1);
 
-    uint32 cnt = 0;
-    uint32 icnt = 0;
-    uint32 duty = 0;
-    float velocity = 0;
-
     // PPR이 맞는 지 확인하기위해 MAX 값 설정
-//    eqepSetMaxPosnCount(eqepREG1, 1824);
+    // eqepSetMaxPosnCount(eqepREG1, 3000*24*4);
 
-    char buf[128] = {0};
-    unsigned int buflen = 0;
-
+    // 유저 버튼 누를때까지 대기
+    while(gioGetBit(gioPORTB,4) == 1)
+        ;
+    wait(50000000);
 
     for(;;)
     {
  //       cnt = eqepReadPosnCount(eqepREG1);
-#if 1
+        // 제어주기(10ms) 마다 CNT 값 확인 코드
+#if 0
         if((eqepREG1->QFLG & 0x800) == 0x800)
         {
 //            gioSetBit(gioPORTA,5,1);
 //            cnt = eqepReadPosnCount(eqepREG1);
 //            eqepREG1->QPOSCNT  =  0x00000000U;
-            icnt = eqepReadPosnLatch(eqepREG1); // 정해놓은 시간동안 들어온 CNT 갯수
-            velocity = ((float)eqepREG1->QPOSLAT * 0.75 / 0.01) / 6;
+            pcnt = eqepReadPosnLatch(eqepREG1); // 정해놓은 시간동안 들어온 CNT 갯수
+            velocity = ((float)eqepREG1->QPOSLAT * ppd / c_time) / 6; // rpm
 /*
             cnt = eqepReadPosnCount(eqepREG1); Time Out 발생 시 확실하게 초기화됌.
  *
@@ -154,7 +126,7 @@ int main(void)
  *          buflen = strlen(buf);
  *          sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 */
-            sprintf(buf, "POSCNT = %d\n\r\0", icnt);
+            sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
             buflen = strlen(buf);
             sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
@@ -168,23 +140,24 @@ int main(void)
             eqepClearInterruptFlag(eqepREG1, QEINT_Uto);
         }
 #endif
-#if 0
+        //PWM 조절 확인 코드
+#if 1
         if(gioGetBit(gioPORTB,4) == 0)
         {
-            chg_pwm(etpwmREG4, 37500, 5);
-
-            duty = 100 * (etpwmREG4->CMPA) / 37500;
+            chg_pwm(etpwmREG4, PWM_freq, &duty);
 
             sprintf(buf, "Duty = %d\n\r\0", duty);
             buflen = strlen(buf);
             sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-            wait(500000);
+
+            duty += 5;
+            wait(50000000);
         }
 #endif
-
+#if 0
+        // 전 엔코더 기준
         // 한 바퀴 펄스 갯수 테스트
        // POSCNT 1당 0.75도
-#if 0
         if(cnt > 480)
         {
 //            gioSetBit(gioPORTA, 3, 1);
@@ -203,7 +176,6 @@ int main(void)
     }
 //    gioSetBit(gioPORTA, 3, 1);
 /* USER CODE END */
-
     return 0;
 }
 
@@ -227,24 +199,29 @@ void check_break(void)
         gioSetBit(gioPORTA, 3, 1);
 }
 
-void chg_pwm(etpwmBASE_t *etpwm, uint16 period, int duty)
+void chg_pwm(etpwmBASE_t *etpwm, uint32 pwm_freq, uint8 *duty)
 {
-    int cnt = 0;
-
-    etpwmStopTBCLK();
-    if(duty > 100)
+    if(*duty > 100)
     {
-        duty = 100;
+        *duty = 100;
     }
-    else if(duty < 0)
-    {
-        duty = 0;
-    }
-    etpwm->TBPRD = period - 1;
-    cnt = (duty / 100) * period;
-    etpwm->CMPA += cnt;
 
-    etpwmStartTBCLK();
+    etpwm->CMPA = *duty * pwm_freq / 100;
+
+    sprintf(buf, "CNT = %d\n\r\0", etpwm->CMPA);
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+}
+
+void const_velocity(float preVel, float setVel)
+{
+    int p_term = 0;
+    error[0] = setVel - preVel;
+    error[1] = setVel - preVel;
+    while(error[0] > 0.1)
+    {
+//        p_term = Kp * error[0];
+    }
 }
 
 void sci_display_data(sciBASE_t *sci, uint8 *txt, uint32 len)
@@ -267,4 +244,5 @@ void sci_display_txt(sciBASE_t *sci, uint8 *text, uint32 len)
         sciSendByte(sci, *text++);
     }
 }
+
 /* USER CODE END */
