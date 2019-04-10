@@ -105,20 +105,20 @@ int main(void)
     buf_len=strlen(buf);
     sci_display(buf,buf_len);
 */
-    bldc_sem=xSemaphoreCreateBinary();//이진세마포어 2개 생성 각각
+    bldc_sem=xSemaphoreCreateBinary();//이진세마포어 2개 생성
     servo_sem=xSemaphoreCreateBinary();
 
-    if(xTaskCreate(motor_bldc,"bldc",configMINIMAL_STACK_SIZE*2,NULL,1,bldc_Handle)!=pdPASS){
+    if(xTaskCreate(motor_bldc,"bldc",configMINIMAL_STACK_SIZE*2,NULL,1,bldc_Handle)!=pdPASS){//bldc 태스크 생성부분
         for(;;)
             ;
     }
 
-    if(xTaskCreate(motor_servo,"servo",configMINIMAL_STACK_SIZE*2,NULL,1,servo_Handle)!=pdPASS){
+    if(xTaskCreate(motor_servo,"servo",configMINIMAL_STACK_SIZE*2,NULL,1,servo_Handle)!=pdPASS){//servo 태스크 생성부분
         for(;;)
             ;
     }
 
-    vTaskStartScheduler();
+    vTaskStartScheduler();//스케줄링을 시작 (태스크 제어 시작.)
 
 /* USER CODE END */
 
@@ -127,10 +127,10 @@ int main(void)
 
 
 /* USER CODE BEGIN (4) */
-void wait_ms(int num, int delay){
-    delay*=5000;
-    hetRAM1->Instruction[num].Data=0;
-    while(((hetRAM1->Instruction[num].Data)>>7)<delay)
+void wait_ms(int num, int delay){//Het을 이용해 ms단위로 딜레이를 주기 위해 사용한 함수
+    delay*=5000;//기본이 200ns 이므로 5000을 곱해서 1ms로 맞추어줌
+    hetRAM1->Instruction[num].Data=0;//0~delay까지 대기
+    while(((hetRAM1->Instruction[num].Data)>>7)<delay)//cnt의 data의 하위 7bit는 쓰지 않는 부분으로 상위 25bit로부터 값을 얻어옴
         ;
 }
 
@@ -146,12 +146,12 @@ void motor_servo(void* pbParameters)
             sci_display(buf,buf_len);
 
             rudder=(int)(((float)rudder)*0.9);
-            rudder=2700-rudder;
-            if(rudder>=1250&&rudder<1450){
+            rudder=2700-rudder;//조종기의 좌우와 차량의 좌우가 불일치 하므로 방향에 맞게끔 처리
+            if(rudder>=1250&&rudder<1450){//중립 범위 조정(조종 편의성을 위함)
                 rudder=1250;
             }
             if(rudder>=900&&rudder<=1800)
-                etpwmREG1->CMPB=rudder;// 900 1250 1800
+                etpwmREG1->CMPB=rudder;// 900 1250 1800(서보의 범위 우측 최대, 중립, 좌측 최대 )
             wait_ms(1,100);
 
             sprintf(buf,"**********servo_End rudder:%d*********\n\r\0",rudder);
@@ -222,7 +222,7 @@ void sci_display(char* buf, int len){
     }
 }
 
-void init_all(void){
+void init_all(void){//초기화 부분을 모아둔 함수
     etpwmInit();
     ecapInit();
     hetInit();
@@ -249,7 +249,7 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
 
 
     if(ecap==ecapREG1){
-        ecapDisableInterrupt(ecapREG1,ecapInt_CEVT3);//모터 구동 태스크와 번갈아 가며 실행되기 위함
+        ecapDisableInterrupt(ecapREG1,ecapInt_CEVT3);//모터 구동 태스크와 번갈아 가며 실행되기 위해 인터럽트를 꺼둠
 
         sprintf(buf,"cap1 Start\n\r\0");
         buf_len=strlen(buf);
@@ -272,7 +272,7 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
         buf_len=strlen(buf);
         sci_display(buf,buf_len);
 
-        xSemaphoreGiveFromISR(bldc_sem,&cap_Give);
+        xSemaphoreGiveFromISR(bldc_sem,&cap_Give);//binary semaphore를 사용가능하게끔 Give 실행
     }else{
         ecapDisableInterrupt(ecapREG2,ecapInt_CEVT3);//서보모터와 번갈아가며 실행되기 위함.
 
@@ -288,21 +288,21 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
         sprintf(buf,"cap2 output rudder:%d\n\r\0",rudder);
         buf_len=strlen(buf);
         sci_display(buf,buf_len);
-        xSemaphoreGiveFromISR(servo_sem,&cap_Give);
+        xSemaphoreGiveFromISR(servo_sem,&cap_Give);//서보모터용 세마포어를 Give
     }
-    portYIELD_FROM_ISR(cap_Give);
+    portYIELD_FROM_ISR(cap_Give);//인터럽트 서비스 루틴에서 세마포어 사용시 이걸 써주어야 한다고 예제 코드에 있길래 추가.
 }
 
-void hetRamInit(void)
+void hetRamInit(void)//hetRAM 초기화
 {
-    hetREG1->GCR=(hetREG1->GCR)&0xFFFFFFFE;
-    hetRAM1->Instruction[0].Program=0x00002C80U;
+    hetREG1->GCR=(hetREG1->GCR)&0xFFFFFFFE;//우선 HET 끄기
+    hetRAM1->Instruction[0].Program=0x00002C80U;//HETRAM 첫번째에 cnt 명령어 할당
     hetRAM1->Instruction[0].Control=0x01FFFFFFU;
     hetRAM1->Instruction[0].Data=0xFFFFFF80U;
 
-    hetRAM1->Instruction[1].Program=0x00000C80U;
+    hetRAM1->Instruction[1].Program=0x00000C80U;//hetRAM 두번째에도 cnt 명령어 할당
     hetRAM1->Instruction[1].Control=0x01FFFFFFU;
     hetRAM1->Instruction[1].Data=0xFFFFFF80U;
-    hetREG1->GCR=(hetREG1->GCR)|0x00000001;
+    hetREG1->GCR=(hetREG1->GCR)|0x00000001;//HET 동작 시작
 }
 /* USER CODE END */
