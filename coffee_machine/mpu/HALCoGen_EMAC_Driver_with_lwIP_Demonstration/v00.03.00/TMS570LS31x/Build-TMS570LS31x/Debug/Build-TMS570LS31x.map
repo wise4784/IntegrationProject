@@ -1,0 +1,1218 @@
+******************************************************************************
+                  TI ARM Linker PC v5.1.6                      
+******************************************************************************
+>> Linked Wed May 21 15:22:26 2014
+
+OUTPUT FILE NAME:   <Build-TMS570LS31x.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 0005b2f0
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  VECTORS               00000000   00000020  00000020  00000000     X
+  FLASH0                00000020   0017ffe0  0005c35c  00123c84  R  X
+  FLASH1                00180000   00180000  00000000  00180000  R  X
+  STACKS                08000000   00001500  00000000  00001500  RW  
+  RAM                   08001500   0003eb00  00013242  0002b8be  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    0005c380   0005c380    r-x
+  00000000    00000000    00000020   00000020    r-x .intvecs
+  00000020    00000020    000419b4   000419b4    r-- .const
+  000419d4    000419d4    0001a7f0   0001a7f0    r-x .text
+  0005c1c8    0005c1c8    000001b8   000001b8    r-- .cinit
+08001500    08001500    00013244   00000000    rw-
+  08001500    08001500    0001309e   00000000    rw- .bss
+  080145a0    080145a0    000001a4   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000020     
+                  00000000    00000020     sys_intvecs.obj (.intvecs)
+
+.const     0    00000020    000419b4     
+                  00000020    000363f5     fs.obj (.const:.string:data_img_Hercules_block_diagram_gif)
+                  00036415    00007127     fs.obj (.const:.string:data_index_html)
+                  0003d53c    0000293b     fs.obj (.const:.string:data_main_css)
+                  0003fe77    00000d4b     fs.obj (.const:.string:data_img_ti_logo_gif)
+                  00040bc2    00000777     fs.obj (.const:.string:data_IE60Fixes_css)
+                  00041339    00000289     fs.obj (.const:.string:data_404_html)
+                  000415c2    00000002     --HOLE-- [fill = 0]
+                  000415c4    00000180     sys_vim.obj (.const:s_vim_init)
+                  00041744    000000a0     fs.obj (.const:.string:data_BreadCrumbs_css)
+                  000417e4    0000008c     lwiplib.obj (.const:.string)
+                  00041870    0000008c     fs.obj (.const)
+                  000418fc    00000044     lwiplib.obj (.const)
+                  00041940    00000040     httpd.obj (.const:.string)
+                  00041980    0000002c     lwiplib.obj (.const:tcp_state_str)
+                  000419ac    00000028     httpd.obj (.const:g_psDefaultFilenames)
+
+.text      0    000419d4    0001a7f0     
+                  000419d4    000104ac     lwiplib.obj (.text)
+                  00051e80    00002d84     sys_selftest.obj (.text)
+                  00054c04    00001788     emac.obj (.text)
+                  0005638c    00000f38     httpd.obj (.text)
+                  000572c4    00000b30     system.obj (.text)
+                  00057df4    00000890     sys_vim.obj (.text)
+                  00058684    0000075c     sci.obj (.text)
+                  00058de0    00000710     phy_dp83640.obj (.text)
+                  000594f0    00000650     pinmux.obj (.text)
+                  00059b40    00000634     esm.obj (.text)
+                  0005a174    000005fc     lwip_main.obj (.text)
+                  0005a770    00000528     timers.obj (.text)
+                  0005ac98    000003c4     sys_core.obj (.text)
+                  0005b05c    00000294     sys_vim.obj (.text:retain)
+                  0005b2f0    0000028c     sys_startup.obj (.text:retain)
+                  0005b57c    000001c4     mdio.obj (.text)
+                  0005b740    00000158     esm.obj (.text:retain)
+                  0005b898    00000114     sys_pmu.obj (.text)
+                  0005b9ac    00000104     fs.obj (.text)
+                  0005bab0    000000e8     dabort.obj (.text)
+                  0005bb98    000000cc     emac.obj (.text:retain)
+                  0005bc64    000000a0     notification.obj (.text)
+                  0005bd04    000000a0     lwip_main.obj (.text:retain)
+                  0005bda4    0000009c     rtsv7R4_T_be_v3D16_eabi.lib : memcpy_t2.obj (.text)
+                  0005be40    00000094                                 : auto_init.obj (.text)
+                  0005bed4    00000078                                 : memset_t2.obj (.text)
+                  0005bf4c    00000060                                 : copy_decompress_rle.obj (.text)
+                  0005bfac    00000058                                 : i_div32.obj (.text)
+                  0005c004    00000054                                 : u_div32.obj (.text)
+                  0005c058    00000048                                 : cpy_tbl.obj (.text)
+                  0005c0a0    00000044                                 : exit.obj (.text)
+                  0005c0e4    00000026                                 : strncmp.obj (.text)
+                  0005c10a    00000022                                 : memcmp.obj (.text)
+                  0005c12c    00000018                                 : strcmp.obj (.text)
+                  0005c144    00000016                                 : strchr.obj (.text)
+                  0005c15a    00000016                                 : strlen.obj (.text)
+                  0005c170    00000014                                 : _lock.obj (.text)
+                  0005c184    00000014     sys_main.obj (.text)
+                  0005c198    00000012     rtsv7R4_T_be_v3D16_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
+                  0005c1aa    0000000e                                 : copy_decompress_none.obj (.text:decompress:none)
+                  0005c1b8    00000006                                 : copy_decompress_rle.obj (.text:decompress:rle24)
+                  0005c1be    00000002     --HOLE-- [fill = 0]
+                  0005c1c0    00000004     sys_phantom.obj (.text:retain)
+
+.cinit     0    0005c1c8    000001b8     
+                  0005c1c8    00000191     (.cinit..data.load) [load image, compression = rle]
+                  0005c359    00000003     --HOLE-- [fill = 0]
+                  0005c35c    0000000c     (__TI_handler_table)
+                  0005c368    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  0005c370    00000010     (__TI_cinit_table)
+
+.bss       0    08001500    0001309e     UNINITIALIZED
+                  08001500    00007814     lwiplib.obj (.bss:ram_heap)
+                  08008d14    00007594     lwiplib.obj (.bss:memp_memory)
+                  080102a8    00003b24     emac.obj (.bss:pbuf_array)
+                  08013dcc    00000400     httpd.obj (.bss:httpd_req_buf)
+                  080141cc    000000ea     lwiplib.obj (.bss:lwip_stats)
+                  080142b6    00000002     (.common:ip_id)
+                  080142b8    000000c8     lwiplib.obj (.bss:arp_table)
+                  08014380    00000054     lwiplib.obj (.bss:locatorData)
+                  080143d4    00000044     lwiplib.obj (.bss:hdkif_data)
+                  08014418    0000003c     emac.obj (.bss:hdkif_data)
+                  08014454    00000034     lwiplib.obj (.bss:hdkNetIF)
+                  08014488    00000028     lwiplib.obj (.bss:dhcp_rx_options_val)
+                  080144b0    00000028     sci.obj (.bss:g_sciTransfer_t)
+                  080144d8    00000020     (.common:memp_tab)
+                  080144f8    00000010     (.common:inseg)
+                  08014508    00000010     (.common:str$3)
+                  08014518    0000000c     (.common:dhcp_rx_options_given)
+                  08014524    00000004     (.common:ackno)
+                  08014528    00000004     (.common:current_header)
+                  0801452c    00000004     (.common:current_iphdr_dest)
+                  08014530    00000004     (.common:current_iphdr_src)
+                  08014534    00000004     (.common:current_netif)
+                  08014538    00000004     (.common:delayval$1)
+                  0801453c    00000004     (.common:iphdr)
+                  08014540    00000004     (.common:lfree)
+                  08014544    00000004     (.common:netif_default)
+                  08014548    00000004     (.common:netif_list)
+                  0801454c    00000004     (.common:next_timeout)
+                  08014550    00000004     (.common:ram)
+                  08014554    00000004     (.common:ram_end)
+                  08014558    00000004     (.common:raw_pcbs)
+                  0801455c    00000004     (.common:recv_data)
+                  08014560    00000004     (.common:seqno)
+                  08014564    00000004     (.common:tcp_active_pcbs)
+                  08014568    00000004     (.common:tcp_bound_pcbs)
+                  0801456c    00000004     (.common:tcp_input_pcb)
+                  08014570    00000004     (.common:tcp_listen_pcbs)
+                  08014574    00000004     (.common:tcp_ticks)
+                  08014578    00000004     (.common:tcp_tmp_pcb)
+                  0801457c    00000004     (.common:tcp_tw_pcbs)
+                  08014580    00000004     (.common:tcphdr)
+                  08014584    00000004     (.common:tcpip_tcp_timer_active)
+                  08014588    00000004     (.common:timeouts_last_time)
+                  0801458c    00000004     (.common:txtIPAddrItoA)
+                  08014590    00000004     (.common:udp_pcbs)
+                  08014594    00000002     (.common:tcplen)
+                  08014596    00000001     (.common:etharp_cached_entry)
+                  08014597    00000001     (.common:flags)
+                  08014598    00000001     (.common:netif_num)
+                  08014599    00000001     (.common:pbuf_free_ooseq_pending)
+                  0801459a    00000001     (.common:recv_flags)
+                  0801459b    00000001     (.common:tcp_active_pcbs_changed)
+                  0801459c    00000001     (.common:tcp_timer)
+                  0801459d    00000001     (.common:tcp_timer_ctr)
+
+.data      0    080145a0    000001a4     UNINITIALIZED
+                  080145a0    000000b0     lwip_main.obj (.data)
+                  08014650    00000060     lwiplib.obj (.data)
+                  080146b0    0000002e     lwip_main.obj (.data:txtErrorInit)
+                  080146de    00000025     lwiplib.obj (.data:txtPhyGetAlSts)
+                  08014703    00000024     lwiplib.obj (.data:txtPhyGetLnkSts)
+                  08014727    00000001     --HOLE--
+                  08014728    0000000c     sys_main.obj (.data)
+                  08014734    00000008     rtsv7R4_T_be_v3D16_eabi.lib : _lock.obj (.data)
+                  0801473c    00000008                                 : exit.obj (.data)
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 0005c370 records: 2, size/record: 8, table size: 16
+	.data: load addr=0005c1c8, load size=00000191 bytes, run addr=080145a0, run size=000001a4 bytes, compression=rle
+	.bss: load addr=0005c368, load size=00000008 bytes, run addr=08001500, run size=0001309e bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 0005c35c records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_rle24
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+0005c0a1   C$$EXIT
+00058f38   Dp83640AutoNegotiate
+000591d0   Dp83640DisableLoopback
+00059140   Dp83640EnableLoopback
+00059254   Dp83640GetTimeStamp
+00058de0   Dp83640IDGet
+00058e58   Dp83640LinkStatusGet
+000590c8   Dp83640PartnerAbilityGet
+000590f0   Dp83640Reset
+0005bd04   EMACCore0RxIsr
+0005bd50   EMACCore0TxIsr
+0005512c   EMACCoreIntAck
+000558c0   EMACDMAInit
+000555e4   EMACDisableIdleState
+00055670   EMACDisableLoopback
+00054dfc   EMACDuplexSet
+000555c0   EMACEnableIdleState
+00055608   EMACEnableLoopback
+000554dc   EMACFrameSelect
+000561d0   EMACGetConfigValue
+00055a98   EMACHWInit
+00054f04   EMACInit
+00055348   EMACInstConfig
+00055330   EMACIntVectorGet
+000553ac   EMACLinkSetup
+000550a4   EMACMACAddrSet
+00055040   EMACMACSrcAddrSet
+00054dd8   EMACMIIDisable
+00054db4   EMACMIIEnable
+00055304   EMACNumFreeBufSet
+00054d74   EMACRMIISpeedSet
+000557bc   EMACReadNetStatRegisters
+00056074   EMACReceive
+000551e8   EMACRxBroadCastDisable
+000551a4   EMACRxBroadCastEnable
+00055178   EMACRxCPWrite
+00054e90   EMACRxDisable
+00054e74   EMACRxEnable
+00055744   EMACRxFlowControlDisable
+00055720   EMACRxFlowControlEnable
+00054ed8   EMACRxHdrDescPtrWrite
+0005bbfc   EMACRxIntISR
+00054d18   EMACRxIntPulseDisable
+00054cbc   EMACRxIntPulseEnable
+00055830   EMACRxIntStat
+00055268   EMACRxMultiCastDisable
+00055224   EMACRxMultiCastEnable
+00055768   EMACRxSetFlowThreshold
+000554b0   EMACRxTeardown
+000552d4   EMACRxUnicastClear
+000552a4   EMACRxUnicastSet
+00055574   EMACSoftReset
+00055d94   EMACTransmit
+0005514c   EMACTxCPWrite
+00054e58   EMACTxDisable
+00054e3c   EMACTxEnable
+000556fc   EMACTxFlowControlDisable
+000556d8   EMACTxFlowControlEnable
+00054eac   EMACTxHdrDescPtrWrite
+00055f80   EMACTxIntHandler
+0005bb98   EMACTxIntISR
+00054c60   EMACTxIntPulseDisable
+00054c04   EMACTxIntPulseEnable
+000557e0   EMACTxIntStat
+00055514   EMACTxPrioritySelect
+00055484   EMACTxTeardown
+0005a1b4   EMAC_LwIP_Main
+0005a624   IntMasterIRQDisable
+0005a614   IntMasterIRQEnable
+0005a634   IntMasterStatusGet
+000519a0   LocatorConfig
+0005b718   MDIODisable
+0005b6f4   MDIOEnable
+0005b6ac   MDIOInit
+0005b67c   MDIOPhyAliveStatusGet
+0005b694   MDIOPhyLinkStatusGet
+0005b57c   MDIOPhyRegRead
+0005b614   MDIOPhyRegWrite
+UNDEFED    SHT$$INIT_ARRAY$$Base
+UNDEFED    SHT$$INIT_ARRAY$$Limit
+0005c370   __TI_CINIT_Base
+0005c380   __TI_CINIT_Limit
+0005c35c   __TI_Handler_Table_Base
+0005c368   __TI_Handler_Table_Limit
+0005b054   __TI_PINIT_Base
+0005b058   __TI_PINIT_Limit
+0005be41   __TI_auto_init
+0801473c   __TI_cleanup_ptr
+0005c1ab   __TI_decompress_none
+0005c1b9   __TI_decompress_rle24
+08014740   __TI_dtors_ptr
+00000000   __TI_static_base__
+0005c199   __TI_zero_init
+0005bfac   __aeabi_idivmod
+0005bed5   __aeabi_memclr
+0005bed5   __aeabi_memclr4
+0005bed5   __aeabi_memclr8
+0005bda5   __aeabi_memcpy
+0005bda5   __aeabi_memcpy4
+0005bda5   __aeabi_memcpy8
+0005bed7   __aeabi_memset
+0005bed7   __aeabi_memset4
+0005bed7   __aeabi_memset8
+0005c004   __aeabi_uidivmod
+ffffffff   __binit__
+ffffffff   __c_args__
+0005b2f0   _c_int00
+0005af4c   _coreClearAuxiliaryDataFault_
+0005af68   _coreClearAuxiliaryInstructionFault_
+0005af14   _coreClearDataFaultAddress_
+0005aedc   _coreClearDataFault_
+0005af30   _coreClearInstructionFaultAddress_
+0005aef8   _coreClearInstructionFault_
+0005ae40   _coreDisableEventBusExport_
+0005aea4   _coreDisableFlashEcc_
+0005ae70   _coreDisableRamEcc_
+0005ae28   _coreEnableEventBusExport_
+0005ae88   _coreEnableFlashEcc_
+0005aebc   _coreEnableIrqVicOffset_
+0005ae58   _coreEnableRamEcc_
+0005ae10   _coreEnableVfp_
+0005af44   _coreGetAuxiliaryDataFault_
+0005af60   _coreGetAuxiliaryInstructionFault_
+0005af0c   _coreGetDataFaultAddress_
+0005aed4   _coreGetDataFault_
+0005af28   _coreGetInstructionFaultAddress_
+0005aef0   _coreGetInstructionFault_
+0005ac98   _coreInitRegisters_
+0005ada4   _coreInitStackPointer_
+0005bab0   _dabort
+0005af84   _disable_FIQ_interrupt_
+0005af8c   _disable_IRQ_interrupt_
+0005af7c   _disable_interrupt_
+0005af94   _enable_interrupt_
+0005b024   _errata_CORTEXR4_57_
+0005b03c   _errata_CORTEXR4_66_
+0005af9c   _esmCcmErrorsClear_
+0005adf0   _getCPSRValue_
+0005adf8   _gotoCPUIdle_
+08014734   _lock
+0005c17f   _nop
+0005b900   _pmuDisableCountersGlobal_
+0005b8e8   _pmuEnableCountersGlobal_
+0005b980   _pmuGetCycleCount_
+0005b988   _pmuGetEventCount_
+0005b998   _pmuGetOverflow_
+0005b898   _pmuInit_
+0005b948   _pmuResetCounters_
+0005b918   _pmuResetCycleCounter_
+0005b930   _pmuResetEventCounters_
+0005b970   _pmuSetCountEvent_
+0005b960   _pmuStartCounters_
+0005b968   _pmuStopCounters_
+0005c177   _register_lock
+0005c171   _register_unlock
+08014738   _unlock
+0005c0a5   abort
+00053108   adc1ParityCheck
+00053200   adc2ParityCheck
+ffffffff   binit
+000532b0   can1ParityCheck
+00053388   can2ParityCheck
+00053450   can3ParityCheck
+00051e90   ccmSelfCheck
+00054608   ccmr4GetConfigValue
+000527d4   checkB0RAMECC
+000529c4   checkB1RAMECC
+00053ab8   checkClockMonitor
+00052bb4   checkFlashECC
+00053b94   checkFlashEEPROMECC
+00053d2c   checkPLL1Slip
+00053e2c   checkPLL2Slip
+00053ef0   checkRAMAddrParity
+00053870   checkRAMECC
+00054010   checkRAMUERRTest
+00052658   checkefcSelfTest
+0005c059   copy_in
+08014648   countEMACCore0RxIsr
+0801464c   countEMACCore0TxIsr
+00052094   cpuSelfTest
+00052c98   cpuSelfTestFail
+08014528   current_header
+0801452c   current_iphdr_dest
+08014530   current_iphdr_src
+08014534   current_netif
+00052c90   custom_dabort
+0004206c   dhcp_cleanup
+00041c24   dhcp_coarse_tmr
+00041cb8   dhcp_fine_tmr
+0004222c   dhcp_inform
+00042378   dhcp_network_changed
+00042b18   dhcp_release
+0004279c   dhcp_renew
+08014518   dhcp_rx_options_given
+08014488   dhcp_rx_options_val
+00042040   dhcp_set_struct
+000420a0   dhcp_start
+00042c8c   dhcp_stop
+00054a64   disableParity
+0005bcd0   dmaGroupANotification
+00052d48   dmaParityCheck
+000524fc   efcCheck
+00054570   efcGetConfigValue
+00052630   efcSelfTest
+00052584   efcStuckZeroTest
+08014728   emacAddress
+08014730   emacPhyAddress
+0005bcf4   emacRxNotification
+0005bce4   emacTxNotification
+000549d8   enableParity
+00054674   errata_PBIST_4
+00059cf0   esmActivateNormalOperation
+00059ddc   esmClearStatus
+00059e1c   esmClearStatusBuffer
+00059cb4   esmDisableError
+00059d2c   esmDisableInterrupt
+00059c88   esmEnableError
+00059d00   esmEnableInterrupt
+00059f3c   esmEnterSelfTest
+00059c6c   esmError
+0005a014   esmGetConfigValue
+00059e68   esmGetStatus
+00059edc   esmGetStatusBuffer
+0005bc64   esmGroup1Notification
+0005bc74   esmGroup2Notification
+0005b740   esmHighInterrupt
+00059b40   esmInit
+00059fc4   esmSelfTestStatus
+00059e48   esmSetCounterPreloadValue
+00059d58   esmSetInterruptLevel
+00059ce0   esmTriggerErrorPinReset
+0004f9c8   etharp_cleanup_netif
+0004fa4c   etharp_find_addr
+0004fe40   etharp_output
+000500c4   etharp_query
+00050520   etharp_request
+0004f3b8   etharp_tmr
+00041934   ethbroadcast
+0005057c   ethernet_input
+0004193a   ethzero
+0005c0ad   exit
+00041870   file_404_html
+00041884   file_BreadCrumbs_css
+00041898   file_IE60Fixes_css
+000418ac   file_img_Hercules_block_diagram_gif
+000418c0   file_img_ti_logo_gif
+000418d4   file_index_html
+000418e8   file_main_css
+00054174   fmcBus1ParityCheck
+000526f8   fmcBus2Check
+00052734   fmcECCcheck
+0005ba88   fs_bytes_left
+0005ba78   fs_close
+0005b9ac   fs_open
+000419ac   g_psDefaultFilenames
+08014418   hdkif_data
+00051224   hdkif_init
+000517e0   hdkif_link_status
+000507bc   hdkif_macaddrset
+000517b4   hdkif_netif_status
+000512c4   hdkif_rx_inthandler
+00050780   hdkif_swizzle_data
+000507a8   hdkif_swizzle_rxp
+00050794   hdkif_swizzle_txp
+00051650   hdkif_tx_inthandler
+00052df8   het1ParityCheck
+00052f70   het2ParityCheck
+00057294   httpd_init
+00052ea8   htu1ParityCheck
+00053058   htu2ParityCheck
+0004dd10   icmp_dest_unreach
+0004d9b0   icmp_input
+0004e334   inet_chksum
+0004e35c   inet_chksum_pbuf
+0004df84   inet_chksum_pseudo
+0004e148   inet_chksum_pseudo_partial
+0005a464   iommLock
+0005a480   iommMuxEnableMdio
+0005a4e8   iommMuxEnableMii
+0005a49c   iommMuxEnableRmii
+0005a448   iommUnlock
+0004ecf0   ip4_addr_isbroadcast
+0004edc0   ip4_addr_netmask_valid
+0004192c   ip_addr_any
+00041930   ip_addr_broadcast
+0004e554   ip_input
+0004ec78   ip_output
+0004e9f0   ip_output_if
+0004e458   ip_route
+0004ee54   ipaddr_addr
+0004ee80   ipaddr_aton
+0004f1b4   ipaddr_ntoa
+0004f1d0   ipaddr_ntoa_r
+00051b4c   lwIPInit
+00051dac   lwIPLinkStatusGet
+00051d8c   lwIPNetIfStatusGet
+00051dd4   lwIPRxIntHandler
+00051df8   lwIPTxIntHandler
+00043b84   lwip_init
+080141cc   lwip_stats
+0005c184   main
+00057400   mapClocks
+00044434   mem_calloc
+00043d9c   mem_free
+00043cec   mem_init
+00044160   mem_malloc
+00043e74   mem_trim
+0005c10b   memcmp
+0005bda5   memcpy
+00051fd4   memoryInit
+0005bc84   memoryPort0TestFailNotification
+0005bca0   memoryPort1TestFailNotification
+000446f8   memp_free
+00044484   memp_init
+000445ec   memp_malloc
+0005bedd   memset
+00053524   mibspi1ParityCheck
+0005362c   mibspi3ParityCheck
+00053750   mibspi5ParityCheck
+000594f0   muxInit
+00044780   netif_add
+08014544   netif_default
+00044990   netif_find
+00044778   netif_init
+08014548   netif_list
+000448a0   netif_remove
+0004485c   netif_set_addr
+00044c20   netif_set_default
+00044ca4   netif_set_down
+00044ba8   netif_set_gw
+00044a44   netif_set_ipaddr
+00044d64   netif_set_link_down
+00044cec   netif_set_link_up
+00044be8   netif_set_netmask
+00044c48   netif_set_up
+000542a0   pbistFail
+00054388   pbistGetConfigValue
+00052430   pbistIsTestCompleted
+0005244c   pbistIsTestPassed
+000524a0   pbistPortTestStatus
+00052334   pbistRun
+0005212c   pbistSelfCheck
+00052400   pbistStop
+00044e40   pbuf_alloc
+00045614   pbuf_cat
+000456a4   pbuf_chain
+00045590   pbuf_clen
+00045be0   pbuf_coalesce
+00045758   pbuf_copy
+00045954   pbuf_copy_partial
+000456c8   pbuf_dechain
+00045480   pbuf_free
+00044d98   pbuf_free_ooseq
+08014599   pbuf_free_ooseq_pending
+00045c58   pbuf_get_at
+000452ec   pbuf_header
+00045cfc   pbuf_memcmp
+00045e10   pbuf_memfind
+000451a8   pbuf_realloc
+000455dc   pbuf_ref
+00045ebc   pbuf_strstr
+00045ac4   pbuf_take
+00050724   perf_init
+000573ac   periphInit
+0005c1c0   phantomInterrupt
+00059870   pinmuxGetConfigValue
+08001500   ram_heap
+00046084   raw_bind
+000460c0   raw_connect
+00045f3c   raw_input
+00046354   raw_new
+000460fc   raw_recv
+000462ac   raw_remove
+00046288   raw_send
+0004612c   raw_sendto
+00000000   resetEntry
+00058b30   sciDisableLoopback
+00058bbc   sciDisableNotification
+0005a648   sciDisplayText
+00058afc   sciEnableLoopback
+00058b54   sciEnableNotification
+00058684   sciInit
+000589ac   sciIsIdleDetected
+00058990   sciIsRxReady
+00058810   sciIsTxReady
+0005a6a8   sciNotification
+00058a24   sciReceive
+000589f8   sciReceiveByte
+000589c8   sciRxError
+0005885c   sciSend
+0005882c   sciSendByte
+00058790   sciSetBaudrate
+00058770   sciSetFunctional
+00058c24   scilinGetConfigValue
+00051e80   selftestFailNotification
+0005736c   setupFlash
+000572c4   setupPLL
+0005a174   smallDelay
+00057be4   sramGetConfigValue
+000463c0   stats_init
+000544d0   stcGetConfigValue
+00052018   stcSelfCheck
+00052c94   stcSelfCheckFail
+0005c145   strchr
+0005c12d   strcmp
+0005c15b   strlen
+0005c0e5   strncmp
+00050734   sys_arch_protect
+0005074c   sys_arch_unprotect
+0005ab58   sys_check_timeouts
+00050768   sys_now
+0005ac5c   sys_restart_timeouts
+0005a8b8   sys_timeout
+0005a874   sys_timeouts_init
+0005aa5c   sys_untimeout
+00057624   systemGetConfigValue
+00057528   systemInit
+000575f4   systemPowerDown
+00057a38   tcmflashGetConfigValue
+000468e4   tcp_abandon
+00046a28   tcp_abort
+00048150   tcp_accept
+08014564   tcp_active_pcbs
+0801459b   tcp_active_pcbs_changed
+00047ef0   tcp_alloc
+000480d0   tcp_arg
+000417e4   tcp_backoff
+00046a40   tcp_bind
+08014568   tcp_bound_pcbs
+000467d0   tcp_close
+00047010   tcp_connect
+00048430   tcp_debug_state_str
+000483bc   tcp_eff_send_mss
+0004be50   tcp_enqueue_flags
+00048130   tcp_err
+000479fc   tcp_fasttmr
+000463c4   tcp_init
+00048458   tcp_input
+0801456c   tcp_input_pcb
+0004cb0c   tcp_keepalive
+08014570   tcp_listen_pcbs
+00046bf4   tcp_listen_with_backlog
+000480c0   tcp_new
+00048394   tcp_next_iss
+0004c18c   tcp_output
+0004191c   tcp_pcb_lists
+000481a0   tcp_pcb_purge
+00048268   tcp_pcb_remove
+000417f1   tcp_persist_backoff
+00048170   tcp_poll
+00047ae0   tcp_process_refused_data
+000480f0   tcp_recv
+00047d00   tcp_recv_null
+00046eb0   tcp_recved
+0004c950   tcp_rexmit
+0004ca30   tcp_rexmit_fast
+0004c8b8   tcp_rexmit_rto
+0004c7a8   tcp_rst
+00047cb4   tcp_seg_copy
+00047c54   tcp_seg_free
+00047c14   tcp_segs_free
+0004c0b8   tcp_send_empty_ack
+0004b2f8   tcp_send_fin
+00048110   tcp_sent
+00047c94   tcp_setprio
+00046808   tcp_shutdown
+00047304   tcp_slowtmr
+00041980   tcp_state_str
+08014574   tcp_ticks
+0005a7c0   tcp_timer_needed
+08014578   tcp_tmp_pcb
+000463c8   tcp_tmr
+0801457c   tcp_tw_pcbs
+00046dd8   tcp_update_rcv_ann_wnd
+0004b758   tcp_write
+0004cbc8   tcp_zero_window_probe
+00057324   trimLPO
+080145e3   txtBigEndian
+080145a0   txtCRLF
+080145f5   txtEnetInit
+080146b0   txtErrorInit
+0801458c   txtIPAddrItoA
+08014612   txtIPAddrTxt
+080145ce   txtLittleEndian
+08014626   txtNote1
+080145bc   txtTI
+080145a2   txtTitle
+0004d5fc   udp_bind
+0004d760   udp_connect
+0004d860   udp_disconnect
+0004cd6c   udp_init
+0004ce24   udp_input
+0004d970   udp_new
+08014590   udp_pcbs
+0004d898   udp_recv
+0004d8c8   udp_remove
+0004d328   udp_send
+0004d354   udp_sendto
+0004d3c0   udp_sendto_if
+00057ec8   vimChannelMap
+000580bc   vimDisableInterrupt
+00057f64   vimEnableInterrupt
+00058140   vimGetConfigValue
+00057df4   vimInit
+00052c9c   vimParityCheck
+0005b05c   vimParityErrorHandler
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   __TI_static_base__
+00000000   resetEntry
+000417e4   tcp_backoff
+000417f1   tcp_persist_backoff
+00041870   file_404_html
+00041884   file_BreadCrumbs_css
+00041898   file_IE60Fixes_css
+000418ac   file_img_Hercules_block_diagram_gif
+000418c0   file_img_ti_logo_gif
+000418d4   file_index_html
+000418e8   file_main_css
+0004191c   tcp_pcb_lists
+0004192c   ip_addr_any
+00041930   ip_addr_broadcast
+00041934   ethbroadcast
+0004193a   ethzero
+00041980   tcp_state_str
+000419ac   g_psDefaultFilenames
+00041c24   dhcp_coarse_tmr
+00041cb8   dhcp_fine_tmr
+00042040   dhcp_set_struct
+0004206c   dhcp_cleanup
+000420a0   dhcp_start
+0004222c   dhcp_inform
+00042378   dhcp_network_changed
+0004279c   dhcp_renew
+00042b18   dhcp_release
+00042c8c   dhcp_stop
+00043b84   lwip_init
+00043cec   mem_init
+00043d9c   mem_free
+00043e74   mem_trim
+00044160   mem_malloc
+00044434   mem_calloc
+00044484   memp_init
+000445ec   memp_malloc
+000446f8   memp_free
+00044778   netif_init
+00044780   netif_add
+0004485c   netif_set_addr
+000448a0   netif_remove
+00044990   netif_find
+00044a44   netif_set_ipaddr
+00044ba8   netif_set_gw
+00044be8   netif_set_netmask
+00044c20   netif_set_default
+00044c48   netif_set_up
+00044ca4   netif_set_down
+00044cec   netif_set_link_up
+00044d64   netif_set_link_down
+00044d98   pbuf_free_ooseq
+00044e40   pbuf_alloc
+000451a8   pbuf_realloc
+000452ec   pbuf_header
+00045480   pbuf_free
+00045590   pbuf_clen
+000455dc   pbuf_ref
+00045614   pbuf_cat
+000456a4   pbuf_chain
+000456c8   pbuf_dechain
+00045758   pbuf_copy
+00045954   pbuf_copy_partial
+00045ac4   pbuf_take
+00045be0   pbuf_coalesce
+00045c58   pbuf_get_at
+00045cfc   pbuf_memcmp
+00045e10   pbuf_memfind
+00045ebc   pbuf_strstr
+00045f3c   raw_input
+00046084   raw_bind
+000460c0   raw_connect
+000460fc   raw_recv
+0004612c   raw_sendto
+00046288   raw_send
+000462ac   raw_remove
+00046354   raw_new
+000463c0   stats_init
+000463c4   tcp_init
+000463c8   tcp_tmr
+000467d0   tcp_close
+00046808   tcp_shutdown
+000468e4   tcp_abandon
+00046a28   tcp_abort
+00046a40   tcp_bind
+00046bf4   tcp_listen_with_backlog
+00046dd8   tcp_update_rcv_ann_wnd
+00046eb0   tcp_recved
+00047010   tcp_connect
+00047304   tcp_slowtmr
+000479fc   tcp_fasttmr
+00047ae0   tcp_process_refused_data
+00047c14   tcp_segs_free
+00047c54   tcp_seg_free
+00047c94   tcp_setprio
+00047cb4   tcp_seg_copy
+00047d00   tcp_recv_null
+00047ef0   tcp_alloc
+000480c0   tcp_new
+000480d0   tcp_arg
+000480f0   tcp_recv
+00048110   tcp_sent
+00048130   tcp_err
+00048150   tcp_accept
+00048170   tcp_poll
+000481a0   tcp_pcb_purge
+00048268   tcp_pcb_remove
+00048394   tcp_next_iss
+000483bc   tcp_eff_send_mss
+00048430   tcp_debug_state_str
+00048458   tcp_input
+0004b2f8   tcp_send_fin
+0004b758   tcp_write
+0004be50   tcp_enqueue_flags
+0004c0b8   tcp_send_empty_ack
+0004c18c   tcp_output
+0004c7a8   tcp_rst
+0004c8b8   tcp_rexmit_rto
+0004c950   tcp_rexmit
+0004ca30   tcp_rexmit_fast
+0004cb0c   tcp_keepalive
+0004cbc8   tcp_zero_window_probe
+0004cd6c   udp_init
+0004ce24   udp_input
+0004d328   udp_send
+0004d354   udp_sendto
+0004d3c0   udp_sendto_if
+0004d5fc   udp_bind
+0004d760   udp_connect
+0004d860   udp_disconnect
+0004d898   udp_recv
+0004d8c8   udp_remove
+0004d970   udp_new
+0004d9b0   icmp_input
+0004dd10   icmp_dest_unreach
+0004df84   inet_chksum_pseudo
+0004e148   inet_chksum_pseudo_partial
+0004e334   inet_chksum
+0004e35c   inet_chksum_pbuf
+0004e458   ip_route
+0004e554   ip_input
+0004e9f0   ip_output_if
+0004ec78   ip_output
+0004ecf0   ip4_addr_isbroadcast
+0004edc0   ip4_addr_netmask_valid
+0004ee54   ipaddr_addr
+0004ee80   ipaddr_aton
+0004f1b4   ipaddr_ntoa
+0004f1d0   ipaddr_ntoa_r
+0004f3b8   etharp_tmr
+0004f9c8   etharp_cleanup_netif
+0004fa4c   etharp_find_addr
+0004fe40   etharp_output
+000500c4   etharp_query
+00050520   etharp_request
+0005057c   ethernet_input
+00050724   perf_init
+00050734   sys_arch_protect
+0005074c   sys_arch_unprotect
+00050768   sys_now
+00050780   hdkif_swizzle_data
+00050794   hdkif_swizzle_txp
+000507a8   hdkif_swizzle_rxp
+000507bc   hdkif_macaddrset
+00051224   hdkif_init
+000512c4   hdkif_rx_inthandler
+00051650   hdkif_tx_inthandler
+000517b4   hdkif_netif_status
+000517e0   hdkif_link_status
+000519a0   LocatorConfig
+00051b4c   lwIPInit
+00051d8c   lwIPNetIfStatusGet
+00051dac   lwIPLinkStatusGet
+00051dd4   lwIPRxIntHandler
+00051df8   lwIPTxIntHandler
+00051e80   selftestFailNotification
+00051e90   ccmSelfCheck
+00051fd4   memoryInit
+00052018   stcSelfCheck
+00052094   cpuSelfTest
+0005212c   pbistSelfCheck
+00052334   pbistRun
+00052400   pbistStop
+00052430   pbistIsTestCompleted
+0005244c   pbistIsTestPassed
+000524a0   pbistPortTestStatus
+000524fc   efcCheck
+00052584   efcStuckZeroTest
+00052630   efcSelfTest
+00052658   checkefcSelfTest
+000526f8   fmcBus2Check
+00052734   fmcECCcheck
+000527d4   checkB0RAMECC
+000529c4   checkB1RAMECC
+00052bb4   checkFlashECC
+00052c90   custom_dabort
+00052c94   stcSelfCheckFail
+00052c98   cpuSelfTestFail
+00052c9c   vimParityCheck
+00052d48   dmaParityCheck
+00052df8   het1ParityCheck
+00052ea8   htu1ParityCheck
+00052f70   het2ParityCheck
+00053058   htu2ParityCheck
+00053108   adc1ParityCheck
+00053200   adc2ParityCheck
+000532b0   can1ParityCheck
+00053388   can2ParityCheck
+00053450   can3ParityCheck
+00053524   mibspi1ParityCheck
+0005362c   mibspi3ParityCheck
+00053750   mibspi5ParityCheck
+00053870   checkRAMECC
+00053ab8   checkClockMonitor
+00053b94   checkFlashEEPROMECC
+00053d2c   checkPLL1Slip
+00053e2c   checkPLL2Slip
+00053ef0   checkRAMAddrParity
+00054010   checkRAMUERRTest
+00054174   fmcBus1ParityCheck
+000542a0   pbistFail
+00054388   pbistGetConfigValue
+000544d0   stcGetConfigValue
+00054570   efcGetConfigValue
+00054608   ccmr4GetConfigValue
+00054674   errata_PBIST_4
+000549d8   enableParity
+00054a64   disableParity
+00054c04   EMACTxIntPulseEnable
+00054c60   EMACTxIntPulseDisable
+00054cbc   EMACRxIntPulseEnable
+00054d18   EMACRxIntPulseDisable
+00054d74   EMACRMIISpeedSet
+00054db4   EMACMIIEnable
+00054dd8   EMACMIIDisable
+00054dfc   EMACDuplexSet
+00054e3c   EMACTxEnable
+00054e58   EMACTxDisable
+00054e74   EMACRxEnable
+00054e90   EMACRxDisable
+00054eac   EMACTxHdrDescPtrWrite
+00054ed8   EMACRxHdrDescPtrWrite
+00054f04   EMACInit
+00055040   EMACMACSrcAddrSet
+000550a4   EMACMACAddrSet
+0005512c   EMACCoreIntAck
+0005514c   EMACTxCPWrite
+00055178   EMACRxCPWrite
+000551a4   EMACRxBroadCastEnable
+000551e8   EMACRxBroadCastDisable
+00055224   EMACRxMultiCastEnable
+00055268   EMACRxMultiCastDisable
+000552a4   EMACRxUnicastSet
+000552d4   EMACRxUnicastClear
+00055304   EMACNumFreeBufSet
+00055330   EMACIntVectorGet
+00055348   EMACInstConfig
+000553ac   EMACLinkSetup
+00055484   EMACTxTeardown
+000554b0   EMACRxTeardown
+000554dc   EMACFrameSelect
+00055514   EMACTxPrioritySelect
+00055574   EMACSoftReset
+000555c0   EMACEnableIdleState
+000555e4   EMACDisableIdleState
+00055608   EMACEnableLoopback
+00055670   EMACDisableLoopback
+000556d8   EMACTxFlowControlEnable
+000556fc   EMACTxFlowControlDisable
+00055720   EMACRxFlowControlEnable
+00055744   EMACRxFlowControlDisable
+00055768   EMACRxSetFlowThreshold
+000557bc   EMACReadNetStatRegisters
+000557e0   EMACTxIntStat
+00055830   EMACRxIntStat
+000558c0   EMACDMAInit
+00055a98   EMACHWInit
+00055d94   EMACTransmit
+00055f80   EMACTxIntHandler
+00056074   EMACReceive
+000561d0   EMACGetConfigValue
+00057294   httpd_init
+000572c4   setupPLL
+00057324   trimLPO
+0005736c   setupFlash
+000573ac   periphInit
+00057400   mapClocks
+00057528   systemInit
+000575f4   systemPowerDown
+00057624   systemGetConfigValue
+00057a38   tcmflashGetConfigValue
+00057be4   sramGetConfigValue
+00057df4   vimInit
+00057ec8   vimChannelMap
+00057f64   vimEnableInterrupt
+000580bc   vimDisableInterrupt
+00058140   vimGetConfigValue
+00058684   sciInit
+00058770   sciSetFunctional
+00058790   sciSetBaudrate
+00058810   sciIsTxReady
+0005882c   sciSendByte
+0005885c   sciSend
+00058990   sciIsRxReady
+000589ac   sciIsIdleDetected
+000589c8   sciRxError
+000589f8   sciReceiveByte
+00058a24   sciReceive
+00058afc   sciEnableLoopback
+00058b30   sciDisableLoopback
+00058b54   sciEnableNotification
+00058bbc   sciDisableNotification
+00058c24   scilinGetConfigValue
+00058de0   Dp83640IDGet
+00058e58   Dp83640LinkStatusGet
+00058f38   Dp83640AutoNegotiate
+000590c8   Dp83640PartnerAbilityGet
+000590f0   Dp83640Reset
+00059140   Dp83640EnableLoopback
+000591d0   Dp83640DisableLoopback
+00059254   Dp83640GetTimeStamp
+000594f0   muxInit
+00059870   pinmuxGetConfigValue
+00059b40   esmInit
+00059c6c   esmError
+00059c88   esmEnableError
+00059cb4   esmDisableError
+00059ce0   esmTriggerErrorPinReset
+00059cf0   esmActivateNormalOperation
+00059d00   esmEnableInterrupt
+00059d2c   esmDisableInterrupt
+00059d58   esmSetInterruptLevel
+00059ddc   esmClearStatus
+00059e1c   esmClearStatusBuffer
+00059e48   esmSetCounterPreloadValue
+00059e68   esmGetStatus
+00059edc   esmGetStatusBuffer
+00059f3c   esmEnterSelfTest
+00059fc4   esmSelfTestStatus
+0005a014   esmGetConfigValue
+0005a174   smallDelay
+0005a1b4   EMAC_LwIP_Main
+0005a448   iommUnlock
+0005a464   iommLock
+0005a480   iommMuxEnableMdio
+0005a49c   iommMuxEnableRmii
+0005a4e8   iommMuxEnableMii
+0005a614   IntMasterIRQEnable
+0005a624   IntMasterIRQDisable
+0005a634   IntMasterStatusGet
+0005a648   sciDisplayText
+0005a6a8   sciNotification
+0005a7c0   tcp_timer_needed
+0005a874   sys_timeouts_init
+0005a8b8   sys_timeout
+0005aa5c   sys_untimeout
+0005ab58   sys_check_timeouts
+0005ac5c   sys_restart_timeouts
+0005ac98   _coreInitRegisters_
+0005ada4   _coreInitStackPointer_
+0005adf0   _getCPSRValue_
+0005adf8   _gotoCPUIdle_
+0005ae10   _coreEnableVfp_
+0005ae28   _coreEnableEventBusExport_
+0005ae40   _coreDisableEventBusExport_
+0005ae58   _coreEnableRamEcc_
+0005ae70   _coreDisableRamEcc_
+0005ae88   _coreEnableFlashEcc_
+0005aea4   _coreDisableFlashEcc_
+0005aebc   _coreEnableIrqVicOffset_
+0005aed4   _coreGetDataFault_
+0005aedc   _coreClearDataFault_
+0005aef0   _coreGetInstructionFault_
+0005aef8   _coreClearInstructionFault_
+0005af0c   _coreGetDataFaultAddress_
+0005af14   _coreClearDataFaultAddress_
+0005af28   _coreGetInstructionFaultAddress_
+0005af30   _coreClearInstructionFaultAddress_
+0005af44   _coreGetAuxiliaryDataFault_
+0005af4c   _coreClearAuxiliaryDataFault_
+0005af60   _coreGetAuxiliaryInstructionFault_
+0005af68   _coreClearAuxiliaryInstructionFault_
+0005af7c   _disable_interrupt_
+0005af84   _disable_FIQ_interrupt_
+0005af8c   _disable_IRQ_interrupt_
+0005af94   _enable_interrupt_
+0005af9c   _esmCcmErrorsClear_
+0005b024   _errata_CORTEXR4_57_
+0005b03c   _errata_CORTEXR4_66_
+0005b054   __TI_PINIT_Base
+0005b058   __TI_PINIT_Limit
+0005b05c   vimParityErrorHandler
+0005b2f0   _c_int00
+0005b57c   MDIOPhyRegRead
+0005b614   MDIOPhyRegWrite
+0005b67c   MDIOPhyAliveStatusGet
+0005b694   MDIOPhyLinkStatusGet
+0005b6ac   MDIOInit
+0005b6f4   MDIOEnable
+0005b718   MDIODisable
+0005b740   esmHighInterrupt
+0005b898   _pmuInit_
+0005b8e8   _pmuEnableCountersGlobal_
+0005b900   _pmuDisableCountersGlobal_
+0005b918   _pmuResetCycleCounter_
+0005b930   _pmuResetEventCounters_
+0005b948   _pmuResetCounters_
+0005b960   _pmuStartCounters_
+0005b968   _pmuStopCounters_
+0005b970   _pmuSetCountEvent_
+0005b980   _pmuGetCycleCount_
+0005b988   _pmuGetEventCount_
+0005b998   _pmuGetOverflow_
+0005b9ac   fs_open
+0005ba78   fs_close
+0005ba88   fs_bytes_left
+0005bab0   _dabort
+0005bb98   EMACTxIntISR
+0005bbfc   EMACRxIntISR
+0005bc64   esmGroup1Notification
+0005bc74   esmGroup2Notification
+0005bc84   memoryPort0TestFailNotification
+0005bca0   memoryPort1TestFailNotification
+0005bcd0   dmaGroupANotification
+0005bce4   emacTxNotification
+0005bcf4   emacRxNotification
+0005bd04   EMACCore0RxIsr
+0005bd50   EMACCore0TxIsr
+0005bda5   __aeabi_memcpy
+0005bda5   __aeabi_memcpy4
+0005bda5   __aeabi_memcpy8
+0005bda5   memcpy
+0005be41   __TI_auto_init
+0005bed5   __aeabi_memclr
+0005bed5   __aeabi_memclr4
+0005bed5   __aeabi_memclr8
+0005bed7   __aeabi_memset
+0005bed7   __aeabi_memset4
+0005bed7   __aeabi_memset8
+0005bedd   memset
+0005bfac   __aeabi_idivmod
+0005c004   __aeabi_uidivmod
+0005c059   copy_in
+0005c0a1   C$$EXIT
+0005c0a5   abort
+0005c0ad   exit
+0005c0e5   strncmp
+0005c10b   memcmp
+0005c12d   strcmp
+0005c145   strchr
+0005c15b   strlen
+0005c171   _register_unlock
+0005c177   _register_lock
+0005c17f   _nop
+0005c184   main
+0005c199   __TI_zero_init
+0005c1ab   __TI_decompress_none
+0005c1b9   __TI_decompress_rle24
+0005c1c0   phantomInterrupt
+0005c35c   __TI_Handler_Table_Base
+0005c368   __TI_Handler_Table_Limit
+0005c370   __TI_CINIT_Base
+0005c380   __TI_CINIT_Limit
+08001500   ram_heap
+080141cc   lwip_stats
+08014418   hdkif_data
+08014488   dhcp_rx_options_val
+08014518   dhcp_rx_options_given
+08014528   current_header
+0801452c   current_iphdr_dest
+08014530   current_iphdr_src
+08014534   current_netif
+08014544   netif_default
+08014548   netif_list
+08014564   tcp_active_pcbs
+08014568   tcp_bound_pcbs
+0801456c   tcp_input_pcb
+08014570   tcp_listen_pcbs
+08014574   tcp_ticks
+08014578   tcp_tmp_pcb
+0801457c   tcp_tw_pcbs
+0801458c   txtIPAddrItoA
+08014590   udp_pcbs
+08014599   pbuf_free_ooseq_pending
+0801459b   tcp_active_pcbs_changed
+080145a0   txtCRLF
+080145a2   txtTitle
+080145bc   txtTI
+080145ce   txtLittleEndian
+080145e3   txtBigEndian
+080145f5   txtEnetInit
+08014612   txtIPAddrTxt
+08014626   txtNote1
+08014648   countEMACCore0RxIsr
+0801464c   countEMACCore0TxIsr
+080146b0   txtErrorInit
+08014728   emacAddress
+08014730   emacPhyAddress
+08014734   _lock
+08014738   _unlock
+0801473c   __TI_cleanup_ptr
+08014740   __TI_dtors_ptr
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   binit
+UNDEFED    SHT$$INIT_ARRAY$$Base
+UNDEFED    SHT$$INIT_ARRAY$$Limit
+
+[506 symbols]
