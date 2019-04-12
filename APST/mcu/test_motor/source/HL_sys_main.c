@@ -50,9 +50,9 @@ float ppr = 3000; // 엔코더 ppr
     // 1 res의 pcnt = 3000 * 24 * 4
     // 1 res의 pcnt = 288000
 
-#define Kp  2.55;
-#define Ki  9.0;
-#define Kd  0.000;
+#define Kp  2.63;
+#define Ki  8.4;
+#define Kd  0.00015;
 
 float ierr;
 float derr;
