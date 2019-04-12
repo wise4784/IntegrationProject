@@ -27,7 +27,7 @@ void check_break(void); // 브레이크 동작확인 함수 (Active High)
 void chg_pwm(etpwmBASE_t *etpwm, uint32 pwm_freq, uint8 *duty); // pwm 클럭은 1Mhz
                                                                          // 모터 pwm 변경 함수
                                                                          // 주파수 = period * 0.000001
-void const_velocity(float preVel, float setVel); // 모터를 일정한 속도로 회전
+void const_velocity(int preCNT, int setCNT, int *error, float c_time); // 모터를 일정한 속도로 회전
 
 /*  Pin 설정
  *  GPIOA_3 -> BREAK
@@ -43,19 +43,24 @@ unsigned int buflen = 0;
 
 uint32 pcnt;    // 엔코더 cnt값
 float velocity; // 엔코더가 측정한 속도값
-uint16 ppr = 3000; // 엔코더 ppr
+float ppr = 3000; // 엔코더 ppr
 
     // index(z상) 이 있으니까 1바퀴당 pcnt값 구할 수 있음.
     // ppr = 3000, 감속비 24, Quadrature 모드
     // 1 res의 pcnt = 3000 * 24 * 4
     // 1 res의 pcnt = 288000
 
-#define Ki = 0;
-#define Kp = 2;
-#define Kd = 1;
+#define Kp  2.63;
+#define Ki  8.4;
+#define Kd  0.00015;
 
-float setVal;
-float error[2];
+float ierr;
+float derr;
+
+int pwm_CNT; // CMPA로 들어가는 누적값.
+float P_term;
+float I_term;
+float D_term;
 /* USER CODE END */
 
 int main(void)
@@ -77,22 +82,22 @@ int main(void)
     etpwmInit();
     // PWM period : 1ms
     // etpwmREG4->TBPRD = (VCLK3_freq / 1000) - 1;
-    uint32 PWM_freq = etpwmREG4->TBPRD + 1;
-    uint8 duty = 0;
-    sprintf(buf, "pwm_Init : %d Khz\t set Duty : %d\n\r\0", PWM_freq / 1000, duty);
+    float PWM_freq = etpwmREG4->TBPRD + 1;
+    float duty = 0;
+    sprintf(buf, "pwm_Init : %.2f Khz\t set Duty : %.1f%%\n\r\0", PWM_freq / 1000, duty);
     buflen = strlen(buf);
     sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 //*********************** EQEP 관련 *********************************//
     QEPInit();
     // Unit - 375khz
-    uint32 Unit_freq = VCLK3_freq / 100;
+    float Unit_freq = VCLK3_freq / 100;
     // Count 초기화 주기 10ms
     eqepSetUnitPeriod(eqepREG1, Unit_freq);
 
-    float ppd = 360 / ((float)ppr * 24 * 4); // 엔코더 1ch 펄스당 degree
+    float ppd = 360 / (ppr * 24 * 4); // 엔코더 1ch 펄스당 degree
 
     float c_time = Unit_freq / VCLK3_freq;
-    sprintf(buf, "QEP_Init\t set UNIT_TIME : %d msec\n\r\0", 1000 * c_time);
+    sprintf(buf, "QEP_Init\t set UNIT_TIME : %.2f msec\n\r\0", 1000 * c_time);
     buflen = strlen(buf);
     sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
@@ -107,18 +112,25 @@ int main(void)
         ;
     wait(50000000);
 
+    //****************** PID 관련 *************************************//
+    int setCNT = 7200; // 20rpm으로 동작시키기 위한 10ms당 cnt값
+    int error[2] = {0,0};
+
+
+
     for(;;)
     {
  //       cnt = eqepReadPosnCount(eqepREG1);
         // 제어주기(10ms) 마다 CNT 값 확인 코드
-#if 0
+#if 1
         if((eqepREG1->QFLG & 0x800) == 0x800)
         {
 //            gioSetBit(gioPORTA,5,1);
 //            cnt = eqepReadPosnCount(eqepREG1);
 //            eqepREG1->QPOSCNT  =  0x00000000U;
             pcnt = eqepReadPosnLatch(eqepREG1); // 정해놓은 시간동안 들어온 CNT 갯수
-            velocity = ((float)eqepREG1->QPOSLAT * ppd / c_time) / 6; // rpm
+            velocity = ((float)pcnt * ppd / c_time) / 6; // rpm
+            const_velocity(pcnt, setCNT, error, c_time);
 /*
             cnt = eqepReadPosnCount(eqepREG1); Time Out 발생 시 확실하게 초기화됌.
  *
@@ -126,11 +138,20 @@ int main(void)
  *          buflen = strlen(buf);
  *          sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 */
+            duty = pwm_CNT * 100 / PWM_freq;
+            sprintf(buf, "CMPA = %d\t Duty = %.1f%%\n\r\0", pwm_CNT, duty);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
             sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
             buflen = strlen(buf);
             sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
-            sprintf(buf, "Velocity = %.3f\n\r\0", velocity);
+            sprintf(buf, "setCNT = %d,\t duty = %d\n\r\0", setCNT, (pcnt * 100) / setCNT);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
+            sprintf(buf, "Velocity = %f\n\r\0", velocity);
             buflen = strlen(buf);
             sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
@@ -141,7 +162,7 @@ int main(void)
         }
 #endif
         //PWM 조절 확인 코드
-#if 1
+#if 0
         if(gioGetBit(gioPORTB,4) == 0)
         {
             chg_pwm(etpwmREG4, PWM_freq, &duty);
@@ -213,15 +234,29 @@ void chg_pwm(etpwmBASE_t *etpwm, uint32 pwm_freq, uint8 *duty)
     sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 }
 
-void const_velocity(float preVel, float setVel)
+void const_velocity(int preCNT, int setCNT, int *error, float c_time)
 {
-    int p_term = 0;
-    error[0] = setVel - preVel;
-    error[1] = setVel - preVel;
-    while(error[0] > 0.1)
+    error[0] = setCNT - preCNT;
+    ierr += (float)error[0] * c_time;
+    derr = (float)(error[0] - error[1]) / c_time;
+    P_term = (float)error[0] * Kp;
+    I_term = ierr * Ki;
+    D_term = derr * Kd;
+
+    error[1] = error[0];
+
+    pwm_CNT = (int)(P_term + I_term + D_term);
+
+    if(pwm_CNT < 0)
     {
-//        p_term = Kp * error[0];
+        pwm_CNT = -pwm_CNT;
     }
+    if(pwm_CNT > 37500)
+    {
+        pwm_CNT = 37500;
+    }
+
+    etpwmREG4->CMPA = pwm_CNT;
 }
 
 void sci_display_data(sciBASE_t *sci, uint8 *txt, uint32 len)
