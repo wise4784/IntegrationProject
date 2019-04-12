@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>TMS570LC43_LWIP_MINIMAL</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.ti.ccstudio.core.ccsNature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>lwIP_INSTALL_ROOT</name>
+			<type>2</type>
+			<locationURI>lwIP_INSTALL_ROOT</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>lwIP_INSTALL_ROOT</name>
+			<value>file:/home/koitt/project/IntegrationProject/coffee_machine/mpu/HALCoGen_EMAC_Driver_with_lwIP_Demonstration/v00.03.00/lwip-1.4.1</value>
+		</variable>
+	</variableList>
+</projectDescription>
