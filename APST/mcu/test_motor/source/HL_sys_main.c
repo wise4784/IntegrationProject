@@ -54,6 +54,8 @@ float ppr = 3000; // 엔코더 ppr
 #define Ki  8.4;
 #define Kd  0.00015;
 
+// cmpa += kp*error;
+
 float ierr;
 float derr;
 
