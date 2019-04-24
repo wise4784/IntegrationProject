@@ -18,6 +18,7 @@ C_SRCS += \
 ../source/HL_errata_SSWF021_45.c \
 ../source/HL_esm.c \
 ../source/HL_gio.c \
+../source/HL_het.c \
 ../source/HL_nmpu.c \
 ../source/HL_notification.c \
 ../source/HL_pinmux.c \
@@ -38,6 +39,7 @@ C_DEPS += \
 ./source/HL_errata_SSWF021_45.d \
 ./source/HL_esm.d \
 ./source/HL_gio.d \
+./source/HL_het.d \
 ./source/HL_nmpu.d \
 ./source/HL_notification.d \
 ./source/HL_pinmux.d \
@@ -58,6 +60,7 @@ OBJS += \
 ./source/HL_errata_SSWF021_45.obj \
 ./source/HL_esm.obj \
 ./source/HL_gio.obj \
+./source/HL_het.obj \
 ./source/HL_nmpu.obj \
 ./source/HL_notification.obj \
 ./source/HL_pinmux.obj \
@@ -88,6 +91,7 @@ OBJS__QUOTED += \
 "source/HL_errata_SSWF021_45.obj" \
 "source/HL_esm.obj" \
 "source/HL_gio.obj" \
+"source/HL_het.obj" \
 "source/HL_nmpu.obj" \
 "source/HL_notification.obj" \
 "source/HL_pinmux.obj" \
@@ -112,6 +116,7 @@ C_DEPS__QUOTED += \
 "source/HL_errata_SSWF021_45.d" \
 "source/HL_esm.d" \
 "source/HL_gio.d" \
+"source/HL_het.d" \
 "source/HL_nmpu.d" \
 "source/HL_notification.d" \
 "source/HL_pinmux.d" \
@@ -138,6 +143,7 @@ C_SRCS__QUOTED += \
 "../source/HL_errata_SSWF021_45.c" \
 "../source/HL_esm.c" \
 "../source/HL_gio.c" \
+"../source/HL_het.c" \
 "../source/HL_nmpu.c" \
 "../source/HL_notification.c" \
 "../source/HL_pinmux.c" \

@@ -8,6 +8,7 @@
 #include <string.h>
 #include <math.h>
 #include "HL_reg_het.h"
+#include "HL_het.h"
 
 #define remote_receive gioPORTA,7
 
@@ -62,9 +63,18 @@ void wait(uint32 delay)
         ;
 }
 
+/*
 void delay_us(uint32 time){
     int i=28*time;
     while(i--)
+        ;
+}
+*/
+
+void delay_us(uint32 delay){
+    delay*=75;//us
+    hetRAM1->Instruction[0].Data=0; // hetResetTimestamp()와 상동
+    while(((hetRAM1->Instruction[0].Data)>>7)<delay)
         ;
 }
 
@@ -256,6 +266,7 @@ int main(void)
 
     gioInit();
     sciInit();
+    hetInit();
 //    rtiInit();
     gioSetDirection(gioPORTA, 0x00);
     gioSetDirection(gioPORTB, 0b11000000);
@@ -296,7 +307,7 @@ void decode_ir(void){
 
     for(i=0;i<122;i++)
     {
-        delay_us(670);
+        delay_us(562);// het 사용시 562~563이 인식 제일 잘 됨.-> ir신호 562.5us와 칼같이 맞네.. 단)ok버튼은 l버튼과 같게 나옴.
 
         if(gioGetBit(gioPORTA,7)==1)
             bitcount[i]=1+48;

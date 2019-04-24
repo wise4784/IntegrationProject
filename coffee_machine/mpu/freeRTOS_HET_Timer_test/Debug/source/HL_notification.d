@@ -17,6 +17,11 @@ source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machin
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sci.h
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_sci.h
+source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_het.h
+source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_het.h
+source/HL_notification.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/string.h
+source/HL_notification.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/_ti_config.h
+source/HL_notification.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/linkage.h
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_epc.h
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_epc.h
 source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sys_dma.h
@@ -39,6 +44,11 @@ source/HL_notification.obj: /home/koitt/project/IntegrationProject/coffee_machin
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sci.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_sci.h: 
+/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_het.h: 
+/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_het.h: 
+/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/string.h: 
+/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/_ti_config.h: 
+/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/linkage.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_epc.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_epc.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sys_dma.h: 
