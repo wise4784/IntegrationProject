@@ -47,7 +47,7 @@ unsigned long read_count(void)
 
     gioSetBit(gioPORTA,1,1);
     wait(28);
-    //count=count^0x800000;
+    count=count^0x800000;
     gioSetBit(gioPORTA,1,0);
     wait(28);
     return(count);
@@ -72,3 +72,9 @@ int main(void)
     }
     return 0;
 }
+
+
+
+
+
+

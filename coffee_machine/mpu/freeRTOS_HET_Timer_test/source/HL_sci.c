@@ -95,7 +95,7 @@ void sciInit(void)
                   | (uint32)((uint32)1U << 1U);  /* asynchronous timing mode */
 
     /** - set baudrate */
-    sciREG1->BRS = 487U;  /* baudrate */
+    sciREG1->BRS = 650U;  /* baudrate */
 
     /** - transmission length */
     sciREG1->FORMAT = 8U - 1U;  /* length */
@@ -196,7 +196,7 @@ void sciSetFunctional(sciBASE_t *sci, uint32 port)
 */
 void sciSetBaudrate(sciBASE_t *sci, uint32 baud)
 {
-    float64   vclk = 75.000 * 1000000.0;
+    float64   vclk = 100.000 * 1000000.0;
     uint32 f    = ((sci->GCR1 & 2U) == 2U) ? 16U : 1U;
 	uint32 temp;
 	float64 temp2;

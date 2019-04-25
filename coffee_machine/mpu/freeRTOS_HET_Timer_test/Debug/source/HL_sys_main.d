@@ -11,13 +11,6 @@ source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LT
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/machine/_stdint.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/sys/_stdint.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/stdbool.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_system.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_system.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_flash.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_l2ramw.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_ccmr5.h
-source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sys_core.h
 source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/FreeRTOS.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/stddef.h
 source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/FreeRTOSConfig.h
@@ -33,6 +26,7 @@ source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mp
 source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/os_list.h
 source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_het.h
 source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_het.h
+source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/string.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/_ti_config.h
 source/HL_sys_main.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/linkage.h
@@ -49,13 +43,6 @@ source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mp
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/machine/_stdint.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/sys/_stdint.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/stdbool.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_system.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_system.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_flash.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_l2ramw.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_ccmr5.h: 
-/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_sys_core.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/FreeRTOS.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/stddef.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/FreeRTOSConfig.h: 
@@ -71,6 +58,7 @@ source/HL_sys_main.obj: /home/koitt/project/IntegrationProject/coffee_machine/mp
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/os_list.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_het.h: 
 /home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_het.h: 
+/home/koitt/project/IntegrationProject/coffee_machine/mpu/freeRTOS_HET_Timer_test/include/HL_reg_gio.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/string.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/_ti_config.h: 
 /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include/linkage.h: 
