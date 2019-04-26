@@ -21,11 +21,13 @@
 #include "HL_reg_het.h"
 
 #define remote_receive gioPORTA,7
-char remote_now=33;
+volatile char remote_now=33;
 volatile int decode=0;
 int fal=0;
 void decode_ir(void);
 
+#define TSIZE 10
+uint8 text[TSIZE]={'I','R',' ','N','O','W','=','X','\n','\r'};
 char buf[256]={0};
 unsigned int buf_len;
 uint8 bitcount[122]={0};
@@ -93,7 +95,6 @@ void vTask1(void *pvParameters)
             gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
             wait_66us(3000);
 
-
             sprintf(buf,"led toggle\n\r\0");
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
@@ -102,17 +103,24 @@ void vTask1(void *pvParameters)
                 remote_data_calc();
             }
             //delay_4us(2);
-            sprintf(buf,"remote data calc finished \n\r\0",remote_now);
+            sprintf(buf,"remote data calc finished \n\r\0");
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
 
             if(remote_now<10)
                 remote_now+=48;
 /* 문제점 : 여기 주석 처리부분은 활성화하면 꼭 맛탱이가 간다. task 루프 안 돌고 여기서 멈춘다. <- remote_now 비교해서 led켜는건잘됨
-            sprintf(buf,"ir_now : %c\n\r\0",remote_now);
+*/          /*
+            sprintf(buf,"ir_now : %d\n\r\0",remote_now);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
+            */
+/*     위의 문제점 아래 3줄로 해결했다. -> uint8로 보내니까 먹통안되고 루프 잘 돈다.
 */
+            text[7]=remote_now;
+            sci_display(sciREG1, &text[0], TSIZE);
+            wait_66us(10);
+
             if(remote_now==48)
             gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
 
@@ -199,7 +207,7 @@ void gioNotification(gioPORT_t *port, uint32 bit)
 void remote_data_calc()
 {
     //gioSetPort(gioPORTB, gioGetPort(gioPORTB)^ 0x0000080);
-    sprintf(buf,"access in remote_data_calc \n\r\0",remote_now);
+    sprintf(buf,"access in remote_data_calc \n\r\0");
     buf_len = strlen(buf);
     sci_display(sciREG1, (uint8 *)buf, buf_len);
 
