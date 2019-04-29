@@ -40,6 +40,7 @@ ORDERED_OBJS += \
 "./source/os_queue.obj" \
 "./source/os_tasks.obj" \
 "./source/os_timer.obj" \
+"../source/HL_sys_link.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -161,11 +162,11 @@ BIN_OUTPUTS__QUOTED += \
 
 
 # All Target
-all: $(OBJS) $(GEN_CMDS)
+all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "rtos_test.out"
 
 # Tool invocations
-rtos_test.out: $(OBJS) $(GEN_CMDS)
+rtos_test.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
 	"/home/khs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armcl" -mv7R5 --code_state=32 --float_support=VFPv3D16 -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi -z -m"rtos_test.map" --heap_size=0x800 --stack_size=0x800 -i"/home/khs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib" -i"/home/khs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="rtos_test_linkInfo.xml" --rom_model --be32 -o "rtos_test.out" $(ORDERED_OBJS)
