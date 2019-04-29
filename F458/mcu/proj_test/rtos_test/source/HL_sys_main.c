@@ -249,7 +249,7 @@ void ecapNotification(ecapBASE_t *ecap, uint16 flag)
 
 
     if(ecap==ecapREG1){
-        ecapDisableInterrupt(ecapREG1,ecapInt_CEVT3);//모터 구동 태스크와 번갈아 가며 실행되기 위해 인터럽트를 꺼둠
+        ecapDisableInterrupt(ecapREG1,ecapInt_CEVT3);//모터 구동 태스크와 번갈아 가며 실행되기 위해 인터럽트를 꺼둠, 수정수정수정수정
 
         sprintf(buf,"cap1 Start\n\r\0");
         buf_len=strlen(buf);

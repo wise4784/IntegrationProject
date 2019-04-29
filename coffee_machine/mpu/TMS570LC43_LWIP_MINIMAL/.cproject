@@ -105,7 +105,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="lwIP_INSTALL_ROOT/test|lwIP_INSTALL_ROOT/doc|lwIP_INSTALL_ROOT/apps|lwIP_INSTALL_ROOT/src/api|lwIP_INSTALL_ROOT/src/netif/slipif.c|lwIP_INSTALL_ROOT/src/netif/loopif.c|lwIP_INSTALL_ROOT/src/netif/etharp.c|lwIP_INSTALL_ROOT/src/netif/ppp/vj.c|lwIP_INSTALL_ROOT/src/netif/ppp/randm.c|lwIP_INSTALL_ROOT/src/netif/ppp/ppp.c|lwIP_INSTALL_ROOT/src/netif/ppp/ppp_oe.c|lwIP_INSTALL_ROOT/src/netif/ppp/pap.c|lwIP_INSTALL_ROOT/src/netif/ppp/md5.c|lwIP_INSTALL_ROOT/src/netif/ppp/magic.c|lwIP_INSTALL_ROOT/src/netif/ppp/lcp.c|lwIP_INSTALL_ROOT/src/netif/ppp/ipcp.c|lwIP_INSTALL_ROOT/src/netif/ppp/fsm.c|lwIP_INSTALL_ROOT/src/netif/ppp/chpms.c|lwIP_INSTALL_ROOT/src/netif/ppp/chap.c|lwIP_INSTALL_ROOT/src/netif/ppp/auth.c|lwIP_INSTALL_ROOT/src/core/snmp|lwIP_INSTALL_ROOT/src/core/ipv4|lwIP_INSTALL_ROOT/src/core/udp.c|lwIP_INSTALL_ROOT/src/core/tcp.c|lwIP_INSTALL_ROOT/src/core/tcp_out.c|lwIP_INSTALL_ROOT/src/core/tcp_in.c|lwIP_INSTALL_ROOT/src/core/sys.c|lwIP_INSTALL_ROOT/src/core/stats.c|lwIP_INSTALL_ROOT/src/core/raw.c|lwIP_INSTALL_ROOT/src/core/pbuf.c|lwIP_INSTALL_ROOT/src/core/netif.c|lwIP_INSTALL_ROOT/src/core/memp.c|lwIP_INSTALL_ROOT/src/core/mem.c|lwIP_INSTALL_ROOT/src/core/init.c|lwIP_INSTALL_ROOT/src/core/dns.c|lwIP_INSTALL_ROOT/src/core/dhcp.c|lwIP_INSTALL_ROOT/ports/hdk/sys_arch.c|lwIP_INSTALL_ROOT/ports/hdk/perf.c|lwIP_INSTALL_ROOT/ports/hdk/netif/hdkif.c|lwIP_INSTALL_ROOT/ports/hdk/locator.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
