@@ -1,0 +1,59 @@
+Git 사용하기
+
+Git 파일을 받거나 할 디렉토리로 이동.
+
+git clone "사본 주소"
+ex) git clone https://github.com/wise4784/IntegrationProject.git
+
+파일 생성됐는 지 확인
+
+git remote -v
+git remote add upstream https://github.com/koittintegration3/IntegrationProject.git
+git remote -v
+
+git fetch upstream 			//원본에 있는 파일들 싹다 받아오는 명령어
+
+파일 수정 or 작성 후
+
+git status 			//수정한 내용 보여줌.
+
+******************** modified 된 파일은 커밋하면 자동으로 add됌. 제외하고 싶으면 git checkout -- 명령어 사용
+
+git add (올릴 내용)		//올릴 내용에 쓴 걸 커밋할수 있게해줌. * 쓰면 싹다
+
+git commit -am "어떤커밋인지설명"
+ex) git commit -am "git test_DH"
+
+
+// 아래 두줄은 한번만 실행하고 다음부터 파일 올릴땐 안해도 됌.
+git config --global user.name "wise4784"
+git config --global user.email "dymr5123@gmail.com"
+
+// 사본에 올림
+git push origin master
+
+// 깃허브 웹으로 가서 사본으로 간 다음 pull request
+// 수락해주면 끝
+
+// 다른사람들이 pr 한 것을 사본 저장소랑 합치려면
+git merge upstream/master
+
+---------------------------------------------------------------------------------------------
+원본에서 가져오기:
+
+git fetch upstream
+git merge upstream/master사본에 저장하기
+git add 추가된거(git status해서 나오는 것들)
+git commit -am  “추가한거 내용”
+git push origin master
+
+저장하기 전에 원본에서 가져오기 먼저 해야함!
+여러 명이 같이  같은 소스 파일 코드 수정 할 때:충돌이 날 수 밖에 없음
+조원(혹은 팀원)끼리 회의하여 선택해서 pull request 한개를 날림
+나머지는 상관 없지만 날라간 pull request를 한 사람은 다시 fetch, merge를 해야함.
+Git add 옵션-f:강제로 add
+ex)git add -f abc.pdf
+
+pull은 웹상에서 사본으로 파일을 직접 올렸을 때 그 파일을 내 컴퓨터로 받아올 때 사용한다!
+
+fetch upstream 은 원본에 커밋되있는 모든 파일을 다 받아옴.
