@@ -1,0 +1,528 @@
+sudo apt-get update 
+sudo apt-get install gemu
+sudo apt-get install qemu-user-static qemu-system
+sudo apt-get install gcc-arm-linux-gnueabi
+sudo apt-get install gdb-multiarch
+
+koitt@koitt-laptop:/opt/git/IntegrationProject$ arm-linux-gnueabi-gcc 입력시
+
+아래와 같이 나오면 잘 설치가 된것이다.
+
+arm-linux-gnueabi-gcc: fatal error: no input files
+compilation terminated.
+
+그 다음 깃 저장소 받아오고 
+
+내 이름으로 디렉토리 만들고 해당 디렉토리에 들어가기
+
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm$ mkdir jangho
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm$ cd jangho/
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm/jangho$ 
+
+함수의 동작을 살펴보기
+
+vi arm_func.c
+
+#include <stdio.h>
+
+int mult(int num)
+{
+    return num * 2;
+}
+
+int main(void)
+{
+    int num = 3, res;
+
+    res = mult(num);
+    printf("res = %d\n", res);
+
+    return 0;
+}
+
+인텔머신
+
+file a.out
+
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm/jangho$ gcc arm_func.c 
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm/jangho$ file a.out
+a.out: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 2.6.32, BuildID[sha1]=cf370d6252289ae52a010d3d20436cd32bf84b6e, not stripped
+
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm/jangho$ arm-linux-gnueabi-gcc arm_func.c 
+koitt@koitt-laptop:/opt/git/IntegrationProject/asm/jangho$ file a.out
+a.out: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-, for GNU/Linux 3.2.0, BuildID[sha1]=272d4ef6e4a0f74119bdb295eb497410d1a1d303, not stripped
+
+qemu , 바이너리 트랜스레이션
+= arm 기계어를 x86 기계어로 바꿔서 실행시킨다
+
+qemu-arm-static -g 1234 -L /usr/arm-linux-gnueabi ./a.out
+
+qemu-arm-static -L /usr/arm-linux-gnueabi ./a.out
+
+터미널 창 두개 띄우고
+
+한곳은 qemu-arm-static -g 1234 -L /usr/arm-linux-gnueabi ./a.out
+
+한곳은 아래를 순차입력 
+
+gdb-multiarch
+
+file a.out
+
+target remote localhost:1234
+
+b main
+
+c
+
+disas
+
+맨 처음부터 무슨일이 발생하는지? 
+
+인스트럭션 포인터를 맨 위로 땡겨야함
+
+첫 주소 복사 후에 기존 디버거 q로 끄고 나와서 , 내가 원하는 주소를 디버깅하기위해 재작업  
+
+gdb-multiarch
+
+file a.out
+
+target remote localhost:1234
+
+b *0x00010460
+
+c
+
+disas
+
+info registers 	// 연산용 레지스터 이다.  
+		// 펌웨어 레지스터와 다름(상태값 저장을 위한 하드웨어에 저장되어있는 것)
+
+인텔은 함수에 인자를 스택에 푸쉬해서 전달한다.
+
+앎은 레지스터에 인자가 4개까지, 이후는 스택 
+
+ㄴ 콜링 컨벤션 ( 함수 호출 규약 )
+
+r0 ~ r3 는 인자로 전달되는 레지스터 , 이걸 다 쓰면 그 이후 부터는 스택
+
+함수의 리턴, 인텔의 경우 eax 이다.
+
+앎의 경우 함수의 리턴값 r0 이 전달한다.
+
+시스템콜 번호 r7 , 
+
+함수 호출시 함수 내부에서 쓸 수 있는 레지스터는 4 5 6 8 9 10 11
+
+r0 ~ r3도 쓸수 있음 다른데 옮겨놓고 쓰다가 다시 원상복구 시키면됨
+
+sp = 현 스택의 최상위, 스택은 거꾸로 자란다. 리틀 엔디안 , 제대로 자라면 빅엔디안.
+
+lr = 링크 레지스터, 인텔에서 복귀주소는 콜 할때 복귀주소 저장.
+
+암은 lr에 집어넣는다.
+
+pc = 인텔의 ip(인스트럭션 포인터) 와 같다, 프로그램 카운터 이다.
+
+cpsr = Current Program Status Register (CPSR)
+
+	제일 중요함, eflags reg(인텔에서 인터럽트 활성화, 상태값 세팅하는(오버플로우 체크, 캐리체크) 레지스터)
+
+	popf pushf
+
+	mrs msr cpsr에 있는 레지스터를 가져올 수 있다.
+
+
+암 인스트럭션 셋을 알면된다.
+
+앎은 명령어 갯수가 적다.
+
+rsic은 명령어 갯수가 적다.
+
+인텔은 인스트럭션 갯수가 넘 많아서 책이 두꺼웠음
+
+앎에서 하기때문에 앎 어셈블리만 해도 됨 , 50개 정도가 전부임 
+
+str, ldr 을 할땐 메모리, 레지스터 영역을 봐야함
+
+메모리에서 레지스터로 로드, 레지스터에 있는값을 메모리에 저장한다.
+
+push 스택에 밀어넣기 
+
+'x $sp' 명령어 입력하기, 스택포인터의 주소와 값을 보여준다. 
+
+bl = 브랜치 링크 , 함수 콜
+
+분석 -- 
+
+현재 sp가 0xf67a5000
+
+r11 값 / p $r11 => $1 =0
+
+
+(gdb) x $sp
+0xf6ffeca8:	0xf67a5000
+(gdb) p $r11
+$1 = 0
+(gdb) p $lr
+$2 = -160969452
+(gdb) p/x $lr
+$3 = 0xf667cd14
+(gdb) si
+0x00010464 in main ()
+(gdb) disas
+Dump of assembler code for function main:
+   0x00010460 <+0>:	push	{r11, lr}
+=> 0x00010464 <+4>:	add	r11, sp, #4
+   0x00010468 <+8>:	sub	sp, sp, #8
+   0x0001046c <+12>:	mov	r3, #3
+   0x00010470 <+16>:	str	r3, [r11, #-12]
+   0x00010474 <+20>:	ldr	r0, [r11, #-12]
+   0x00010478 <+24>:	bl	0x10438 <mult>
+   0x0001047c <+28>:	str	r0, [r11, #-8]
+   0x00010480 <+32>:	ldr	r1, [r11, #-8]
+   0x00010484 <+36>:	ldr	r0, [pc, #16]	; 0x1049c <main+60>
+   0x00010488 <+40>:	bl	0x102e0 <printf@plt>
+   0x0001048c <+44>:	mov	r3, #0
+   0x00010490 <+48>:	mov	r0, r3
+   0x00010494 <+52>:	sub	sp, r11, #4
+   0x00010498 <+56>:	pop	{r11, pc}
+   0x0001049c <+60>:	andeq	r0, r1, r0, lsl r5
+End of assembler dump.
+(gdb) x $sp + 8
+0xf6ffeca8:	0xf67a5000
+(gdb) x $sp 
+0xf6ffeca0:	0x00000000
+(gdb) x $sp + 8
+0xf6ffeca8:	0xf67a5000
+(gdb) x $sp + 4
+0xf6ffeca4:	0xf667cd14
+
+// arm은 32비트니까 포인터의 크기가 4바이트이고, 어드레스를 건너뛰는 단위는 4바이트가 된다. 
+// arm은 위로 자라게도 가능, 거꾸로 자라게도 가능
+
+0x00010464 <+4>:	add	r11, sp, #4
+// # = 상수, sp에 4를 더해서 r11에 넣어라 
+
+0x00010468 <+8>:	sub	sp, sp, #8
+// sp에서 8을 빼서 sp 갱신, 인텔에서 sp 를 빼줌으로 그 공간을 지역변수인 스택공간으로 만들어줌 
+
+0x0001046c <+12>:	mov	r3, #3
+// #3을 r3에 넣는다.
+
+(gdb) p/x $sp
+$6 = 0xf6ffec98
+(gdb) p/x $r3
+$7 = 0x10460
+(gdb) si
+0x00010470 in main ()
+(gdb) disas
+Dump of assembler code for function main:
+   0x00010460 <+0>:	push	{r11, lr}
+   0x00010464 <+4>:	add	r11, sp, #4
+   0x00010468 <+8>:	sub	sp, sp, #8
+   0x0001046c <+12>:	mov	r3, #3
+=> 0x00010470 <+16>:	str	r3, [r11, #-12]
+   0x00010474 <+20>:	ldr	r0, [r11, #-12]
+   0x00010478 <+24>:	bl	0x10438 <mult>
+   0x0001047c <+28>:	str	r0, [r11, #-8]
+   0x00010480 <+32>:	ldr	r1, [r11, #-8]
+   0x00010484 <+36>:	ldr	r0, [pc, #16]	; 0x1049c <main+60>
+   0x00010488 <+40>:	bl	0x102e0 <printf@plt>
+   0x0001048c <+44>:	mov	r3, #0
+   0x00010490 <+48>:	mov	r0, r3
+   0x00010494 <+52>:	sub	sp, r11, #4
+   0x00010498 <+56>:	pop	{r11, pc}
+   0x0001049c <+60>:	andeq	r0, r1, r0, lsl r5
+End of assembler dump.
+(gdb) p/x $r3
+$8 = 0x3
+(gdb) 
+
+스토어 = 메모리에 레지스터 값을 때려박음
+
+인텔에선 전부 mov로 했었음 
+
+암은 로드, 스토어 아키텍쳐라 그렇다.
+
+cisc는 가변길이 인스트럭션, 하드웨어가 지원해줘야 해서 시간이 소비됨
+
+risc는 다 쪼개져있음 
+
+암에서는 메모리에서 레지로 옮기고 스토어 해서 다시 메모리로 넣는다.
+
+인텔에서는 걍 무브로 처리 가능 , 반도체 다이 사이즈가 차이가 있기때문 , 펑셔널 유닛을 같이 올릴 수 있음
+
+무브로 메모리간 연산 가능토록 지원해준다. 
+
+메모리간 무브, 메모리 레지간 무브가 다르다, 인텔만 가능, 앎은 안됨
+
+메모리에서 레지로 가져올땐 반드시 로드, 
+
+레지에서 메모리로 갈땐 스토어 
+
+메모리에서 메모리로 갈땐 로드 + 스토어 
+
+레지스터간의 연산은 무브
+
+구조적인건 인텔이 더 쉬움
+
+복잡성은 암이 높은데 명령어 갯수는 암이 적어서 더 쉬움
+
+스토어 = 메모리에 값 넣기
+
+[ , ] 꺽쇠 = 메모리 연산
+  
+(gdb) si
+0x00010474 in main ()
+(gdb) disas
+Dump of assembler code for function main:
+   0x00010460 <+0>:	push	{r11, lr}
+   0x00010464 <+4>:	add	r11, sp, #4
+   0x00010468 <+8>:	sub	sp, sp, #8
+   0x0001046c <+12>:	mov	r3, #3
+   0x00010470 <+16>:	str	r3, [r11, #-12]
+=> 0x00010474 <+20>:	ldr	r0, [r11, #-12]
+   0x00010478 <+24>:	bl	0x10438 <mult>
+   0x0001047c <+28>:	str	r0, [r11, #-8]
+   0x00010480 <+32>:	ldr	r1, [r11, #-8]
+   0x00010484 <+36>:	ldr	r0, [pc, #16]	; 0x1049c <main+60>
+   0x00010488 <+40>:	bl	0x102e0 <printf@plt>
+   0x0001048c <+44>:	mov	r3, #0
+   0x00010490 <+48>:	mov	r0, r3
+   0x00010494 <+52>:	sub	sp, r11, #4
+   0x00010498 <+56>:	pop	{r11, pc}
+   0x0001049c <+60>:	andeq	r0, r1, r0, lsl r5
+End of assembler dump.
+(gdb) x $sp
+0xf6ffec98:	0x00000003
+
+
+(gdb) p/x $r0
+$9 = 0x1
+(gdb) si 
+0x00010478 in main ()
+(gdb) disas
+Dump of assembler code for function main:
+   0x00010460 <+0>:	push	{r11, lr}
+   0x00010464 <+4>:	add	r11, sp, #4
+   0x00010468 <+8>:	sub	sp, sp, #8
+   0x0001046c <+12>:	mov	r3, #3
+   0x00010470 <+16>:	str	r3, [r11, #-12]
+   0x00010474 <+20>:	ldr	r0, [r11, #-12]
+=> 0x00010478 <+24>:	bl	0x10438 <mult>
+   0x0001047c <+28>:	str	r0, [r11, #-8]
+   0x00010480 <+32>:	ldr	r1, [r11, #-8]
+   0x00010484 <+36>:	ldr	r0, [pc, #16]	; 0x1049c <main+60>
+   0x00010488 <+40>:	bl	0x102e0 <printf@plt>
+   0x0001048c <+44>:	mov	r3, #0
+   0x00010490 <+48>:	mov	r0, r3
+   0x00010494 <+52>:	sub	sp, r11, #4
+   0x00010498 <+56>:	pop	{r11, pc}
+   0x0001049c <+60>:	andeq	r0, r1, r0, lsl r5
+End of assembler dump.
+(gdb) p/x $r0
+$10 = 0x3
+
+bl = 브랜치 링크 , b 만 있으면 복귀안함 jmp와 동일, 복귀주소가 lr
+
+0x0001047c 가 복귀주소가 되야하니까 lr에 걸려있을 것
+
+앎은 스택을 쓰지만 함수호출 할땐 안쓴다.
+
+함수호출한다고해서 인텔처럼 스택이 생기지는 않는다.
+
+(gdb) p/x $sp
+$11 = 0xf6ffec98
+(gdb) si
+0x00010438 in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+=> 0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+   0x0001043c <+4>:	add	r11, sp, #0
+   0x00010440 <+8>:	sub	sp, sp, #12
+   0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+   0x0001044c <+20>:	lsl	r3, r3, #1
+   0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+(gdb) p/x $sp
+$12 = 0xf6ffec98
+(gdb) p/x $lr
+$13 = 0x1047c
+
+암은 함수호출하는데에 있어 스택을 쓰긴 쓰지만 경우에 따라 안쓰기도함.
+
+암에서 bp역할은 r11이 해준다.
+
+(gdb) p/x $sp
+$12 = 0xf6ffec98
+(gdb) p/x $lr
+$13 = 0x1047c
+(gdb) si
+0x0001043c in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+   0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+=> 0x0001043c <+4>:	add	r11, sp, #0
+   0x00010440 <+8>:	sub	sp, sp, #12
+   0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+   0x0001044c <+20>:	lsl	r3, r3, #1
+   0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+(gdb) p/x $sp
+$14 = 0xf6ffec94
+(gdb) x $sp
+0xf6ffec94:	0xf6ffeca4
+
+암도 스택이 없으면 c언어가 돌 수 없다.
+
+0x0001043c <+4>:	add	r11, sp, #0
+// mov 하면 되는걸 add 0 하고있음, 
+
+r11을 백업하는이유, bp니까 경계선을 갖고있기 위함, 인텔과 동일 
+
+인텔과 레지스터이름과 함수를 전달하는방식이 다르다.
+
+r11이 정말 바뀌었나 체크
+
+(gdb) si
+0x00010440 in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+   0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+   0x0001043c <+4>:	add	r11, sp, #0
+=> 0x00010440 <+8>:	sub	sp, sp, #12
+   0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+   0x0001044c <+20>:	lsl	r3, r3, #1
+   0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+(gdb) p/x $r11
+$15 = 0xf6ffec94
+
+
+sub	sp, sp, #12
+// sp 에서 12를 빼줘서 sp에 넣는다.
+
+
+(gdb) si
+0x00010444 in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+   0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+   0x0001043c <+4>:	add	r11, sp, #0
+   0x00010440 <+8>:	sub	sp, sp, #12
+=> 0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+   0x0001044c <+20>:	lsl	r3, r3, #1
+   0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+(gdb) p/x $sp
+$17 = 0xf6ffec88
+
+
+str	r0, [r11, #-8]
+
+
+스토어, 로드는 메모리 가지고 하는건데, 컴파일러가 쓸데 없이 스토어 로드 하고있음, 비효율적임
+
+
+일단 c로 만들어서 돌리고 , 프로파일링 툴을 돌리면 함수 몇개가 병목이 심한지 결과를 주는데 
+
+그때가서 그 애들의 알고리즘을 바꾼다. 성능이 올라간다.
+
+프로파일링 툴 돌려도 여전히 성능이 구지면, 그때가서 어셈을 바꾼다.
+
+
+(gdb) si
+0x00010448 in mult ()
+(gdb) si
+0x0001044c in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+   0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+   0x0001043c <+4>:	add	r11, sp, #0
+   0x00010440 <+8>:	sub	sp, sp, #12
+   0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+=> 0x0001044c <+20>:	lsl	r3, r3, #1
+   0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+
+
+lsl	r3, r3, #1
+//로지컬 쉬프트 레프트 , 왼쪽으로 시프트 
+
+곱하기는 dsp 없는 아키텍쳐에선 굉장히 느리다.
+
+쉬프트 할 수 있는애들은 dsp 없어도 한 사이클에 끝난다.
+
+r3 을 왼쪽으로 한번 쉬프트 하고 , 그 값을 다시 r3에 넣어라, 6 이 된다.
+
+(gdb) si
+0x00010450 in mult ()
+(gdb) disas
+Dump of assembler code for function mult:
+   0x00010438 <+0>:	push	{r11}		; (str r11, [sp, #-4]!)
+   0x0001043c <+4>:	add	r11, sp, #0
+   0x00010440 <+8>:	sub	sp, sp, #12
+   0x00010444 <+12>:	str	r0, [r11, #-8]
+   0x00010448 <+16>:	ldr	r3, [r11, #-8]
+   0x0001044c <+20>:	lsl	r3, r3, #1
+=> 0x00010450 <+24>:	mov	r0, r3
+   0x00010454 <+28>:	sub	sp, r11, #0
+   0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+   0x0001045c <+36>:	bx	lr
+End of assembler dump.
+(gdb) p/x $r3
+$19 = 0x6
+
+=> 0x00010450 <+24>:	mov	r0, r3
+// r0에는 함수의 리턴값이 배치된다.
+// 인텔에서의 ax에 함수의 리턴값이 배치되는것과 동일
+
+0x00010454 <+28>:	sub	sp, r11, #0
+//r11을 스택으로 보관하겠다.
+
+
+0x00010458 <+32>:	pop	{r11}		; (ldr r11, [sp], #4)
+// pop 스택의 최상위에서 뒤쪽에 있는 레지에 전달하는것
+// sp 현재 메모리 값의 4를 더해서 그 값을 r11에 배치하라, 스택이 거꾸로 자랐으니까 , 올려주면 스택빼는거임
+
+인텔의 팝과 암의 팝은 좀 다름
+
+0x0001045c <+36>:	bx	lr
+// 브랜치 = lr 복귀주소
+// lr 로 점프해라 
+
+복귀주소인 1047c로 갔음
+
+andeq	r0, r1, r0, lsl r5 // return 0;
+
+
+인라인 어셈, 어셈만 따로 
+
+
+
+
+
+	 
+
+
