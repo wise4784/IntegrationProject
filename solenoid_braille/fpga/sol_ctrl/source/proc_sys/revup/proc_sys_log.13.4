@@ -1,0 +1,1583 @@
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Assigned Driver generic 1.00.a for instance xps_epc_0
+xps_epc_0 has been added to the project
+ERROR:EDK:3900 - issued from TCL procedure "check_rdy_tout" line 54
+xps_epc_0 (xps_epc) - 
+Invalid xps_epc_0 parameter:
+C_PRH0_RDY_TOUT must be greater than 0. The C_PRH0_RDY_TOUT is either set to 0 or it is not specified in the MHS file
+ 
+ERROR:EDK:4125 - IPNAME: xps_epc, INSTANCE: xps_epc_0, PARAMETER: C_PRH0_BASEADDR - ASSIGNMENT=REQUIRE is defined in the MPD. You must specify a value in the MHS. 
+ERROR:EDK:4125 - IPNAME: xps_epc, INSTANCE: xps_epc_0, PARAMETER: C_PRH0_HIGHADDR - ASSIGNMENT=REQUIRE is defined in the MPD. You must specify a value in the MHS. 
+ERROR:EDK:4125 - IPNAME: xps_epc, INSTANCE: xps_epc_0, PARAMETER: C_PRH0_RDY_TOUT - ASSIGNMENT=REQUIRE is defined in the MPD. You must specify a value in the MHS. 
+ERROR:EDK:4125 - IPNAME: xps_epc, INSTANCE: xps_epc_0, PARAMETER: C_PRH0_RDY_WIDTH - ASSIGNMENT=REQUIRE is defined in the MPD. You must specify a value in the MHS. 
+WARNING:EDK:2137 - Peripheral xps_epc_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+WARNING:EDK:2137 - Peripheral xps_epc_0 is not accessible from any processor in the system. Check Bus Interface connections and address parameters. 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+Warning - xps_epc_0 port PRH_Data_I width [32] does not match net net_xps_epc_0_PRH_Data_I_pin width [1]
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+WARNING:EDK:3967 - xps_epc (xps_epc_0) - ADDRESS specified by PARAMETER C_PRH0_BASEADDR is ignored - D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mhs line 124 
+
+********************************************************************************
+At Local date and time: Tue Nov 19 04:26:00 2013
+ make -f proc_sys.make netlist started...
+"****************************************************"
+"Creating system netlist for hardware specification.."
+"****************************************************"
+platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle default    -msg __xps/ise/xmsgprops.lst proc_sys.mhs
+
+Release 13.4 - platgen Xilinx EDK 13.4 Build EDK_O.87xd
+ (nt64)
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+Command Line: platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle default -msg
+__xps/ise/xmsgprops.lst proc_sys.mhs 
+
+Parse
+D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/proc_sys.mh
+s ...
+
+Read MPD definitions ...
+
+Overriding IP level properties ...
+
+Computing clock values...
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   ilmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   dlmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+
+Performing IP level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
+Address Map for Processor microblaze_0
+  (0000000000-0x00003fff) dlmb_cntlr	dlmb
+  (0000000000-0x00003fff) ilmb_cntlr	ilmb
+  (0x20000000-0x200fffff) xps_epc_0	mb_plb
+  (0x84000000-0x8400ffff) RS232	mb_plb
+  (0x84400000-0x8440ffff) mdm_0	mb_plb
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 78 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_SLAVES value to 3 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 79 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_DWIDTH value to 32 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:ilmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:dlmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: bram_block, INSTANCE:lmb_bram - tool is overriding
+   PARAMETER C_MEMSIZE value to 0x4000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\bram_block_v1_00_a\d
+   ata\bram_block_v2_1_0.mpd line 76 
+INFO:EDK:4130 - IPNAME: xps_uartlite, INSTANCE:RS232 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_uartlite_v1_02_a
+   \data\xps_uartlite_v2_1_0.mpd line 83 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 92 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 93 
+INFO:EDK:4130 - IPNAME: xps_epc, INSTANCE:xps_epc_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_epc_v1_02_a\data
+   \xps_epc_v2_1_0.mpd line 83 
+
+Checking platform address map ...
+
+Checking platform configuration ...
+IPNAME: plb_v46, INSTANCE: mb_plb - 2 master(s) : 3 slave(s) 
+IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s) 
+IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
+
+Checking port drivers...
+WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
+   Port will be driven to GND -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 239 
+WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 232 
+WARNING:EDK:4181 - PORT: bscan_reset, CONNECTOR: bscan_reset - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 233 
+WARNING:EDK:4181 - PORT: bscan_shift, CONNECTOR: bscan_shift - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 234 
+WARNING:EDK:4181 - PORT: bscan_update, CONNECTOR: bscan_update - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 235 
+WARNING:EDK:4181 - PORT: bscan_capture, CONNECTOR: bscan_capture - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 236 
+WARNING:EDK:4181 - PORT: bscan_sel1, CONNECTOR: bscan_sel1 - floating connection
+   -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 237 
+WARNING:EDK:4181 - PORT: bscan_drck1, CONNECTOR: bscan_drck1 - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 238 
+WARNING:EDK:4181 - PORT: Peripheral_Reset, CONNECTOR: sys_periph_reset -
+   floating connection -
+   D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys
+   .mhs line 142 
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_D_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 229 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_I_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 232 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_ADDR_TAG_BITS value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 332 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_ADDR_TAG value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 362 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 397 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_NM_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 398 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:dlmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:ilmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+
+Running UPDATE Tcl procedures for OPTION PLATGEN_SYSLEVEL_UPDATE_PROC...
+INFO: The microblaze_0 core has constraints automatically generated by XPS in
+implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The ilmb core has constraints automatically generated by XPS in
+implementation/ilmb_wrapper/ilmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The dlmb core has constraints automatically generated by XPS in
+implementation/dlmb_wrapper/dlmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+
+Modify defaults ...
+
+Creating stub ...
+
+Processing licensed instances ...
+Completion time: 0.00 seconds
+
+Creating hardware output directories ...
+
+Managing hardware (BBD-specified) netlist files ...
+
+Managing cache ...
+
+Elaborating instances ...
+IPNAME:bram_block INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - elaborating IP
+IPNAME:clock_generator INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - elaborating IP
+ClkGen elaborate status: PASSED
+----------------------------------------
+
+Writing HDL for elaborated instances ...
+
+Inserting wrapper level ...
+Completion time: 1.00 seconds
+
+Constructing platform-level connectivity ...
+Completion time: 0.00 seconds
+
+Writing (top-level) BMM ...
+
+Writing (top-level and wrappers) HDL ...
+
+Generating synthesis project file ...
+
+Running XST synthesis ...
+
+INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
+   IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
+   synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
+INSTANCE:microblaze_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 32 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:mb_plb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 45 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:ilmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 52 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:dlmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 59 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:dlmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 66 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:ilmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 75 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:rs232 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 91 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:mdm_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 120 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:proc_sys_reset_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 132 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:xps_epc_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 145 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Running NGCBUILD ...
+IPNAME:microblaze_0_wrapper INSTANCE:microblaze_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 32 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. microblaze_0_wrapper.ngc
+../microblaze_0_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/microblaze_0_wrapper/microblaze_0_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../microblaze_0_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  5 sec
+Total CPU time to NGCBUILD completion:   5 sec
+
+Writing NGCBUILD log file "../microblaze_0_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:ilmb_wrapper INSTANCE:ilmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 52 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. ilmb_wrapper.ngc ../ilmb_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/ilmb_wrapper/ilmb_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../ilmb_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  4 sec
+Total CPU time to NGCBUILD completion:   4 sec
+
+Writing NGCBUILD log file "../ilmb_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:dlmb_wrapper INSTANCE:dlmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 59 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. dlmb_wrapper.ngc ../dlmb_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/dlmb_wrapper/dlmb_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../dlmb_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  4 sec
+Total CPU time to NGCBUILD completion:   4 sec
+
+Writing NGCBUILD log file "../dlmb_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. clock_generator_0_wrapper.ngc
+../clock_generator_0_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/clock_generator_0_wrapper/clock_generator_0_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../clock_generator_0_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  4 sec
+Total CPU time to NGCBUILD completion:   4 sec
+
+Writing NGCBUILD log file "../clock_generator_0_wrapper.blc"...
+
+NGCBUILD done.
+INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
+   If any constraint needs to be overridden, this should be done by modifying
+   the data/proc_sys.ucf file.
+
+Rebuilding cache ...
+
+Total run time: 236.00 seconds
+"Running synthesis..."
+cd synthesis & synthesis.cmd
+"xst -ifn "proc_sys_xst.scr" -intstyle silent"
+"Running XST synthesis ..."
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+"XST completed"
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.filters
+Done writing Tab View settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.gui
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+No changes to be saved in MHS file
+Saved project XMP file
+Saved Make file
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Wed Nov 20 02:33:59 2013
+ make -f proc_sys.make hwclean started...
+rm -f implementation/proc_sys.ngc
+rm -f platgen.log
+rm -f __xps/ise/_xmsgs/platgen.xmsgs
+touch __xps/ise/proc_sys.xpssyn
+rm -f implementation/proc_sys.bmm
+rm -rf implementation/cache
+rm -f implementation/proc_sys.bit
+rm -f implementation/proc_sys.ncd
+rm -f implementation/proc_sys_bd.bmm 
+rm -f implementation/proc_sys_map.ncd 
+rm -f implementation/download.bit 
+rm -f __xps/proc_sys_bits
+rm -rf implementation synthesis xst hdl
+rm -rf xst.srp proc_sys.srp
+rm -f __xps/ise/_xmsgs/bitinit.xmsgs
+rm -rf SDK
+rm -rf __xps/ps7_instance.mhs
+Done!
+
+********************************************************************************
+At Local date and time: Wed Nov 20 02:34:12 2013
+ make -f proc_sys.make netlist started...
+"****************************************************"
+"Creating system netlist for hardware specification.."
+"****************************************************"
+platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle ise   -toplevel no -ti proc_sys_i -msg __xps/ise/xmsgprops.lst proc_sys.mhs
+
+Command Line: platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle ise -toplevel no
+-ti proc_sys_i -msg __xps/ise/xmsgprops.lst proc_sys.mhs 
+
+Parse
+D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/proc_sys.mh
+s ...
+
+Read MPD definitions ...
+
+Overriding IP level properties ...
+
+Computing clock values...
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   ilmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   dlmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+
+Performing IP level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
+Address Map for Processor microblaze_0
+  (0000000000-0x00003fff) dlmb_cntlr	dlmb
+  (0000000000-0x00003fff) ilmb_cntlr	ilmb
+  (0x20000000-0x200fffff) xps_epc_0	mb_plb
+  (0x84000000-0x8400ffff) RS232	mb_plb
+  (0x84400000-0x8440ffff) mdm_0	mb_plb
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 78 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_SLAVES value to 3 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 79 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_DWIDTH value to 32 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:ilmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:dlmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: bram_block, INSTANCE:lmb_bram - tool is overriding
+   PARAMETER C_MEMSIZE value to 0x4000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\bram_block_v1_00_a\d
+   ata\bram_block_v2_1_0.mpd line 76 
+INFO:EDK:4130 - IPNAME: xps_uartlite, INSTANCE:RS232 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_uartlite_v1_02_a
+   \data\xps_uartlite_v2_1_0.mpd line 83 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 92 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 93 
+INFO:EDK:4130 - IPNAME: xps_epc, INSTANCE:xps_epc_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_epc_v1_02_a\data
+   \xps_epc_v2_1_0.mpd line 83 
+
+Checking platform address map ...
+
+Checking platform configuration ...
+IPNAME: plb_v46, INSTANCE: mb_plb - 2 master(s) : 3 slave(s) 
+IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s) 
+IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
+
+Checking port drivers...
+WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
+   Port will be driven to GND -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 239 
+WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 232 
+WARNING:EDK:4181 - PORT: bscan_reset, CONNECTOR: bscan_reset - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 233 
+WARNING:EDK:4181 - PORT: bscan_shift, CONNECTOR: bscan_shift - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 234 
+WARNING:EDK:4181 - PORT: bscan_update, CONNECTOR: bscan_update - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 235 
+WARNING:EDK:4181 - PORT: bscan_capture, CONNECTOR: bscan_capture - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 236 
+WARNING:EDK:4181 - PORT: bscan_sel1, CONNECTOR: bscan_sel1 - floating connection
+   -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 237 
+WARNING:EDK:4181 - PORT: bscan_drck1, CONNECTOR: bscan_drck1 - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 238 
+WARNING:EDK:4181 - PORT: Peripheral_Reset, CONNECTOR: sys_periph_reset -
+   floating connection -
+   D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys
+   .mhs line 142 
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_D_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 229 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_I_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 232 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_ADDR_TAG_BITS value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 332 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_ADDR_TAG value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 362 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 397 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_NM_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 398 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:dlmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:ilmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+
+Running UPDATE Tcl procedures for OPTION PLATGEN_SYSLEVEL_UPDATE_PROC...
+INFO: The microblaze_0 core has constraints automatically generated by XPS in
+implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The ilmb core has constraints automatically generated by XPS in
+implementation/ilmb_wrapper/ilmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The dlmb core has constraints automatically generated by XPS in
+implementation/dlmb_wrapper/dlmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+
+Modify defaults ...
+
+Creating stub ...
+
+Processing licensed instances ...
+Completion time: 0.00 seconds
+
+Creating hardware output directories ...
+
+Managing hardware (BBD-specified) netlist files ...
+
+Managing cache ...
+
+Elaborating instances ...
+IPNAME:bram_block INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - elaborating IP
+IPNAME:clock_generator INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - elaborating IP
+ClkGen elaborate status: PASSED
+----------------------------------------
+
+Writing HDL for elaborated instances ...
+
+Inserting wrapper level ...
+Completion time: 0.00 seconds
+
+Constructing platform-level connectivity ...
+Completion time: 1.00 seconds
+
+Writing (top-level) BMM ...
+
+Writing (top-level and wrappers) HDL ...
+
+Generating synthesis project file ...
+
+Running XST synthesis ...
+
+INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
+   IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
+   synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
+INSTANCE:microblaze_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 32 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:mb_plb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 45 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:ilmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 52 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:dlmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 59 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:dlmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 66 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:ilmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 75 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:rs232 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 91 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:mdm_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 120 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:proc_sys_reset_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 132 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:xps_epc_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 145 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Running NGCBUILD ...
+IPNAME:microblaze_0_wrapper INSTANCE:microblaze_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 32 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. microblaze_0_wrapper.ngc
+../microblaze_0_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/microblaze_0_wrapper/microblaze_0_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../microblaze_0_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  7 sec
+Total CPU time to NGCBUILD completion:   6 sec
+
+Writing NGCBUILD log file "../microblaze_0_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:ilmb_wrapper INSTANCE:ilmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 52 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. ilmb_wrapper.ngc ../ilmb_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/ilmb_wrapper/ilmb_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../ilmb_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  7 sec
+Total CPU time to NGCBUILD completion:   6 sec
+
+Writing NGCBUILD log file "../ilmb_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:dlmb_wrapper INSTANCE:dlmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 59 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. dlmb_wrapper.ngc ../dlmb_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/dlmb_wrapper/dlmb_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../dlmb_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  6 sec
+Total CPU time to NGCBUILD completion:   5 sec
+
+Writing NGCBUILD log file "../dlmb_wrapper.blc"...
+
+NGCBUILD done.
+IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. clock_generator_0_wrapper.ngc
+../clock_generator_0_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/clock_generator_0_wrapper/clock_generator_0_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../clock_generator_0_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  7 sec
+Total CPU time to NGCBUILD completion:   6 sec
+
+Writing NGCBUILD log file "../clock_generator_0_wrapper.blc"...
+
+NGCBUILD done.
+INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
+   If any constraint needs to be overridden, this should be done by modifying
+   the data/proc_sys.ucf file.
+
+Rebuilding cache ...
+
+Total run time: 296.00 seconds
+"Running synthesis..."
+cd synthesis & synthesis.cmd
+"xst -ifn "proc_sys_xst.scr" -intstyle silent"
+"Running XST synthesis ..."
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+"XST completed"
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.filters
+Done writing Tab View settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.gui
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+
+********************************************************************************
+At Local date and time: Fri Nov 22 16:33:57 2013
+ make -f proc_sys.make netlist started...
+"****************************************************"
+"Creating system netlist for hardware specification.."
+"****************************************************"
+platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle ise   -toplevel no -ti proc_sys_i -msg __xps/ise/xmsgprops.lst proc_sys.mhs
+
+Command Line: platgen -p xc6slx9tqg144-3 -lang vhdl -intstyle ise -toplevel no
+-ti proc_sys_i -msg __xps/ise/xmsgprops.lst proc_sys.mhs 
+
+Parse
+D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/proc_sys.mh
+s ...
+
+Read MPD definitions ...
+
+Overriding IP level properties ...
+
+Computing clock values...
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   ilmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+INFO:EDK:740 - Cannot determine the input clock associated with port :
+   dlmb_cntlr:BRAM_Clk_A. Clock DRCs will not be performed on this core and
+   cores connected to it. 
+
+Performing IP level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
+Address Map for Processor microblaze_0
+  (0000000000-0x00007fff) dlmb_cntlr	dlmb
+  (0000000000-0x00007fff) ilmb_cntlr	ilmb
+  (0x20000000-0x200fffff) xps_epc_0	mb_plb
+  (0x84000000-0x8400ffff) RS232	mb_plb
+  (0x84400000-0x8440ffff) mdm_0	mb_plb
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 78 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_NUM_SLAVES value to 3 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 79 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: plb_v46, INSTANCE:mb_plb - tool is overriding PARAMETER
+   C_PLBV46_DWIDTH value to 32 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\plb_v46_v1_05_a\data
+   \plb_v46_v2_1_0.mpd line 82 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:ilmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: lmb_v10, INSTANCE:dlmb - tool is overriding PARAMETER
+   C_LMB_NUM_SLAVES value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_v10_v2_00_b\data
+   \lmb_v10_v2_1_0.mpd line 80 
+INFO:EDK:4130 - IPNAME: bram_block, INSTANCE:lmb_bram - tool is overriding
+   PARAMETER C_MEMSIZE value to 0x8000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\bram_block_v1_00_a\d
+   ata\bram_block_v2_1_0.mpd line 76 
+INFO:EDK:4130 - IPNAME: xps_uartlite, INSTANCE:RS232 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_uartlite_v1_02_a
+   \data\xps_uartlite_v2_1_0.mpd line 83 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_MID_WIDTH value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 92 
+INFO:EDK:4130 - IPNAME: mdm, INSTANCE:mdm_0 - tool is overriding PARAMETER
+   C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 93 
+INFO:EDK:4130 - IPNAME: xps_epc, INSTANCE:xps_epc_0 - tool is overriding
+   PARAMETER C_SPLB_NUM_MASTERS value to 2 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\xps_epc_v1_02_a\data
+   \xps_epc_v2_1_0.mpd line 83 
+
+Checking platform address map ...
+
+Checking platform configuration ...
+IPNAME: plb_v46, INSTANCE: mb_plb - 2 master(s) : 3 slave(s) 
+IPNAME: lmb_v10, INSTANCE: ilmb - 1 master(s) : 1 slave(s) 
+IPNAME: lmb_v10, INSTANCE: dlmb - 1 master(s) : 1 slave(s) 
+
+Checking port drivers...
+WARNING:EDK:4180 - PORT: bscan_tdo1, CONNECTOR: bscan_tdo1 - No driver found.
+   Port will be driven to GND -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 239 
+WARNING:EDK:4181 - PORT: bscan_tdi, CONNECTOR: bscan_tdi - floating connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 232 
+WARNING:EDK:4181 - PORT: bscan_reset, CONNECTOR: bscan_reset - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 233 
+WARNING:EDK:4181 - PORT: bscan_shift, CONNECTOR: bscan_shift - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 234 
+WARNING:EDK:4181 - PORT: bscan_update, CONNECTOR: bscan_update - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 235 
+WARNING:EDK:4181 - PORT: bscan_capture, CONNECTOR: bscan_capture - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 236 
+WARNING:EDK:4181 - PORT: bscan_sel1, CONNECTOR: bscan_sel1 - floating connection
+   -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 237 
+WARNING:EDK:4181 - PORT: bscan_drck1, CONNECTOR: bscan_drck1 - floating
+   connection -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\mdm_v2_00_b\data\mdm
+   _v2_1_0.mpd line 238 
+WARNING:EDK:4181 - PORT: Peripheral_Reset, CONNECTOR: sys_periph_reset -
+   floating connection -
+   D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys
+   .mhs line 142 
+
+Performing Clock DRCs...
+
+Performing Reset DRCs...
+
+Overriding system level properties...
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_D_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 229 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_I_PLB value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 232 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_ADDR_TAG_BITS value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 332 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_DCACHE_ADDR_TAG value to 0 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 362 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 397 
+INFO:EDK:4130 - IPNAME: microblaze, INSTANCE:microblaze_0 - tcl is overriding
+   PARAMETER C_USE_EXT_NM_BRK value to 1 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\microblaze_v8_20_b\d
+   ata\microblaze_v2_1_0.mpd line 398 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:dlmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+INFO:EDK:4130 - IPNAME: lmb_bram_if_cntlr, INSTANCE:ilmb_cntlr - tcl is
+   overriding PARAMETER C_MASK value to 0x24000000 -
+   C:\Xilinx\13.4\ISE_DS\EDK\hw\XilinxProcessorIPLib\pcores\lmb_bram_if_cntlr_v3
+   _00_b\data\lmb_bram_if_cntlr_v2_1_0.mpd line 87 
+
+Running system level update procedures...
+
+Running UPDATE Tcl procedures for OPTION SYSLEVEL_UPDATE_PROC...
+
+Running system level DRCs...
+
+Performing System level DRCs on properties...
+
+Running DRC Tcl procedures for OPTION SYSLEVEL_DRC_PROC...
+
+Running UPDATE Tcl procedures for OPTION PLATGEN_SYSLEVEL_UPDATE_PROC...
+INFO: The microblaze_0 core has constraints automatically generated by XPS in
+implementation/microblaze_0_wrapper/microblaze_0_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The ilmb core has constraints automatically generated by XPS in
+implementation/ilmb_wrapper/ilmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+INFO: The dlmb core has constraints automatically generated by XPS in
+implementation/dlmb_wrapper/dlmb_wrapper.ucf.
+It can be overridden by constraints placed in the system.ucf file.
+
+
+Modify defaults ...
+
+Creating stub ...
+
+Processing licensed instances ...
+Completion time: 0.00 seconds
+
+Creating hardware output directories ...
+
+Managing hardware (BBD-specified) netlist files ...
+
+Managing cache ...
+IPNAME:microblaze INSTANCE:microblaze_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 32 - Copying cache implementation netlist
+IPNAME:plb_v46 INSTANCE:mb_plb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 45 - Copying cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:ilmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 52 - Copying cache implementation netlist
+IPNAME:lmb_v10 INSTANCE:dlmb -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 59 - Copying cache implementation netlist
+IPNAME:xps_uartlite INSTANCE:rs232 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 91 - Copying cache implementation netlist
+IPNAME:mdm INSTANCE:mdm_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 120 - Copying cache implementation netlist
+IPNAME:proc_sys_reset INSTANCE:proc_sys_reset_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 132 - Copying cache implementation netlist
+IPNAME:xps_epc INSTANCE:xps_epc_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 145 - Copying cache implementation netlist
+
+Elaborating instances ...
+IPNAME:bram_block INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - elaborating IP
+IPNAME:clock_generator INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - elaborating IP
+ClkGen elaborate status: PASSED
+----------------------------------------
+
+Writing HDL for elaborated instances ...
+
+Inserting wrapper level ...
+Completion time: 0.00 seconds
+
+Constructing platform-level connectivity ...
+Completion time: 0.00 seconds
+
+Writing (top-level) BMM ...
+
+Writing (top-level and wrappers) HDL ...
+
+Generating synthesis project file ...
+
+Running XST synthesis ...
+
+INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
+   IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
+   synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
+INSTANCE:dlmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 66 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:ilmb_cntlr -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 75 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:lmb_bram -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 84 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running XST synthesis
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Running NGCBUILD ...
+IPNAME:clock_generator_0_wrapper INSTANCE:clock_generator_0 -
+D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\proc_sys.mh
+s line 105 - Running NGCBUILD
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+
+Command Line: C:\Xilinx\13.4\ISE_DS\ISE\bin\nt64\unwrapped\ngcbuild.exe -p
+xc6slx9tqg144-3 -intstyle silent -i -sd .. clock_generator_0_wrapper.ngc
+../clock_generator_0_wrapper
+
+Reading NGO file
+"D:/Work/41.Mirae/CM_Process/2.dev/fpga/check_module/sources/proc_sys/implementa
+tion/clock_generator_0_wrapper/clock_generator_0_wrapper.ngc" ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Writing NGC file "../clock_generator_0_wrapper.ngc" ...
+Total REAL time to NGCBUILD completion:  4 sec
+Total CPU time to NGCBUILD completion:   3 sec
+
+Writing NGCBUILD log file "../clock_generator_0_wrapper.blc"...
+
+NGCBUILD done.
+INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
+   If any constraint needs to be overridden, this should be done by modifying
+   the data/proc_sys.ucf file.
+
+Rebuilding cache ...
+
+Total run time: 41.00 seconds
+"Running synthesis..."
+cd synthesis & synthesis.cmd
+"xst -ifn "proc_sys_xst.scr" -intstyle silent"
+"Running XST synthesis ..."
+PMSPEC -- Overriding Xilinx file
+<C:/Xilinx/13.4/ISE_DS/EDK/spartan6/data/spartan6.acd> with local file
+<C:/Xilinx/13.4/ISE_DS/ISE/spartan6/data/spartan6.acd>
+"XST completed"
+Done!
+Writing filter settings....
+Done writing filter settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.filters
+Done writing Tab View settings to:
+	D:\Work\41.Mirae\CM_Process\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.gui
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Writing filter settings....
+Done writing filter settings to:
+	\\192.168.7.8\work\proj\41.Mirae\CheckUnit_Of_LowProcessing\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.filters
+Done writing Tab View settings to:
+	\\192.168.7.8\work\proj\41.Mirae\CheckUnit_Of_LowProcessing\2.dev\fpga\check_module\sources\proc_sys\etc\proc_sys.gui
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+=====================
+Opened log file
+=====================
+=====================
+Opened log file
+=====================
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx EDK 13.4 Build EDK_O.87xd
+
+Xilinx Platform Studio (XPS)
+Xilinx EDK 13.4 Build EDK_O.87xd
+Copyright (c) 1995-2011 Xilinx, Inc.  All rights reserved.
+
+Writing filter settings....
+Done writing filter settings to:
+	\\192.168.7.8\work\proj\41.Mirae\CheckUnit_Of_LowProcessing\2.dev\fpga\check_moduled\sources\proc_sys\etc\proc_sys.filters
+Done writing Tab View settings to:
+	\\192.168.7.8\work\proj\41.Mirae\CheckUnit_Of_LowProcessing\2.dev\fpga\check_moduled\sources\proc_sys\etc\proc_sys.gui

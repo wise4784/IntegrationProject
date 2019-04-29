@@ -1,0 +1,66 @@
+Release 14.7 ngcbuild P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: ngcbuild.exe -dd
+C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/_ngo -sd source/ip -p
+xc6slx9-tqg144-2 -i C:\Users\koitt01A\Desktop\fan_ctrl_0430\fan_ctrl\top_m.ngc
+C:\Users\koitt01A\Desktop\fan_ctrl_0430\fan_ctrl\top_m_cs.ngc
+
+Reading NGO file "C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/top_m.ngc"
+...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_xps_epc_0_wrapper.ngc
+"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_rs232_wrapper.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_clock_generator_0_wra
+pper.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_xps_mch_emc_0_wrapper
+.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_proc_sys_reset_0_wrap
+per.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_microblaze_0_wrapper.
+ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_mb_plb_wrapper.ngc"..
+.
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_ilmb_wrapper.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_dlmb_wrapper.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_dlmb_cntlr_wrapper.ng
+c"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_ilmb_cntlr_wrapper.ng
+c"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_mdm_0_wrapper.ngc"...
+Loading design module
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/proc_sys_lmb_bram_wrapper.ngc"
+...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGCBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 196712 kilobytes
+
+Writing NGC file "C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/top_m_cs.ngc"
+...
+Total REAL time to NGCBUILD completion:  19 sec
+Total CPU time to NGCBUILD completion:   19 sec
+
+Writing NGCBUILD log file
+"C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/top_m_cs.blc"...

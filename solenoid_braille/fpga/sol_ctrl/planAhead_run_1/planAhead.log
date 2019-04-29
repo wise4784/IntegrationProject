@@ -1,0 +1,105 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Fri Oct 13 14:53:59 2017
+# Process ID: 18520
+# Log file: C:/Users/acer/Desktop/fan/rpmfanuart/planAhead_run_1/planAhead.log
+# Journal file: C:/Users/acer/Desktop/fan/rpmfanuart/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source C:/Users/acer/Desktop/fan/rpmfanuart/pa.fromNetlist.tcl
+# create_project -name rpmfanuart -dir "C:/Users/acer/Desktop/fan/rpmfanuart/planAhead_run_2" -part xc6slx9tqg144-2
+# set_property design_mode GateLvl [get_property srcset [current_run -impl]]
+# set_property edif_top_file "C:/Users/acer/Desktop/fan/rpmfanuart/top_m.ngc" [ get_property srcset [ current_run ] ]
+# add_files -norecurse { {C:/Users/acer/Desktop/fan/rpmfanuart} {ipcore_dir} }
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/dlmb_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/ilmb_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/microblaze_0_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_clock_generator_0_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_dlmb_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_ilmb_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# add_files [list {C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_microblaze_0_wrapper.ncf}] -fileset [get_property constrset [current_run]]
+# set_property target_constrs_file "pinmap.ucf" [current_fileset -constrset]
+Adding file 'C:/Users/acer/Desktop/fan/rpmfanuart/pinmap.ucf' to fileset 'constrs_1'
+# add_files [list {pinmap.ucf}] -fileset [get_property constrset [current_run]]
+# link_design
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to project part: xc6slx9tqg144-2
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design top_m.ngc ...
+WARNING:NetListWriters:298 - No output is written to top_m.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+  finished :Prep
+Writing EDIF netlist file top_m.edif ...
+ngc2edif: Total memory usage is 94312 kilobytes
+
+Parsing EDIF File [./planAhead_run_2/rpmfanuart.data/cache/top_m_ngc_zx.edif]
+Finished Parsing EDIF File [./planAhead_run_2/rpmfanuart.data/cache/top_m_ngc_zx.edif]
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design proc_sys_xps_epc_0_wrapper.ngc ...
+WARNING:NetListWriters:298 - No output is written to
+   proc_sys_xps_epc_0_wrapper.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus
+   xps_epc_0/PLBv46_IPIF_I/I_SLAVE_ATTACHMENT/master_id<31 : 0> on block
+   proc_sys_xps_epc_0_wrapper is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   xps_epc_0/PLBv46_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DATA_PHASE_WDT.I_DPTO_COUN
+   TER/INFERRED_GEN.icount_out[8]_GND_19_o_mux_5_OUT<8 : 2> on block
+   proc_sys_xps_epc_0_wrapper is not reconstructed, because there are some
+   missing bus signals.
+  finished :Prep
+Writing EDIF netlist file proc_sys_xps_epc_0_wrapper.edif ...
+ngc2edif: Total memory usage is 86248 kilobytes
+
+Reading core file 'C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_xps_epc_0_wrapper.ngc' for (cell view 'proc_sys_xps_epc_0_wrapper', library 'top_m_lib', file 'top_m.ngc')
+Parsing EDIF File [./planAhead_run_2/rpmfanuart.data/cache/proc_sys_xps_epc_0_wrapper_ngc_zx.edif]
+Finished Parsing EDIF File [./planAhead_run_2/rpmfanuart.data/cache/proc_sys_xps_epc_0_wrapper_ngc_zx.edif]
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design proc_sys_rs232_wrapper.ngc ...
+WARNING:NetListWriters:298 - No output is written to
+   proc_sys_rs232_wrapper.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus
+   RS232/PLBV46_I/I_SLAVE_ATTACHMENT/master_id[31 : 0] on block
+   proc_sys_rs232_wrapper is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus RS232/UARTLITE_CORE_I/Result[2 : 0] on
+   block proc_sys_rs232_wrapper is not reconstructed, because there are some
+   missing bus signals.
+  finished :Prep
+Writing EDIF netlist file proc_sys_rs232_wrapper.edif ...
+ngc2edif: Total memory usage is 86120 kilobytes
+
+Reading core file 'C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys_rs232_wrapper.ngc' for (cell view 'proc_sys_rs232_wrapper', library 'top_m_lib', file 'top_m.ngc')
+Parsing EDIF File [./planAhead_run_2/rpmfanuart.data/cache/proc_sys_rs232_wrapper_ngc_zx.edif]
+INFO: [Common 17-344] 'link_design' was cancelled
+INFO: [Common 17-344] 'source' was cancelled
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+ (See C:/Users/acer/Desktop/fan/rpmfanuart\planAhead_pid18520.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Fri Oct 13 14:54:54 2017...
+INFO: [Common 17-83] Releasing license: PlanAhead

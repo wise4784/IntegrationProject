@@ -1,0 +1,233 @@
+Release 14.7 ngdbuild P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe -filter
+iseconfig/filter.filter -intstyle ise -dd _ngo -sd source/ip -nt timestamp -uc
+pinmap.ucf -bm edkBmmFile.bmm -p xc6slx9-tqg144-2 top_m_cs.ngc top_m.ngd
+
+Reading NGO file "C:/Users/koitt01A/Desktop/fan_ctrl_0430/fan_ctrl/top_m_cs.ngc"
+...
+Gathering constraint information from source properties...
+Done.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_15/IO' is not connected to
+   an external port in this design.  A new port 'IO' has been added and is
+   connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_14/IO' is not connected to
+   an external port in this design.  A new port 'IO_x' has been added and is
+   connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_13/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x' has been added and is
+   connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_12/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x' has been added and is
+   connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_11/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x' has been added and
+   is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_10/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x' has been added
+   and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_9/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x' has been added
+   and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_8/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x' has been
+   added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_7/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x' has been
+   added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_6/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x' has been
+   added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_5/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x_x' has
+   been added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_4/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x_x_x' has
+   been added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_3/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x_x_x_x' has
+   been added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_2/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x_x_x_x_x'
+   has been added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_1/IO' is not connected to
+   an external port in this design.  A new port 'IO_x_x_x_x_x_x_x_x_x_x_x_x_x_x'
+   has been added and is connected to this signal.
+INFO:NgdBuild:889 - Pad net 'cpu_inst/cpu_inst/iobuf_0/IO' is not connected to
+   an external port in this design.  A new port
+   'IO_x_x_x_x_x_x_x_x_x_x_x_x_x_x_x' has been added and is connected to this
+   signal.
+
+Annotating constraints to design from ucf file "pinmap.ucf" ...
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_0' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_1' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_2' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_3' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_4' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_5' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_6' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_7' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_8' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_9' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_10' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_11' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_12' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_13' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_14' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+WARNING:NgdBuild - The value of SIM_DEVICE on instance
+   'cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_15' of type RAMB16BWER has
+   been changed from 'SPARTAN3ADSP' to 'SPARTAN6' to correct post-ngdbuild and
+   timing simulation for this primitive.  In order for functional simulation to
+   be correct, the value of SIM_DEVICE should be changed in this same manner in
+   the source netlist or constraint file.
+Resolving constraint associations...
+Checking Constraint Associations...
+WARNING:ConstraintSystem - TNM : D_CLK was distributed to a DCM but new TNM
+   constraints were not derived. This TNM is used in the following user groups
+   or specifications:
+   <TIMESPEC TS_J_TO_D = FROM "J_CLK" TO "D_CLK" TIG;>
+   <TIMESPEC TS_D_TO_J = FROM "D_CLK" TO "J_CLK" TIG;>
+
+Done...
+
+Processing BMM file "edkBmmFile.bmm" ...
+
+Checking expanded design ...
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_CE_FOR_SHARED.GEN_BKEND
+   _CE_REGISTERS[0].I_BKEND_WRCE_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_CE_FOR_SHARED.GEN_BKEND
+   _CE_REGISTERS[0].I_BKEND_RDCE_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BUS_ADDRESS_COUNTER/GEN_FOR_SHARED.
+   GEN_S_H_SIZE_REG[0].I_SIZE_S_H_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_STEER_ADDRESS_COUNTER/GEN_FOR_SHARE
+   D.GEN_S_H_SIZE_REG[0].I_SIZE_S_H_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BURST_SUPPORT/RESPONSE_DBEAT_CNTR_I
+   /STRUCTURAL_A_GEN.I_ADDSUB_GEN[5].FDRE_I' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.
+   PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BURST_SUPPORT/CONTROL_DBEAT_CNTR_I/
+   STRUCTURAL_A_GEN.I_ADDSUB_GEN[5].FDRE_I' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/ADDR_COUNTER_MUX_I/
+   ADDRESS_STORE_GEN[31].ADDRESS_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/ADDR_COUNTER_MUX_I/
+   ADDRESS_STORE_GEN[30].ADDRESS_REG' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STEER_I/RDDATA_
+   PATH_MUX_GEN.ASYNC_ADDR_CNT_GEN.RDDATA_EN_GEN_ASYNC[3].RDDATA_EN_REG_ASYNC'
+   has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STEER_I/ASYNC_M
+   EM_RDACK_GEN.AALIGN_PIPE_GEN[1].AALIGN_PIPE' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STATE_MACHINE_I
+   /READ_COMPLETE_PIPE_GEN[6].READ_COMPLETE_PIPE' has unconnected output pin
+WARNING:NgdBuild:443 - SFF primitive
+   'cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.De
+   code_I/Using_FPGA.Gen_Bits[27].MEM_EX_Result_Inst' has unconnected output pin
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:  29
+
+Total memory usage is 220992 kilobytes
+
+Writing NGD file "top_m.ngd" ...
+Total REAL time to NGDBUILD completion:  9 sec
+Total CPU time to NGDBUILD completion:   9 sec
+
+Writing NGDBUILD log file "top_m.bld"...
