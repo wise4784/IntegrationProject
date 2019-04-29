@@ -79,6 +79,7 @@ int main(void)
     sci_display_txt(sciREG1, (uint8 *)buf, buflen);
     // VCLK3 - 37.5Mhz
     uint32 VCLK3_freq = 150000000 / ((systemREG2->CLK2CNTRL & 0x0000000FU) + 1);
+
 //********************** EPWM 관련 *********************************//
     // PWM 주기 1ms 주파수 1khz
     etpwmInit();

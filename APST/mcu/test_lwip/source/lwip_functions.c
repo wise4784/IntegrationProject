@@ -11,14 +11,12 @@
 #include "inet.h"
 #include "locator.h"
 
-
 #define sciREGx  sciREG1
 
 uint8_t    txtCRLF[]      = {'\r', '\n'};
 uint8_t    txtErrorInit[]    = {"-------- ERROR INITIALIZING HARDWARE --------"};
 uint8_t    txtIPAddrTxt[]    = {"Device IP Address: "};
 uint8_t     * txtIPAddrItoA;
-
 
 volatile int countEMACCore0RxIsr = 0;
 #pragma INTERRUPT(EMACCore0RxIsr, IRQ)
