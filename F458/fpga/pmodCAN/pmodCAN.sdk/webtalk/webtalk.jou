@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# 
+# Start of session at: Thu Apr 25 19:47:59 2019
+# Process ID: 11711
+# Current directory: /home/roro/fpga_workspace/pmodCAN/pmodCAN.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/roro/fpga_workspace/pmodCAN/pmodCAN.sdk/webtalk/webtalk.log
+# Journal file: /home/roro/fpga_workspace/pmodCAN/pmodCAN.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl
