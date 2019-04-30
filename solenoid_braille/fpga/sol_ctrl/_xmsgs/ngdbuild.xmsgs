@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_15/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_14/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_13/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_12/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_11/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_10/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_9/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_8/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_7/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_6/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_5/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_4/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_3/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_2/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_1/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="info" file="NgdBuild" num="889" delta="old" >Pad net &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/iobuf_0/IO</arg>&apos; is not connected to an external port in this design.  A new port &apos;<arg fmt="%s" index="2">IO_x_x_x_x_x_x_x_x_x_x_x_x_x_x_x</arg>&apos; has been added and is connected to this signal.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_0</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_1</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_2</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_3</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_4</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_5</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_6</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_7</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_8</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_9</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_10</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_11</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_12</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_13</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_14</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="NgdBuild" num="0" delta="new" >The value of SIM_DEVICE on instance &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/lmb_bram/lmb_bram/ramb16bwer_15</arg>&apos; of type <arg fmt="%s" index="2">RAMB16BWER</arg> has been changed from &apos;<arg fmt="%s" index="3">SPARTAN3ADSP</arg>&apos; to &apos;<arg fmt="%s" index="4">SPARTAN6</arg>&apos; to correct post-ngdbuild and timing simulation for this primitive.  In order for functional simulation to be correct, the value of SIM_DEVICE should be changed in this same manner in the source netlist or constraint file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >TNM : D_CLK was distributed to a DCM but new TNM constraints were not derived. This TNM is used in the following user groups or specifications:
+&lt;TIMESPEC TS_J_TO_D = FROM &quot;J_CLK&quot; TO &quot;D_CLK&quot; TIG;&gt;
+&lt;TIMESPEC TS_D_TO_J = FROM &quot;D_CLK&quot; TO &quot;J_CLK&quot; TIG;&gt;
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_CE_FOR_SHARED.GEN_BKEND_CE_REGISTERS[0].I_BKEND_WRCE_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_DECODER/GEN_CE_FOR_SHARED.GEN_BKEND_CE_REGISTERS[0].I_BKEND_RDCE_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BUS_ADDRESS_COUNTER/GEN_FOR_SHARED.GEN_S_H_SIZE_REG[0].I_SIZE_S_H_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_STEER_ADDRESS_COUNTER/GEN_FOR_SHARED.GEN_S_H_SIZE_REG[0].I_SIZE_S_H_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BURST_SUPPORT/RESPONSE_DBEAT_CNTR_I/STRUCTURAL_A_GEN.I_ADDSUB_GEN[5].FDRE_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/MCH_PLB_IPIF_I/NO_CHNL_IF_GEN.PLBV46_SLAVE_BURST_I/I_SLAVE_ATTACHMENT/I_BURST_SUPPORT/CONTROL_DBEAT_CNTR_I/STRUCTURAL_A_GEN.I_ADDSUB_GEN[5].FDRE_I</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/ADDR_COUNTER_MUX_I/ADDRESS_STORE_GEN[31].ADDRESS_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/ADDR_COUNTER_MUX_I/ADDRESS_STORE_GEN[30].ADDRESS_REG</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STEER_I/RDDATA_PATH_MUX_GEN.ASYNC_ADDR_CNT_GEN.RDDATA_EN_GEN_ASYNC[3].RDDATA_EN_REG_ASYNC</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STEER_I/ASYNC_MEM_RDACK_GEN.AALIGN_PIPE_GEN[1].AALIGN_PIPE</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/xps_mch_emc_0/xps_mch_emc_0/EMC_CTRL_I/MEM_STATE_MACHINE_I/READ_COMPLETE_PIPE_GEN[6].READ_COMPLETE_PIPE</arg>&apos; has unconnected output pin
+</msg>
+
+<msg type="warning" file="NgdBuild" num="443" delta="old" >SFF primitive &apos;<arg fmt="%s" index="1">cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Decode_I/Using_FPGA.Gen_Bits[27].MEM_EX_Result_Inst</arg>&apos; has unconnected output pin
+</msg>
+
+</messages>
+

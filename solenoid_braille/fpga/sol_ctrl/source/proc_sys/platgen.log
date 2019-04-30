@@ -1,0 +1,38 @@
+Release 14.7 - platgen Xilinx EDK 14.7 Build EDK_P.20131013
+ (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: platgen -p xc6slx9tqg144-2 -lang verilog -intstyle ise -toplevel
+no -ti proc_sys_i -msg __xps/ise/xmsgprops.lst proc_sys.mhs 
+
+ERROR:EDK - INFO:Security:71 - If a license for part 'xc6slx9' is available, it
+   will be possible to use 'XPS_TDP' instead of 'XPS'.
+   INFO:Security:61 - The XILINXD_LICENSE_FILE environment variable is not set.
+   INFO:Security:63 - The LM_LICENSE_FILE environment variable is not set.
+   INFO:Security:68 - For more information or for assistance in obtaining 
+    a license, please run the Xilinx License Configuration Manager
+          (xlcm or "Manage Xilinx Licenses".)
+   INFO:Security:68a - user is koitt01A, on host KOITT01A-PC.
+   WARNING:Security:9b - No 'XPS' feature version 2013.10 was available for part
+   'xc6slx9'.
+   ERROR:Security:12 - No 'xc6slx9' feature version 2013.10 was available (-5),
+        so 'XPS_TDP' may not be used.
+
+   No such feature exists.
+   Feature:       XPS
+   License path: 
+   C:/.Xilinx\Xilinx.lic;C:\Xilinx\14.7\ISE_DS\ISE\/coregen/core_licenses\Xilinx
+   .lic;C:\Xilinx\14.7\ISE_DS\ISE\/coregen/core_licenses\XilinxFree.lic;C:\Xilin
+   x\14.7\ISE_DS\EDK/data/core_licenses\Xilinx.lic;
+   FLEXnet Licensing error:-5,357
+   For further information, refer to the FLEXnet Licensing documentation,
+   available at "www.flexerasoftware.com".No such feature exists.
+   Feature:       xc6slx9
+   License path: 
+   C:/.Xilinx\Xilinx.lic;C:\Xilinx\14.7\ISE_DS\ISE\/coregen/core_licenses\Xilinx
+   .lic;C:\Xilinx\14.7\ISE_DS\ISE\/coregen/core_licenses\XilinxFree.lic;C:\Xilin
+   x\14.7\ISE_DS\EDK/data/core_licenses\Xilinx.lic;
+   FLEXnet Licensing error:-5,357
+   For further information, refer to the FLEXnet Licensing documentation,
+   available at "www.flexerasoftware.com".
+ERROR:EDK:440 - platgen failed with errors!
