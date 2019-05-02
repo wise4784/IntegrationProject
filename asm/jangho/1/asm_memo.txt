@@ -96,7 +96,7 @@ c
 disas
 
 info registers 	// 연산용 레지스터 이다.  
-		// 펌웨어 레지스터와 다름(상태값 저장을 위한 하드웨어에 저장되어있는 것)
+		// 펌웨어 레지스터와 다름상태값 저장을 위한 하드웨어에 저장되어있는 것)
 
 인텔은 함수에 인자를 스택에 푸쉬해서 전달한다.
 
@@ -519,7 +519,29 @@ andeq	r0, r1, r0, lsl r5 // return 0;
 
 인라인 어셈, 어셈만 따로 
 
+컴파일 명령어
 
+arm-linux-gnueabi-gcc 
+
+qemu-arm-static -L /usr/arm-linux-gnueabi ./a.out
+
+---------------------------------------------------------------
+한곳은 qemu-arm-static -g 1234 -L /usr/arm-linux-gnueabi ./a.out
+
+한곳은 아래를 순차입력 
+
+gdb-multiarch
+
+file a.out
+
+target remote localhost:1234 //tar rem 
+
+b main ( b * 주소 )
+
+c
+
+disas
+--------------------------------------------------------------
 
 
 
