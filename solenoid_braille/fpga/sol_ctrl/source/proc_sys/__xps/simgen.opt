@@ -1,0 +1,1 @@
+ -p spartan6 -lang verilog$(PROJECT_SEARCHPATHOPT) $(GLOBAL_SEARCHPATHOPT) -msg __xps/ise/xmsgprops.lst -s isim -X C:/sol_ctrl_0429/sol_ctrl/source/proc_sys/

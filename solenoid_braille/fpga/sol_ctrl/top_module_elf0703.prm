@@ -1,0 +1,17 @@
+PROMGEN: Xilinx Prom Generator P.20131013
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p mcs -c FF -o C:\Users\dongj\Desktop//top_module_elf0703 -s 8192 -u 0000 C:/Users/dongj/Desktop/fan_ctrl_0430/fan_ctrl/top_module_elf.bit -spi 
+
+PROM C:\Users\dongj\Desktop\top_module_elf0703.prm map: Tue Jul 03 18:37:59 2018
+
+Calculating PROM checksum with fill value ff
+
+Format        Mcs86 (32-bit)
+Size          8192K
+PROM start    0000:0000
+PROM end      007f:ffff
+PROM checksum 7ad1f917
+
+        Addr1        Addr2                     Date File(s)
+    0000:0000    0005:3393     Jul 03 16:56:07 2018 C:/Users/dongj/Desktop/fan_ctrl_0430/fan_ctrl/top_module_elf.bit

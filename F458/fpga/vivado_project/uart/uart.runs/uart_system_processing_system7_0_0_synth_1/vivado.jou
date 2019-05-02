@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Fri Apr 19 13:27:49 2019
+# Process ID: 728
+# Current directory: /home/koitt/Vivado_Workspace/uart/uart.runs/uart_system_processing_system7_0_0_synth_1
+# Command line: vivado -log uart_system_processing_system7_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_system_processing_system7_0_0.tcl
+# Log file: /home/koitt/Vivado_Workspace/uart/uart.runs/uart_system_processing_system7_0_0_synth_1/uart_system_processing_system7_0_0.vds
+# Journal file: /home/koitt/Vivado_Workspace/uart/uart.runs/uart_system_processing_system7_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source uart_system_processing_system7_0_0.tcl -notrace

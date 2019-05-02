@@ -1,0 +1,69 @@
+diff -x '*.out' -x '*.obj' -x '*.dat' -r -u F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/include/phy_dp83640.h F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/include/phy_dp83640.h
+--- F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/include/phy_dp83640.h	2014-05-27 01:43:17 -0500
++++ F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/include/phy_dp83640.h	2015-12-15 11:01:13 -0600
+@@ -29,6 +29,7 @@
+ #define PHY_ID2                           (3u)
+ #define PHY_AUTONEG_ADV                   (4u)
+ #define PHY_LINK_PARTNER_ABLTY            (5u)
++#define PHY_LINK_PARTNER_SPD              (10u)
+ #define PHY_TXTS						  (28u)
+ #define PHY_RXTS						  (29u)
+ 
+@@ -83,6 +84,7 @@
+ extern uint64 Dp83640GetTimeStamp(uint32 mdioBaseAddr, uint32 phyAddr, phyTimeStamp_t type);
+ extern void Dp83640EnableLoopback(uint32 mdioBaseAddr, uint32 phyAddr);
+ extern void Dp83640DisableLoopback(uint32 mdioBaseAddr, uint32 phyAddr);
++extern unsigned int Dp83640PartnerSpdGet(unsigned int mdioBaseAddr, unsigned int phyAddr, unsigned short *ptnerAblty);
+ 
+ #ifdef __cplusplus
+ }
+diff -x '*.out' -x '*.obj' -x '*.dat' -r -u F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/source/phy_dp83640.c F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/source/phy_dp83640.c
+--- F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/source/phy_dp83640.c	2014-05-27 01:43:17 -0500
++++ F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/RM46x/HALCoGen-RM46/source/phy_dp83640.c	2015-12-15 11:00:28 -0600
+@@ -369,4 +369,22 @@
+ 	return timeStamp;
+ }
+ 
++/**
++ * \brief   Reads the Link Partner Ability register of the PHY.
++ *
++ * \param   mdioBaseAddr  Base Address of the MDIO Module Registers.
++ * \param   phyAddr       PHY Adress.
++ * \param   ptnerAblty    The partner abilities of the EMAC
++ *
++ * \return  status after reading \n
++ *          TRUE if reading successful
++ *          FALSE if reading failed
++ **/
++unsigned int Dp83640PartnerSpdGet(unsigned int mdioBaseAddr,
++                                       unsigned int phyAddr,
++                                       unsigned short *ptnerAblty)
++{
++    return (MDIOPhyRegRead(mdioBaseAddr, phyAddr, PHY_LINK_PARTNER_SPD,
++                           ptnerAblty));
++}
+ /**************************** End Of File ***********************************/
+diff -x '*.out' -x '*.obj' -x '*.dat' -r -u F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/lwip-1.4.1/ports/hdk/netif/hdkif.c F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/lwip-1.4.1/ports/hdk/netif/hdkif.c
+--- F:/ti/Hercules3/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/lwip-1.4.1/ports/hdk/netif/hdkif.c	2014-05-21 03:21:44 -0500
++++ F:/ti/Hercules2/HALCoGen EMAC Driver with lwIP Demonstration/v00.03.00/lwip-1.4.1/ports/hdk/netif/hdkif.c	2015-12-15 10:51:14 -0600
+@@ -416,6 +416,7 @@
+   struct txch *txch;
+   struct rxch *rxch;
+   struct pbuf *p, *q;
++  unsigned short partnr_spd;
+ 
+   hdkif = netif->state;
+ 
+@@ -576,7 +577,11 @@
+ 
+   /* Write the RX HDP for channel 0 */
+   EMACRxHdrDescPtrWrite(hdkif->emac_base, (uint32)rxch->active_head, 0);
+- 
++
++  Dp83640PartnerSpdGet(hdkif->mdio_base, hdkif->phy_addr, &partnr_spd);
++  if((partnr_spd & 2)==0)
++  EMACRMIISpeedSet(hdkif->emac_base, (u32_t)EMAC_MACCONTROL_RMIISPEED);
++
+   EMACMIIEnable(hdkif->emac_base); 
+ 
+   
