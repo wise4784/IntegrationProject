@@ -1,5 +1,7 @@
 		.data
 fmt:	.asciz "tmp->data =%d\n"
+ndatst:	.asciz	"No match data\n"
+nulas:	.asciz	"\n"
 
 		.text
 		.globl	main
@@ -33,6 +35,39 @@ link_mov:		ldr r0, [r2]
 enque_fin:	sub sp, r11, #4
 			pop {r11,pc}
 
+
+dequeue:	push {r11,lr}
+			add r11, sp, #4
+			sub	sp, sp, #4
+
+			mov r3, #0
+			str r3, [r11,#-8]
+			mov r3, r0
+
+de_loop:	ldr	r2, [r3,#4]
+			cmp r2, r1
+			beq	de_if
+
+de_el:		ldr r3, [r3]
+			cmp r3, #0
+			beq no_data
+			b de_loop
+
+no_data:	ldr r0, =ndatst
+			bl printf
+			b	de_fin
+
+de_if:		str r3, [r11,#-8]
+			ldr r0, [r11,#-8]
+			ldr	r3, [r3]
+			str r3, [r0]
+
+			bl free
+
+de_fin:		mov r0, #0
+			sub sp, r11, #4
+			pop {r11, lr}
+			
 
 print:		push {r11,lr}
 			add r11, sp, #4
@@ -71,7 +106,7 @@ main:		push {r11,lr}
 			str r2, [r11,#-8]
 
 m_loop:		cmp r2, #4
-			bgt m_fin
+			bgt m_p
 
 			mov r1, r2
 			mov r3, #10
@@ -85,8 +120,18 @@ m_loop:		cmp r2, #4
 
 			b	m_loop
 
-m_fin:		ldr r1, [r11,#-12]
+m_p:		ldr r1, [r11,#-12]
 			bl print
+			ldr r0, =nulas
+			bl printf
+			
 
+m_de:		ldr r0, [r11,#-12]
+			mov r1, #30
+			bl dequeue
+			ldr r1, [r11,#-12]
+			bl print
+			
+m_fin:		mov r0, #0
 			sub sp, r11, #4
 			pop {r11,pc}
