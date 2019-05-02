@@ -1,0 +1,21 @@
+		.data
+fmt:	.asciz	"r1 = %d\n"
+
+		.text
+		.global	main
+
+main:	stmfd	sp!, {lr}
+		mov		r1, #34
+		mov		r2, #77
+		mov		r3, #28
+		cmp		r2, r3		//compare
+		ble		print		//bl + ...e?
+		sublt	r1, r1, #1	//sub+ ...gt?
+print:	ldr		r0, =fmt
+		bl		printf
+		mov		r0, #0
+		ldmfd	sp!, {lr}
+		mov		pc, lr
+
+
+

@@ -1,0 +1,86 @@
+Release 14.7 Drc P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Thu Apr 25 06:29:27 2019
+
+drc -z top_m.ncd top_m.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[6].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[3].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[2].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[1].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[0].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[10].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[15].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cpu_inst/cpu_inst/dlmb_LMB_ABus<30>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[7].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[4].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[14].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[11].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[12].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[5].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <cpu_inst/cpu_inst/dlmb_LMB_ABus<31>>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[9].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[13].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <cpu_inst/cpu_inst/microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Da
+   ta_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[8].ram32m_i_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:781 - PULLUP on an active net. PULLUP of comp
+   VSENSE_SCL_PULLUP is set but the tri state is not configured. 
+WARNING:PhysDesignRules:2410 - This design is using one or more 9K Block RAMs
+   (RAMB8BWER).  9K Block RAM initialization data, both user defined and
+   default, may be incorrect and should not be used.  For more information,
+   please reference Xilinx Answer Record 39999.
+DRC detected 0 errors and 21 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

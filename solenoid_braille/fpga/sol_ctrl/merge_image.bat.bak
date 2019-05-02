@@ -1,0 +1,1 @@
+data2mem -bm edkBmmFile_bd.bmm -bd ../firmware/fw/Debug/fan_ctrl.elf -bt top_m.bit -o b top_module_elf.bit
