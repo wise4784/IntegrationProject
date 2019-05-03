@@ -1,6 +1,10 @@
 			.equ	link, 0
 			.equ	link, 4
 			.equ	NULL, 0
+# #define link 0
+# #define link 4
+# #define NULL 0
+# ...?
 
 			.data
 fmt:		.asciz	"r1(queue data) = %d\n"
@@ -86,4 +90,3 @@ main:		push	{fp, lr}
 			pop		{fp, pc}
 			#ldmfd	sp!, {lr}
 			#mov		pc, lr
-
