@@ -42,13 +42,14 @@ dequeue:	push {r11,lr}
 
 			mov r3, #0
 			str r3, [r11,#-8]
-			mov r3, r0
+			ldr r3, [r0]
 
 de_loop:	ldr	r2, [r3,#4]
 			cmp r2, r1
 			beq	de_if
 
-de_el:		ldr r3, [r3]
+de_el:		mov	r0, r3
+			ldr r3, [r3]
 			cmp r3, #0
 			beq no_data
 			b de_loop
@@ -58,15 +59,14 @@ no_data:	ldr r0, =ndatst
 			b	de_fin
 
 de_if:		str r3, [r11,#-8]
-			ldr r0, [r11,#-8]
-			ldr	r3, [r3]
-			str r3, [r0]
-
+			ldr r3, [r3]
+			str	r3, [r0]
+			ldr r0, [r11,#-8]	
 			bl free
 
 de_fin:		mov r0, #0
 			sub sp, r11, #4
-			pop {r11, lr}
+			pop {r11, pc}
 			
 
 print:		push {r11,lr}
@@ -124,9 +124,8 @@ m_p:		ldr r1, [r11,#-12]
 			bl print
 			ldr r0, =nulas
 			bl printf
-			
-
-m_de:		ldr r0, [r11,#-12]
+			mov r0,#0
+m_de:		sub r0, r11, #12
 			mov r1, #30
 			bl dequeue
 			ldr r1, [r11,#-12]
