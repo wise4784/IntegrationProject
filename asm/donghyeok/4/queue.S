@@ -29,8 +29,9 @@ enque_loop:		cmp r2, #0
 				str r1, [r0,#4]
 				b enque_fin
 								
-link_mov:		ldr r0, [r2]
-				b	enque_loop
+link_mov:	ldr r0, [r2]
+			ldr r2, [r0]
+			b	enque_loop
 
 enque_fin:	sub sp, r11, #4
 			pop {r11,pc}
