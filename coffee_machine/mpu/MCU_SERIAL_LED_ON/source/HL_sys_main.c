@@ -52,7 +52,7 @@ int main(void)
 //            tmp[0] = tmp[0] - 48;
             ;
 
-            switch(tmp[0])
+            switch(tmp[0])c
             {
             case '0':
                 gioSetBit(gioPORTA, 0, 1);
