@@ -30,9 +30,11 @@ f23th:	stmfd sp!, {lr}
 		add r3, r3, #4
 		add r0, r0, #1
 
-		mov r9, #3
+		mov r9, #23
 		cmp r9, r0
 		bne	f23th
+
+		sub r3, r3, #4
 
 		ldr r1, [r4, r3]
 		ldr r0, =fmt

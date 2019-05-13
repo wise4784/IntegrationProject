@@ -21,6 +21,8 @@ main:	stmfd	sp!, {lr}
 		ldr		r1, =ch		//r1 <- ch 주소값
 		ldr		r0, =fmt2	//r0 <- fmt2 주소값
 		bl		printf		//분기+복귀주소
+		ldr		r1, =array
+		ldr		r0, =fmt
 		mov		r0, #0		//r0 = 0
 		ldmfd	sp!, {lr}	
 		mov		pc, lr

@@ -1,0 +1,665 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADDRESS_TYPE_INET	hal/socket.h	/^        ADDRESS_TYPE_INET   = 1,$/;"	e	enum:rp::net::SocketAddress::address_type_t
+ADDRESS_TYPE_INET6	hal/socket.h	/^        ADDRESS_TYPE_INET6  = 2,$/;"	e	enum:rp::net::SocketAddress::address_type_t
+ADDRESS_TYPE_UNSPEC	hal/socket.h	/^        ADDRESS_TYPE_UNSPEC = 0,$/;"	e	enum:rp::net::SocketAddress::address_type_t
+ANS_DEV_ERR	hal/abs_rxtx.h	/^        ANS_DEV_ERR = -2,$/;"	e	enum:rp::hal::serial_rxtx::__anon5
+ANS_OK	hal/abs_rxtx.h	/^        ANS_OK      = 0,$/;"	e	enum:rp::hal::serial_rxtx::__anon5
+ANS_TIMEOUT	hal/abs_rxtx.h	/^        ANS_TIMEOUT = -1,$/;"	e	enum:rp::hal::serial_rxtx::__anon5
+AutoLocker	hal/locker.h	/^    AutoLocker(Locker &l): _binded(l)$/;"	f	class:rp::hal::AutoLocker
+AutoLocker	hal/locker.h	/^class AutoLocker$/;"	c	namespace:rp::hal
+BAUD_CONV	arch/linux/net_serial.cpp	433;"	d	file:
+BAUD_CONV	arch/macOS/net_serial.cpp	302;"	d	file:
+BEGIN_STATIC_CODE	arch/win32/timer.cpp	/^BEGIN_STATIC_CODE(timer_cailb)$/;"	f	namespace:rp::arch
+BEGIN_STATIC_CODE	hal/util.h	59;"	d
+CLASS_THREAD	hal/thread.h	38;"	d
+CreateDriver	rplidar_driver.cpp	/^RPlidarDriver * RPlidarDriver::CreateDriver(_u32 drivertype)$/;"	f	class:rp::standalone::rplidar::RPlidarDriver
+CreateRxTx	arch/linux/net_serial.cpp	/^serial_rxtx * serial_rxtx::CreateRxTx()$/;"	f	class:rp::hal::serial_rxtx
+CreateRxTx	arch/macOS/net_serial.cpp	/^    serial_rxtx * serial_rxtx::CreateRxTx()$/;"	f	class:rp::hal::serial_rxtx
+CreateRxTx	arch/win32/net_serial.cpp	/^serial_rxtx * serial_rxtx::CreateRxTx()$/;"	f	class:rp::hal::serial_rxtx
+CreateSocket	arch/linux/net_socket.cpp	/^DGramSocket * DGramSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::DGramSocket
+CreateSocket	arch/linux/net_socket.cpp	/^StreamSocket * StreamSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::StreamSocket
+CreateSocket	arch/macOS/net_socket.cpp	/^DGramSocket * DGramSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::DGramSocket
+CreateSocket	arch/macOS/net_socket.cpp	/^StreamSocket * StreamSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::StreamSocket
+CreateSocket	arch/win32/net_socket.cpp	/^DGramSocket * DGramSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::DGramSocket
+CreateSocket	arch/win32/net_socket.cpp	/^StreamSocket * StreamSocket::CreateSocket(SocketBase::socket_family_t family)$/;"	f	class:rp::net::StreamSocket
+DEFAULT_SOCKET_TIMEOUT	hal/socket.h	/^        DEFAULT_SOCKET_TIMEOUT = 10000, \/\/10sec$/;"	e	enum:rp::net::SocketBase::__anon6
+DEPRECATED_WARN	rplidar_driver.cpp	56;"	d	file:
+DGramSocket	hal/socket.h	/^    DGramSocket() {}$/;"	f	class:rp::net::DGramSocket
+DGramSocket	hal/socket.h	/^class _single_thread DGramSocket: public SocketBase$/;"	c	namespace:rp::net
+DGramSocketImpl	arch/linux/net_socket.cpp	/^    DGramSocketImpl(int fd)$/;"	f	class:rp::arch::net::DGramSocketImpl
+DGramSocketImpl	arch/linux/net_socket.cpp	/^class _single_thread DGramSocketImpl : public DGramSocket$/;"	c	namespace:rp::arch::net	file:
+DGramSocketImpl	arch/macOS/net_socket.cpp	/^    DGramSocketImpl(int fd)$/;"	f	class:rp::arch::net::DGramSocketImpl
+DGramSocketImpl	arch/macOS/net_socket.cpp	/^class _single_thread DGramSocketImpl : public DGramSocket$/;"	c	namespace:rp::arch::net	file:
+DGramSocketImpl	arch/win32/net_socket.cpp	/^    DGramSocketImpl(SOCKET fd)$/;"	f	class:rp::arch::net::DGramSocketImpl
+DGramSocketImpl	arch/win32/net_socket.cpp	/^class _single_thread DGramSocketImpl : public DGramSocket$/;"	c	namespace:rp::arch::net	file:
+DisposeDriver	rplidar_driver.cpp	/^void RPlidarDriver::DisposeDriver(RPlidarDriver * drv)$/;"	f	class:rp::standalone::rplidar::RPlidarDriver
+END_STATIC_CODE	hal/util.h	65;"	d
+EVENT_FAILED	hal/event.h	/^        EVENT_FAILED = 0,$/;"	e	enum:rp::hal::Event::__anon4
+EVENT_OK	hal/event.h	/^        EVENT_OK = 1,$/;"	e	enum:rp::hal::Event::__anon4
+EVENT_TIMEOUT	hal/event.h	/^        EVENT_TIMEOUT = -1,$/;"	e	enum:rp::hal::Event::__anon4
+Event	hal/event.h	/^    Event(bool isAutoReset = true, bool isSignal = false)$/;"	f	class:rp::hal::Event
+Event	hal/event.h	/^class Event$/;"	c	namespace:rp::hal
+HPtimer_reset	arch/win32/timer.cpp	/^void HPtimer_reset()$/;"	f	namespace:rp::arch
+IS_FAIL	hal/types.h	103;"	d
+IS_OK	hal/types.h	102;"	d
+LOCK_FAILED	hal/locker.h	/^        LOCK_FAILED = 0$/;"	e	enum:rp::hal::Locker::LOCK_STATUS
+LOCK_OK	hal/locker.h	/^        LOCK_OK = 1,$/;"	e	enum:rp::hal::Locker::LOCK_STATUS
+LOCK_STATUS	hal/locker.h	/^    enum LOCK_STATUS$/;"	g	class:rp::hal::Locker
+LOCK_TIMEOUT	hal/locker.h	/^        LOCK_TIMEOUT = -1,$/;"	e	enum:rp::hal::Locker::LOCK_STATUS
+Locker	hal/locker.h	/^    Locker(){$/;"	f	class:rp::hal::Locker
+Locker	hal/locker.h	/^class Locker$/;"	c	namespace:rp::hal
+LoopUpHostName	arch/linux/net_socket.cpp	/^size_t SocketAddress::LoopUpHostName(const char * hostname, const char * sevicename, std::vector<SocketAddress> &addresspool , bool performDNS, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+LoopUpHostName	arch/macOS/net_socket.cpp	/^size_t SocketAddress::LoopUpHostName(const char * hostname, const char * sevicename, std::vector<SocketAddress> &addresspool , bool performDNS, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+LoopUpHostName	arch/win32/net_socket.cpp	/^size_t SocketAddress::LoopUpHostName(const char * hostname, const char * sevicename, std::vector<SocketAddress> &addresspool , bool performDNS, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+MAX_BACKLOG	hal/socket.h	/^        MAX_BACKLOG = 128,$/;"	e	enum:rp::net::StreamSocket::__anon7
+PRIORITY_HIGH	hal/thread.h	/^		PRIORITY_HIGH     = 1,$/;"	e	enum:rp::hal::Thread::priority_val_t
+PRIORITY_IDLE	hal/thread.h	/^		PRIORITY_IDLE     = 4,$/;"	e	enum:rp::hal::Thread::priority_val_t
+PRIORITY_LOW	hal/thread.h	/^		PRIORITY_LOW      = 3,$/;"	e	enum:rp::hal::Thread::priority_val_t
+PRIORITY_NORMAL	hal/thread.h	/^		PRIORITY_NORMAL   = 2,$/;"	e	enum:rp::hal::Thread::priority_val_t
+PRIORITY_REALTIME	hal/thread.h	/^		PRIORITY_REALTIME = 0,$/;"	e	enum:rp::hal::Thread::priority_val_t
+RESULT_ALREADY_DONE	hal/types.h	90;"	d
+RESULT_FAIL_BIT	hal/types.h	89;"	d
+RESULT_FORMAT_NOT_SUPPORT	hal/types.h	96;"	d
+RESULT_INSUFFICIENT_MEMORY	hal/types.h	97;"	d
+RESULT_INVALID_DATA	hal/types.h	91;"	d
+RESULT_NOT_FOUND	hal/types.h	99;"	d
+RESULT_OK	hal/types.h	88;"	d
+RESULT_OPERATION_ABORTED	hal/types.h	98;"	d
+RESULT_OPERATION_FAIL	hal/types.h	92;"	d
+RESULT_OPERATION_NOT_SUPPORT	hal/types.h	95;"	d
+RESULT_OPERATION_STOP	hal/types.h	94;"	d
+RESULT_OPERATION_TIMEOUT	hal/types.h	93;"	d
+RESULT_RECONNECTING	hal/types.h	100;"	d
+RPMODULE_EXPORT	hal/types.h	27;"	d
+RPMODULE_EXPORT	hal/types.h	34;"	d
+RPMODULE_IMPEXP	hal/types.h	111;"	d
+RPMODULE_IMPEXP	hal/types.h	113;"	d
+RPMODULE_IMPEXP	hal/types.h	116;"	d
+RPMODULE_IMPORT	hal/types.h	28;"	d
+RPMODULE_IMPORT	hal/types.h	35;"	d
+RPlidarDriverImplCommon	rplidar_driver.cpp	/^RPlidarDriverImplCommon::RPlidarDriverImplCommon()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+RPlidarDriverImplCommon	rplidar_driver_impl.h	/^    class RPlidarDriverImplCommon : public RPlidarDriver$/;"	c	namespace:rp::standalone::rplidar
+RPlidarDriverSerial	rplidar_driver.cpp	/^RPlidarDriverSerial::RPlidarDriverSerial() $/;"	f	class:rp::standalone::rplidar::RPlidarDriverSerial
+RPlidarDriverSerial	rplidar_driver_serial.h	/^class RPlidarDriverSerial : public RPlidarDriverImplCommon$/;"	c	namespace:rp::standalone::rplidar
+RPlidarDriverTCP	rplidar_driver.cpp	/^RPlidarDriverTCP::RPlidarDriverTCP() $/;"	f	class:rp::standalone::rplidar::RPlidarDriverTCP
+RPlidarDriverTCP	rplidar_driver_TCP.h	/^class RPlidarDriverTCP : public RPlidarDriverImplCommon$/;"	c	namespace:rp::standalone::rplidar
+ReleaseRxTx	arch/linux/net_serial.cpp	/^void serial_rxtx::ReleaseRxTx(serial_rxtx *rxtx)$/;"	f	class:rp::hal::serial_rxtx
+ReleaseRxTx	arch/macOS/net_serial.cpp	/^    void serial_rxtx::ReleaseRxTx(serial_rxtx *rxtx)$/;"	f	class:rp::hal::serial_rxtx
+ReleaseRxTx	arch/win32/net_serial.cpp	/^void  serial_rxtx::ReleaseRxTx( serial_rxtx * rxtx)$/;"	f	class:rp::hal::serial_rxtx
+ReleaseRxTx	rplidar_driver_serial.h	/^    void ReleaseRxTx()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+SERIAL_RX_BUFFER_SIZE	arch/linux/net_serial.h	/^        SERIAL_RX_BUFFER_SIZE = 512,$/;"	e	enum:rp::arch::net::raw_serial::__anon2
+SERIAL_RX_BUFFER_SIZE	arch/macOS/net_serial.h	/^        SERIAL_RX_BUFFER_SIZE = 512,$/;"	e	enum:rp::arch::net::raw_serial::__anon1
+SERIAL_RX_BUFFER_SIZE	arch/win32/net_serial.h	/^        SERIAL_RX_BUFFER_SIZE = 512,$/;"	e	enum:rp::arch::net::raw_serial::__anon3
+SERIAL_RX_TIMEOUT	arch/win32/net_serial.h	/^        SERIAL_RX_TIMEOUT     = 2000,$/;"	e	enum:rp::arch::net::raw_serial::__anon3
+SERIAL_TX_BUFFER_SIZE	arch/linux/net_serial.h	/^        SERIAL_TX_BUFFER_SIZE = 128,$/;"	e	enum:rp::arch::net::raw_serial::__anon2
+SERIAL_TX_BUFFER_SIZE	arch/macOS/net_serial.h	/^        SERIAL_TX_BUFFER_SIZE = 128,$/;"	e	enum:rp::arch::net::raw_serial::__anon1
+SERIAL_TX_BUFFER_SIZE	arch/win32/net_serial.h	/^        SERIAL_TX_BUFFER_SIZE = 128,$/;"	e	enum:rp::arch::net::raw_serial::__anon3
+SERIAL_TX_TIMEOUT	arch/win32/net_serial.h	/^        SERIAL_TX_TIMEOUT     = 2000,$/;"	e	enum:rp::arch::net::raw_serial::__anon3
+SOCKET_DIR_BOTH	hal/socket.h	/^        SOCKET_DIR_BOTH = (SOCKET_DIR_RD | SOCKET_DIR_WR),$/;"	e	enum:rp::net::SocketBase::socket_direction_mask
+SOCKET_DIR_RD	hal/socket.h	/^        SOCKET_DIR_RD = 0x1,$/;"	e	enum:rp::net::SocketBase::socket_direction_mask
+SOCKET_DIR_WR	hal/socket.h	/^        SOCKET_DIR_WR = 0x2,$/;"	e	enum:rp::net::SocketBase::socket_direction_mask
+SOCKET_FAMILY_INET	hal/socket.h	/^        SOCKET_FAMILY_INET  = 0,$/;"	e	enum:rp::net::SocketBase::socket_family_t
+SOCKET_FAMILY_INET6	hal/socket.h	/^        SOCKET_FAMILY_INET6 = 1,$/;"	e	enum:rp::net::SocketBase::socket_family_t
+SOCKET_FAMILY_RAW	hal/socket.h	/^        SOCKET_FAMILY_RAW   = 2,$/;"	e	enum:rp::net::SocketBase::socket_family_t
+SerialChannelDevice	rplidar_driver_serial.h	/^    SerialChannelDevice():_rxtxSerial(rp::hal::serial_rxtx::CreateRxTx()){}$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+SerialChannelDevice	rplidar_driver_serial.h	/^class SerialChannelDevice :public ChannelDevice$/;"	c	namespace:rp::standalone::rplidar
+SocketAddress	arch/linux/net_socket.cpp	/^SocketAddress::SocketAddress() $/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/linux/net_socket.cpp	/^SocketAddress::SocketAddress(const SocketAddress & src)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/linux/net_socket.cpp	/^SocketAddress::SocketAddress(const char * addrString, int port, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/linux/net_socket.cpp	/^SocketAddress::SocketAddress(void * platform_data)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/macOS/net_socket.cpp	/^SocketAddress::SocketAddress() $/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/macOS/net_socket.cpp	/^SocketAddress::SocketAddress(const SocketAddress & src)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/macOS/net_socket.cpp	/^SocketAddress::SocketAddress(const char * addrString, int port, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/macOS/net_socket.cpp	/^SocketAddress::SocketAddress(void * platform_data)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/win32/net_socket.cpp	/^SocketAddress::SocketAddress() $/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/win32/net_socket.cpp	/^SocketAddress::SocketAddress(const SocketAddress & src)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/win32/net_socket.cpp	/^SocketAddress::SocketAddress(const char * addrString, int port, SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	arch/win32/net_socket.cpp	/^SocketAddress::SocketAddress(void * platform_data)$/;"	f	class:rp::net::SocketAddress
+SocketAddress	hal/socket.h	/^class _single_thread SocketAddress $/;"	c	namespace:rp::net
+SocketBase	hal/socket.h	/^    SocketBase() {} $/;"	f	class:rp::net::SocketBase
+SocketBase	hal/socket.h	/^class SocketBase $/;"	c	namespace:rp::net
+StreamSocket	hal/socket.h	/^    StreamSocket() {}$/;"	f	class:rp::net::StreamSocket
+StreamSocket	hal/socket.h	/^class _single_thread StreamSocket : public SocketBase$/;"	c	namespace:rp::net
+StreamSocketImpl	arch/linux/net_socket.cpp	/^    StreamSocketImpl(int fd)$/;"	f	class:rp::arch::net::StreamSocketImpl
+StreamSocketImpl	arch/linux/net_socket.cpp	/^class _single_thread StreamSocketImpl : public StreamSocket$/;"	c	namespace:rp::arch::net	file:
+StreamSocketImpl	arch/macOS/net_socket.cpp	/^    StreamSocketImpl(int fd)$/;"	f	class:rp::arch::net::StreamSocketImpl
+StreamSocketImpl	arch/macOS/net_socket.cpp	/^class _single_thread StreamSocketImpl : public StreamSocket$/;"	c	namespace:rp::arch::net	file:
+StreamSocketImpl	arch/win32/net_socket.cpp	/^    StreamSocketImpl(SOCKET fd)$/;"	f	class:rp::arch::net::StreamSocketImpl
+StreamSocketImpl	arch/win32/net_socket.cpp	/^class _single_thread StreamSocketImpl : public StreamSocket$/;"	c	namespace:rp::arch::net	file:
+TCPChannelDevice	rplidar_driver_TCP.h	/^    TCPChannelDevice():_binded_socket(rp::net::StreamSocket::CreateSocket()){}$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+TCPChannelDevice	rplidar_driver_TCP.h	/^class TCPChannelDevice :public ChannelDevice$/;"	c	namespace:rp::standalone::rplidar
+THREAD_PROC	hal/types.h	63;"	d
+THREAD_PROC	hal/types.h	66;"	d
+THREAD_PROC	hal/types.h	69;"	d
+THREAD_PROC	hal/types.h	72;"	d
+THREAD_PROC	hal/types.h	75;"	d
+Thread	hal/thread.h	/^    Thread( thread_proc_t proc, void * data ): _data(data),_func(proc), _handle(0)  {}$/;"	f	class:rp::hal::Thread
+Thread	hal/thread.h	/^    Thread():  _data(NULL),_func(NULL),_handle(0)  {}$/;"	f	class:rp::hal::Thread
+Thread	hal/thread.h	/^class Thread$/;"	c	namespace:rp::hal
+WINVER	arch/win32/arch_win32.h	41;"	d
+_CRT_SECURE_NO_WARNINGS	arch/win32/arch_win32.h	38;"	d
+_HqToNormal	rplidar_driver.cpp	/^void RPlidarDriverImplCommon::_HqToNormal(const rplidar_response_hq_capsule_measurement_nodes_t & node_hq, rplidar_response_measurement_node_hq_t *nodebuffer, size_t &nodeCount) $/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_INFRA_HAL_ASSERT_H	hal/assert.h	2;"	d
+_INFRA_HAL_TYPES_H_	hal/types.h	6;"	d
+_RICHEDIT_VER	arch/win32/arch_win32.h	54;"	d
+_WIN32_IE	arch/win32/arch_win32.h	50;"	d
+_WIN32_WINNT	arch/win32/arch_win32.h	45;"	d
+_WINSOCKAPI_	arch/win32/net_socket.cpp	9;"	d	file:
+__attribute__	hal/types.h	56;"	d
+__be	hal/types.h	81;"	d
+__byteswap_16	hal/byteops.h	/^static inline _u16 __byteswap_16(_u16 x)$/;"	f
+__byteswap_32	hal/byteops.h	/^static inline _u32 __byteswap_32(_u32 x)$/;"	f
+__byteswap_64	hal/byteops.h	/^static inline _u64 __byteswap_64(_u64 x)$/;"	f
+__byteswap_double	hal/byteops.h	/^static inline double __byteswap_double(double x)$/;"	f
+__byteswap_float	hal/byteops.h	/^static inline float __byteswap_float(float x)$/;"	f
+__fast_swap	hal/byteops.h	34;"	d
+__le	hal/types.h	80;"	d
+__small_endian	hal/types.h	53;"	d
+__static_byteswap_16	hal/byteops.h	13;"	d
+__static_byteswap_32	hal/byteops.h	17;"	d
+__static_byteswap_64	hal/byteops.h	23;"	d
+_baudrate	arch/linux/net_serial.h	/^    uint32_t _baudrate;$/;"	m	class:rp::arch::net::raw_serial
+_baudrate	arch/macOS/net_serial.h	/^    uint32_t _baudrate;$/;"	m	class:rp::arch::net::raw_serial
+_baudrate	arch/win32/net_serial.h	/^    uint32_t _baudrate;$/;"	m	class:rp::arch::net::raw_serial
+_binded	hal/locker.h	/^    Locker & _binded;$/;"	m	class:rp::hal::AutoLocker
+_binded_socket	rplidar_driver_TCP.h	/^    rp::net::StreamSocket * _binded_socket;$/;"	m	class:rp::standalone::rplidar::TCPChannelDevice
+_bitrev	rplidar_driver.cpp	/^static _u32 _bitrev(_u32 input, _u16 bw)$/;"	f	namespace:rp::standalone::rplidar
+_cacheCapsuledScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_cacheCapsuledScanData()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cacheHqScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_cacheHqScanData()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cacheScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_cacheScanData()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cacheUltraCapsuledScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_cacheUltraCapsuledScanData()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_express_flag	rplidar_driver_impl.h	/^    _u8                     _cached_express_flag;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_previous_Hqdata	rplidar_driver_impl.h	/^    rplidar_response_hq_capsule_measurement_nodes_t _cached_previous_Hqdata;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_previous_capsuledata	rplidar_driver_impl.h	/^    rplidar_response_capsule_measurement_nodes_t _cached_previous_capsuledata;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_previous_dense_capsuledata	rplidar_driver_impl.h	/^    rplidar_response_dense_capsule_measurement_nodes_t _cached_previous_dense_capsuledata;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_previous_ultracapsuledata	rplidar_driver_impl.h	/^    rplidar_response_ultra_capsule_measurement_nodes_t _cached_previous_ultracapsuledata;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_sampleduration_express	rplidar_driver_impl.h	/^    _u16                    _cached_sampleduration_express;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_sampleduration_std	rplidar_driver_impl.h	/^    _u16                    _cached_sampleduration_std;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_scan_node_hq_buf	rplidar_driver_impl.h	/^    rplidar_response_measurement_node_hq_t   _cached_scan_node_hq_buf[8192];$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_scan_node_hq_buf_for_interval_retrieve	rplidar_driver_impl.h	/^    rplidar_response_measurement_node_hq_t   _cached_scan_node_hq_buf_for_interval_retrieve[8192];$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_scan_node_hq_count	rplidar_driver_impl.h	/^    size_t                                   _cached_scan_node_hq_count;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cached_scan_node_hq_count_for_interval_retrieve	rplidar_driver_impl.h	/^    size_t                                   _cached_scan_node_hq_count_for_interval_retrieve;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_cachethread	rplidar_driver_impl.h	/^    rp::hal::Thread _cachethread;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_capsuleToNormal	rplidar_driver.cpp	/^void     RPlidarDriverImplCommon::_capsuleToNormal(const rplidar_response_capsule_measurement_nodes_t & capsule, rplidar_response_measurement_node_hq_t *nodebuffer, size_t &nodeCount)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_checkWSAStartup	arch/win32/net_socket.cpp	/^static inline bool _checkWSAStartup() {$/;"	f	namespace:rp::net
+_closePending	rplidar_driver_serial.h	/^    bool _closePending;$/;"	m	class:rp::standalone::rplidar::SerialChannelDevice
+_co	arch/win32/net_serial.h	/^    COMMTIMEOUTS _co;$/;"	m	class:rp::arch::net::raw_serial
+_cond_locker	hal/event.h	/^        pthread_mutex_t        _cond_locker;$/;"	m	class:rp::hal::Event
+_cond_var	hal/event.h	/^        pthread_cond_t         _cond_var;$/;"	m	class:rp::hal::Event
+_countof	hal/util.h	42;"	d
+_countof	hal/util.h	48;"	d
+_crc32	rplidar_driver.cpp	/^static u_result _crc32(_u8 *ptr, _u32 len) {$/;"	f	namespace:rp::standalone::rplidar
+_crc32_init	rplidar_driver.cpp	/^static void _crc32_init(_u32 poly)$/;"	f	namespace:rp::standalone::rplidar
+_crc32cal	rplidar_driver.cpp	/^static _u32 _crc32cal(_u32 crc, void* input, _u16 len)$/;"	f	namespace:rp::standalone::rplidar
+_current_freq	arch/win32/timer.cpp	/^static LARGE_INTEGER _current_freq;$/;"	m	namespace:rp::arch	file:
+_data	hal/thread.h	/^    void * _data;$/;"	m	class:rp::hal::Thread
+_dataEvt	rplidar_driver_impl.h	/^    rp::hal::Event          _dataEvt;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_dcb	arch/win32/net_serial.h	/^    DCB _dcb;$/;"	m	class:rp::arch::net::raw_serial
+_dense_capsuleToNormal	rplidar_driver.cpp	/^void     RPlidarDriverImplCommon::_dense_capsuleToNormal(const rplidar_response_capsule_measurement_nodes_t & capsule, rplidar_response_measurement_node_hq_t *nodebuffer, size_t &nodeCount)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_disableDataGrabbing	rplidar_driver.cpp	/^void RPlidarDriverImplCommon::_disableDataGrabbing()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_event	hal/event.h	/^        HANDLE _event;$/;"	m	class:rp::hal::Event
+_flags	arch/linux/net_serial.h	/^    uint32_t _flags;$/;"	m	class:rp::arch::net::raw_serial
+_flags	arch/macOS/net_serial.h	/^    uint32_t _flags;$/;"	m	class:rp::arch::net::raw_serial
+_flags	arch/win32/net_serial.h	/^    uint32_t _flags;$/;"	m	class:rp::arch::net::raw_serial
+_func	hal/thread.h	/^    thread_proc_t _func;$/;"	m	class:rp::hal::Thread
+_halAddrTypeToOSType	arch/linux/net_socket.cpp	/^static inline int _halAddrTypeToOSType(SocketAddress::address_type_t type) $/;"	f	namespace:rp::net
+_halAddrTypeToOSType	arch/macOS/net_socket.cpp	/^static inline int _halAddrTypeToOSType(SocketAddress::address_type_t type) $/;"	f	namespace:rp::net
+_halAddrTypeToOSType	arch/win32/net_socket.cpp	/^static inline int _halAddrTypeToOSType(SocketAddress::address_type_t type) $/;"	f	namespace:rp::net
+_handle	hal/thread.h	/^    _word_size_t _handle;$/;"	m	class:rp::hal::Thread
+_inet_ntop	arch/win32/net_socket.cpp	/^static const char* _inet_ntop(int af, const void* src, char* dst, int cnt){$/;"	f	namespace:rp::net
+_inet_pton	arch/win32/net_socket.cpp	/^static int _inet_pton(int Family, const char * pszAddrString, void* pAddrBuf)$/;"	f	namespace:rp::net
+_init	arch/linux/net_serial.cpp	/^void raw_serial::_init()$/;"	f	class:rp::arch::net::raw_serial
+_init	arch/macOS/net_serial.cpp	/^void raw_serial::_init()$/;"	f	class:rp::arch::net::raw_serial
+_init	arch/win32/net_serial.cpp	/^void raw_serial::_init()$/;"	f	class:rp::arch::net::raw_serial
+_isAutoReset	hal/event.h	/^        bool                   _isAutoReset;$/;"	m	class:rp::hal::Event
+_isConnected	rplidar_driver_impl.h	/^    bool     _isConnected; $/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_isScanning	rplidar_driver_impl.h	/^    bool     _isScanning;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_isSupportingMotorCtrl	rplidar_driver_impl.h	/^    bool     _isSupportingMotorCtrl;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_isWSAStartupCalled	arch/win32/net_socket.cpp	/^static volatile bool _isWSAStartupCalled = false;$/;"	m	namespace:rp::net	file:
+_is_previous_HqdataRdy	rplidar_driver_impl.h	/^    bool                                         _is_previous_HqdataRdy;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_is_previous_capsuledataRdy	rplidar_driver_impl.h	/^    bool                                         _is_previous_capsuledataRdy;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_is_serial_opened	hal/abs_rxtx.h	/^    volatile bool   _is_serial_opened;$/;"	m	class:rp::hal::serial_rxtx
+_is_signalled	hal/event.h	/^        bool                   _is_signalled;$/;"	m	class:rp::hal::Event
+_lock	hal/locker.h	/^    HANDLE  _lock;$/;"	m	class:rp::hal::Locker
+_lock	hal/locker.h	/^    pthread_mutex_t _lock;$/;"	m	class:rp::hal::Locker
+_lock	rplidar_driver_impl.h	/^    rp::hal::Locker         _lock;$/;"	m	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_multi_thread	hal/types.h	83;"	d
+_operation_aborted	arch/linux/net_serial.h	/^    bool   _operation_aborted;$/;"	m	class:rp::arch::net::raw_serial
+_platform_data	hal/socket.h	/^    void * _platform_data;$/;"	m	class:rp::net::SocketAddress
+_portName	arch/linux/net_serial.h	/^    char _portName[200];$/;"	m	class:rp::arch::net::raw_serial
+_portName	arch/macOS/net_serial.h	/^    char _portName[200];$/;"	m	class:rp::arch::net::raw_serial
+_portName	arch/win32/net_serial.h	/^    char _portName[20];$/;"	m	class:rp::arch::net::raw_serial
+_ro	arch/win32/net_serial.h	/^    OVERLAPPED _ro, _wo;$/;"	m	class:rp::arch::net::raw_serial
+_rxtxSerial	rplidar_driver_serial.h	/^    rp::hal::serial_rxtx  * _rxtxSerial;$/;"	m	class:rp::standalone::rplidar::SerialChannelDevice
+_s16	hal/types.h	/^typedef int16_t        _s16;$/;"	t
+_s32	hal/types.h	/^typedef int32_t        _s32;$/;"	t
+_s64	hal/types.h	/^typedef int64_t        _s64;$/;"	t
+_s8	hal/types.h	/^typedef int8_t         _s8;$/;"	t
+_selfpipe	arch/linux/net_serial.h	/^    int    _selfpipe[2];$/;"	m	class:rp::arch::net::raw_serial
+_sendCommand	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_sendCommand(_u8 cmd, const void * payload, size_t payloadsize)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_serial_handle	arch/win32/net_serial.h	/^    volatile HANDLE _serial_handle;$/;"	m	class:rp::arch::net::raw_serial
+_single_thread	hal/types.h	84;"	d
+_socketHalFamilyToOSFamily	arch/linux/net_socket.cpp	/^static inline int _socketHalFamilyToOSFamily(SocketBase::socket_family_t family)$/;"	f	namespace:rp::net
+_socketHalFamilyToOSFamily	arch/macOS/net_socket.cpp	/^static inline int _socketHalFamilyToOSFamily(SocketBase::socket_family_t family)$/;"	f	namespace:rp::net
+_socketHalFamilyToOSFamily	arch/win32/net_socket.cpp	/^static inline int _socketHalFamilyToOSFamily(SocketBase::socket_family_t family)$/;"	f	namespace:rp::net
+_socket_fd	arch/linux/net_socket.cpp	/^    int  _socket_fd;$/;"	m	class:rp::arch::net::DGramSocketImpl	file:
+_socket_fd	arch/linux/net_socket.cpp	/^    int  _socket_fd;$/;"	m	class:rp::arch::net::StreamSocketImpl	file:
+_socket_fd	arch/macOS/net_socket.cpp	/^    int  _socket_fd;$/;"	m	class:rp::arch::net::DGramSocketImpl	file:
+_socket_fd	arch/macOS/net_socket.cpp	/^    int  _socket_fd;$/;"	m	class:rp::arch::net::StreamSocketImpl	file:
+_socket_fd	arch/win32/net_socket.cpp	/^    SOCKET  _socket_fd;$/;"	m	class:rp::arch::net::DGramSocketImpl	file:
+_socket_fd	arch/win32/net_socket.cpp	/^    SOCKET  _socket_fd;$/;"	m	class:rp::arch::net::StreamSocketImpl	file:
+_thread_thunk	hal/thread.h	/^	static _word_size_t THREAD_PROC _thread_thunk(void * data)$/;"	f	class:rp::hal::Thread
+_u16	hal/types.h	/^typedef uint16_t       _u16;$/;"	t
+_u32	hal/types.h	/^typedef uint32_t       _u32;$/;"	t
+_u64	hal/types.h	/^typedef uint64_t       _u64;$/;"	t
+_u8	hal/types.h	/^typedef uint8_t        _u8;$/;"	t
+_ultraCapsuleToNormal	rplidar_driver.cpp	/^void RPlidarDriverImplCommon::_ultraCapsuleToNormal(const rplidar_response_ultra_capsule_measurement_nodes_t & capsule, rplidar_response_measurement_node_hq_t *nodebuffer, size_t &nodeCount)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_varbitscale_decode	rplidar_driver.cpp	/^static _u32 _varbitscale_decode(_u32 scaled, _u32 & scaleLevel)$/;"	f	namespace:rp::standalone::rplidar
+_waitCapsuledNode	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitCapsuledNode(rplidar_response_capsule_measurement_nodes_t & node, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_waitHqNode	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitHqNode(rplidar_response_hq_capsule_measurement_nodes_t & node, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_waitNode	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitNode(rplidar_response_measurement_node_t * node, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_waitResponseHeader	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitResponseHeader(rplidar_ans_header_t * header, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_waitScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitScanData(rplidar_response_measurement_node_t * nodebuffer, size_t & count, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_waitUltraCapsuledNode	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::_waitUltraCapsuledNode(rplidar_response_ultra_capsule_measurement_nodes_t & node, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+_wait_o	arch/win32/net_serial.h	/^    OVERLAPPED _wait_o;$/;"	m	class:rp::arch::net::raw_serial
+_wo	arch/win32/net_serial.h	/^    OVERLAPPED _ro, _wo;$/;"	m	class:rp::arch::net::raw_serial
+_word_size_t	hal/types.h	/^typedef _u32            _word_size_t;$/;"	t
+_word_size_t	hal/types.h	/^typedef _u32           _word_size_t;$/;"	t
+_word_size_t	hal/types.h	/^typedef _u64           _word_size_t;$/;"	t
+_word_size_t	hal/types.h	/^typedef _u8            _word_size_t;$/;"	t
+_word_size_t	hal/types.h	/^typedef unsigned long  _word_size_t;$/;"	t
+accept	arch/linux/net_socket.cpp	/^    virtual StreamSocket * accept(SocketAddress * pairAddress) $/;"	f	class:rp::arch::net::StreamSocketImpl
+accept	arch/macOS/net_socket.cpp	/^    virtual StreamSocket * accept(SocketAddress * pairAddress) $/;"	f	class:rp::arch::net::StreamSocketImpl
+accept	arch/win32/net_socket.cpp	/^    virtual StreamSocket * accept(SocketAddress * pairAddress) $/;"	f	class:rp::arch::net::StreamSocketImpl
+address_type_t	hal/socket.h	/^    enum address_type_t {$/;"	g	class:rp::net::SocketAddress
+angleLessThan	rplidar_driver.cpp	/^static bool angleLessThan(const TNode& a, const TNode& b)$/;"	f	namespace:rp::standalone::rplidar
+arch	arch/linux/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp	file:
+arch	arch/linux/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp
+arch	arch/linux/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp	file:
+arch	arch/linux/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	namespace:rp	file:
+arch	arch/linux/timer.h	/^namespace rp{ namespace arch{$/;"	n	namespace:rp
+arch	arch/macOS/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp	file:
+arch	arch/macOS/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp
+arch	arch/macOS/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp	file:
+arch	arch/macOS/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	namespace:rp	file:
+arch	arch/macOS/timer.h	/^namespace rp{ namespace arch{$/;"	n	namespace:rp
+arch	arch/win32/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp	file:
+arch	arch/win32/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp
+arch	arch/win32/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp	file:
+arch	arch/win32/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	namespace:rp	file:
+arch	arch/win32/timer.h	/^namespace rp{ namespace arch{$/;"	n	namespace:rp
+ascendScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::ascendScanData(rplidar_response_measurement_node_hq_t * nodebuffer, size_t count)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+ascendScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::ascendScanData(rplidar_response_measurement_node_t * nodebuffer, size_t count)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+ascendScanData_	rplidar_driver.cpp	/^static u_result ascendScanData_(TNode * nodebuffer, size_t count)$/;"	f	namespace:rp::standalone::rplidar
+assert	hal/assert.h	10;"	d
+assert	hal/assert.h	13;"	d
+assert	hal/assert.h	7;"	d
+bind	arch/linux/net_serial.cpp	/^bool raw_serial::bind(const char * portname, uint32_t baudrate, uint32_t flags)$/;"	f	class:rp::arch::net::raw_serial
+bind	arch/linux/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+bind	arch/linux/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+bind	arch/macOS/net_serial.cpp	/^bool raw_serial::bind(const char * portname, uint32_t baudrate, uint32_t flags)$/;"	f	class:rp::arch::net::raw_serial
+bind	arch/macOS/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+bind	arch/macOS/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+bind	arch/win32/net_serial.cpp	/^bool raw_serial::bind(const char * portname, _u32 baudrate, _u32 flags)$/;"	f	class:rp::arch::net::raw_serial
+bind	arch/win32/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+bind	arch/win32/net_socket.cpp	/^    virtual u_result bind(const SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+bind	rplidar_driver_TCP.h	/^    bool bind(const char * ipStr, uint32_t port)$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+bind	rplidar_driver_serial.h	/^    bool bind(const char * portname, uint32_t baudrate)$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+cancelOperation	arch/linux/net_serial.cpp	/^void raw_serial::cancelOperation()$/;"	f	class:rp::arch::net::raw_serial
+cancelOperation	hal/abs_rxtx.h	/^    virtual void cancelOperation() {}$/;"	f	class:rp::hal::serial_rxtx
+checkExpressScanSupported	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::checkExpressScanSupported(bool & support, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+checkMotorCtrlSupport	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::checkMotorCtrlSupport(bool & support, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+checkSupportConfigCommands	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::checkSupportConfigCommands(bool& outSupport, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+clearDTR	arch/linux/net_serial.cpp	/^void raw_serial::clearDTR()$/;"	f	class:rp::arch::net::raw_serial
+clearDTR	arch/macOS/net_serial.cpp	/^void raw_serial::clearDTR()$/;"	f	class:rp::arch::net::raw_serial
+clearDTR	arch/win32/net_serial.cpp	/^void raw_serial::clearDTR()$/;"	f	class:rp::arch::net::raw_serial
+clearDTR	rplidar_driver_serial.h	/^    void clearDTR()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+clearNetSerialRxCache	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::clearNetSerialRxCache()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+close	arch/linux/net_serial.cpp	/^void raw_serial::close()$/;"	f	class:rp::arch::net::raw_serial
+close	arch/macOS/net_serial.cpp	/^void raw_serial::close()$/;"	f	class:rp::arch::net::raw_serial
+close	arch/win32/net_serial.cpp	/^void raw_serial::close()$/;"	f	class:rp::arch::net::raw_serial
+close	rplidar_driver_TCP.h	/^    void close()$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+close	rplidar_driver_serial.h	/^    void close()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+connect	arch/linux/net_socket.cpp	/^    virtual u_result connect(const SocketAddress & pairAddress)$/;"	f	class:rp::arch::net::StreamSocketImpl
+connect	arch/macOS/net_socket.cpp	/^    virtual u_result connect(const SocketAddress & pairAddress)$/;"	f	class:rp::arch::net::StreamSocketImpl
+connect	arch/win32/net_socket.cpp	/^    virtual u_result connect(const SocketAddress & pairAddress)$/;"	f	class:rp::arch::net::StreamSocketImpl
+connect	rplidar_driver.cpp	/^u_result RPlidarDriverSerial::connect(const char * port_path, _u32 baudrate, _u32 flag)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverSerial
+connect	rplidar_driver.cpp	/^u_result RPlidarDriverTCP::connect(const char * ipStr, _u32 port, _u32 flag)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverTCP
+convert	rplidar_driver.cpp	/^static void convert(const rplidar_response_measurement_node_hq_t& from, rplidar_response_measurement_node_t& to)$/;"	f	namespace:rp::standalone::rplidar
+convert	rplidar_driver.cpp	/^static void convert(const rplidar_response_measurement_node_t& from, rplidar_response_measurement_node_hq_t& to)$/;"	f	namespace:rp::standalone::rplidar
+create	arch/linux/thread.hpp	/^Thread Thread::create(thread_proc_t proc, void * data)$/;"	f	class:rp::hal::Thread
+create	arch/macOS/thread.hpp	/^Thread Thread::create(thread_proc_t proc, void * data)$/;"	f	class:rp::hal::Thread
+create	arch/win32/winthread.hpp	/^Thread Thread::create(thread_proc_t proc, void * data)$/;"	f	class:rp::hal::Thread
+create_member	hal/thread.h	/^    static Thread create_member(T * pthis)$/;"	f	class:rp::hal::Thread
+delay	arch/linux/timer.h	/^static inline void delay(_word_size_t ms){$/;"	f
+delay	arch/macOS/timer.h	/^static inline void delay(_word_size_t ms){$/;"	f
+delay	arch/win32/timer.h	39;"	d
+disconnect	rplidar_driver.cpp	/^void RPlidarDriverSerial::disconnect()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverSerial
+disconnect	rplidar_driver.cpp	/^void RPlidarDriverTCP::disconnect()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverTCP
+dispose	arch/linux/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::DGramSocketImpl
+dispose	arch/linux/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::StreamSocketImpl
+dispose	arch/macOS/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::DGramSocketImpl
+dispose	arch/macOS/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::StreamSocketImpl
+dispose	arch/win32/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::DGramSocketImpl
+dispose	arch/win32/net_socket.cpp	/^    virtual void dispose()$/;"	f	class:rp::arch::net::StreamSocketImpl
+enableKeepAlive	arch/linux/net_socket.cpp	/^    virtual u_result enableKeepAlive(bool enable)$/;"	f	class:rp::arch::net::StreamSocketImpl
+enableKeepAlive	arch/macOS/net_socket.cpp	/^    virtual u_result enableKeepAlive(bool enable)$/;"	f	class:rp::arch::net::StreamSocketImpl
+enableKeepAlive	arch/win32/net_socket.cpp	/^    virtual u_result enableKeepAlive(bool enable)$/;"	f	class:rp::arch::net::StreamSocketImpl
+enableNoDelay	arch/linux/net_socket.cpp	/^    virtual u_result enableNoDelay(bool enable ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+enableNoDelay	arch/macOS/net_socket.cpp	/^    virtual u_result enableNoDelay(bool enable ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+enableNoDelay	arch/win32/net_socket.cpp	/^    virtual u_result enableNoDelay(bool enable ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+flush	arch/linux/net_serial.cpp	/^void raw_serial::flush( _u32 flags)$/;"	f	class:rp::arch::net::raw_serial
+flush	arch/macOS/net_serial.cpp	/^void raw_serial::flush( _u32 flags)$/;"	f	class:rp::arch::net::raw_serial
+flush	arch/win32/net_serial.cpp	/^void raw_serial::flush( _u32 flags)$/;"	f	class:rp::arch::net::raw_serial
+flush	rplidar_driver_serial.h	/^    void flush()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+forceUnlock	hal/locker.h	/^    void forceUnlock() {$/;"	f	class:rp::hal::AutoLocker
+getAddressAsString	arch/linux/net_socket.cpp	/^u_result SocketAddress::getAddressAsString(char * buffer, size_t buffersize) const$/;"	f	class:rp::net::SocketAddress
+getAddressAsString	arch/macOS/net_socket.cpp	/^u_result SocketAddress::getAddressAsString(char * buffer, size_t buffersize) const$/;"	f	class:rp::net::SocketAddress
+getAddressAsString	arch/win32/net_socket.cpp	/^u_result SocketAddress::getAddressAsString(char * buffer, size_t buffersize) const$/;"	f	class:rp::net::SocketAddress
+getAddressType	arch/linux/net_socket.cpp	/^SocketAddress::address_type_t SocketAddress::getAddressType() const$/;"	f	class:rp::net::SocketAddress
+getAddressType	arch/macOS/net_socket.cpp	/^SocketAddress::address_type_t SocketAddress::getAddressType() const$/;"	f	class:rp::net::SocketAddress
+getAddressType	arch/win32/net_socket.cpp	/^SocketAddress::address_type_t SocketAddress::getAddressType() const$/;"	f	class:rp::net::SocketAddress
+getAllSupportedScanModes	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getAllSupportedScanModes(std::vector<RplidarScanMode>& outModes, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getAngle	rplidar_driver.cpp	/^static inline float getAngle(const rplidar_response_measurement_node_hq_t& node)$/;"	f	namespace:rp::standalone::rplidar
+getAngle	rplidar_driver.cpp	/^static inline float getAngle(const rplidar_response_measurement_node_t& node)$/;"	f	namespace:rp::standalone::rplidar
+getData	hal/thread.h	/^    void *getData() { return _data;}$/;"	f	class:rp::hal::Thread
+getDeviceInfo	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getDeviceInfo(rplidar_response_device_info_t & info, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getDistanceQ2	rplidar_driver.cpp	/^static inline _u16 getDistanceQ2(const rplidar_response_measurement_node_t& node)$/;"	f	namespace:rp::standalone::rplidar
+getDistanceQ2	rplidar_driver.cpp	/^static inline _u32 getDistanceQ2(const rplidar_response_measurement_node_hq_t& node)$/;"	f	namespace:rp::standalone::rplidar
+getFrequency	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getFrequency(bool inExpressMode, size_t count, float & frequency, bool & is4kmode)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getFrequency	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getFrequency(const RplidarScanMode& scanMode, size_t count, float & frequency)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getHDTimer	arch/win32/timer.cpp	/^_u32 getHDTimer()$/;"	f	namespace:rp::arch
+getHandle	hal/thread.h	/^    _word_size_t getHandle(){ return _handle;}$/;"	f	class:rp::hal::Thread
+getHealth	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getHealth(rplidar_response_device_health_t & healthinfo, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getLidarConf	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getLidarConf(_u32 type, std::vector<_u8> &outputBuf, const std::vector<_u8> &reserve, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getLidarSampleDuration	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getLidarSampleDuration(float& sampleDurationRes, _u16 scanModeID, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getLocalAddress	arch/linux/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+getLocalAddress	arch/linux/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getLocalAddress	arch/macOS/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+getLocalAddress	arch/macOS/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getLocalAddress	arch/win32/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+getLocalAddress	arch/win32/net_socket.cpp	/^    virtual u_result getLocalAddress(SocketAddress & localaddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getLockHandle	hal/locker.h	/^    HANDLE getLockHandle()$/;"	f	class:rp::hal::Locker
+getLockHandle	hal/locker.h	/^    pthread_mutex_t *getLockHandle()$/;"	f	class:rp::hal::Locker
+getMaxDistance	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getMaxDistance(float &maxDistance, _u16 scanModeID, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getPeerAddress	arch/linux/net_socket.cpp	/^    virtual u_result getPeerAddress(SocketAddress & peerAddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getPeerAddress	arch/macOS/net_socket.cpp	/^    virtual u_result getPeerAddress(SocketAddress & peerAddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getPeerAddress	arch/win32/net_socket.cpp	/^    virtual u_result getPeerAddress(SocketAddress & peerAddr)$/;"	f	class:rp::arch::net::StreamSocketImpl
+getPlatformData	hal/socket.h	/^    const void * getPlatformData() const {$/;"	f	class:rp::net::SocketAddress
+getPort	arch/linux/net_socket.cpp	/^int SocketAddress::getPort() const$/;"	f	class:rp::net::SocketAddress
+getPort	arch/macOS/net_socket.cpp	/^int SocketAddress::getPort() const$/;"	f	class:rp::net::SocketAddress
+getPort	arch/win32/net_socket.cpp	/^int SocketAddress::getPort() const$/;"	f	class:rp::net::SocketAddress
+getPriority	arch/linux/thread.hpp	/^Thread::priority_val_t Thread::getPriority()$/;"	f	class:rp::hal::Thread
+getPriority	arch/macOS/thread.hpp	/^Thread::priority_val_t Thread::getPriority()$/;"	f	class:rp::hal::Thread
+getPriority	arch/win32/winthread.hpp	/^Thread::priority_val_t Thread::getPriority()$/;"	f	class:rp::hal::Thread
+getRawAddress	arch/linux/net_socket.cpp	/^u_result SocketAddress::getRawAddress(_u8 * buffer, size_t bufferSize) const$/;"	f	class:rp::net::SocketAddress
+getRawAddress	arch/macOS/net_socket.cpp	/^u_result SocketAddress::getRawAddress(_u8 * buffer, size_t bufferSize) const$/;"	f	class:rp::net::SocketAddress
+getRawAddress	arch/win32/net_socket.cpp	/^u_result SocketAddress::getRawAddress(_u8 * buffer, size_t bufferSize) const$/;"	f	class:rp::net::SocketAddress
+getSampleDuration_uS	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getSampleDuration_uS(rplidar_response_sample_rate_t & rateInfo, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getScanDataWithInterval	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getScanDataWithInterval(rplidar_response_measurement_node_t * nodebuffer, size_t & count)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getScanDataWithIntervalHq	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getScanDataWithIntervalHq(rplidar_response_measurement_node_hq_t * nodebuffer, size_t & count)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getScanModeAnsType	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getScanModeAnsType(_u8 &ansType, _u16 scanModeID, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getScanModeCount	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getScanModeCount(_u16& modeCount, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getScanModeName	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getScanModeName(char* modeName, _u16 scanModeID, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getTermBaudBitmap	arch/linux/net_serial.cpp	/^_u32 raw_serial::getTermBaudBitmap(_u32 baud)$/;"	f	class:rp::arch::net::raw_serial
+getTermBaudBitmap	arch/macOS/net_serial.cpp	/^_u32 raw_serial::getTermBaudBitmap(_u32 baud)$/;"	f	class:rp::arch::net::raw_serial
+getTypicalScanMode	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::getTypicalScanMode(_u16& outMode, _u32 timeoutInMs)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+getms	arch/linux/timer.h	57;"	d
+getms	arch/macOS/timer.h	57;"	d
+getms	arch/win32/timer.h	46;"	d
+getus	arch/macOS/timer.cpp	/^_u64 getus()$/;"	f	namespace:rp::arch
+grabScanData	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::grabScanData(rplidar_response_measurement_node_t * nodebuffer, size_t & count, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+grabScanDataHq	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::grabScanDataHq(rplidar_response_measurement_node_hq_t * nodebuffer, size_t & count, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+hal	arch/linux/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp	file:
+hal	arch/linux/thread.hpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+hal	arch/macOS/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp	file:
+hal	arch/macOS/thread.hpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+hal	arch/win32/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp	file:
+hal	arch/win32/winthread.hpp	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+hal	hal/abs_rxtx.h	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+hal	hal/event.h	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+hal	hal/locker.h	/^namespace rp{ namespace hal{ $/;"	n	namespace:rp
+hal	hal/thread.h	/^namespace rp{ namespace hal{$/;"	n	namespace:rp
+init	hal/locker.h	/^    void    init()$/;"	f	class:rp::hal::Locker
+int16_t	hal/types.h	/^typedef __int16           int16_t;$/;"	t
+int32_t	hal/types.h	/^typedef __int32           int32_t;$/;"	t
+int64_t	hal/types.h	/^typedef __int64           int64_t;$/;"	t
+int8_t	hal/types.h	/^typedef signed   char     int8_t;$/;"	t
+isConnected	rplidar_driver.cpp	/^bool RPlidarDriverImplCommon::isConnected()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+isOpened	hal/abs_rxtx.h	/^    virtual bool isOpened()$/;"	f	class:rp::hal::serial_rxtx
+join	arch/linux/thread.hpp	/^u_result Thread::join(unsigned long timeout)$/;"	f	class:rp::hal::Thread
+join	arch/macOS/thread.hpp	/^u_result Thread::join(unsigned long timeout)$/;"	f	class:rp::hal::Thread
+join	arch/win32/winthread.hpp	/^u_result Thread::join(unsigned long timeout)$/;"	f	class:rp::hal::Thread
+listen	arch/linux/net_socket.cpp	/^    virtual u_result listen(int backlog)$/;"	f	class:rp::arch::net::StreamSocketImpl
+listen	arch/macOS/net_socket.cpp	/^    virtual u_result listen(int backlog)$/;"	f	class:rp::arch::net::StreamSocketImpl
+listen	arch/win32/net_socket.cpp	/^    virtual u_result listen(int backlog)$/;"	f	class:rp::arch::net::StreamSocketImpl
+lock	hal/locker.h	/^    Locker::LOCK_STATUS lock(unsigned long timeout = 0xFFFFFFFF)$/;"	f	class:rp::hal::Locker
+min	rplidar_driver.cpp	51;"	d	file:
+net	arch/linux/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch	file:
+net	arch/linux/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch
+net	arch/linux/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp::arch	file:
+net	arch/linux/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	namespace:rp	file:
+net	arch/linux/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	namespace:rp	file:
+net	arch/macOS/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch	file:
+net	arch/macOS/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch
+net	arch/macOS/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp::arch	file:
+net	arch/macOS/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	namespace:rp	file:
+net	arch/macOS/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	namespace:rp	file:
+net	arch/win32/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch	file:
+net	arch/win32/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n	namespace:rp::arch
+net	arch/win32/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	namespace:rp::arch	file:
+net	arch/win32/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	namespace:rp	file:
+net	arch/win32/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	namespace:rp	file:
+net	hal/socket.h	/^namespace rp{ namespace net {$/;"	n	namespace:rp
+offsetof	hal/util.h	55;"	d
+open	arch/linux/net_serial.cpp	/^bool raw_serial::open()$/;"	f	class:rp::arch::net::raw_serial
+open	arch/linux/net_serial.cpp	/^bool raw_serial::open(const char * portname, uint32_t baudrate, uint32_t flags)$/;"	f	class:rp::arch::net::raw_serial
+open	arch/macOS/net_serial.cpp	/^bool raw_serial::open()$/;"	f	class:rp::arch::net::raw_serial
+open	arch/macOS/net_serial.cpp	/^bool raw_serial::open(const char * portname, uint32_t baudrate, uint32_t flags)$/;"	f	class:rp::arch::net::raw_serial
+open	arch/win32/net_serial.cpp	/^bool raw_serial::open()$/;"	f	class:rp::arch::net::raw_serial
+open	arch/win32/net_serial.cpp	/^bool raw_serial::open(const char * portname, _u32 baudrate, _u32 flags)$/;"	f	class:rp::arch::net::raw_serial
+open	rplidar_driver_serial.h	/^    bool open()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+operator =	arch/linux/net_socket.cpp	/^SocketAddress & SocketAddress::operator = (const SocketAddress &src)$/;"	f	class:rp::net::SocketAddress
+operator =	arch/macOS/net_socket.cpp	/^SocketAddress & SocketAddress::operator = (const SocketAddress &src)$/;"	f	class:rp::net::SocketAddress
+operator =	arch/win32/net_socket.cpp	/^SocketAddress & SocketAddress::operator = (const SocketAddress &src)$/;"	f	class:rp::net::SocketAddress
+operator ==	hal/thread.h	/^    bool operator== ( const Thread & right) { return this->_handle == right._handle; }$/;"	f	class:rp::hal::Thread
+printDeprecationWarn	rplidar_driver.cpp	/^    static void printDeprecationWarn(const char* fn, const char* replacement)$/;"	f	namespace:rp::standalone::rplidar
+priority_val_t	hal/thread.h	/^    enum priority_val_t$/;"	g	class:rp::hal::Thread
+raw_serial	arch/linux/net_serial.cpp	/^raw_serial::raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+raw_serial	arch/linux/net_serial.h	/^class raw_serial : public rp::hal::serial_rxtx$/;"	c	namespace:rp::arch::net
+raw_serial	arch/macOS/net_serial.cpp	/^raw_serial::raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+raw_serial	arch/macOS/net_serial.h	/^class raw_serial : public rp::hal::serial_rxtx$/;"	c	namespace:rp::arch::net
+raw_serial	arch/win32/net_serial.cpp	/^raw_serial::raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+raw_serial	arch/win32/net_serial.h	/^class raw_serial : public rp::hal::serial_rxtx$/;"	c	namespace:rp::arch::net
+recv	arch/linux/net_socket.cpp	/^    virtual u_result recv(void *buf, size_t len, size_t & recv_len)$/;"	f	class:rp::arch::net::StreamSocketImpl
+recv	arch/macOS/net_socket.cpp	/^    virtual u_result recv(void *buf, size_t len, size_t & recv_len)$/;"	f	class:rp::arch::net::StreamSocketImpl
+recv	arch/win32/net_socket.cpp	/^    virtual u_result recv(void *buf, size_t len, size_t & recv_len)$/;"	f	class:rp::arch::net::StreamSocketImpl
+recvFrom	arch/linux/net_socket.cpp	/^    virtual u_result recvFrom(void *buf, size_t len, size_t & recv_len, SocketAddress * sourceAddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+recvFrom	arch/macOS/net_socket.cpp	/^    virtual u_result recvFrom(void *buf, size_t len, size_t & recv_len, SocketAddress * sourceAddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+recvFrom	arch/win32/net_socket.cpp	/^    virtual u_result recvFrom(void *buf, size_t len, size_t & recv_len, SocketAddress * sourceAddr)$/;"	f	class:rp::arch::net::DGramSocketImpl
+recvdata	arch/linux/net_serial.cpp	/^int raw_serial::recvdata(unsigned char * data, size_t size)$/;"	f	class:rp::arch::net::raw_serial
+recvdata	arch/macOS/net_serial.cpp	/^int raw_serial::recvdata(unsigned char * data, _word_size_t size)$/;"	f	class:rp::arch::net::raw_serial
+recvdata	arch/win32/net_serial.cpp	/^int raw_serial::recvdata(unsigned char * data, size_t size)$/;"	f	class:rp::arch::net::raw_serial
+recvdata	rplidar_driver_TCP.h	/^    int recvdata(unsigned char * data, size_t size)$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+recvdata	rplidar_driver_serial.h	/^    int recvdata(unsigned char * data, size_t size)$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+release	hal/event.h	/^    void release()$/;"	f	class:rp::hal::Event
+release	hal/locker.h	/^    void    release()$/;"	f	class:rp::hal::Locker
+required_rx_cnt	arch/linux/net_serial.h	/^    size_t required_rx_cnt;$/;"	m	class:rp::arch::net::raw_serial
+required_rx_cnt	arch/macOS/net_serial.h	/^    size_t required_rx_cnt;$/;"	m	class:rp::arch::net::raw_serial
+required_tx_cnt	arch/linux/net_serial.h	/^    size_t required_tx_cnt;$/;"	m	class:rp::arch::net::raw_serial
+required_tx_cnt	arch/macOS/net_serial.h	/^    size_t required_tx_cnt;$/;"	m	class:rp::arch::net::raw_serial
+reset	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::reset(_u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+rp	arch/linux/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	file:
+rp	arch/linux/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	file:
+rp	arch/linux/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n
+rp	arch/linux/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	file:
+rp	arch/linux/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	file:
+rp	arch/linux/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	file:
+rp	arch/linux/thread.hpp	/^namespace rp{ namespace hal{$/;"	n
+rp	arch/linux/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	file:
+rp	arch/linux/timer.h	/^namespace rp{ namespace arch{$/;"	n
+rp	arch/macOS/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	file:
+rp	arch/macOS/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	file:
+rp	arch/macOS/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n
+rp	arch/macOS/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	file:
+rp	arch/macOS/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	file:
+rp	arch/macOS/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	file:
+rp	arch/macOS/thread.hpp	/^namespace rp{ namespace hal{$/;"	n
+rp	arch/macOS/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	file:
+rp	arch/macOS/timer.h	/^namespace rp{ namespace arch{$/;"	n
+rp	arch/win32/net_serial.cpp	/^namespace rp{ namespace arch{ namespace net{$/;"	n	file:
+rp	arch/win32/net_serial.cpp	/^namespace rp{ namespace hal{$/;"	n	file:
+rp	arch/win32/net_serial.h	/^namespace rp{ namespace arch{ namespace net{$/;"	n
+rp	arch/win32/net_socket.cpp	/^namespace rp { namespace arch { namespace net{ $/;"	n	file:
+rp	arch/win32/net_socket.cpp	/^namespace rp { namespace net{ $/;"	n	file:
+rp	arch/win32/net_socket.cpp	/^namespace rp{ namespace net {$/;"	n	file:
+rp	arch/win32/timer.cpp	/^namespace rp{ namespace arch{$/;"	n	file:
+rp	arch/win32/timer.h	/^namespace rp{ namespace arch{$/;"	n
+rp	arch/win32/winthread.hpp	/^namespace rp{ namespace hal{$/;"	n
+rp	hal/abs_rxtx.h	/^namespace rp{ namespace hal{$/;"	n
+rp	hal/event.h	/^namespace rp{ namespace hal{$/;"	n
+rp	hal/locker.h	/^namespace rp{ namespace hal{ $/;"	n
+rp	hal/socket.h	/^namespace rp{ namespace net {$/;"	n
+rp	hal/thread.h	/^namespace rp{ namespace hal{$/;"	n
+rp	rplidar_driver.cpp	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	file:
+rp	rplidar_driver_TCP.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n
+rp	rplidar_driver_impl.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n
+rp	rplidar_driver_serial.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n
+rp_getms	arch/linux/timer.cpp	/^_u32 rp_getms()$/;"	f	namespace:rp::arch
+rp_getms	arch/macOS/timer.cpp	/^_u32 rp_getms()$/;"	f	namespace:rp::arch
+rp_getus	arch/linux/timer.cpp	/^_u64 rp_getus()$/;"	f	namespace:rp::arch
+rplidar	rplidar_driver.cpp	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp::standalone	file:
+rplidar	rplidar_driver_TCP.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp::standalone
+rplidar	rplidar_driver_impl.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp::standalone
+rplidar	rplidar_driver_serial.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp::standalone
+rxqueue_count	arch/linux/net_serial.cpp	/^size_t raw_serial::rxqueue_count()$/;"	f	class:rp::arch::net::raw_serial
+rxqueue_count	arch/macOS/net_serial.cpp	/^size_t raw_serial::rxqueue_count()$/;"	f	class:rp::arch::net::raw_serial
+rxqueue_count	arch/win32/net_serial.cpp	/^size_t raw_serial::rxqueue_count()$/;"	f	class:rp::arch::net::raw_serial
+send	arch/linux/net_socket.cpp	/^    virtual u_result send(const void * buffer, size_t len) $/;"	f	class:rp::arch::net::StreamSocketImpl
+send	arch/macOS/net_socket.cpp	/^    virtual u_result send(const void * buffer, size_t len) $/;"	f	class:rp::arch::net::StreamSocketImpl
+send	arch/win32/net_socket.cpp	/^    virtual u_result send(const void * buffer, size_t len) $/;"	f	class:rp::arch::net::StreamSocketImpl
+sendTo	arch/linux/net_socket.cpp	/^    virtual u_result sendTo(const SocketAddress & target, const void * buffer, size_t len)$/;"	f	class:rp::arch::net::DGramSocketImpl
+sendTo	arch/macOS/net_socket.cpp	/^    virtual u_result sendTo(const SocketAddress & target, const void * buffer, size_t len)$/;"	f	class:rp::arch::net::DGramSocketImpl
+sendTo	arch/win32/net_socket.cpp	/^    virtual u_result sendTo(const SocketAddress & target, const void * buffer, size_t len)$/;"	f	class:rp::arch::net::DGramSocketImpl
+senddata	arch/linux/net_serial.cpp	/^int raw_serial::senddata(const unsigned char * data, size_t size)$/;"	f	class:rp::arch::net::raw_serial
+senddata	arch/macOS/net_serial.cpp	/^int raw_serial::senddata(const unsigned char * data, _word_size_t size)$/;"	f	class:rp::arch::net::raw_serial
+senddata	arch/win32/net_serial.cpp	/^int raw_serial::senddata(const unsigned char * data, size_t size)$/;"	f	class:rp::arch::net::raw_serial
+senddata	rplidar_driver_TCP.h	/^    int senddata(const _u8 * data, size_t size)$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+senddata	rplidar_driver_serial.h	/^    int senddata(const _u8 * data, size_t size)$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+serial_fd	arch/linux/net_serial.h	/^    int serial_fd;$/;"	m	class:rp::arch::net::raw_serial
+serial_fd	arch/macOS/net_serial.h	/^    int serial_fd;$/;"	m	class:rp::arch::net::raw_serial
+serial_rxtx	hal/abs_rxtx.h	/^    serial_rxtx():_is_serial_opened(false){}$/;"	f	class:rp::hal::serial_rxtx
+serial_rxtx	hal/abs_rxtx.h	/^class serial_rxtx$/;"	c	namespace:rp::hal
+set	hal/event.h	/^    void set( bool isSignal = true )$/;"	f	class:rp::hal::Event
+setAddressFromString	arch/linux/net_socket.cpp	/^u_result SocketAddress::setAddressFromString(const char * address_string,  SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setAddressFromString	arch/macOS/net_socket.cpp	/^u_result SocketAddress::setAddressFromString(const char * address_string,  SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setAddressFromString	arch/win32/net_socket.cpp	/^u_result SocketAddress::setAddressFromString(const char * address_string,  SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setAngle	rplidar_driver.cpp	/^static inline void setAngle(rplidar_response_measurement_node_hq_t& node, float v)$/;"	f	namespace:rp::standalone::rplidar
+setAngle	rplidar_driver.cpp	/^static inline void setAngle(rplidar_response_measurement_node_t& node, float v)$/;"	f	namespace:rp::standalone::rplidar
+setAnyAddress	arch/linux/net_socket.cpp	/^void SocketAddress::setAnyAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setAnyAddress	arch/macOS/net_socket.cpp	/^void SocketAddress::setAnyAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setAnyAddress	arch/win32/net_socket.cpp	/^void SocketAddress::setAnyAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setBroadcastAddressIPv4	arch/linux/net_socket.cpp	/^void SocketAddress::setBroadcastAddressIPv4()$/;"	f	class:rp::net::SocketAddress
+setBroadcastAddressIPv4	arch/macOS/net_socket.cpp	/^void SocketAddress::setBroadcastAddressIPv4()$/;"	f	class:rp::net::SocketAddress
+setBroadcastAddressIPv4	arch/win32/net_socket.cpp	/^void SocketAddress::setBroadcastAddressIPv4()$/;"	f	class:rp::net::SocketAddress
+setDTR	arch/linux/net_serial.cpp	/^void raw_serial::setDTR()$/;"	f	class:rp::arch::net::raw_serial
+setDTR	arch/macOS/net_serial.cpp	/^void raw_serial::setDTR()$/;"	f	class:rp::arch::net::raw_serial
+setDTR	arch/win32/net_serial.cpp	/^void raw_serial::setDTR()$/;"	f	class:rp::arch::net::raw_serial
+setDTR	rplidar_driver_serial.h	/^    void setDTR()$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+setLoopbackAddress	arch/linux/net_socket.cpp	/^void SocketAddress::setLoopbackAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setLoopbackAddress	arch/macOS/net_socket.cpp	/^void SocketAddress::setLoopbackAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setLoopbackAddress	arch/win32/net_socket.cpp	/^void SocketAddress::setLoopbackAddress(SocketAddress::address_type_t type)$/;"	f	class:rp::net::SocketAddress
+setMotorPWM	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::setMotorPWM(_u16 pwm)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+setPort	arch/linux/net_socket.cpp	/^u_result SocketAddress::setPort(int port)$/;"	f	class:rp::net::SocketAddress
+setPort	arch/macOS/net_socket.cpp	/^u_result SocketAddress::setPort(int port)$/;"	f	class:rp::net::SocketAddress
+setPort	arch/win32/net_socket.cpp	/^u_result SocketAddress::setPort(int port)$/;"	f	class:rp::net::SocketAddress
+setPriority	arch/linux/thread.hpp	/^u_result Thread::setPriority( priority_val_t p)$/;"	f	class:rp::hal::Thread
+setPriority	arch/macOS/thread.hpp	/^u_result Thread::setPriority( priority_val_t p)$/;"	f	class:rp::hal::Thread
+setPriority	arch/win32/winthread.hpp	/^u_result Thread::setPriority( priority_val_t p)$/;"	f	class:rp::hal::Thread
+setTimeout	arch/linux/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::DGramSocketImpl
+setTimeout	arch/linux/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::StreamSocketImpl
+setTimeout	arch/macOS/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::DGramSocketImpl
+setTimeout	arch/macOS/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::StreamSocketImpl
+setTimeout	arch/win32/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::DGramSocketImpl
+setTimeout	arch/win32/net_socket.cpp	/^    virtual u_result setTimeout(_u32 timeout, socket_direction_mask msk)$/;"	f	class:rp::arch::net::StreamSocketImpl
+shutdown	arch/linux/net_socket.cpp	/^    virtual u_result shutdown(socket_direction_mask mask)$/;"	f	class:rp::arch::net::StreamSocketImpl
+shutdown	arch/macOS/net_socket.cpp	/^    virtual u_result shutdown(socket_direction_mask mask)$/;"	f	class:rp::arch::net::StreamSocketImpl
+shutdown	arch/win32/net_socket.cpp	/^    virtual u_result shutdown(socket_direction_mask mask)$/;"	f	class:rp::arch::net::StreamSocketImpl
+socket_direction_mask	hal/socket.h	/^    enum socket_direction_mask {$/;"	g	class:rp::net::SocketBase
+socket_family_t	hal/socket.h	/^    enum socket_family_t {$/;"	g	class:rp::net::SocketBase
+standalone	rplidar_driver.cpp	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp	file:
+standalone	rplidar_driver_TCP.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp
+standalone	rplidar_driver_impl.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp
+standalone	rplidar_driver_serial.h	/^namespace rp { namespace standalone{ namespace rplidar {$/;"	n	namespace:rp
+startMotor	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::startMotor()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+startScan	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::startScan(bool force, bool useTypicalScan, _u32 options, RplidarScanMode* outUsedScanMode)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+startScanExpress	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::startScanExpress(bool force, _u16 scanMode, _u32 options, RplidarScanMode* outUsedScanMode, _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+startScanNormal	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::startScanNormal(bool force,  _u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+stop	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::stop(_u32 timeout)$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+stopMotor	rplidar_driver.cpp	/^u_result RPlidarDriverImplCommon::stopMotor()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+table	rplidar_driver.cpp	/^static _u32 table[256];\/\/crc32_table$/;"	m	namespace:rp::standalone::rplidar	file:
+terminate	arch/linux/thread.hpp	/^u_result Thread::terminate()$/;"	f	class:rp::hal::Thread
+terminate	arch/macOS/thread.hpp	/^u_result Thread::terminate()$/;"	f	class:rp::hal::Thread
+terminate	arch/win32/winthread.hpp	/^u_result Thread::terminate()$/;"	f	class:rp::hal::Thread
+thread_proc_t	hal/types.h	/^typedef _word_size_t (THREAD_PROC * thread_proc_t ) ( void * );$/;"	t
+u_result	hal/types.h	/^typedef uint32_t u_result;$/;"	t
+uint16_t	hal/types.h	/^typedef unsigned __int16  uint16_t;$/;"	t
+uint32_t	hal/types.h	/^typedef unsigned __int32  uint32_t;$/;"	t
+uint64_t	hal/types.h	/^typedef unsigned __int64  uint64_t;$/;"	t
+uint8_t	hal/types.h	/^typedef unsigned char     uint8_t;$/;"	t
+unlock	hal/locker.h	/^    void unlock()$/;"	f	class:rp::hal::Locker
+wait	hal/event.h	/^    unsigned long wait( unsigned long timeout = 0xFFFFFFFF )$/;"	f	class:rp::hal::Event
+waitforData	arch/linux/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforData	arch/linux/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforData	arch/macOS/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforData	arch/macOS/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforData	arch/win32/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforData	arch/win32/net_socket.cpp	/^    virtual u_result waitforData(_u32 timeout )$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforIncomingConnection	arch/linux/net_socket.cpp	/^    virtual u_result waitforIncomingConnection(_u32 timeout)$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforIncomingConnection	arch/macOS/net_socket.cpp	/^    virtual u_result waitforIncomingConnection(_u32 timeout)$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforIncomingConnection	arch/win32/net_socket.cpp	/^    virtual u_result waitforIncomingConnection(_u32 timeout)$/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforSent	arch/linux/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforSent	arch/linux/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforSent	arch/macOS/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforSent	arch/macOS/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+waitforSent	arch/win32/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::DGramSocketImpl
+waitforSent	arch/win32/net_socket.cpp	/^    virtual u_result waitforSent(_u32 timeout ) $/;"	f	class:rp::arch::net::StreamSocketImpl
+waitfordata	arch/linux/net_serial.cpp	/^int raw_serial::waitfordata(size_t data_count, _u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitfordata	arch/macOS/net_serial.cpp	/^int raw_serial::waitfordata(_word_size_t data_count, _u32 timeout, _word_size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitfordata	arch/win32/net_serial.cpp	/^int raw_serial::waitfordata(size_t data_count, _u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitfordata	rplidar_driver_TCP.h	/^    bool waitfordata(size_t data_count,_u32 timeout = -1, size_t * returned_size = NULL)$/;"	f	class:rp::standalone::rplidar::TCPChannelDevice
+waitfordata	rplidar_driver_serial.h	/^    bool waitfordata(size_t data_count,_u32 timeout = -1, size_t * returned_size = NULL)$/;"	f	class:rp::standalone::rplidar::SerialChannelDevice
+waitforrecv	arch/linux/net_serial.cpp	/^int raw_serial::waitforrecv(_u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitforrecv	arch/macOS/net_serial.cpp	/^int raw_serial::waitforrecv(_u32 timeout, _word_size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitforrecv	arch/win32/net_serial.cpp	/^int raw_serial::waitforrecv(_u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitforsent	arch/linux/net_serial.cpp	/^int raw_serial::waitforsent(_u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitforsent	arch/macOS/net_serial.cpp	/^int raw_serial::waitforsent(_u32 timeout, _word_size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+waitforsent	arch/win32/net_serial.cpp	/^int raw_serial::waitforsent(_u32 timeout, size_t * returned_size)$/;"	f	class:rp::arch::net::raw_serial
+~AutoLocker	hal/locker.h	/^    ~AutoLocker() {_binded.unlock();}$/;"	f	class:rp::hal::AutoLocker
+~DGramSocket	hal/socket.h	/^    virtual ~DGramSocket() {} \/\/ use dispose();$/;"	f	class:rp::net::DGramSocket
+~DGramSocketImpl	arch/linux/net_socket.cpp	/^    virtual ~DGramSocketImpl() $/;"	f	class:rp::arch::net::DGramSocketImpl
+~DGramSocketImpl	arch/macOS/net_socket.cpp	/^    virtual ~DGramSocketImpl() $/;"	f	class:rp::arch::net::DGramSocketImpl
+~DGramSocketImpl	arch/win32/net_socket.cpp	/^    virtual ~DGramSocketImpl() $/;"	f	class:rp::arch::net::DGramSocketImpl
+~Event	hal/event.h	/^    ~ Event()$/;"	f	class:rp::hal::Event
+~Locker	hal/locker.h	/^    ~Locker()$/;"	f	class:rp::hal::Locker
+~RPlidarDriverImplCommon	rplidar_driver_impl.h	/^    virtual ~RPlidarDriverImplCommon() {}$/;"	f	class:rp::standalone::rplidar::RPlidarDriverImplCommon
+~RPlidarDriverSerial	rplidar_driver.cpp	/^RPlidarDriverSerial::~RPlidarDriverSerial()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverSerial
+~RPlidarDriverTCP	rplidar_driver.cpp	/^RPlidarDriverTCP::~RPlidarDriverTCP()$/;"	f	class:rp::standalone::rplidar::RPlidarDriverTCP
+~SocketAddress	arch/linux/net_socket.cpp	/^SocketAddress::~SocketAddress()$/;"	f	class:rp::net::SocketAddress
+~SocketAddress	arch/macOS/net_socket.cpp	/^SocketAddress::~SocketAddress()$/;"	f	class:rp::net::SocketAddress
+~SocketAddress	arch/win32/net_socket.cpp	/^SocketAddress::~SocketAddress()$/;"	f	class:rp::net::SocketAddress
+~SocketBase	hal/socket.h	/^    virtual ~SocketBase() {}$/;"	f	class:rp::net::SocketBase
+~StreamSocket	hal/socket.h	/^    virtual ~StreamSocket() {} \/\/ use dispose();$/;"	f	class:rp::net::StreamSocket
+~StreamSocketImpl	arch/linux/net_socket.cpp	/^    virtual ~StreamSocketImpl() $/;"	f	class:rp::arch::net::StreamSocketImpl
+~StreamSocketImpl	arch/macOS/net_socket.cpp	/^    virtual ~StreamSocketImpl() $/;"	f	class:rp::arch::net::StreamSocketImpl
+~StreamSocketImpl	arch/win32/net_socket.cpp	/^    virtual ~StreamSocketImpl() $/;"	f	class:rp::arch::net::StreamSocketImpl
+~Thread	hal/thread.h	/^    ~Thread() { }$/;"	f	class:rp::hal::Thread
+~raw_serial	arch/linux/net_serial.cpp	/^raw_serial::~raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+~raw_serial	arch/macOS/net_serial.cpp	/^raw_serial::~raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+~raw_serial	arch/win32/net_serial.cpp	/^raw_serial::~raw_serial()$/;"	f	class:rp::arch::net::raw_serial
+~serial_rxtx	hal/abs_rxtx.h	/^    virtual ~serial_rxtx(){}$/;"	f	class:rp::hal::serial_rxtx
