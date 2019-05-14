@@ -7,7 +7,7 @@
  */
 
 /* 
-* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com  
+* Copyright (C) 2009-2016 Texas Instruments Incorporated - www.ti.com  
 * 
 * 
 *  Redistribution and use in source and binary forms, with or without 
@@ -49,9 +49,17 @@
 #include "HL_sys_vim.h"
 
 /* USER CODE BEGIN (1) */
+#include "HL_sys_core.h"
 /* USER CODE END */
 
 /* Defining interface for all the emac instances */
+
+/*
+ *  stuhssn@gmail.com- MUST BE DECLARED AS VOLATILE TO AVOID CACHE EFFECTS
+ *
+ *  This gets overwritten every time the code is regenerated in HALCoGen so needs to be added every time
+ */
+
 volatile hdkif_t hdkif_data[MAX_EMAC_INSTANCE];
 /*SAFETYMCUSW 25 D MR:8.7 <APPROVED> "Statically allocated memory needs to be available to entire application." */
 static uint8_t pbuf_array[MAX_RX_PBUF_ALLOC][MAX_TRANSFER_UNIT];
@@ -79,7 +87,7 @@ static uint8_t pbuf_array[MAX_RX_PBUF_ALLOC][MAX_TRANSFER_UNIT];
  **/
 /* SourceId : ETH_SourceId_001 */
 /* DesignId : ETH_DesignId_001*/
-/* Requirements : HL_CONQ_EMAC_SR9 */
+/* Requirements : HL_ETH_SR15 */
 void EMACTxIntPulseEnable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore, uint32 channel)
 {
     HWREG(emacBase + EMAC_TXINTMASKSET) |= ((uint32)1U << channel);
@@ -100,7 +108,7 @@ void EMACTxIntPulseEnable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore,
  **/
 /* SourceId : ETH_SourceId_002 */
 /* DesignId : ETH_DesignId_002*/
-/* Requirements : HL_CONQ_EMAC_SR10 */
+/* Requirements : HL_ETH_SR15 */ 
 void EMACTxIntPulseDisable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore, uint32 channel)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -122,7 +130,7 @@ void EMACTxIntPulseDisable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore
  **/
 /* SourceId : ETH_SourceId_003 */
 /* DesignId : ETH_DesignId_003*/
-/* Requirements : HL_CONQ_EMAC_SR11 */
+/* Requirements : HL_ETH_SR15 */
 void EMACRxIntPulseEnable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore, uint32 channel)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -144,7 +152,7 @@ void EMACRxIntPulseEnable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore,
  **/
 /* SourceId : ETH_SourceId_004 */
 /* DesignId : ETH_DesignId_004*/
-/* Requirements : HL_CONQ_EMAC_SR12 */
+/* Requirements : HL_ETH_SR15 */
 void EMACRxIntPulseDisable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXINTMASKCLEAR) |= ((uint32)1U << channel);
@@ -166,7 +174,7 @@ void EMACRxIntPulseDisable(uint32 emacBase, uint32 emacCtrlBase, uint32 ctrlCore
  **/
 /* SourceId : ETH_SourceId_005 */
 /* DesignId : ETH_DesignId_005*/
-/* Requirements : HL_CONQ_EMAC_SR23 */
+/* Requirements : HL_ETH_SR19 */
 void EMACRMIISpeedSet(uint32 emacBase, uint32 speed)
 {
     HWREG(emacBase + EMAC_MACCONTROL) &= (~(uint32)EMAC_MACCONTROL_RMIISPEED);
@@ -175,10 +183,10 @@ void EMACRMIISpeedSet(uint32 emacBase, uint32 speed)
 }
 /* SourceId : ETH_SourceId_006 */
 /* DesignId : ETH_DesignId_006*/
-/* Requirements : HL_CONQ_EMAC_SR21 */
+/* Requirements : HL_ETH_SR18 */
 /**
- * \brief   This API set the GMII bit, RX and TX are enabled for receive and transmit.
- *          Note: This is not the API to enable MII. 
+ * \brief   This API enables the MII control block. It also needs to be enabled in the PINMUX module.
+ *
  * \param   emacBase     Base address of the EMAC Module registers.
  *
  * \return  None
@@ -190,8 +198,8 @@ void EMACMIIEnable(uint32 emacBase)
 }
 
 /**
- * \brief   This API clears the GMII bit, Rx and Tx are held in reset.
- *			Note: This is not the API to disable MII.
+ * \brief   This API disables the MII module and holds MII Rx and Tx in reset.
+ *
  * \param   emacBase     Base address of the EMAC Module registers.
  *
  * \return  None
@@ -199,7 +207,7 @@ void EMACMIIEnable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_007 */
 /* DesignId : ETH_DesignId_007*/
-/* Requirements : HL_CONQ_EMAC_SR22 */
+/* Requirements : HL_ETH_SR18 */
 void EMACMIIDisable(uint32 emacBase)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -220,7 +228,7 @@ void EMACMIIDisable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_008 */
 /* DesignId : ETH_DesignId_008*/
-/* Requirements : HL_CONQ_EMAC_SR29 */
+/* Requirements : HL_ETH_SR21 */
 void EMACDuplexSet(uint32 emacBase, uint32 duplexMode)
 {
     HWREG(emacBase + EMAC_MACCONTROL) &= (~(uint32)EMAC_MACCONTROL_FULLDUPLEX);
@@ -240,7 +248,7 @@ void EMACDuplexSet(uint32 emacBase, uint32 duplexMode)
  **/
 /* SourceId : ETH_SourceId_009 */
 /* DesignId : ETH_DesignId_009*/
-/* Requirements : HL_CONQ_EMAC_SR30 */
+/* Requirements : HL_ETH_SR21 */
 void EMACTxEnable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_TXCONTROL) = EMAC_TXCONTROL_TXEN;
@@ -256,7 +264,7 @@ void EMACTxEnable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_010 */
 /* DesignId : ETH_DesignId_010*/
-/* Requirements : HL_CONQ_EMAC_SR31 */
+/* Requirements : HL_ETH_SR21 */
 void EMACTxDisable(uint32 emacBase)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -276,7 +284,7 @@ void EMACTxDisable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_011*/
 /* DesignId : ETH_DesignId_011*/
-/* Requirements : HL_CONQ_EMAC_SR32 */
+/* Requirements : HL_ETH_SR21 */
 void EMACRxEnable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_RXCONTROL) = EMAC_RXCONTROL_RXEN;
@@ -292,7 +300,7 @@ void EMACRxEnable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_012*/
 /* DesignId : ETH_DesignId_012*/
-/* Requirements : HL_CONQ_EMAC_SR33 */
+/* Requirements : HL_ETH_SR21 */
 void EMACRxDisable(uint32 emacBase)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -314,7 +322,7 @@ void EMACRxDisable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_013*/
 /* DesignId : ETH_DesignId_013*/
-/* Requirements : HL_CONQ_EMAC_SR17 */
+/* Requirements : HL_ETH_SR16 */
 void EMACTxHdrDescPtrWrite(uint32 emacBase, uint32 descHdr,
                            uint32 channel)
 {
@@ -335,7 +343,7 @@ void EMACTxHdrDescPtrWrite(uint32 emacBase, uint32 descHdr,
  **/
 /* SourceId : ETH_SourceId_014 */
 /* DesignId : ETH_DesignId_014*/
-/* Requirements : HL_CONQ_EMAC_SR18 */
+/* Requirements : HL_ETH_SR16 */
 void EMACRxHdrDescPtrWrite(uint32 emacBase, uint32 descHdr, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXHDP(channel)) = descHdr;
@@ -356,7 +364,7 @@ void EMACRxHdrDescPtrWrite(uint32 emacBase, uint32 descHdr, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_015 */
 /* DesignId : ETH_DesignId_015*/
-/* Requirements : HL_CONQ_EMAC_SR1 */
+/* Requirements : HL_ETH_SR6 */
 void EMACInit(uint32 emacCtrlBase, uint32 emacBase)
 {
     uint32 cnt;
@@ -412,7 +420,7 @@ void EMACInit(uint32 emacCtrlBase, uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_016 */
 /* DesignId : ETH_DesignId_016*/
-/* Requirements : HL_CONQ_EMAC_SR5 */
+/* Requirements : HL_ETH_SR7 */
 void  EMACMACSrcAddrSet(uint32 emacBase, uint8 macAddr[6])
 {
     HWREG(emacBase + EMAC_MACSRCADDRHI) = ((uint32)macAddr[5U] |((uint32)macAddr[4U] << 8U)
@@ -439,7 +447,7 @@ void  EMACMACSrcAddrSet(uint32 emacBase, uint8 macAddr[6])
  **/
 /* SourceId : ETH_SourceId_017 */
 /* DesignId : ETH_DesignId_017*/
-/* Requirements : HL_CONQ_EMAC_SR6 */
+/* Requirements : HL_ETH_SR7 */
 void EMACMACAddrSet(uint32 emacBase, uint32 channel, uint8 macAddr[6], uint32 matchFilt)
 {
     HWREG(emacBase + EMAC_MACINDEX) = channel;
@@ -468,7 +476,7 @@ void EMACMACAddrSet(uint32 emacBase, uint32 channel, uint8 macAddr[6], uint32 ma
  **/
 /* SourceId : ETH_SourceId_018 */
 /* DesignId : ETH_DesignId_018*/
-/* Requirements : HL_CONQ_EMAC_SR16 */
+/* Requirements : HL_ETH_SR15 */
 void EMACCoreIntAck(uint32 emacBase, uint32 eoiFlag)
 {
     /* Acknowledge the EMAC Control Core */
@@ -487,7 +495,7 @@ void EMACCoreIntAck(uint32 emacBase, uint32 eoiFlag)
  **/
 /* SourceId : ETH_SourceId_019 */
 /* DesignId : ETH_DesignId_019*/
-/* Requirements : HL_CONQ_EMAC_SR41 */
+/* Requirements : HL_ETH_SR27 */
 void EMACTxCPWrite(uint32 emacBase, uint32 channel, uint32 comPtr)
 {
     HWREG(emacBase + EMAC_TXCP(channel)) = comPtr;
@@ -505,7 +513,7 @@ void EMACTxCPWrite(uint32 emacBase, uint32 channel, uint32 comPtr)
  **/
 /* SourceId : ETH_SourceId_020 */
 /* DesignId : ETH_DesignId_020*/
-/* Requirements : HL_CONQ_EMAC_SR42 */
+/* Requirements : HL_ETH_SR27 */
 void EMACRxCPWrite(uint32 emacBase, uint32 channel, uint32 comPtr)
 {
     HWREG(emacBase + EMAC_RXCP(channel)) = comPtr;
@@ -522,7 +530,7 @@ void EMACRxCPWrite(uint32 emacBase, uint32 channel, uint32 comPtr)
  **/
 /* SourceId : ETH_SourceId_021 */
 /* DesignId : ETH_DesignId_021*/
-/* Requirements : HL_CONQ_EMAC_SR43 */
+/* Requirements : HL_ETH_SR28 */
 void EMACRxBroadCastEnable(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXMBPENABLE) &= (~(uint32)EMAC_RXMBPENABLE_RXBROADCH);
@@ -541,7 +549,7 @@ void EMACRxBroadCastEnable(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_022 */
 /* DesignId : ETH_DesignId_022*/
-/* Requirements : HL_CONQ_EMAC_SR44 */
+/* Requirements : HL_ETH_SR28 */
 void EMACRxBroadCastDisable(uint32 emacBase, uint32 channel)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -561,7 +569,7 @@ void EMACRxBroadCastDisable(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_023 */
 /* DesignId : ETH_DesignId_023*/
-/* Requirements : HL_CONQ_EMAC_SR45 */
+/* Requirements : HL_ETH_SR28 */
 void EMACRxMultiCastEnable(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXMBPENABLE) &= (~(uint32)EMAC_RXMBPENABLE_RXMULTCH);
@@ -580,7 +588,7 @@ void EMACRxMultiCastEnable(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_024 */
 /* DesignId : ETH_DesignId_024*/
-/* Requirements : HL_CONQ_EMAC_SR46 */
+/* Requirements : HL_ETH_SR28 */
 void EMACRxMultiCastDisable(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXMBPENABLE) &= (~(uint32)EMAC_RXMBPENABLE_RXMULTCH);
@@ -599,7 +607,7 @@ void EMACRxMultiCastDisable(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_025 */
 /* DesignId : ETH_DesignId_025*/
-/* Requirements : HL_CONQ_EMAC_SR7 */
+/* Requirements : HL_ETH_SR14 */
 void EMACRxUnicastSet(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXUNICASTSET) |= ((uint32)1U << channel);
@@ -616,7 +624,7 @@ void EMACRxUnicastSet(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_026 */
 /* DesignId : ETH_DesignId_026*/
-/* Requirements : HL_CONQ_EMAC_SR8 */
+/* Requirements : HL_ETH_SR14 */
 void EMACRxUnicastClear(uint32 emacBase, uint32 channel)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -636,7 +644,7 @@ void EMACRxUnicastClear(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_027 */
 /* DesignId : ETH_DesignId_027*/
-/* Requirements : HL_CONQ_EMAC_SR15 */
+/* Requirements : HL_ETH_SR20 */
 void EMACNumFreeBufSet(uint32 emacBase, uint32 channel,
                        uint32 nBuf)
 {
@@ -653,7 +661,7 @@ void EMACNumFreeBufSet(uint32 emacBase, uint32 channel,
  **/
 /* SourceId : ETH_SourceId_028 */
 /* DesignId : ETH_DesignId_028*/
-/* Requirements : HL_CONQ_EMAC_SR14 */
+/* Requirements : HL_ETH_SR15 */
 uint32 EMACIntVectorGet(uint32 emacBase)
 {
     return (HWREG(emacBase + EMAC_MACINVECTOR));
@@ -668,7 +676,7 @@ uint32 EMACIntVectorGet(uint32 emacBase)
 */
 /* SourceId : ETH_SourceId_029 */
 /* DesignId : ETH_DesignId_029*/
-/* Requirements : HL_CONQ_EMAC_SR3 */
+/* Requirements : HL_ETH_SR6 */
 void EMACInstConfig(hdkif_t *hdkif)
 {
     hdkif->emac_base = EMAC_0_BASE;
@@ -690,7 +698,7 @@ void EMACInstConfig(hdkif_t *hdkif)
 */
 /* SourceId : ETH_SourceId_030 */
 /* DesignId : ETH_DesignId_030*/
-/* Requirements : HL_CONQ_EMAC_SR4 */
+/* Requirements : HL_ETH_SR6 */
 uint32 EMACLinkSetup(hdkif_t *hdkif) {
   uint32 linkstat = EMAC_ERR_CONNECT;
   uint16 partnr_ablty = 0U;
@@ -742,7 +750,7 @@ uint32 EMACLinkSetup(hdkif_t *hdkif) {
  **/
 /* SourceId : ETH_SourceId_031 */
 /* DesignId : ETH_DesignId_031*/
-/* Requirements : HL_CONQ_EMAC_SR34 */
+/* Requirements : HL_ETH_SR22 */
 void EMACTxTeardown(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_TXTEARDOWN) &= (channel);
@@ -759,7 +767,7 @@ void EMACTxTeardown(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_032 */
 /* DesignId : ETH_DesignId_032*/
-/* Requirements : HL_CONQ_EMAC_SR35 */
+/* Requirements : HL_ETH_SR22 */
 void EMACRxTeardown(uint32 emacBase, uint32 channel)
 {
     HWREG(emacBase + EMAC_RXTEARDOWN) &= (channel);
@@ -777,7 +785,7 @@ void EMACRxTeardown(uint32 emacBase, uint32 channel)
  **/
 /* SourceId : ETH_SourceId_033 */
 /* DesignId : ETH_DesignId_033*/
-/* Requirements : HL_CONQ_EMAC_SR38 */
+/* Requirements : HL_ETH_SR24 */
 void EMACFrameSelect(uint32 emacBase, uint64 hashTable)
 {
     HWREG(emacBase + EMAC_MACHASH1) = (uint32)(hashTable & 0xFFFFFFFFU);
@@ -798,7 +806,7 @@ void EMACFrameSelect(uint32 emacBase, uint64 hashTable)
  **/
 /* SourceId : ETH_SourceId_034 */
 /* DesignId : ETH_DesignId_034*/
-/* Requirements : HL_CONQ_EMAC_SR39 */
+/* Requirements : HL_ETH_SR25 */
 void EMACTxPrioritySelect(uint32 emacBase, uint32 txPType)
 {
 
@@ -825,7 +833,7 @@ void EMACTxPrioritySelect(uint32 emacBase, uint32 txPType)
  **/
 /* SourceId : ETH_SourceId_035 */
 /* DesignId : ETH_DesignId_035*/
-/* Requirements : HL_CONQ_EMAC_SR40 */
+/* Requirements : HL_ETH_SR26 */
 void EMACSoftReset(uint32 emacCtrlBase, uint32 emacBase)
 {
     /* Reset the EMAC Control Module. This clears the CPPI RAM also */
@@ -857,7 +865,7 @@ void EMACSoftReset(uint32 emacCtrlBase, uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_036 */
 /* DesignId : ETH_DesignId_036*/
-/* Requirements : HL_CONQ_EMAC_SR51 */
+/* Requirements : HL_ETH_SR32 */
 void EMACEnableIdleState(uint32 emacBase)
 {
         HWREG(emacBase + EMAC_MACCONTROL) |= EMAC_MACCONTROL_CMDIDLE;
@@ -872,7 +880,7 @@ void EMACEnableIdleState(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_037 */
 /* DesignId : ETH_DesignId_037*/
-/* Requirements : HL_CONQ_EMAC_SR52 */
+/* Requirements : HL_ETH_SR32 */
 void EMACDisableIdleState(uint32 emacBase)
 {
         HWREG(emacBase + EMAC_MACCONTROL) &= (~(uint32)(EMAC_MACCONTROL_CMDIDLE));
@@ -887,7 +895,7 @@ void EMACDisableIdleState(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_038 */
 /* DesignId : ETH_DesignId_038*/
-/* Requirements : HL_CONQ_EMAC_SR70 */
+/* Requirements : HL_ETH_SR50 */
 void EMACEnableLoopback(uint32 emacBase)
 /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "LDRA Tool issue." */
 {
@@ -912,7 +920,7 @@ void EMACEnableLoopback(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_039 */
 /* DesignId : ETH_DesignId_039*/
-/* Requirements : HL_CONQ_EMAC_SR71 */
+/* Requirements : HL_ETH_SR50 */
 void EMACDisableLoopback(uint32 emacBase)
 {
     uint32 GMIIENval=0U;
@@ -937,7 +945,7 @@ void EMACDisableLoopback(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_040 */
 /* DesignId : ETH_DesignId_040*/
-/* Requirements : HL_CONQ_EMAC_SR24 */
+/* Requirements : HL_ETH_SR20 */
 void EMACTxFlowControlEnable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_MACCONTROL) |= EMAC_MACCONTROL_TXFLOWEN;
@@ -952,7 +960,7 @@ void EMACTxFlowControlEnable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_041 */
 /* DesignId : ETH_DesignId_041*/
-/* Requirements : HL_CONQ_EMAC_SR25 */
+/* Requirements : HL_ETH_SR20 */
 void EMACTxFlowControlDisable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_MACCONTROL) &= (~(uint32)EMAC_MACCONTROL_TXFLOWEN);
@@ -967,7 +975,7 @@ void EMACTxFlowControlDisable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_042 */
 /* DesignId : ETH_DesignId_042*/
-/* Requirements : HL_CONQ_EMAC_SR26 */
+/* Requirements : HL_ETH_SR20 */
 void EMACRxFlowControlEnable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_MACCONTROL) |= EMAC_MACCONTROL_RXBUFFERFLOWEN;
@@ -982,7 +990,7 @@ void EMACRxFlowControlEnable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_043 */
 /* DesignId : ETH_DesignId_043*/
-/* Requirements : HL_CONQ_EMAC_SR27 */
+/* Requirements : HL_ETH_SR20 */
 void EMACRxFlowControlDisable(uint32 emacBase)
 {
     HWREG(emacBase + EMAC_MACCONTROL) &= (~(uint32)EMAC_MACCONTROL_RXBUFFERFLOWEN);
@@ -997,8 +1005,8 @@ void EMACRxFlowControlDisable(uint32 emacBase)
  **/
 /* SourceId : ETH_SourceId_056 */
 /* DesignId : ETH_DesignId_056*/
-/* Requirements : HL_CONQ_EMAC_SR73 */
-uint32 EMACSwizzleData(uint32 word)
+/* Requirements : HL_ETH_SR78 */
+inline uint32 EMACSwizzleData(uint32 word)
 {
 #if ((__little_endian__ == 1) || (__LITTLE_ENDIAN__ == 1))
     return word;
@@ -1018,7 +1026,7 @@ uint32 EMACSwizzleData(uint32 word)
  **/
 /* SourceId : ETH_SourceId_044 */
 /* DesignId : ETH_DesignId_044*/
-/* Requirements : HL_CONQ_EMAC_SR28 */
+/* Requirements : HL_ETH_SR20 */
 void EMACRxSetFlowThreshold(uint32 emacBase, uint32 channel, uint32 threshold)
 {
     HWREG(emacBase + EMAC_RXFLOWTHRESH(channel)) &= (0x0U);
@@ -1033,7 +1041,7 @@ void EMACRxSetFlowThreshold(uint32 emacBase, uint32 channel, uint32 threshold)
  **/
 /* SourceId : ETH_SourceId_045 */
 /* DesignId : ETH_DesignId_045*/
-/* Requirements : HL_CONQ_EMAC_SR47 */
+/* Requirements : HL_ETH_SR29 */
 uint32 EMACReadNetStatRegisters(uint32 emacBase, uint32 statRegNo)
 {
     return HWREG(emacBase + EMAC_NETSTATREGS(statRegNo));
@@ -1051,7 +1059,7 @@ uint32 EMACReadNetStatRegisters(uint32 emacBase, uint32 statRegNo)
  **/
 /* SourceId : ETH_SourceId_046 */
 /* DesignId : ETH_DesignId_046*/
-/* Requirements : HL_CONQ_EMAC_SR36 */
+/* Requirements : HL_ETH_SR23 */
 void EMACTxIntStat(uint32 emacBase, uint32 channel, emac_tx_int_status_t *txintstat)
 {
     txintstat->intstatmasked = (HWREG(emacBase + EMAC_TXINTSTATMASKED) & ((uint32)1U << channel));
@@ -1069,7 +1077,7 @@ void EMACTxIntStat(uint32 emacBase, uint32 channel, emac_tx_int_status_t *txints
  **/
 /* SourceId : ETH_SourceId_047 */
 /* DesignId : ETH_DesignId_047*/
-/* Requirements : HL_CONQ_EMAC_SR37 */
+/* Requirements : HL_ETH_SR23 */
 void EMACRxIntStat(uint32 emacBase, uint32 channel, emac_rx_int_status_t *rxintstat)
 {
     rxintstat->intstatmasked_pend = (HWREG(emacBase + EMAC_RXINTSTATMASKED) & ((uint32)0x1U << (uint32)(channel)));
@@ -1089,7 +1097,7 @@ void EMACRxIntStat(uint32 emacBase, uint32 channel, emac_rx_int_status_t *rxints
  **/
 /* SourceId : ETH_SourceId_048 */
 /* DesignId : ETH_DesignId_048*/
-/* Requirements : HL_CONQ_EMAC_SR19,HL_CONQ_EMAC_SR20 */
+/* Requirements : HL_ETH_SR17,HL_ETH_SR30 */
 void EMACDMAInit(hdkif_t *hdkif)
 {
 
@@ -1212,7 +1220,7 @@ void EMACDMAInit(hdkif_t *hdkif)
  **/
 /* SourceId : ETH_SourceId_049 */
 /* DesignId : ETH_DesignId_049*/
-/* Requirements : HL_CONQ_EMAC_SR2 */
+/* Requirements : HL_ETH_SR6 */
 uint32 EMACHWInit(uint8_t macaddr[6U])
 {
   uint32 temp, channel;
@@ -1224,9 +1232,6 @@ uint32 EMACHWInit(uint8_t macaddr[6U])
   rxch_t *rxch;
   uint32 retVal = EMAC_ERR_OK;
   uint32 emacBase = 0U;
-#if(EMAC_MII_ENABLE == 0U)
-  uint16 partnr_spd;
-#endif
 
   hdkif = &hdkif_data[0U];
   EMACInstConfig(hdkif);
@@ -1272,13 +1277,6 @@ uint32 EMACHWInit(uint8_t macaddr[6U])
 
   }
 
-#if(EMAC_MII_ENABLE == 0U)
-    PhyPartnerSpdGet(hdkif->mdio_base, hdkif->phy_addr, &partnr_spd);
-    if((partnr_spd & 2U)==0U)
-	{
-		EMACRMIISpeedSet(hdkif->emac_base, EMAC_MACCONTROL_RMIISPEED);
-	}
-#endif
 
   if(!PhyLinkStatusGet(hdkif->mdio_base, (uint32)EMAC_PHYADDRESS, (uint32)phyLinkRetries)) {
       retVal = EMAC_ERR_CONNECT;
@@ -1302,9 +1300,15 @@ uint32 EMACHWInit(uint8_t macaddr[6U])
   EMACCoreIntAck(hdkif->emac_base, (uint32)EMAC_INT_CORE0_RX);
   EMACCoreIntAck(hdkif->emac_base, (uint32)EMAC_INT_CORE0_TX);
 
-  /* Enable GMII bit in the MACCONTROL Rgister*/
+  /* Enable MII if enabled in the GUI. */
   /*SAFETYMCUSW 139 S MR:13.7 <APPROVED> "Parameter is taken as input from GUI." */
-  EMACMIIEnable(hdkif->emac_base);  
+#if(EMAC_MII_ENABLE)
+      EMACMIIEnable(hdkif->emac_base);
+#else
+      /*SAFETYMCUSW 1 J MR:14.1 <APPROVED> "If condition parameter is taken as input from GUI." */  
+      EMACMIIDisable(hdkif->emac_base);
+#endif
+  
 
   /* Enable Broadcast if enabled in the GUI. */
   /*SAFETYMCUSW 139 S MR:13.7 <APPROVED> "Parameter is taken as input from GUI." */
@@ -1389,7 +1393,7 @@ uint32 EMACHWInit(uint8_t macaddr[6U])
  */
 /* SourceId : ETH_SourceId_050 */
 /* DesignId : ETH_DesignId_050*/
-/* Requirements : HL_CONQ_EMAC_SR49 */
+/* Requirements : HL_ETH_SR31 */
 boolean EMACTransmit(hdkif_t *hdkif, pbuf_t *pbuf)
 {
     
@@ -1512,7 +1516,7 @@ boolean EMACTransmit(hdkif_t *hdkif, pbuf_t *pbuf)
  */
 /* SourceId : ETH_SourceId_051 */
 /* DesignId : ETH_DesignId_051*/
-/* Requirements : HL_CONQ_EMAC_SR13 */
+/* Requirements : HL_ETH_SR15 */
 void EMACTxIntHandler(hdkif_t *hdkif)
 {
   txch_t *txch_int;
@@ -1590,7 +1594,7 @@ void EMACTxIntHandler(hdkif_t *hdkif)
  */
 /* SourceId : ETH_SourceId_052 */
 /* DesignId : ETH_DesignId_052*/
-/* Requirements : HL_CONQ_EMAC_SR50 */
+/* Requirements : HL_ETH_SR31 */
 void EMACReceive(hdkif_t *hdkif)
 {
   rxch_t *rxch_int;
@@ -1722,7 +1726,7 @@ void EMACReceive(hdkif_t *hdkif)
 */
 /* SourceId : ETH_SourceId_053 */
 /* DesignId : ETH_DesignId_053*/
-/* Requirements : HL_CONQ_EMAC_SR74 */
+/* Requirements : HL_ETH_SR52 */
 void EMACGetConfigValue(emac_config_reg_t *config_reg, config_value_type_t type)
 {
     if (type == InitialValue)
@@ -1769,7 +1773,7 @@ void EMACGetConfigValue(emac_config_reg_t *config_reg, config_value_type_t type)
 #pragma INTERRUPT(EMACTxIntISR, IRQ)
 /* SourceId : ETH_SourceId_054 */
 /* DesignId : ETH_DesignId_054*/
-/* Requirements : HL_CONQ_EMAC_SR53 */
+/* Requirements : HL_ETH_SR15 */
 void EMACTxIntISR(void)
 {
     hdkif_t *hdkif;
@@ -1800,7 +1804,7 @@ void EMACTxIntISR(void)
 #pragma INTERRUPT(EMACRxIntISR, IRQ)
 /* SourceId : ETH_SourceId_055 */
 /* DesignId : ETH_DesignId_055*/
-/* Requirements : HL_CONQ_EMAC_SR54 */
+/* Requirements : HL_ETH_SR15 */
 void EMACRxIntISR(void)
 {
     hdkif_t *hdkif;
