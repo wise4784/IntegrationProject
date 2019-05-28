@@ -179,6 +179,7 @@ static struct netif hdkNetIF[MAX_EMAC_INSTANCE];
      ** default settings.  ip_input should be used to send packets directly to
      ** the stack. The lwIP will internaly call the hdkif_init function.
      */
+
      if(NULL ==
         netif_add(&hdkNetIF[instNum], &ip_addr, &net_mask, &gw_addr, &instNum,
                hdkif_init, ip_input))
@@ -201,7 +202,7 @@ static struct netif hdkNetIF[MAX_EMAC_INSTANCE];
 
 
  	dhcp_start(&hdkNetIF[instNum]);
- 	count = 10;
+ 	count = 40;
  	/* Check for DHCP completion for 'count' number of times, each for the given delay. */
  		while(count--)
  		{
