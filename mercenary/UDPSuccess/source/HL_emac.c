@@ -1658,13 +1658,6 @@ void EMACReceive(hdkif_t *hdkif)
       /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are assigned in this driver" */            
         curr_bd = (emac_rx_bd_t *)EMACSwizzleData((uint32)curr_bd->next);
 
-        if( (0U != (curr_bd->flags_pktlen & EMACSwizzleData(EMAC_BUF_DESC_EOQ)))
-                && (NULL != curr_bd->next))
-        {
-            //see #RX_EOQ workaround
-            EMACRxHdrDescPtrWrite(hdkif->emac_base, EMACSwizzleData((uint32)(curr_bd->next)), (uint32)EMAC_CHANNELNUMBER);
-        }
-
       /* Acknowledge that this packet is processed */
       /*SAFETYMCUSW 439 S MR:11.3 <APPROVED> "Address stored in pointer is passed as as an int parameter. - Advisory as per MISRA" */
       /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are assigned in this driver" */     
@@ -1687,6 +1680,7 @@ void EMACReceive(hdkif_t *hdkif)
       /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are assigned in this driver" */     
       last_bd->next = NULL;
 
+
         /**
          * Check if the reception has ended. If the EOQ flag is set, the NULL
          * Pointer is taken by the DMA engine. So we need to write the RX HDP
@@ -1695,13 +1689,7 @@ void EMACReceive(hdkif_t *hdkif)
         /*SAFETYMCUSW 134 S MR:12.2 <APPROVED> "LDRA Tool issue" */ 
         /*SAFETYMCUSW 134 S MR:12.2 <APPROVED> "LDRA Tool issue" */
       /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are assigned in this driver" */            
-      if((EMACSwizzleData(curr_tail->flags_pktlen) & (EMAC_BUF_DESC_EOQ | EMAC_BUF_DESC_OWNER)) == EMAC_BUF_DESC_EOQ) {
-          /*
-           * Clear EMAC_BUF_DESC_EOQ flag to protect against duplicate write pointer to controller.
-           * We can do it because we know that this fragment isn't owned by EMAC.
-           * see #RX_EOQ workaround
-           */
-          curr_tail->flags_pktlen &= ~EMACSwizzleData((uint32)EMAC_BUF_DESC_EOQ);
+        if((EMACSwizzleData(curr_tail->flags_pktlen) & EMAC_BUF_DESC_EOQ) == EMAC_BUF_DESC_EOQ) {
           /*SAFETYMCUSW 439 S MR:11.3 <APPROVED> "Address stored in pointer is passed as as an int parameter. - Advisory as per MISRA" */
           /*SAFETYMCUSW 45 D MR:21.1 <APPROVED> "Valid non NULL input parameters are assigned in this driver" */             
           EMACRxHdrDescPtrWrite(hdkif->emac_base, (uint32)(rxch_int->free_head), (uint32)EMAC_CHANNELNUMBER);
@@ -1807,8 +1795,6 @@ void EMACTxIntISR(void)
  *
  * @return none
  */
-
-
 /*SAFETYMCUSW 69 S MR:3.4 <APPROVED> "#pragma required for interrupt handler." */   
 #pragma CODE_STATE(EMACRxIntISR, 32)
 /*SAFETYMCUSW 69 S MR:3.4 <APPROVED> "#pragma required for interrupt handler." */   

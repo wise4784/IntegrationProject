@@ -131,6 +131,7 @@ int main(void)
     //gioSetDirection(hetPORT1, 0xFFFFFFFF); //HDK uses NHET for LEDs
 
     //EMAC_LwIP_Main(emacAddress);
+    EMAC_LwIP_Main(emacAddress);
 
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
@@ -155,7 +156,7 @@ int main(void)
 #endif
 
 #if 1
-    if(xTaskCreate(udpTask, "udp", 4 * configMINIMAL_STACK_SIZE, NULL, 3, &xTask4Handle) != pdTRUE)
+    if(xTaskCreate(udpTask, "udp", 8 * configMINIMAL_STACK_SIZE, NULL, 3, &xTask4Handle) != pdTRUE)
     {
         while(1);
     }
@@ -176,17 +177,25 @@ int main(void)
 /* Task1 */
 void vTask1(void *pvParameters)
 {
-    EMAC_LwIP_Main(emacAddress);
 #if 1
     for(;;)
     {
+        taskENTER_CRITICAL();
+
+#if 0
         xSemaphoreTake(xSemaphore, (TickType_t) 10);
         if(xSemaphore)
         {
+#endif
             /* Taggle GIOB[6] with timer tick */
             gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
+#if 0
             xSemaphoreGive(xSemaphore);
         }
+#endif
+
+        taskEXIT_CRITICAL();
+
         vTaskDelay(300);
     }
 #endif
@@ -196,13 +205,21 @@ void vTask2(void *pvParameters)
 {
     for(;;)
     {
+        taskENTER_CRITICAL();
+
+#if 0
         xSemaphoreTake(xSemaphore, (TickType_t) 10);
         if(xSemaphore)
         {
+#endif
         /* Taggle GIOB[7] with timer tick */
             gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
+#if 0
             xSemaphoreGive(xSemaphore);
         }
+#endif
+
+        taskEXIT_CRITICAL();
         //gioSetBit(hetPORT1, 18, gioGetBit(hetPORT1, 18) ^ 1);  //LED on HDK, bottom
         vTaskDelay(500);
     }
@@ -252,10 +269,11 @@ void udpTask(void *pvParameters)
     tcp_accept(pcb, http_accept);
 #endif
     struct udp_pcb *pcb;
-    char msg[] = "udp test";
+    char msg[] = "udp test\r\n";
     struct pbuf *p;
     err_t err;
 
+#if 0
     xSemaphoreTake(xSemaphore, (TickType_t) 10);
     if(xSemaphore)
     {
@@ -264,19 +282,24 @@ void udpTask(void *pvParameters)
         udp_recv(pcb, udp_echo_recv, NULL);
         xSemaphoreGive(xSemaphore);
     }
+#else
+    pcb = udp_new();
+    udp_bind(pcb, IP_ADDR_ANY, 7777);
+#endif
 
     for(;;)
     {
-        xSemaphoreTake(xSemaphore, (TickType_t) 10);
-        if(xSemaphore)
-        {
-            p = pbuf_alloc(PBUF_TRANSPORT, sizeof(msg), PBUF_RAM);
-            memcpy(p->payload, msg, sizeof(msg));
-            udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
-            pbuf_free(p);
-            xSemaphoreGive(xSemaphore);
-        }
-        vTaskDelay(300);
+        taskENTER_CRITICAL();
+
+        p = pbuf_alloc(PBUF_TRANSPORT, sizeof(msg), PBUF_RAM);
+        memcpy(p->payload, msg, sizeof(msg));
+        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+        pbuf_free(p);
+
+        taskEXIT_CRITICAL();
+
+        vTaskDelay(500);
+        //vTaskDelay(200);
     }
 }
 

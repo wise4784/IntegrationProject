@@ -207,9 +207,9 @@ typedef struct vim_config_reg
                                 |(uint32)((uint32)SYS_IRQ << 10U)\
                                 |(uint32)((uint32)SYS_IRQ << 11U)\
                                 |(uint32)((uint32)SYS_IRQ << 12U)\
-                                |(uint32)((uint32)SYS_FIQ << 13U)\
+                                |(uint32)((uint32)SYS_IRQ << 13U)\
                                 |(uint32)((uint32)SYS_IRQ << 14U)\
-                                |(uint32)((uint32)SYS_FIQ << 15U)\
+                                |(uint32)((uint32)SYS_IRQ << 15U)\
                                 |(uint32)((uint32)SYS_IRQ << 16U)\
                                 |(uint32)((uint32)SYS_IRQ << 17U)\
                                 |(uint32)((uint32)SYS_IRQ << 18U)\
