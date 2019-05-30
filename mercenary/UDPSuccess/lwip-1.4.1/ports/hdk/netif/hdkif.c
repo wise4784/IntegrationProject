@@ -281,6 +281,7 @@ hdkif_link_setup(struct hdkif *hdkif) {
  */
 static void
 hdkif_transmit(struct hdkif *hdkif, struct pbuf *pbuf) {
+  int i;
   struct pbuf *q;
   struct txch *txch;
   volatile struct emac_tx_bdp *curr_bd, *active_head, *bd_end;
@@ -324,10 +325,22 @@ hdkif_transmit(struct hdkif *hdkif, struct pbuf *pbuf) {
    * Chain the bd's. If the DMA engine, already reached the end of the chain, 
    * the EOQ will be set. In that case, the HDP shall be written again.
    */
+#if 1
   else {
+#else
+  else if (EMAC_BUF_DESC_EOQ == (hdkif_swizzle_data(curr_bd->flags_pktlen) & EMAC_BUF_DESC_EOQ)) {
+#endif
+
+#if 0
+    for(i = 0; i < 10000; i++)
+        ;
+#endif
+
     curr_bd = txch->active_tail;
+#if 1
     /* TODO: (This is a workaround) Wait for the EOQ bit is set */
     while (EMAC_BUF_DESC_EOQ != (hdkif_swizzle_data(curr_bd->flags_pktlen) & EMAC_BUF_DESC_EOQ));
+#endif
     /* TODO: (This is a workaround) Don't write to TXHDP0 until it turns to zero */
   	while (0 != *((uint32 *)0xFCF78600));
     curr_bd->next = hdkif_swizzle_txp(active_head);

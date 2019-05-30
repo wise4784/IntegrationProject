@@ -256,6 +256,7 @@ volatile int countEMACCore0TxIsr = 0;
 #pragma INTERRUPT(EMACCore0TxIsr, IRQ)
 void EMACCore0TxIsr(void)
 {
+
 	countEMACCore0TxIsr++;
     lwIPTxIntHandler(0);
 }

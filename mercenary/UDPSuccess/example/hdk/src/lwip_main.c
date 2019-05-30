@@ -31,6 +31,9 @@
 #include "lwip/inet.h"
 #include "locator.h"
 
+#include "FreeRTOS.h"
+#include "os_task.h"
+
 #define TMS570_MDIO_BASE_ADDR 	0xFCF78900u /* Same base address for TMS570 & RM48 devices */
 #define TMS570_EMAC_BASE_ADDR	0xFCF78000u /* Same base address for TMS570 & RM48 devices */
 #define DPS83640_PHYID			0x20005CE1u	/** PHY ID Register 1 & 2 values for DPS83640 (Same for TMS570 & RM devices */
@@ -252,8 +255,12 @@ volatile int countEMACCore0RxIsr = 0;
 #pragma INTERRUPT(EMACCore0RxIsr, IRQ)
 void EMACCore0RxIsr(void)
 {
+    //taskENTER_CRITICAL();
+
 		countEMACCore0RxIsr++;
 		lwIPRxIntHandler(0);
+
+	//taskEXIT_CRITICAL();
 }
 
 /*
@@ -263,8 +270,12 @@ volatile int countEMACCore0TxIsr = 0;
 #pragma INTERRUPT(EMACCore0TxIsr, IRQ)
 void EMACCore0TxIsr(void)
 {
+    //taskENTER_CRITICAL();
+
 	countEMACCore0TxIsr++;
     lwIPTxIntHandler(0);
+
+    //taskEXIT_CRITICAL();
 }
 
 void IntMasterIRQEnable(void)

@@ -332,7 +332,8 @@
         <NAME>HL_sci.h</NAME>
       </HDRSCI>
       <SRCSCI>
-        </SRCSCI>
+        <NAME>HL_sci.c</NAME>
+      </SRCSCI>
       <HDRLIN_R>
         <NAME>HL_reg_lin.h</NAME>
       </HDRLIN_R>
@@ -676,7 +677,7 @@
         <PATH>include\HL_sci.h</PATH>
       </HDRSCI>
       <SRCSCI>
-        <PATH></PATH>
+        <PATH>source\HL_sci.c</PATH>
       </SRCSCI>
     </FILENAMES>
   </SCI>

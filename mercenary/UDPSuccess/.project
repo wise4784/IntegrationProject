@@ -28,12 +28,12 @@
 		<link>
 			<name>example</name>
 			<type>2</type>
-			<location>/home/sdr/workspace_v8/UDPSuccess/example</location>
+			<location>/home/leedh/proj/IntegrationProject/mercenary/UDPSuccess/example</location>
 		</link>
 		<link>
 			<name>lwip-1.4.1</name>
 			<type>2</type>
-			<location>/home/sdr/workspace_v8/UDPSuccess/lwip-1.4.1</location>
+			<location>/home/leedh/proj/IntegrationProject/mercenary/UDPSuccess/lwip-1.4.1</location>
 		</link>
 	</linkedResources>
 </projectDescription>
