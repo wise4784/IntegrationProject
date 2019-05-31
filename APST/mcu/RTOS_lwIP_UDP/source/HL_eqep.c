@@ -86,7 +86,7 @@ void QEPInit(void)
   eqepREG1->QUTMR    =  0x00000000U;
   
   /** - Configure unit period register   */ 
-  eqepREG1->QUPRD    =  (uint32) 0x00000000U;
+  eqepREG1->QUPRD    =  (uint32) 0x00393870U;
   
   /** - Clear Watchdog Timer register  */ 
   eqepREG1->QWDTMR   = 	(uint16) 0x00000000U;
@@ -112,7 +112,7 @@ void QEPInit(void)
   eqepREG1->QDECCTL  = (uint16)((uint16)((uint16)eQEP_QUADRATURE_COUNT << 14U)
                        | (uint16)((uint16)0U << 13U) 
 					   | (uint16)((uint16)eQEP_INDEX_PIN << 12U) 
-					   | (uint16)((uint16)eQEP_RESOLUTION_1x << 11U)
+					   | (uint16)((uint16)eQEP_RESOLUTION_2x << 11U)
 					   | (uint16)((uint16)0U << 10U)
 					   | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)0U << 8U)
@@ -130,15 +130,15 @@ void QEPInit(void)
   *     - Select Index event latch of position counter.
   *     - Select EQEP capture Latch mode
   */				   
-  eqepREG1->QEPCTL   = (uint16)((uint16)((uint16)eQEP_MAX_POSITION << 12U)
+  eqepREG1->QEPCTL   = (uint16)((uint16)((uint16)eQEP_UNITTIME_EVENT << 12U)
                        | (uint16)((uint16)0U << 11U )
-					   | (uint16)((uint16)eQEP_DIRECTON_DEPENDENT << 10U)
+					   | (uint16)((uint16)eQEP_RISING_EDGE << 10U)
                        | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)eQEP_RISING_EDGE << 8U)
 					   | (uint16)((uint16)0U << 7U)
 					   | (uint16)((uint16)eQEP_RISING_EDGE << 6U)
 					   | (uint16)((uint16)eQEP_LATCH_RISING_EDGE << 4U)
-					   | (uint16)((uint16)eQEP_ON_POSITION_COUNTER_READ << 2U)
+					   | (uint16)((uint16)eQEP_ON_UNIT_TIMOUT_EVENT << 2U)
 					   | (uint16)0x0000U);
 					   
   /** - Setup eQEP Position Control Register
@@ -180,8 +180,8 @@ void QEPInit(void)
   *     Enable / Diable QPE Interrupt
   *     Enable / Diable PCE Interrupt
   */  
-  eqepREG1->QEINT    = (uint16)((uint16)((uint16)0U << 11U)
-					   | (uint16)((uint16)0U << 10U)
+  eqepREG1->QEINT    = (uint16)((uint16)((uint16)1U << 11U)
+					   | (uint16)((uint16)1U << 10U)
 					   | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)0U << 8U)
 					   | (uint16)((uint16)0U << 7U)

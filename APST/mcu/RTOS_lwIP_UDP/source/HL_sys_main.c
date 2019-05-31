@@ -58,10 +58,11 @@
 /* Include HET header file - types, definitions and function declarations for system driver */
 #include "HL_system.h"
 #include "HL_het.h"
-#include "HL_gio.h"
 #include "HL_esm.h"
-#include "HL_sci.h"
 
+#include "HL_gio.h"
+#include "HL_sci.h"
+#include "HL_eqep.h"
 #include "HL_etpwm.h"
 #include <stdio.h>
 #include <string.h>
@@ -79,8 +80,8 @@ __error__(char *pcFilename, uint32_t ui32Line)
 #endif
 
 void vTask1(void *pvParameters);
-extern void vTask2(void *pvParameters);
-void vTask3(void *pvParameters);
+void pidTask(void *pvParameters);
+void pwmTask(void *pvParameters);
 void udpTask(void *pvParameters);
 void sciTask(void *pvParameters);
 extern void vApplicationStackOverflowHook(xTaskHandle *pxTask, signed char *pcTaskName );
@@ -89,6 +90,7 @@ extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 void sci_display_txt(sciBASE_t *sci, uint8 *txt, uint32 len);
 
 void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_addr *addr, u16_t port);
+void const_velocity(int preCNT, int setCNT, int *error, float c_time);
 
 SemaphoreHandle_t xSemaphore = NULL;
 
@@ -112,9 +114,39 @@ xTaskHandle xTask5Handle;
 uint8_t sciTest[] = {"SCI very well\r\n"};
 //uint8 length = sizeof(sciTest);
 
-uint16 pwm_CMPA;
+int pwm_CMPA;
 char buf[32] = {0};
 unsigned int buflen = 0;
+
+/* eQEP, PID 변수 */
+uint32 pcnt;    // 엔코더 cnt값
+float velocity; // 엔코더가 측정한 속도값
+float ppr = 3000; // 엔코더 ppr
+// ppr = 3000, 감속비 24, Quadrature 모드
+// 1 res의 pcnt = 3000 * 24 * 4
+// 1 res의 pcnt = 288000
+int setCNT = 7200; // 20rpm으로 동작시키기 위한 10ms당 cnt값
+int error[2] = {0,0};
+
+// Count 초기화 주기 10ms
+float Unit_freq = VCLK3_FREQ * 10000.0;
+// eqepSetUnitPeriod(eqepREG1, Unit_freq);
+
+// 엔코더 1ch 펄스당 degree
+float ppd = 0.00125; //   360 / (ppr * 24 * 4)
+// 제어주기
+float c_time = 0.01; //   Unit_freq / (VCLK3_FREQ * 1000000.0)
+
+#define Kp  2.63;
+#define Ki  8.4;
+#define Kd  0.00015;
+
+float ierr;
+float derr;
+
+float P_term;
+float I_term;
+float D_term;
 
 #define SCI_DEBUG   0 // If this value set 1, sciREG1 prints Debug messages.
 
@@ -136,30 +168,40 @@ int main(void)
 
     //VCLK3_FREQ; // 37.500F
     etpwmInit();
+    //
+    //QEPInit();
+#if 0
+    sprintf(buf, "QEP_Init\t set UNIT_TIME : %.2f msec\n\r\0", 1000 * c_time);
+    buflen = strlen(buf);
+    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+#endif
+
     /* Set high end timer GIO port pin direction to all output */
     gioInit();
     gioSetDirection(gioPORTA, 0xFFFF);
     gioSetDirection(gioPORTB, 0xFFFF);
 
+#if 1
     EMAC_LwIP_Main(emacAddress);
-
+#endif
+    // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
-    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL,  ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT), &xTask1Handle) != pdTRUE)
+    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
     }
-
+#if 0
     /* Create Task 2 */
-    if (xTaskCreate(vTask2,"Task2", configMINIMAL_STACK_SIZE, NULL, 1, &xTask2Handle) != pdTRUE)
+    if (xTaskCreate(pidTask,"PID", configMINIMAL_STACK_SIZE, NULL, 6, &xTask2Handle) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
     }
-
+#endif
     /* Create Task 3 */
-#if 1
+#if 0
     if(xTaskCreate(pwmTask, "PWM", configMINIMAL_STACK_SIZE, NULL, 2, &xTask3Handle) != pdTRUE)
     {
         while(1);
@@ -167,14 +209,14 @@ int main(void)
 #endif
     /* Create Task 4 */
 #if 1
-    if(xTaskCreate(sciTask, "SCI", 2 * configMINIMAL_STACK_SIZE, NULL, 4, &xTask5Handle) != pdTRUE)
+    if(xTaskCreate(sciTask, "SCI", 2 * configMINIMAL_STACK_SIZE, NULL, 7, &xTask5Handle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 5 */
-#if 1
-    if(xTaskCreate(udpTask, "udp", 8 * configMINIMAL_STACK_SIZE, NULL, 3, &xTask4Handle) != pdTRUE)
+#if 0
+    if(xTaskCreate(udpTask, "UDP", 8 * configMINIMAL_STACK_SIZE, NULL, 8, &xTask4Handle) != pdTRUE)
     {
         while(1);
     }
@@ -189,7 +231,6 @@ int main(void)
 
     return 0;
 }
-
 
 /* USER CODE BEGIN (4) */
 /* Task1 */
@@ -208,31 +249,37 @@ void vTask1(void *pvParameters)
 #endif
 }
 
-void vTask2(void *pvParameters)
+void pidTask(void *pvParameters)
 {
+    /*
+     * If you want to know position CNT value,
+     * Use this Function 'eqepReadPosnCount(eqepREG1)'
+     * but value clear every 10ms later.
+     */
+    taskENTER_CRITICAL();
+    etpwmStartTBCLK();
+    eqepEnableCounter(eqepREG1);
+    eqepEnableUnitTimer(eqepREG1);
+    taskEXIT_CRITICAL();
     for(;;)
     {
         taskENTER_CRITICAL();
-
-#if 0
-        xSemaphoreTake(xSemaphore, (TickType_t) 10);
-        if(xSemaphore)
+        // 10ms마다 플래그 set
+        if((eqepREG1->QFLG & 0x800) == 0x800)
         {
-#endif
-        /* Taggle GIOB[7] with timer tick */
-            gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
-#if 0
-            xSemaphoreGive(xSemaphore);
-        }
-#endif
+            pcnt = eqepReadPosnLatch(eqepREG1); // 정해놓은 시간동안 들어온 CNT 갯수
+            velocity = ((float)pcnt * ppd / c_time) / 6.0; // rpm
+            const_velocity(pcnt, setCNT, error, c_time);
 
+            // Flag가 자동 초기화가 안됌.
+            eqepClearInterruptFlag(eqepREG1, QEINT_Uto);
+        }
         taskEXIT_CRITICAL();
-        //gioSetBit(hetPORT1, 18, gioGetBit(hetPORT1, 18) ^ 1);  //LED on HDK, bottom
-        vTaskDelay(500);
+        vTaskDelay(10);
     }
 }
 
-#if 1
+#if 0
 void pwmTask(void *pvParameters)
 {
     for(;;)
@@ -272,8 +319,30 @@ void sciTask(void *pvParameters)
         buflen = strlen(buf);
         sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
+        sprintf(buf, "Velocity = %f\n\r\0", velocity);
+        buflen = strlen(buf);
+        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
+#if 0
+            duty = pwm_CMPA * 100 / PWM_freq;
+            sprintf(buf, "CMPA = %d\t Duty = %.1f%%\n\r\0", pwm_CMPA, duty);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
+            sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
+            sprintf(buf, "setCNT = %d,\t duty = %d\n\r\0", setCNT, (pcnt * 100) / setCNT);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+
+            sprintf(buf, "Velocity = %f\n\r\0", velocity);
+            buflen = strlen(buf);
+            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+#endif
         taskEXIT_CRITICAL();
-        vTaskDelay(100);
+        vTaskDelay(50);
     }
 }
 
@@ -335,6 +404,40 @@ void udpTask(void *pvParameters)
 
         vTaskDelay(500);
         //vTaskDelay(200);
+    }
+}
+
+void const_velocity(int preCNT, int setCNT, int *error, float c_time)
+{
+    error[0] = setCNT - preCNT;
+    ierr += (float)error[0] * c_time;
+    derr = (float)(error[0] - error[1]) / c_time;
+    P_term = (float)error[0] * Kp;
+    I_term = ierr * Ki;
+    D_term = derr * Kd;
+
+    error[1] = error[0];
+
+    pwm_CMPA = (int)(P_term + I_term + D_term);
+
+    if(pwm_CMPA < 0)
+    {
+        pwm_CMPA = -pwm_CMPA;
+    }
+    if(pwm_CMPA > 37500)
+    {
+        pwm_CMPA = 37500;
+    }
+    etpwmREG1->CMPA = pwm_CMPA;
+}
+
+void sci_display_txt(sciBASE_t *sci, uint8 *text, uint32 len)
+{
+    while(len--)
+    {
+        while((sci->FLR & 0x4) == 0x4)
+            ;
+        sciSendByte(sci, *text++);
     }
 }
 /* USER CODE END */

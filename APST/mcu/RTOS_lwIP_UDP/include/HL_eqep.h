@@ -451,12 +451,12 @@ typedef struct eqep_config_reg
 #define EQEP1_QPOSINIT_CONFIGVALUE ((uint32)0x00000000U)
 #define EQEP1_QPOSMAX_CONFIGVALUE ((uint32)0xFFFFFFFFU)
 #define EQEP1_QPOSCMP_CONFIGVALUE ((uint32)0x00000000U)
-#define EQEP1_QUPRD_CONFIGVALUE ((uint32)0x00000000U)
+#define EQEP1_QUPRD_CONFIGVALUE ((uint32)0x00393870U)
 #define EQEP1_QWDPRD_CONFIGVALUE ((uint16) 0x0000U)
 #define EQEP1_QDECCTL_CONFIGVALUE ((uint16)((uint16)((uint16)eQEP_QUADRATURE_COUNT << 14U)\
 								   | (uint16)((uint16)0U << 13U)\
 								   | (uint16)((uint16)eQEP_INDEX_PIN << 12U)\
-								   | (uint16)((uint16)eQEP_RESOLUTION_1x << 11U)\
+								   | (uint16)((uint16)eQEP_RESOLUTION_2x << 11U)\
 								   | (uint16)((uint16)0U << 10U)\
 								   | (uint16)((uint16)0U << 9U)\
 								   | (uint16)((uint16)0U << 8U)\
@@ -465,15 +465,15 @@ typedef struct eqep_config_reg
 								   | (uint16)((uint16)0U << 5U)\
 								   | (uint16)0x0000U))
 					 
-#define EQEP1_QEPCTL_CONFIGVALUE ((uint16)((uint16)((uint16)eQEP_MAX_POSITION << 12U)\
+#define EQEP1_QEPCTL_CONFIGVALUE ((uint16)((uint16)((uint16)eQEP_UNITTIME_EVENT << 12U)\
 								   | (uint16)((uint16)0U << 11U)\
-								   | (uint16)((uint16)eQEP_DIRECTON_DEPENDENT << 10U)\
+								   | (uint16)((uint16)eQEP_RISING_EDGE << 10U)\
 								   | (uint16)((uint16)0U << 9U)\
 								   | (uint16)((uint16)eQEP_RISING_EDGE << 8U)\
 								   | (uint16)((uint16)0U << 7U)\
 								   | (uint16)((uint16)eQEP_RISING_EDGE << 6U)\
 								   | (uint16)((uint16)eQEP_LATCH_RISING_EDGE << 4U)\
-								   | (uint16)((uint16)eQEP_ON_POSITION_COUNTER_READ << 2U)\
+								   | (uint16)((uint16)eQEP_ON_UNIT_TIMOUT_EVENT << 2U)\
 								   | (uint16)0x0000U))
 					 
 #define EQEP1_QCAPCTL_CONFIGVALUE ((uint16)((uint16)((uint16)eQEP_PS_8 << 4U)\
@@ -486,8 +486,8 @@ typedef struct eqep_config_reg
 								   | (uint16)((uint16)0x000U)\
 								   | (uint16)0x0000U))
 					   
-#define EQEP1_QEINT_CONFIGVALUE ((uint16)((uint16)((uint16)0U << 11U)\
-								   | (uint16)((uint16)0U << 10U)\
+#define EQEP1_QEINT_CONFIGVALUE ((uint16)((uint16)((uint16)1U << 11U)\
+								   | (uint16)((uint16)1U << 10U)\
 								   | (uint16)((uint16)0U << 9U)\
 								   | (uint16)((uint16)0U << 8U)\
 								   | (uint16)((uint16)0U << 7U)\

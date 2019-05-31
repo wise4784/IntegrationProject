@@ -31,9 +31,15 @@ etpwmREG1
 	duty   : 수시로 알아서 ( 엔코더 값 받아서 PID 제어)
 
 
-
 ****** eQEP ********
 
 Control period : 10ms
 Quadrature MODE
 
+
+
+****** PIN MAP ******
+
+etpwm1A - J4-7
+eQEP1A	- J1-7
+eQEP1B	- J5-8

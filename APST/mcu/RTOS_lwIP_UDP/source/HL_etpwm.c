@@ -169,7 +169,7 @@ void etpwmInit(void)
                       | (uint16)((uint16)1U << 12U));
 
 
-	etpwmStartTBCLK();
+	//etpwmStartTBCLK();
 
 /* USER CODE BEGIN (2) */
 /* USER CODE END */
@@ -241,7 +241,7 @@ void etpwmStopTBCLK(void)
 *                     - HspClkDiv_by_14
 *
 *   This function sets the TimeBase Clock and the High Speed time base clock divider
-*   TBCLK = VCLK4 / (HSPCLKDIV × CLKDIV)
+*   TBCLK = VCLK4 / (HSPCLKDIV ï¿½ CLKDIV)
 */
 /* SourceId : ETPWM_SourceId_004 */
 /* DesignId : ETPWM_DesignId_004 */
