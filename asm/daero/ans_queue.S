@@ -22,7 +22,7 @@ printq:	stmfd sp!, {lr}
 
 finp:	ldmfd sp!, {lr}
 		mov pc, lr
-*/
+
 
 pqueue:	push {fp, lr}
 		add fp, sp, #4
@@ -43,7 +43,7 @@ ploop: 	ldr r5, [r4]
 
 pfin:	sub sp, fp, #4
 		pop {fp, pc}
-
+*/
 get_node:	stmfd sp!, {lr}
 
 			mov r0, #8
@@ -71,7 +71,7 @@ enqueue:	push {fp, lr}
 			bne recurs
 			bl get_node
 			
-			str r0, [r4]
+			str r0, [r4, #4]
 			str r8, [r0, #4]
 			b fin
 recurs:		mov r0, r6
@@ -96,7 +96,7 @@ main:		push {fp, lr}
 			sub r0, fp, #8
 			bl enqueue
 
-			bl pqueue
+#			bl pqueue
 
 #			sub r0, fp, #8
 #			bl pqueue
