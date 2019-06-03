@@ -41,6 +41,7 @@ CAN_Message DemoComposeMessage();
 void EnableCaches();
 void DisableCaches();
 
+//PmodCAN.h
 PmodCAN myDevice;
 
 int main(void) {
@@ -52,6 +53,7 @@ int main(void) {
 
 void DemoInitialize() {
    EnableCaches();
+   //PmodCAN.c			xparameters.h
    CAN_begin(&myDevice, XPAR_PMODCAN_0_AXI_LITE_GPIO_BASEADDR,
          XPAR_PMODCAN_0_AXI_LITE_SPI_BASEADDR);
    CAN_Configure(&myDevice, CAN_ModeNormalOperation);
@@ -84,11 +86,11 @@ void DemoPrintMessage(CAN_Message message) {
 CAN_Message DemoComposeMessage() {
    CAN_Message message;
 
-   message.id = 0x100;
-   message.dlc = 6;
-   message.eid = 0x15a;
+   message.id = 0x2;
+   message.dlc = 0x08;
+   message.eid = 0x0;
    message.rtr = 0;
-   message.ide = 0;
+   message.ide = 0x00;
    message.data[0] = 0x01;
    message.data[1] = 0x02;
    message.data[2] = 0x04;
@@ -97,6 +99,7 @@ CAN_Message DemoComposeMessage() {
    message.data[5] = 0x20;
    message.data[6] = 0x40;
    message.data[7] = 0x80;
+
 
    return message;
 }
