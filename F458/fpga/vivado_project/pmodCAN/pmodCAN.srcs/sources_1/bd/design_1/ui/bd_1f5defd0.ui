@@ -2,32 +2,29 @@
    ExpandedHierarchyInLayout: "",
    guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -y 390 -defaultsOSRD
-preplace port ja -pg 1 -y 190 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -y 410 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 1 -y 450 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 3 -y 180 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 2 -y 120 -defaultsOSRD
-preplace inst PmodCAN_0 -pg 1 -lvl 4 -y 210 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 2 -y 440 -defaultsOSRD
-preplace netloc processing_system7_0_DDR 1 2 3 NJ 390 NJ 390 NJ
-preplace netloc PmodCAN_0_SPI_interrupt 1 0 5 20 320 NJ 320 NJ 320 980J 110 1300
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 1 680
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 2 2 650 340 1000J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 2 240 20 640
-preplace netloc PmodCAN_0_GPIO_interrupt 1 0 5 30 330 NJ 330 660J 350 NJ 350 1300
-preplace netloc ps7_0_axi_periph_M01_AXI 1 3 1 N
-preplace netloc PmodCAN_0_Pmod_out 1 4 1 NJ
-preplace netloc xlconcat_0_dout 1 1 1 N
-preplace netloc processing_system7_0_FIXED_IO 1 2 3 NJ 410 NJ 410 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 1 3 230 10 670 330 990
-preplace netloc ps7_0_axi_periph_M00_AXI 1 3 1 N
-preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 2 1 N
-levelinfo -pg 1 0 130 440 830 1150 1320 -top 0 -bot 550
+preplace port DDR -pg 1 -y 320 -defaultsOSRD
+preplace port jc -pg 1 -y 170 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 340 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 160 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 100 -defaultsOSRD
+preplace inst PmodCAN_0 -pg 1 -lvl 3 -y 190 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -y 380 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 320 NJ 320 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 440
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 2 450 310 780J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 210 430
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N
+preplace netloc PmodCAN_0_Pmod_out 1 3 1 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 340 NJ 340 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 200 460 300 760J
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N
+preplace netloc processing_system7_0_FCLK_CLK1 1 1 2 NJ 420 770
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 N
+levelinfo -pg 1 0 230 610 930 1100 -top 0 -bot 500
 ",
 }
 {
    da_axi4_cnt: "6",
-   da_clkrst_cnt: "10",
+   da_clkrst_cnt: "22",
    da_ps7_cnt: "1",
 }

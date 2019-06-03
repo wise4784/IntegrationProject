@@ -68,10 +68,13 @@ XSpi_Config CANConfig =
 */
 void CAN_begin(PmodCAN *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
    InstancePtr->GPIO_addr = GPIO_Address;
+   //PmodCAN.c
    CANConfig.BaseAddress = SPI_Address;
 
    // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
+   //xil_io.h
    Xil_Out32(InstancePtr->GPIO_addr + 4, 0b1111);
+   //PmodCAN.c
    CAN_SPIInit(&InstancePtr->CANSpi);
 }
 
@@ -111,21 +114,24 @@ void CAN_end(PmodCAN *InstancePtr) {
 */
 int CAN_SPIInit(XSpi *SpiInstancePtr) {
    int Status;
-
+   	   	   	   //xspi.c
    Status = XSpi_CfgInitialize(SpiInstancePtr, &CANConfig,
          CANConfig.BaseAddress);
+   	   	   	   	   //xstatus.h
    if (Status != XST_SUCCESS) {
       return XST_FAILURE;
    }
 
    // Change these based on your SPI device
+   	   	   	   	   //xspi.h
    u32 options = (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
-         | XSP_CLK_PHASE_1_OPTION) | XSP_MANUAL_SSELECT_OPTION;
+          | XSP_MANUAL_SSELECT_OPTION);
+   	   	   	   //xspi_options.c
    Status = XSpi_SetOptions(SpiInstancePtr, options);
    if (Status != XST_SUCCESS) {
       return XST_FAILURE;
    }
-
+   	   	   	   //xspi.c
    Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
    if (Status != XST_SUCCESS) {
       return XST_FAILURE;
@@ -134,11 +140,13 @@ int CAN_SPIInit(XSpi *SpiInstancePtr) {
    /*
     * Start the SPI driver so that the device is enabled.
     */
+   //xspi.c
    XSpi_Start(SpiInstancePtr);
 
    /*
     * Disable Global interrupt to use polled mode operation
     */
+   //xspi.h
    XSpi_IntrGlobalDisable(SpiInstancePtr);
 
    return XST_SUCCESS;
@@ -593,10 +601,9 @@ u8 CAN_RxStatus(PmodCAN *InstancePtr) {
 void CAN_Configure(PmodCAN *InstancePtr, u8 mode) {
    u8 CNF[3] = {0x86, 0xFB, 0x41};
 
-   //XSpi_WriteReg(InstancePtr->BaseAddr, XSP_DTR_OFFSET, );
    // Set CAN control mode to configuration
    CAN_ModifyReg(InstancePtr, CAN_CANCTRL_REG_ADDR, CAN_CAN_CANCTRL_MODE_MASK,
-         CAN_ModeConfiguration);
+         CAN_ModeConfiguration << CAN_CANCTRL_MODE_BIT);
 
    // Set config rate and clock for CAN
    CAN_WriteReg(InstancePtr, CAN_CNF3_REG_ADDR, CNF, 3);

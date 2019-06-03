@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Thu Apr 18 11:35:13 2019
+// Date        : Wed May 15 17:18:40 2019
 // Host        : roro-Lenovo-Y520-15IKBN running 64-bit Ubuntu 16.04.5 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/design_1_PmodCAN_0_2_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_PmodCAN_0_2 -prefix
+//               design_1_PmodCAN_0_2_ design_1_PmodCAN_0_2_sim_netlist.v
 // Design      : design_1_PmodCAN_0_2
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,267 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_PmodCAN_0_2,PmodCAN,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "PmodCAN,Vivado 2018.2" *) 
-(* NotValidForBitStream *)
-module design_1_PmodCAN_0_2
-   (AXI_LITE_GPIO_araddr,
-    AXI_LITE_GPIO_arready,
-    AXI_LITE_GPIO_arvalid,
-    AXI_LITE_GPIO_awaddr,
-    AXI_LITE_GPIO_awready,
-    AXI_LITE_GPIO_awvalid,
-    AXI_LITE_GPIO_bready,
-    AXI_LITE_GPIO_bresp,
-    AXI_LITE_GPIO_bvalid,
-    AXI_LITE_GPIO_rdata,
-    AXI_LITE_GPIO_rready,
-    AXI_LITE_GPIO_rresp,
-    AXI_LITE_GPIO_rvalid,
-    AXI_LITE_GPIO_wdata,
-    AXI_LITE_GPIO_wready,
-    AXI_LITE_GPIO_wstrb,
-    AXI_LITE_GPIO_wvalid,
-    AXI_LITE_SPI_araddr,
-    AXI_LITE_SPI_arready,
-    AXI_LITE_SPI_arvalid,
-    AXI_LITE_SPI_awaddr,
-    AXI_LITE_SPI_awready,
-    AXI_LITE_SPI_awvalid,
-    AXI_LITE_SPI_bready,
-    AXI_LITE_SPI_bresp,
-    AXI_LITE_SPI_bvalid,
-    AXI_LITE_SPI_rdata,
-    AXI_LITE_SPI_rready,
-    AXI_LITE_SPI_rresp,
-    AXI_LITE_SPI_rvalid,
-    AXI_LITE_SPI_wdata,
-    AXI_LITE_SPI_wready,
-    AXI_LITE_SPI_wstrb,
-    AXI_LITE_SPI_wvalid,
-    Pmod_out_pin10_i,
-    Pmod_out_pin10_o,
-    Pmod_out_pin10_t,
-    Pmod_out_pin1_i,
-    Pmod_out_pin1_o,
-    Pmod_out_pin1_t,
-    Pmod_out_pin2_i,
-    Pmod_out_pin2_o,
-    Pmod_out_pin2_t,
-    Pmod_out_pin3_i,
-    Pmod_out_pin3_o,
-    Pmod_out_pin3_t,
-    Pmod_out_pin4_i,
-    Pmod_out_pin4_o,
-    Pmod_out_pin4_t,
-    Pmod_out_pin7_i,
-    Pmod_out_pin7_o,
-    Pmod_out_pin7_t,
-    Pmod_out_pin8_i,
-    Pmod_out_pin8_o,
-    Pmod_out_pin8_t,
-    Pmod_out_pin9_i,
-    Pmod_out_pin9_o,
-    Pmod_out_pin9_t,
-    ext_spi_clk,
-    s_axi_aclk,
-    s_axi_aresetn,
-    SPI_interrupt,
-    GPIO_interrupt);
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARADDR" *) input [8:0]AXI_LITE_GPIO_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARREADY" *) output AXI_LITE_GPIO_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARVALID" *) input AXI_LITE_GPIO_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWADDR" *) input [8:0]AXI_LITE_GPIO_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWREADY" *) output AXI_LITE_GPIO_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWVALID" *) input AXI_LITE_GPIO_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BREADY" *) input AXI_LITE_GPIO_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BRESP" *) output [1:0]AXI_LITE_GPIO_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BVALID" *) output AXI_LITE_GPIO_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RDATA" *) output [31:0]AXI_LITE_GPIO_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RREADY" *) input AXI_LITE_GPIO_rready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RRESP" *) output [1:0]AXI_LITE_GPIO_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RVALID" *) output AXI_LITE_GPIO_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WDATA" *) input [31:0]AXI_LITE_GPIO_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WREADY" *) output AXI_LITE_GPIO_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WSTRB" *) input [3:0]AXI_LITE_GPIO_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME AXI_LITE_GPIO, DATA_WIDTH 32, PROTOCOL AXI4LITE, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input AXI_LITE_GPIO_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARADDR" *) input [6:0]AXI_LITE_SPI_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARREADY" *) output AXI_LITE_SPI_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARVALID" *) input AXI_LITE_SPI_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWADDR" *) input [6:0]AXI_LITE_SPI_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWREADY" *) output AXI_LITE_SPI_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWVALID" *) input AXI_LITE_SPI_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BREADY" *) input AXI_LITE_SPI_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BRESP" *) output [1:0]AXI_LITE_SPI_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BVALID" *) output AXI_LITE_SPI_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RDATA" *) output [31:0]AXI_LITE_SPI_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RREADY" *) input AXI_LITE_SPI_rready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RRESP" *) output [1:0]AXI_LITE_SPI_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RVALID" *) output AXI_LITE_SPI_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WDATA" *) input [31:0]AXI_LITE_SPI_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WREADY" *) output AXI_LITE_SPI_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WSTRB" *) input [3:0]AXI_LITE_SPI_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME AXI_LITE_SPI, DATA_WIDTH 32, PROTOCOL AXI4LITE, ID_WIDTH 0, ADDR_WIDTH 7, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input AXI_LITE_SPI_wvalid;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_I" *) input Pmod_out_pin10_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_O" *) output Pmod_out_pin10_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_T" *) output Pmod_out_pin10_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_I" *) input Pmod_out_pin1_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_O" *) output Pmod_out_pin1_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_T" *) output Pmod_out_pin1_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_I" *) input Pmod_out_pin2_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_O" *) output Pmod_out_pin2_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_T" *) output Pmod_out_pin2_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_I" *) input Pmod_out_pin3_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_O" *) output Pmod_out_pin3_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_T" *) output Pmod_out_pin3_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_I" *) input Pmod_out_pin4_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_O" *) output Pmod_out_pin4_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_T" *) output Pmod_out_pin4_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_I" *) input Pmod_out_pin7_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_O" *) output Pmod_out_pin7_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_T" *) output Pmod_out_pin7_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_I" *) input Pmod_out_pin8_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_O" *) output Pmod_out_pin8_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_T" *) output Pmod_out_pin8_t;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_I" *) input Pmod_out_pin9_i;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_O" *) output Pmod_out_pin9_o;
-  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_T" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Pmod_out, BUSIF.BOARD_INTERFACE Custom, BOARD.ASSOCIATED_PARAM PMOD" *) output Pmod_out_pin9_t;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.EXT_SPI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.EXT_SPI_CLK, ASSOCIATED_BUSIF Pmod_out, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input ext_spi_clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.S_AXI_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.S_AXI_ACLK, ASSOCIATED_BUSIF AXI_LITE_SPI:AXI_LITE_GPIO, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input s_axi_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.S_AXI_ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.S_AXI_ARESETN, POLARITY ACTIVE_LOW" *) input s_axi_aresetn;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 SPI_interrupt INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SPI_interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output SPI_interrupt;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 GPIO_interrupt INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME GPIO_interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output GPIO_interrupt;
-
-  wire [8:0]AXI_LITE_GPIO_araddr;
-  wire AXI_LITE_GPIO_arready;
-  wire AXI_LITE_GPIO_arvalid;
-  wire [8:0]AXI_LITE_GPIO_awaddr;
-  wire AXI_LITE_GPIO_awready;
-  wire AXI_LITE_GPIO_awvalid;
-  wire AXI_LITE_GPIO_bready;
-  wire [1:0]AXI_LITE_GPIO_bresp;
-  wire AXI_LITE_GPIO_bvalid;
-  wire [31:0]AXI_LITE_GPIO_rdata;
-  wire AXI_LITE_GPIO_rready;
-  wire [1:0]AXI_LITE_GPIO_rresp;
-  wire AXI_LITE_GPIO_rvalid;
-  wire [31:0]AXI_LITE_GPIO_wdata;
-  wire AXI_LITE_GPIO_wready;
-  wire [3:0]AXI_LITE_GPIO_wstrb;
-  wire AXI_LITE_GPIO_wvalid;
-  wire [6:0]AXI_LITE_SPI_araddr;
-  wire AXI_LITE_SPI_arready;
-  wire AXI_LITE_SPI_arvalid;
-  wire [6:0]AXI_LITE_SPI_awaddr;
-  wire AXI_LITE_SPI_awready;
-  wire AXI_LITE_SPI_awvalid;
-  wire AXI_LITE_SPI_bready;
-  wire [1:0]AXI_LITE_SPI_bresp;
-  wire AXI_LITE_SPI_bvalid;
-  wire [31:0]AXI_LITE_SPI_rdata;
-  wire AXI_LITE_SPI_rready;
-  wire [1:0]AXI_LITE_SPI_rresp;
-  wire AXI_LITE_SPI_rvalid;
-  wire [31:0]AXI_LITE_SPI_wdata;
-  wire AXI_LITE_SPI_wready;
-  wire [3:0]AXI_LITE_SPI_wstrb;
-  wire AXI_LITE_SPI_wvalid;
-  wire GPIO_interrupt;
-  wire Pmod_out_pin10_i;
-  wire Pmod_out_pin10_o;
-  wire Pmod_out_pin10_t;
-  wire Pmod_out_pin1_i;
-  wire Pmod_out_pin1_o;
-  wire Pmod_out_pin1_t;
-  wire Pmod_out_pin2_i;
-  wire Pmod_out_pin2_o;
-  wire Pmod_out_pin2_t;
-  wire Pmod_out_pin3_i;
-  wire Pmod_out_pin3_o;
-  wire Pmod_out_pin3_t;
-  wire Pmod_out_pin4_i;
-  wire Pmod_out_pin4_o;
-  wire Pmod_out_pin4_t;
-  wire Pmod_out_pin7_i;
-  wire Pmod_out_pin7_o;
-  wire Pmod_out_pin7_t;
-  wire Pmod_out_pin8_i;
-  wire Pmod_out_pin8_o;
-  wire Pmod_out_pin8_t;
-  wire Pmod_out_pin9_i;
-  wire Pmod_out_pin9_o;
-  wire Pmod_out_pin9_t;
-  wire SPI_interrupt;
-  wire ext_spi_clk;
-  wire s_axi_aclk;
-  wire s_axi_aresetn;
-
-  design_1_PmodCAN_0_2_PmodCAN inst
-       (.AXI_LITE_GPIO_araddr(AXI_LITE_GPIO_araddr),
-        .AXI_LITE_GPIO_arready(AXI_LITE_GPIO_arready),
-        .AXI_LITE_GPIO_arvalid(AXI_LITE_GPIO_arvalid),
-        .AXI_LITE_GPIO_awaddr(AXI_LITE_GPIO_awaddr),
-        .AXI_LITE_GPIO_awready(AXI_LITE_GPIO_awready),
-        .AXI_LITE_GPIO_awvalid(AXI_LITE_GPIO_awvalid),
-        .AXI_LITE_GPIO_bready(AXI_LITE_GPIO_bready),
-        .AXI_LITE_GPIO_bresp(AXI_LITE_GPIO_bresp),
-        .AXI_LITE_GPIO_bvalid(AXI_LITE_GPIO_bvalid),
-        .AXI_LITE_GPIO_rdata(AXI_LITE_GPIO_rdata),
-        .AXI_LITE_GPIO_rready(AXI_LITE_GPIO_rready),
-        .AXI_LITE_GPIO_rresp(AXI_LITE_GPIO_rresp),
-        .AXI_LITE_GPIO_rvalid(AXI_LITE_GPIO_rvalid),
-        .AXI_LITE_GPIO_wdata(AXI_LITE_GPIO_wdata),
-        .AXI_LITE_GPIO_wready(AXI_LITE_GPIO_wready),
-        .AXI_LITE_GPIO_wstrb(AXI_LITE_GPIO_wstrb),
-        .AXI_LITE_GPIO_wvalid(AXI_LITE_GPIO_wvalid),
-        .AXI_LITE_SPI_araddr(AXI_LITE_SPI_araddr),
-        .AXI_LITE_SPI_arready(AXI_LITE_SPI_arready),
-        .AXI_LITE_SPI_arvalid(AXI_LITE_SPI_arvalid),
-        .AXI_LITE_SPI_awaddr(AXI_LITE_SPI_awaddr),
-        .AXI_LITE_SPI_awready(AXI_LITE_SPI_awready),
-        .AXI_LITE_SPI_awvalid(AXI_LITE_SPI_awvalid),
-        .AXI_LITE_SPI_bready(AXI_LITE_SPI_bready),
-        .AXI_LITE_SPI_bresp(AXI_LITE_SPI_bresp),
-        .AXI_LITE_SPI_bvalid(AXI_LITE_SPI_bvalid),
-        .AXI_LITE_SPI_rdata(AXI_LITE_SPI_rdata),
-        .AXI_LITE_SPI_rready(AXI_LITE_SPI_rready),
-        .AXI_LITE_SPI_rresp(AXI_LITE_SPI_rresp),
-        .AXI_LITE_SPI_rvalid(AXI_LITE_SPI_rvalid),
-        .AXI_LITE_SPI_wdata(AXI_LITE_SPI_wdata),
-        .AXI_LITE_SPI_wready(AXI_LITE_SPI_wready),
-        .AXI_LITE_SPI_wstrb(AXI_LITE_SPI_wstrb),
-        .AXI_LITE_SPI_wvalid(AXI_LITE_SPI_wvalid),
-        .GPIO_interrupt(GPIO_interrupt),
-        .Pmod_out_pin10_i(Pmod_out_pin10_i),
-        .Pmod_out_pin10_o(Pmod_out_pin10_o),
-        .Pmod_out_pin10_t(Pmod_out_pin10_t),
-        .Pmod_out_pin1_i(Pmod_out_pin1_i),
-        .Pmod_out_pin1_o(Pmod_out_pin1_o),
-        .Pmod_out_pin1_t(Pmod_out_pin1_t),
-        .Pmod_out_pin2_i(Pmod_out_pin2_i),
-        .Pmod_out_pin2_o(Pmod_out_pin2_o),
-        .Pmod_out_pin2_t(Pmod_out_pin2_t),
-        .Pmod_out_pin3_i(Pmod_out_pin3_i),
-        .Pmod_out_pin3_o(Pmod_out_pin3_o),
-        .Pmod_out_pin3_t(Pmod_out_pin3_t),
-        .Pmod_out_pin4_i(Pmod_out_pin4_i),
-        .Pmod_out_pin4_o(Pmod_out_pin4_o),
-        .Pmod_out_pin4_t(Pmod_out_pin4_t),
-        .Pmod_out_pin7_i(Pmod_out_pin7_i),
-        .Pmod_out_pin7_o(Pmod_out_pin7_o),
-        .Pmod_out_pin7_t(Pmod_out_pin7_t),
-        .Pmod_out_pin8_i(Pmod_out_pin8_i),
-        .Pmod_out_pin8_o(Pmod_out_pin8_o),
-        .Pmod_out_pin8_t(Pmod_out_pin8_t),
-        .Pmod_out_pin9_i(Pmod_out_pin9_i),
-        .Pmod_out_pin9_o(Pmod_out_pin9_o),
-        .Pmod_out_pin9_t(Pmod_out_pin9_t),
-        .SPI_interrupt(SPI_interrupt),
-        .ext_spi_clk(ext_spi_clk),
-        .s_axi_aclk(s_axi_aclk),
-        .s_axi_aresetn(s_axi_aresetn));
-endmodule
-
-(* ORIG_REF_NAME = "GPIO_Core" *) 
 module design_1_PmodCAN_0_2_GPIO_Core
    (reg1,
     GPIO_xferAck_i,
@@ -624,7 +363,6 @@ module design_1_PmodCAN_0_2_GPIO_Core
         .O(or_ints));
 endmodule
 
-(* ORIG_REF_NAME = "PmodCAN" *) 
 module design_1_PmodCAN_0_2_PmodCAN
    (AXI_LITE_GPIO_araddr,
     AXI_LITE_GPIO_arready,
@@ -941,8 +679,7 @@ module design_1_PmodCAN_0_2_PmodCAN
         .out7_T(Pmod_out_pin10_t));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "PmodCAN_axi_gpio_0_0,axi_gpio,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "PmodCAN_axi_gpio_0_0" *) 
-(* X_CORE_INFO = "axi_gpio,Vivado 2018.2" *) 
+(* CHECK_LICENSE_TYPE = "PmodCAN_axi_gpio_0_0,axi_gpio,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_gpio,Vivado 2018.2" *) 
 module design_1_PmodCAN_0_2_PmodCAN_axi_gpio_0_0
    (s_axi_aclk,
     s_axi_aresetn,
@@ -1063,8 +800,7 @@ module design_1_PmodCAN_0_2_PmodCAN_axi_gpio_0_0
         .s_axi_wvalid(s_axi_wvalid));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "PmodCAN_axi_quad_spi_0_0,axi_quad_spi,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "PmodCAN_axi_quad_spi_0_0" *) 
-(* X_CORE_INFO = "axi_quad_spi,Vivado 2018.2" *) 
+(* CHECK_LICENSE_TYPE = "PmodCAN_axi_quad_spi_0_0,axi_quad_spi,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_quad_spi,Vivado 2018.2" *) 
 module design_1_PmodCAN_0_2_PmodCAN_axi_quad_spi_0_0
    (ext_spi_clk,
     s_axi_aclk,
@@ -1331,8 +1067,7 @@ module design_1_PmodCAN_0_2_PmodCAN_axi_quad_spi_0_0
         .usrdonets(1'b0));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "PmodCAN_pmod_bridge_0_0,pmod_concat,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "PmodCAN_pmod_bridge_0_0" *) 
-(* X_CORE_INFO = "pmod_concat,Vivado 2018.2" *) 
+(* CHECK_LICENSE_TYPE = "PmodCAN_pmod_bridge_0_0,pmod_concat,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "pmod_concat,Vivado 2018.2" *) 
 module design_1_PmodCAN_0_2_PmodCAN_pmod_bridge_0_0
    (in_bottom_bus_I,
     in_bottom_bus_O,
@@ -1533,7 +1268,6 @@ module design_1_PmodCAN_0_2_PmodCAN_pmod_bridge_0_0
         .out7_T(out7_T));
 endmodule
 
-(* ORIG_REF_NAME = "address_decoder" *) 
 module design_1_PmodCAN_0_2_address_decoder
    (\ip2bus_data_i_D1_reg[0] ,
     \Not_Dual.gpio_Data_Out_reg[3] ,
@@ -3650,7 +3384,6 @@ module design_1_PmodCAN_0_2_address_decoder__parameterized0
         .O(sw_rst_cond));
 endmodule
 
-(* ORIG_REF_NAME = "async_fifo_fg" *) 
 module design_1_PmodCAN_0_2_async_fifo_fg
    (wr_data_count,
     almost_full,
@@ -3853,7 +3586,7 @@ endmodule
 (* C_FAMILY = "zynq" *) (* C_GPIO2_WIDTH = "32" *) (* C_GPIO_WIDTH = "4" *) 
 (* C_INTERRUPT_PRESENT = "1" *) (* C_IS_DUAL = "0" *) (* C_S_AXI_ADDR_WIDTH = "9" *) 
 (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TRI_DEFAULT = "-1" *) (* C_TRI_DEFAULT_2 = "-1" *) 
-(* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "axi_gpio" *) (* ip_group = "LOGICORE" *) 
+(* DowngradeIPIdentifiedWarnings = "yes" *) (* ip_group = "LOGICORE" *) 
 module design_1_PmodCAN_0_2_axi_gpio
    (s_axi_aclk,
     s_axi_aresetn,
@@ -4257,7 +3990,6 @@ module design_1_PmodCAN_0_2_axi_gpio
         .R(bus2ip_reset));
 endmodule
 
-(* ORIG_REF_NAME = "axi_lite_ipif" *) 
 module design_1_PmodCAN_0_2_axi_lite_ipif
    (p_8_in,
     bus2ip_rnw,
@@ -5275,7 +5007,7 @@ endmodule
 (* C_S_AXI4_HIGHADDR = "0" *) (* C_S_AXI4_ID_WIDTH = "1" *) (* C_S_AXI_ADDR_WIDTH = "7" *) 
 (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TYPE_OF_AXI4_INTERFACE = "0" *) (* C_UC_FAMILY = "0" *) 
 (* C_USE_STARTUP = "0" *) (* C_USE_STARTUP_EXT = "0" *) (* C_XIP_MODE = "0" *) 
-(* DowngradeIPIdentifiedWarnings = "yes" *) (* ORIG_REF_NAME = "axi_quad_spi" *) 
+(* DowngradeIPIdentifiedWarnings = "yes" *) 
 module design_1_PmodCAN_0_2_axi_quad_spi
    (ext_spi_clk,
     s_axi_aclk,
@@ -5653,7 +5385,6 @@ module design_1_PmodCAN_0_2_axi_quad_spi
        (.P(\<const1> ));
 endmodule
 
-(* ORIG_REF_NAME = "axi_quad_spi_top" *) 
 module design_1_PmodCAN_0_2_axi_quad_spi_top
    (sck_t,
     io0_t,
@@ -6071,7 +5802,6 @@ module design_1_PmodCAN_0_2_axi_quad_spi_top
         .wr_data_count(Tx_FIFO_occ_Reversed));
 endmodule
 
-(* ORIG_REF_NAME = "cdc_sync" *) 
 module design_1_PmodCAN_0_2_cdc_sync
    (D,
     scndry_vect_out,
@@ -7997,7 +7727,6 @@ module design_1_PmodCAN_0_2_cdc_sync__parameterized3_0
         .O(Rx_FIFO_Full_Fifo_d1_synced_i));
 endmodule
 
-(* ORIG_REF_NAME = "counter_f" *) 
 module design_1_PmodCAN_0_2_counter_f
    (\FIFO_EXISTS.TX_FULL_EMP_INTR_MD_0_GEN.tx_fifo_count_d1_reg[1] ,
     tx_fifo_count,
@@ -8137,7 +7866,6 @@ module design_1_PmodCAN_0_2_counter_f
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "cross_clk_sync_fifo_1" *) 
 module design_1_PmodCAN_0_2_cross_clk_sync_fifo_1
    (D_0,
     spiXfer_done_d3,
@@ -8821,7 +8549,266 @@ module design_1_PmodCAN_0_2_cross_clk_sync_fifo_1
         .O(rst));
 endmodule
 
-(* ORIG_REF_NAME = "interrupt_control" *) 
+(* CHECK_LICENSE_TYPE = "design_1_PmodCAN_0_2,PmodCAN,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "PmodCAN,Vivado 2018.2" *) 
+(* NotValidForBitStream *)
+module design_1_PmodCAN_0_2
+   (AXI_LITE_GPIO_araddr,
+    AXI_LITE_GPIO_arready,
+    AXI_LITE_GPIO_arvalid,
+    AXI_LITE_GPIO_awaddr,
+    AXI_LITE_GPIO_awready,
+    AXI_LITE_GPIO_awvalid,
+    AXI_LITE_GPIO_bready,
+    AXI_LITE_GPIO_bresp,
+    AXI_LITE_GPIO_bvalid,
+    AXI_LITE_GPIO_rdata,
+    AXI_LITE_GPIO_rready,
+    AXI_LITE_GPIO_rresp,
+    AXI_LITE_GPIO_rvalid,
+    AXI_LITE_GPIO_wdata,
+    AXI_LITE_GPIO_wready,
+    AXI_LITE_GPIO_wstrb,
+    AXI_LITE_GPIO_wvalid,
+    AXI_LITE_SPI_araddr,
+    AXI_LITE_SPI_arready,
+    AXI_LITE_SPI_arvalid,
+    AXI_LITE_SPI_awaddr,
+    AXI_LITE_SPI_awready,
+    AXI_LITE_SPI_awvalid,
+    AXI_LITE_SPI_bready,
+    AXI_LITE_SPI_bresp,
+    AXI_LITE_SPI_bvalid,
+    AXI_LITE_SPI_rdata,
+    AXI_LITE_SPI_rready,
+    AXI_LITE_SPI_rresp,
+    AXI_LITE_SPI_rvalid,
+    AXI_LITE_SPI_wdata,
+    AXI_LITE_SPI_wready,
+    AXI_LITE_SPI_wstrb,
+    AXI_LITE_SPI_wvalid,
+    Pmod_out_pin10_i,
+    Pmod_out_pin10_o,
+    Pmod_out_pin10_t,
+    Pmod_out_pin1_i,
+    Pmod_out_pin1_o,
+    Pmod_out_pin1_t,
+    Pmod_out_pin2_i,
+    Pmod_out_pin2_o,
+    Pmod_out_pin2_t,
+    Pmod_out_pin3_i,
+    Pmod_out_pin3_o,
+    Pmod_out_pin3_t,
+    Pmod_out_pin4_i,
+    Pmod_out_pin4_o,
+    Pmod_out_pin4_t,
+    Pmod_out_pin7_i,
+    Pmod_out_pin7_o,
+    Pmod_out_pin7_t,
+    Pmod_out_pin8_i,
+    Pmod_out_pin8_o,
+    Pmod_out_pin8_t,
+    Pmod_out_pin9_i,
+    Pmod_out_pin9_o,
+    Pmod_out_pin9_t,
+    ext_spi_clk,
+    s_axi_aclk,
+    s_axi_aresetn,
+    SPI_interrupt,
+    GPIO_interrupt);
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARADDR" *) input [8:0]AXI_LITE_GPIO_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARREADY" *) output AXI_LITE_GPIO_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO ARVALID" *) input AXI_LITE_GPIO_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWADDR" *) input [8:0]AXI_LITE_GPIO_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWREADY" *) output AXI_LITE_GPIO_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO AWVALID" *) input AXI_LITE_GPIO_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BREADY" *) input AXI_LITE_GPIO_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BRESP" *) output [1:0]AXI_LITE_GPIO_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO BVALID" *) output AXI_LITE_GPIO_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RDATA" *) output [31:0]AXI_LITE_GPIO_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RREADY" *) input AXI_LITE_GPIO_rready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RRESP" *) output [1:0]AXI_LITE_GPIO_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO RVALID" *) output AXI_LITE_GPIO_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WDATA" *) input [31:0]AXI_LITE_GPIO_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WREADY" *) output AXI_LITE_GPIO_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WSTRB" *) input [3:0]AXI_LITE_GPIO_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_GPIO WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME AXI_LITE_GPIO, DATA_WIDTH 32, PROTOCOL AXI4LITE, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, FREQ_HZ 10000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input AXI_LITE_GPIO_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARADDR" *) input [6:0]AXI_LITE_SPI_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARREADY" *) output AXI_LITE_SPI_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI ARVALID" *) input AXI_LITE_SPI_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWADDR" *) input [6:0]AXI_LITE_SPI_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWREADY" *) output AXI_LITE_SPI_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI AWVALID" *) input AXI_LITE_SPI_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BREADY" *) input AXI_LITE_SPI_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BRESP" *) output [1:0]AXI_LITE_SPI_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI BVALID" *) output AXI_LITE_SPI_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RDATA" *) output [31:0]AXI_LITE_SPI_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RREADY" *) input AXI_LITE_SPI_rready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RRESP" *) output [1:0]AXI_LITE_SPI_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI RVALID" *) output AXI_LITE_SPI_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WDATA" *) input [31:0]AXI_LITE_SPI_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WREADY" *) output AXI_LITE_SPI_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WSTRB" *) input [3:0]AXI_LITE_SPI_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 AXI_LITE_SPI WVALID" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME AXI_LITE_SPI, DATA_WIDTH 32, PROTOCOL AXI4LITE, ID_WIDTH 0, ADDR_WIDTH 7, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, FREQ_HZ 10000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input AXI_LITE_SPI_wvalid;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_I" *) input Pmod_out_pin10_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_O" *) output Pmod_out_pin10_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN10_T" *) output Pmod_out_pin10_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_I" *) input Pmod_out_pin1_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_O" *) output Pmod_out_pin1_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN1_T" *) output Pmod_out_pin1_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_I" *) input Pmod_out_pin2_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_O" *) output Pmod_out_pin2_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN2_T" *) output Pmod_out_pin2_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_I" *) input Pmod_out_pin3_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_O" *) output Pmod_out_pin3_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN3_T" *) output Pmod_out_pin3_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_I" *) input Pmod_out_pin4_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_O" *) output Pmod_out_pin4_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN4_T" *) output Pmod_out_pin4_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_I" *) input Pmod_out_pin7_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_O" *) output Pmod_out_pin7_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN7_T" *) output Pmod_out_pin7_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_I" *) input Pmod_out_pin8_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_O" *) output Pmod_out_pin8_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN8_T" *) output Pmod_out_pin8_t;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_I" *) input Pmod_out_pin9_i;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_O" *) output Pmod_out_pin9_o;
+  (* X_INTERFACE_INFO = "digilentinc.com:interface:pmod:1.0 Pmod_out PIN9_T" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME Pmod_out, BUSIF.BOARD_INTERFACE Custom, BOARD.ASSOCIATED_PARAM PMOD" *) output Pmod_out_pin9_t;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.EXT_SPI_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.EXT_SPI_CLK, ASSOCIATED_BUSIF Pmod_out, FREQ_HZ 10000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input ext_spi_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.S_AXI_ACLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.S_AXI_ACLK, ASSOCIATED_BUSIF AXI_LITE_SPI:AXI_LITE_GPIO, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 10000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *) input s_axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.S_AXI_ARESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.S_AXI_ARESETN, POLARITY ACTIVE_LOW" *) input s_axi_aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 SPI_interrupt INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SPI_interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output SPI_interrupt;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 GPIO_interrupt INTERRUPT" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME GPIO_interrupt, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output GPIO_interrupt;
+
+  wire [8:0]AXI_LITE_GPIO_araddr;
+  wire AXI_LITE_GPIO_arready;
+  wire AXI_LITE_GPIO_arvalid;
+  wire [8:0]AXI_LITE_GPIO_awaddr;
+  wire AXI_LITE_GPIO_awready;
+  wire AXI_LITE_GPIO_awvalid;
+  wire AXI_LITE_GPIO_bready;
+  wire [1:0]AXI_LITE_GPIO_bresp;
+  wire AXI_LITE_GPIO_bvalid;
+  wire [31:0]AXI_LITE_GPIO_rdata;
+  wire AXI_LITE_GPIO_rready;
+  wire [1:0]AXI_LITE_GPIO_rresp;
+  wire AXI_LITE_GPIO_rvalid;
+  wire [31:0]AXI_LITE_GPIO_wdata;
+  wire AXI_LITE_GPIO_wready;
+  wire [3:0]AXI_LITE_GPIO_wstrb;
+  wire AXI_LITE_GPIO_wvalid;
+  wire [6:0]AXI_LITE_SPI_araddr;
+  wire AXI_LITE_SPI_arready;
+  wire AXI_LITE_SPI_arvalid;
+  wire [6:0]AXI_LITE_SPI_awaddr;
+  wire AXI_LITE_SPI_awready;
+  wire AXI_LITE_SPI_awvalid;
+  wire AXI_LITE_SPI_bready;
+  wire [1:0]AXI_LITE_SPI_bresp;
+  wire AXI_LITE_SPI_bvalid;
+  wire [31:0]AXI_LITE_SPI_rdata;
+  wire AXI_LITE_SPI_rready;
+  wire [1:0]AXI_LITE_SPI_rresp;
+  wire AXI_LITE_SPI_rvalid;
+  wire [31:0]AXI_LITE_SPI_wdata;
+  wire AXI_LITE_SPI_wready;
+  wire [3:0]AXI_LITE_SPI_wstrb;
+  wire AXI_LITE_SPI_wvalid;
+  wire GPIO_interrupt;
+  wire Pmod_out_pin10_i;
+  wire Pmod_out_pin10_o;
+  wire Pmod_out_pin10_t;
+  wire Pmod_out_pin1_i;
+  wire Pmod_out_pin1_o;
+  wire Pmod_out_pin1_t;
+  wire Pmod_out_pin2_i;
+  wire Pmod_out_pin2_o;
+  wire Pmod_out_pin2_t;
+  wire Pmod_out_pin3_i;
+  wire Pmod_out_pin3_o;
+  wire Pmod_out_pin3_t;
+  wire Pmod_out_pin4_i;
+  wire Pmod_out_pin4_o;
+  wire Pmod_out_pin4_t;
+  wire Pmod_out_pin7_i;
+  wire Pmod_out_pin7_o;
+  wire Pmod_out_pin7_t;
+  wire Pmod_out_pin8_i;
+  wire Pmod_out_pin8_o;
+  wire Pmod_out_pin8_t;
+  wire Pmod_out_pin9_i;
+  wire Pmod_out_pin9_o;
+  wire Pmod_out_pin9_t;
+  wire SPI_interrupt;
+  wire ext_spi_clk;
+  wire s_axi_aclk;
+  wire s_axi_aresetn;
+
+  design_1_PmodCAN_0_2_PmodCAN inst
+       (.AXI_LITE_GPIO_araddr(AXI_LITE_GPIO_araddr),
+        .AXI_LITE_GPIO_arready(AXI_LITE_GPIO_arready),
+        .AXI_LITE_GPIO_arvalid(AXI_LITE_GPIO_arvalid),
+        .AXI_LITE_GPIO_awaddr(AXI_LITE_GPIO_awaddr),
+        .AXI_LITE_GPIO_awready(AXI_LITE_GPIO_awready),
+        .AXI_LITE_GPIO_awvalid(AXI_LITE_GPIO_awvalid),
+        .AXI_LITE_GPIO_bready(AXI_LITE_GPIO_bready),
+        .AXI_LITE_GPIO_bresp(AXI_LITE_GPIO_bresp),
+        .AXI_LITE_GPIO_bvalid(AXI_LITE_GPIO_bvalid),
+        .AXI_LITE_GPIO_rdata(AXI_LITE_GPIO_rdata),
+        .AXI_LITE_GPIO_rready(AXI_LITE_GPIO_rready),
+        .AXI_LITE_GPIO_rresp(AXI_LITE_GPIO_rresp),
+        .AXI_LITE_GPIO_rvalid(AXI_LITE_GPIO_rvalid),
+        .AXI_LITE_GPIO_wdata(AXI_LITE_GPIO_wdata),
+        .AXI_LITE_GPIO_wready(AXI_LITE_GPIO_wready),
+        .AXI_LITE_GPIO_wstrb(AXI_LITE_GPIO_wstrb),
+        .AXI_LITE_GPIO_wvalid(AXI_LITE_GPIO_wvalid),
+        .AXI_LITE_SPI_araddr(AXI_LITE_SPI_araddr),
+        .AXI_LITE_SPI_arready(AXI_LITE_SPI_arready),
+        .AXI_LITE_SPI_arvalid(AXI_LITE_SPI_arvalid),
+        .AXI_LITE_SPI_awaddr(AXI_LITE_SPI_awaddr),
+        .AXI_LITE_SPI_awready(AXI_LITE_SPI_awready),
+        .AXI_LITE_SPI_awvalid(AXI_LITE_SPI_awvalid),
+        .AXI_LITE_SPI_bready(AXI_LITE_SPI_bready),
+        .AXI_LITE_SPI_bresp(AXI_LITE_SPI_bresp),
+        .AXI_LITE_SPI_bvalid(AXI_LITE_SPI_bvalid),
+        .AXI_LITE_SPI_rdata(AXI_LITE_SPI_rdata),
+        .AXI_LITE_SPI_rready(AXI_LITE_SPI_rready),
+        .AXI_LITE_SPI_rresp(AXI_LITE_SPI_rresp),
+        .AXI_LITE_SPI_rvalid(AXI_LITE_SPI_rvalid),
+        .AXI_LITE_SPI_wdata(AXI_LITE_SPI_wdata),
+        .AXI_LITE_SPI_wready(AXI_LITE_SPI_wready),
+        .AXI_LITE_SPI_wstrb(AXI_LITE_SPI_wstrb),
+        .AXI_LITE_SPI_wvalid(AXI_LITE_SPI_wvalid),
+        .GPIO_interrupt(GPIO_interrupt),
+        .Pmod_out_pin10_i(Pmod_out_pin10_i),
+        .Pmod_out_pin10_o(Pmod_out_pin10_o),
+        .Pmod_out_pin10_t(Pmod_out_pin10_t),
+        .Pmod_out_pin1_i(Pmod_out_pin1_i),
+        .Pmod_out_pin1_o(Pmod_out_pin1_o),
+        .Pmod_out_pin1_t(Pmod_out_pin1_t),
+        .Pmod_out_pin2_i(Pmod_out_pin2_i),
+        .Pmod_out_pin2_o(Pmod_out_pin2_o),
+        .Pmod_out_pin2_t(Pmod_out_pin2_t),
+        .Pmod_out_pin3_i(Pmod_out_pin3_i),
+        .Pmod_out_pin3_o(Pmod_out_pin3_o),
+        .Pmod_out_pin3_t(Pmod_out_pin3_t),
+        .Pmod_out_pin4_i(Pmod_out_pin4_i),
+        .Pmod_out_pin4_o(Pmod_out_pin4_o),
+        .Pmod_out_pin4_t(Pmod_out_pin4_t),
+        .Pmod_out_pin7_i(Pmod_out_pin7_i),
+        .Pmod_out_pin7_o(Pmod_out_pin7_o),
+        .Pmod_out_pin7_t(Pmod_out_pin7_t),
+        .Pmod_out_pin8_i(Pmod_out_pin8_i),
+        .Pmod_out_pin8_o(Pmod_out_pin8_o),
+        .Pmod_out_pin8_t(Pmod_out_pin8_t),
+        .Pmod_out_pin9_i(Pmod_out_pin9_i),
+        .Pmod_out_pin9_o(Pmod_out_pin9_o),
+        .Pmod_out_pin9_t(Pmod_out_pin9_t),
+        .SPI_interrupt(SPI_interrupt),
+        .ext_spi_clk(ext_spi_clk),
+        .s_axi_aclk(s_axi_aclk),
+        .s_axi_aresetn(s_axi_aresetn));
+endmodule
+
 module design_1_PmodCAN_0_2_interrupt_control
    (irpt_wrack_d1,
     p_3_in,
@@ -9322,7 +9309,7 @@ module design_1_PmodCAN_0_2_interrupt_control__parameterized0
         .R(reset2ip_reset_int));
 endmodule
 
-(* Bottom_Row_Interface = "GPIO" *) (* ORIG_REF_NAME = "pmod_concat" *) (* Top_Row_Interface = "SPI" *) 
+(* Bottom_Row_Interface = "GPIO" *) (* Top_Row_Interface = "SPI" *) 
 module design_1_PmodCAN_0_2_pmod_concat
    (in_top_bus_I,
     in_top_bus_O,
@@ -9521,7 +9508,6 @@ module design_1_PmodCAN_0_2_pmod_concat
        (.G(\<const0> ));
 endmodule
 
-(* ORIG_REF_NAME = "qspi_cntrl_reg" *) 
 module design_1_PmodCAN_0_2_qspi_cntrl_reg
    (spicr_bits_7_8_frm_axi_clk,
     prmry_in,
@@ -9690,7 +9676,6 @@ module design_1_PmodCAN_0_2_qspi_cntrl_reg
         .R(reset2ip_reset_int));
 endmodule
 
-(* ORIG_REF_NAME = "qspi_core_interface" *) 
 module design_1_PmodCAN_0_2_qspi_core_interface
    (dout,
     empty,
@@ -10779,7 +10764,6 @@ module design_1_PmodCAN_0_2_qspi_core_interface
         .R(reset2ip_reset_int));
 endmodule
 
-(* ORIG_REF_NAME = "qspi_fifo_ifmodule" *) 
 module design_1_PmodCAN_0_2_qspi_fifo_ifmodule
    (\LEGACY_MD_WR_RD_ACK_GEN.IP2Bus_Error_reg ,
     tx_FIFO_Occpncy_MSB_d1,
@@ -10903,7 +10887,6 @@ module design_1_PmodCAN_0_2_qspi_fifo_ifmodule
         .R(reset2ip_reset_int));
 endmodule
 
-(* ORIG_REF_NAME = "qspi_mode_0_module" *) 
 module design_1_PmodCAN_0_2_qspi_mode_0_module
    (sck_t,
     io0_t,
@@ -12460,7 +12443,6 @@ module design_1_PmodCAN_0_2_qspi_mode_0_module
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "qspi_status_slave_sel_reg" *) 
 module design_1_PmodCAN_0_2_qspi_status_slave_sel_reg
    (\GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to ,
     \GENERATE_LEVEL_P_S_CDC.SINGLE_BIT.CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to_0 ,
@@ -12515,7 +12497,6 @@ module design_1_PmodCAN_0_2_qspi_status_slave_sel_reg
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "reset_sync_module" *) 
 module design_1_PmodCAN_0_2_reset_sync_module
    (Allow_MODF_Strobe_reg,
     Rst_to_spi,
@@ -12579,7 +12560,6 @@ module design_1_PmodCAN_0_2_reset_sync_module
         .O(Allow_MODF_Strobe_reg));
 endmodule
 
-(* ORIG_REF_NAME = "slave_attachment" *) 
 module design_1_PmodCAN_0_2_slave_attachment
    (\ip2bus_data_i_D1_reg[0] ,
     Bus_RNW_reg_reg,
@@ -14211,7 +14191,6 @@ module design_1_PmodCAN_0_2_slave_attachment__parameterized0
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "soft_reset" *) 
 module design_1_PmodCAN_0_2_soft_reset
    (sw_rst_cond_d1,
     \FIFO_EXISTS.TX_FULL_EMP_INTR_MD_0_GEN.Tx_FIFO_Full_i_reg ,
@@ -14682,10 +14661,9 @@ module design_1_PmodCAN_0_2_soft_reset
         .R(bus2ip_reset_ipif_inverted));
 endmodule
 
-(* DEST_SYNC_FF = "2" *) (* INIT_SYNC_FF = "1" *) (* ORIG_REF_NAME = "xpm_cdc_gray" *) 
-(* REG_OUTPUT = "0" *) (* SIM_ASSERT_CHK = "0" *) (* SIM_LOSSLESS_GRAY_CHK = "0" *) 
-(* VERSION = "0" *) (* WIDTH = "4" *) (* XPM_MODULE = "TRUE" *) 
-(* xpm_cdc = "GRAY" *) 
+(* DEST_SYNC_FF = "2" *) (* INIT_SYNC_FF = "1" *) (* REG_OUTPUT = "0" *) 
+(* SIM_ASSERT_CHK = "0" *) (* SIM_LOSSLESS_GRAY_CHK = "0" *) (* VERSION = "0" *) 
+(* WIDTH = "4" *) (* XPM_MODULE = "TRUE" *) (* xpm_cdc = "GRAY" *) 
 module design_1_PmodCAN_0_2_xpm_cdc_gray
    (src_clk,
     src_in_bin,
@@ -16343,8 +16321,8 @@ module design_1_PmodCAN_0_2_xpm_cdc_gray__parameterized1__2
 endmodule
 
 (* DEF_VAL = "1'b0" *) (* DEST_SYNC_FF = "2" *) (* INIT = "0" *) 
-(* INIT_SYNC_FF = "1" *) (* ORIG_REF_NAME = "xpm_cdc_sync_rst" *) (* SIM_ASSERT_CHK = "0" *) 
-(* VERSION = "0" *) (* XPM_MODULE = "TRUE" *) (* xpm_cdc = "SYNC_RST" *) 
+(* INIT_SYNC_FF = "1" *) (* SIM_ASSERT_CHK = "0" *) (* VERSION = "0" *) 
+(* XPM_MODULE = "TRUE" *) (* xpm_cdc = "SYNC_RST" *) 
 module design_1_PmodCAN_0_2_xpm_cdc_sync_rst
    (src_rst,
     dest_clk,
@@ -16502,7 +16480,6 @@ module design_1_PmodCAN_0_2_xpm_cdc_sync_rst__4
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_counter_updn" *) 
 module design_1_PmodCAN_0_2_xpm_counter_updn
    (Q,
     wrst_busy,
@@ -18224,7 +18201,6 @@ module design_1_PmodCAN_0_2_xpm_counter_updn__parameterized3_4
         .R(wrst_busy));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_async" *) 
 module design_1_PmodCAN_0_2_xpm_fifo_async
    (wr_data_count,
     almost_full,
@@ -18726,16 +18702,16 @@ endmodule
 (* EN_WDC = "1'b1" *) (* FG_EQ_ASYM_DOUT = "1'b0" *) (* FIFO_MEMORY_TYPE = "0" *) 
 (* FIFO_MEM_TYPE = "0" *) (* FIFO_READ_DEPTH = "16" *) (* FIFO_READ_LATENCY = "0" *) 
 (* FIFO_SIZE = "128" *) (* FIFO_WRITE_DEPTH = "16" *) (* FULL_RESET_VALUE = "1" *) 
-(* FULL_RST_VAL = "1'b1" *) (* ORIG_REF_NAME = "xpm_fifo_base" *) (* PE_THRESH_ADJ = "8" *) 
-(* PE_THRESH_MAX = "11" *) (* PE_THRESH_MIN = "5" *) (* PF_THRESH_ADJ = "8" *) 
-(* PF_THRESH_MAX = "11" *) (* PF_THRESH_MIN = "7" *) (* PROG_EMPTY_THRESH = "10" *) 
-(* PROG_FULL_THRESH = "10" *) (* RD_DATA_COUNT_WIDTH = "5" *) (* RD_DC_WIDTH_EXT = "5" *) 
-(* RD_LATENCY = "2" *) (* RD_MODE = "1" *) (* RD_PNTR_WIDTH = "4" *) 
-(* READ_DATA_WIDTH = "8" *) (* READ_MODE = "1" *) (* RELATED_CLOCKS = "0" *) 
-(* REMOVE_WR_RD_PROT_LOGIC = "0" *) (* SIM_ASSERT_CHK = "0" *) (* USE_ADV_FEATURES = "1F1F" *) 
-(* VERSION = "0" *) (* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH = "8" *) 
-(* WR_DATA_COUNT_WIDTH = "5" *) (* WR_DC_WIDTH_EXT = "5" *) (* WR_PNTR_WIDTH = "4" *) 
-(* WR_RD_RATIO = "0" *) (* XPM_MODULE = "TRUE" *) 
+(* FULL_RST_VAL = "1'b1" *) (* PE_THRESH_ADJ = "8" *) (* PE_THRESH_MAX = "11" *) 
+(* PE_THRESH_MIN = "5" *) (* PF_THRESH_ADJ = "8" *) (* PF_THRESH_MAX = "11" *) 
+(* PF_THRESH_MIN = "7" *) (* PROG_EMPTY_THRESH = "10" *) (* PROG_FULL_THRESH = "10" *) 
+(* RD_DATA_COUNT_WIDTH = "5" *) (* RD_DC_WIDTH_EXT = "5" *) (* RD_LATENCY = "2" *) 
+(* RD_MODE = "1" *) (* RD_PNTR_WIDTH = "4" *) (* READ_DATA_WIDTH = "8" *) 
+(* READ_MODE = "1" *) (* RELATED_CLOCKS = "0" *) (* REMOVE_WR_RD_PROT_LOGIC = "0" *) 
+(* SIM_ASSERT_CHK = "0" *) (* USE_ADV_FEATURES = "1F1F" *) (* VERSION = "0" *) 
+(* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH = "8" *) (* WR_DATA_COUNT_WIDTH = "5" *) 
+(* WR_DC_WIDTH_EXT = "5" *) (* WR_PNTR_WIDTH = "4" *) (* WR_RD_RATIO = "0" *) 
+(* XPM_MODULE = "TRUE" *) 
 module design_1_PmodCAN_0_2_xpm_fifo_base
    (sleep,
     rst,
@@ -20178,7 +20154,6 @@ module design_1_PmodCAN_0_2_xpm_fifo_base__xdcDup__1
         .wrst_busy(wrst_busy));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_reg_bit" *) 
 module design_1_PmodCAN_0_2_xpm_fifo_reg_bit
    (rst_d1,
     \gen_pf_ic_rc.gpf_ic.prog_full_i_reg ,
@@ -20324,7 +20299,6 @@ module design_1_PmodCAN_0_2_xpm_fifo_reg_bit_13
         .O(overflow_i0));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_reg_vec" *) 
 module design_1_PmodCAN_0_2_xpm_fifo_reg_vec
    (\gen_pf_ic_rc.gaf_ic.ram_afull_i_reg ,
     diff_pntr_pf_q0,
@@ -21332,7 +21306,6 @@ module design_1_PmodCAN_0_2_xpm_fifo_reg_vec__parameterized0_9
         .R(\gen_rst_ic.fifo_rd_rst_ic_reg ));
 endmodule
 
-(* ORIG_REF_NAME = "xpm_fifo_rst" *) 
 module design_1_PmodCAN_0_2_xpm_fifo_rst
    (\syncstages_ff_reg[0] ,
     wrst_busy,
@@ -22067,22 +22040,21 @@ endmodule
 (* ECC_MODE = "0" *) (* MAX_NUM_CHAR = "0" *) (* MEMORY_INIT_FILE = "none" *) 
 (* MEMORY_INIT_PARAM = "" *) (* MEMORY_OPTIMIZATION = "true" *) (* MEMORY_PRIMITIVE = "0" *) 
 (* MEMORY_SIZE = "128" *) (* MEMORY_TYPE = "1" *) (* MESSAGE_CONTROL = "0" *) 
-(* NUM_CHAR_LOC = "0" *) (* ORIG_REF_NAME = "xpm_memory_base" *) (* P_ECC_MODE = "no_ecc" *) 
-(* P_ENABLE_BYTE_WRITE_A = "0" *) (* P_ENABLE_BYTE_WRITE_B = "0" *) (* P_MAX_DEPTH_DATA = "16" *) 
-(* P_MEMORY_OPT = "yes" *) (* P_MEMORY_PRIMITIVE = "auto" *) (* P_MIN_WIDTH_DATA = "8" *) 
-(* P_MIN_WIDTH_DATA_A = "8" *) (* P_MIN_WIDTH_DATA_B = "8" *) (* P_MIN_WIDTH_DATA_ECC = "8" *) 
-(* P_MIN_WIDTH_DATA_LDW = "4" *) (* P_MIN_WIDTH_DATA_SHFT = "8" *) (* P_NUM_COLS_WRITE_A = "1" *) 
-(* P_NUM_COLS_WRITE_B = "1" *) (* P_NUM_ROWS_READ_A = "1" *) (* P_NUM_ROWS_READ_B = "1" *) 
-(* P_NUM_ROWS_WRITE_A = "1" *) (* P_NUM_ROWS_WRITE_B = "1" *) (* P_SDP_WRITE_MODE = "yes" *) 
-(* P_WIDTH_ADDR_LSB_READ_A = "0" *) (* P_WIDTH_ADDR_LSB_READ_B = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_A = "0" *) 
-(* P_WIDTH_ADDR_LSB_WRITE_B = "0" *) (* P_WIDTH_ADDR_READ_A = "4" *) (* P_WIDTH_ADDR_READ_B = "4" *) 
-(* P_WIDTH_ADDR_WRITE_A = "4" *) (* P_WIDTH_ADDR_WRITE_B = "4" *) (* P_WIDTH_COL_WRITE_A = "8" *) 
-(* P_WIDTH_COL_WRITE_B = "8" *) (* READ_DATA_WIDTH_A = "8" *) (* READ_DATA_WIDTH_B = "8" *) 
-(* READ_LATENCY_A = "2" *) (* READ_LATENCY_B = "2" *) (* READ_RESET_VALUE_A = "0" *) 
-(* READ_RESET_VALUE_B = "0" *) (* USE_EMBEDDED_CONSTRAINT = "0" *) (* USE_MEM_INIT = "1" *) 
-(* VERSION = "0" *) (* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH_A = "8" *) 
-(* WRITE_DATA_WIDTH_B = "8" *) (* WRITE_MODE_A = "2" *) (* WRITE_MODE_B = "2" *) 
-(* XPM_MODULE = "TRUE" *) 
+(* NUM_CHAR_LOC = "0" *) (* P_ECC_MODE = "no_ecc" *) (* P_ENABLE_BYTE_WRITE_A = "0" *) 
+(* P_ENABLE_BYTE_WRITE_B = "0" *) (* P_MAX_DEPTH_DATA = "16" *) (* P_MEMORY_OPT = "yes" *) 
+(* P_MEMORY_PRIMITIVE = "auto" *) (* P_MIN_WIDTH_DATA = "8" *) (* P_MIN_WIDTH_DATA_A = "8" *) 
+(* P_MIN_WIDTH_DATA_B = "8" *) (* P_MIN_WIDTH_DATA_ECC = "8" *) (* P_MIN_WIDTH_DATA_LDW = "4" *) 
+(* P_MIN_WIDTH_DATA_SHFT = "8" *) (* P_NUM_COLS_WRITE_A = "1" *) (* P_NUM_COLS_WRITE_B = "1" *) 
+(* P_NUM_ROWS_READ_A = "1" *) (* P_NUM_ROWS_READ_B = "1" *) (* P_NUM_ROWS_WRITE_A = "1" *) 
+(* P_NUM_ROWS_WRITE_B = "1" *) (* P_SDP_WRITE_MODE = "yes" *) (* P_WIDTH_ADDR_LSB_READ_A = "0" *) 
+(* P_WIDTH_ADDR_LSB_READ_B = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_A = "0" *) (* P_WIDTH_ADDR_LSB_WRITE_B = "0" *) 
+(* P_WIDTH_ADDR_READ_A = "4" *) (* P_WIDTH_ADDR_READ_B = "4" *) (* P_WIDTH_ADDR_WRITE_A = "4" *) 
+(* P_WIDTH_ADDR_WRITE_B = "4" *) (* P_WIDTH_COL_WRITE_A = "8" *) (* P_WIDTH_COL_WRITE_B = "8" *) 
+(* READ_DATA_WIDTH_A = "8" *) (* READ_DATA_WIDTH_B = "8" *) (* READ_LATENCY_A = "2" *) 
+(* READ_LATENCY_B = "2" *) (* READ_RESET_VALUE_A = "0" *) (* READ_RESET_VALUE_B = "0" *) 
+(* USE_EMBEDDED_CONSTRAINT = "0" *) (* USE_MEM_INIT = "1" *) (* VERSION = "0" *) 
+(* WAKEUP_TIME = "0" *) (* WRITE_DATA_WIDTH_A = "8" *) (* WRITE_DATA_WIDTH_B = "8" *) 
+(* WRITE_MODE_A = "2" *) (* WRITE_MODE_B = "2" *) (* XPM_MODULE = "TRUE" *) 
 module design_1_PmodCAN_0_2_xpm_memory_base
    (sleep,
     clka,
