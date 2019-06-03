@@ -1,0 +1,13 @@
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/nested_interrupt/IRQ Dispatcher/irqDispatch_c.c
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/nested_interrupt/rtos_nested/include/HL_sys_common.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/nested_interrupt/rtos_nested/include/HL_hal_stdtypes.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdint.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/stdint.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/cdefs.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_types.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_types.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_stdint.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_stdint.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdbool.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/nested_interrupt/rtos_nested/include/HL_sys_vim.h
+Nested_Dispatch/irqDispatch_c.obj: /home/koitt/nested_interrupt/rtos_nested/include/HL_reg_vim.h

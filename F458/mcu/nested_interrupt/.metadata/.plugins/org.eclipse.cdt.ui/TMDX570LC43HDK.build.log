@@ -1,0 +1,13 @@
+
+**** Clean-only build of configuration Debug for project TMDX570LC43HDK ****
+
+make clean 
+ 
+rm -rf  "TMDX570LC43HDK.hex"  "TMDX570LC43HDK.out" 
+rm -rf "IRQ Dispatcher/irqDispatch_a.obj" "IRQ Dispatcher/irqDispatch_c.obj" "source/HL_epc.obj" "source/HL_errata.obj" "source/HL_esm.obj" "source/HL_gio.obj" "source/HL_nmpu.obj" "source/HL_notification.obj" "source/HL_pinmux.obj" "source/HL_rti.obj" "source/HL_sys_core.obj" "source/HL_sys_dma.obj" "source/HL_sys_intvecs.obj" "source/HL_sys_main.obj" "source/HL_sys_mpu.obj" "source/HL_sys_pcr.obj" "source/HL_sys_phantom.obj" "source/HL_sys_pmm.obj" "source/HL_sys_pmu.obj" "source/HL_sys_startup.obj" "source/HL_sys_vim.obj" "source/HL_system.obj" 
+rm -rf "IRQ Dispatcher/irqDispatch_c.d" "source/HL_epc.d" "source/HL_errata.d" "source/HL_esm.d" "source/HL_gio.d" "source/HL_nmpu.d" "source/HL_notification.d" "source/HL_pinmux.d" "source/HL_rti.d" "source/HL_sys_dma.d" "source/HL_sys_main.d" "source/HL_sys_pcr.d" "source/HL_sys_phantom.d" "source/HL_sys_pmm.d" "source/HL_sys_startup.d" "source/HL_sys_vim.d" "source/HL_system.d" 
+rm -rf "IRQ Dispatcher/irqDispatch_a.d" "source/HL_sys_core.d" "source/HL_sys_intvecs.d" "source/HL_sys_mpu.d" "source/HL_sys_pmu.d" 
+Finished clean
+ 
+
+**** Build Finished ****
