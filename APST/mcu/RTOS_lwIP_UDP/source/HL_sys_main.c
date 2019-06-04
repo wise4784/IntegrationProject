@@ -87,8 +87,6 @@ void sciTask(void *pvParameters);
 extern void vApplicationStackOverflowHook(xTaskHandle *pxTask, signed char *pcTaskName );
 extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 
-void sci_display_txt(sciBASE_t *sci, uint8 *txt, uint32 len);
-
 void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_addr *addr, u16_t port);
 void const_velocity(int preCNT, int setCNT, int *error, float c_time);
 
@@ -100,6 +98,7 @@ xTaskHandle xTask2Handle;
 xTaskHandle xTask3Handle;
 xTaskHandle xTask4Handle;
 xTaskHandle xTask5Handle;
+
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -111,8 +110,13 @@ xTaskHandle xTask5Handle;
 */
 
 /* USER CODE BEGIN (2) */
+#define SCI_DEBUG   1 // If this value set 1, sciREG1 prints Debug messages.
+
+#if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
-//uint8 length = sizeof(sciTest);
+uint8 length = sizeof(sciTest);
+uint8_t txtCRLF[] = {'\r', '\n'};
+#endif
 
 int pwm_CMPA;
 char buf[32] = {0};
@@ -148,8 +152,6 @@ float P_term;
 float I_term;
 float D_term;
 
-#define SCI_DEBUG   0 // If this value set 1, sciREG1 prints Debug messages.
-
 /* USER CODE END */
 
 uint8	emacAddress[6U] = 	{0x00U, 0x08U, 0xeeU, 0x03U, 0xa6U, 0x6cU};
@@ -165,16 +167,13 @@ int main(void)
     esmREG->EKR = 0x00000000;
 
     sciInit();
-
     //VCLK3_FREQ; // 37.500F
     etpwmInit();
-    //
-    //QEPInit();
-#if 0
-    sprintf(buf, "QEP_Init\t set UNIT_TIME : %.2f msec\n\r\0", 1000 * c_time);
-    buflen = strlen(buf);
-    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-#endif
+    QEPInit();
+
+    etpwmStartTBCLK();
+    eqepEnableCounter(eqepREG1);
+    eqepEnableUnitTimer(eqepREG1);
 
     /* Set high end timer GIO port pin direction to all output */
     gioInit();
@@ -187,13 +186,15 @@ int main(void)
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
+#if 1
     if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
     }
-#if 0
+#endif
     /* Create Task 2 */
+#if 1
     if (xTaskCreate(pidTask,"PID", configMINIMAL_STACK_SIZE, NULL, 6, &xTask2Handle) != pdTRUE)
     {
         /* Task could not be created */
@@ -208,14 +209,14 @@ int main(void)
     }
 #endif
     /* Create Task 4 */
-#if 1
+#if SCI_DEBUG
     if(xTaskCreate(sciTask, "SCI", 2 * configMINIMAL_STACK_SIZE, NULL, 7, &xTask5Handle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 5 */
-#if 0
+#if 1
     if(xTaskCreate(udpTask, "UDP", 8 * configMINIMAL_STACK_SIZE, NULL, 8, &xTask4Handle) != pdTRUE)
     {
         while(1);
@@ -231,6 +232,7 @@ int main(void)
 
     return 0;
 }
+
 
 /* USER CODE BEGIN (4) */
 /* Task1 */
@@ -256,11 +258,7 @@ void pidTask(void *pvParameters)
      * Use this Function 'eqepReadPosnCount(eqepREG1)'
      * but value clear every 10ms later.
      */
-    taskENTER_CRITICAL();
-    etpwmStartTBCLK();
-    eqepEnableCounter(eqepREG1);
-    eqepEnableUnitTimer(eqepREG1);
-    taskEXIT_CRITICAL();
+
     for(;;)
     {
         taskENTER_CRITICAL();
@@ -297,24 +295,20 @@ void pwmTask(void *pvParameters)
 }
 #endif
 
+#if SCI_DEBUG
 void sciTask(void *pvParameters)
 {
     /* SCI Baud Rate : 230400
      * sciREG1
      */
-#if SCI_DEBUG
-    sprintf(buf, "VCLK3_FREQ = %.2f\n\r\0", VCLK3_FREQ);
+    sprintf(buf, "\033[H\033[JSCI_Baud_Rate = 230400\n\r\0");
     buflen = strlen(buf);
-    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-
-    sprintf(buf, "SCI_Baud_Rate = 230400\n\r\0");
-    buflen = strlen(buf);
-    sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-#endif
+    sciSend(sciREG1, buflen, (uint8 *)buf);
+    sciSend(sciREG1, sizeof(txtCRLF), txtCRLF);
     for(;;)
     {
         taskENTER_CRITICAL();
-
+#if 0
         sprintf(buf, "CMPA = %d\n\r\0", pwm_CMPA);
         buflen = strlen(buf);
         sci_display_txt(sciREG1, (uint8 *)buf, buflen);
@@ -322,29 +316,49 @@ void sciTask(void *pvParameters)
         sprintf(buf, "Velocity = %f\n\r\0", velocity);
         buflen = strlen(buf);
         sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+#endif
+
+#if 1
+        sprintf(buf, "CMPA = %d\t setCNT = %d\n\r\0", pwm_CMPA, setCNT);
+        buflen = strlen(buf);
+        sciSend(sciREG1, buflen, (uint8 *)buf);
+//#else
+        sprintf(buf, "Velocity = %d\n\r\0", (int)velocity);
+        buflen = strlen(buf);
+        sciSend(sciREG1, buflen, (uint8 *)buf);
+#endif
 
 #if 0
-            duty = pwm_CMPA * 100 / PWM_freq;
-            sprintf(buf, "CMPA = %d\t Duty = %.1f%%\n\r\0", pwm_CMPA, duty);
-            buflen = strlen(buf);
-            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+        duty = pwm_CMPA * 100 / PWM_freq;
+        sprintf(buf, "CMPA = %d\t Duty = %.1f%%\n\r\0", pwm_CMPA, duty);
+        buflen = strlen(buf);
+        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
-            sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
-            buflen = strlen(buf);
-            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+        sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
+        buflen = strlen(buf);
+        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
-            sprintf(buf, "setCNT = %d,\t duty = %d\n\r\0", setCNT, (pcnt * 100) / setCNT);
-            buflen = strlen(buf);
-            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+        sprintf(buf, "setCNT = %d,\t duty = %d\n\r\0", setCNT, (pcnt * 100) / setCNT);
+        buflen = strlen(buf);
+        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 
-            sprintf(buf, "Velocity = %f\n\r\0", velocity);
-            buflen = strlen(buf);
-            sci_display_txt(sciREG1, (uint8 *)buf, buflen);
+        sprintf(buf, "Velocity = %f\n\r\0", velocity);
+        buflen = strlen(buf);
+        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
 #endif
+
+#if 0
+        printf("CMPA = %d\n", pwm_CMPA);
+        printf("Velocity = %.2f\n", velocity);
+#endif
+
+        sciSend(sciREG1, length, sciTest);
+
         taskEXIT_CRITICAL();
-        vTaskDelay(50);
+        vTaskDelay(500);
     }
 }
+#endif
 
 void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_addr *addr, u16_t port)
 {
@@ -429,15 +443,5 @@ void const_velocity(int preCNT, int setCNT, int *error, float c_time)
         pwm_CMPA = 37500;
     }
     etpwmREG1->CMPA = pwm_CMPA;
-}
-
-void sci_display_txt(sciBASE_t *sci, uint8 *text, uint32 len)
-{
-    while(len--)
-    {
-        while((sci->FLR & 0x4) == 0x4)
-            ;
-        sciSendByte(sci, *text++);
-    }
 }
 /* USER CODE END */
