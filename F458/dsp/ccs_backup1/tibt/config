@@ -1,0 +1,4 @@
+nshutdown_gpio=132
+tty=/dev/ttyS7
+flow_cntrl=1
+baud_rate=3000000
