@@ -163,7 +163,7 @@ int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config *Config,
 {
 	u8  Buffer[3];
 	u32 ControlReg;
-	
+	//xil_assert.h
 	Xil_AssertNonvoid(InstancePtr != NULL);
 
 	/*
@@ -172,13 +172,16 @@ int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config *Config,
 	 * and reinitialize, but prevents a user from inadvertently
 	 * initializing.
 	 */
+										//xil_types.h
 	if (InstancePtr->IsStarted == XIL_COMPONENT_IS_STARTED) {
+				//xil_status.h
 		return XST_DEVICE_IS_STARTED;
 	}
 
 	/*
 	 * Set some default values.
 	 */
+	//xspi.h
 	InstancePtr->IsStarted = 0;
 	InstancePtr->IsBusy = FALSE;
 
@@ -228,6 +231,7 @@ int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config *Config,
 		 * Perform a dummy read this is used when startup block is
 		 * enabled in the hardware to fix CR #721229.
 		 */
+        				//xspi.h
 		ControlReg = XSpi_GetControlReg(InstancePtr);
 		ControlReg |= XSP_CR_TXFIFO_RESET_MASK | XSP_CR_RXFIFO_RESET_MASK |
 				XSP_CR_ENABLE_MASK | XSP_CR_MASTER_MODE_MASK ;

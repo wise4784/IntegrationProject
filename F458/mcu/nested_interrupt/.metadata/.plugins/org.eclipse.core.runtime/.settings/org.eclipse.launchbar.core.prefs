@@ -1,0 +1,11 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:TMDX570LC43HDK,org.eclipse.launchbar.core.descriptorType.default\:test_interrupt,org.eclipse.launchbar.core.descriptorType.default\:test_nested,org.eclipse.launchbar.core.descriptorType.default\:test_nested2,org.eclipse.launchbar.core.descriptorType.default\:rtos_nested
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:TMDX570LC43HDK/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:TMDX570LC43HDK/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:rtos_nested/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:test_interrupt/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:test_nested/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:test_nested2/activeLaunchMode=run

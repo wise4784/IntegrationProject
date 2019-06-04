@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Tue Apr 23 14:32:30 2019
+| Date         : Fri May 24 09:48:20 2019
 | Host         : roro-Lenovo-Y520-15IKBN running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_utilization -file design_1_processing_system7_0_0_utilization_synth.rpt -pb design_1_processing_system7_0_0_utilization_synth.pb
 | Design       : design_1_processing_system7_0_0
@@ -113,7 +113,7 @@ Table of Contents
 +------------+------+-------+-----------+-------+
 |  Site Type | Used | Fixed | Available | Util% |
 +------------+------+-------+-----------+-------+
-| BUFGCTRL   |    1 |     0 |        32 |  3.13 |
+| BUFGCTRL   |    2 |     0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |         8 |  0.00 |
 | MMCME2_ADV |    0 |     0 |         2 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |         2 |  0.00 |
@@ -148,8 +148,8 @@ Table of Contents
 +----------+------+----------------------+
 | BIBUF    |  130 |                   IO |
 | LUT1     |  112 |                  LUT |
+| BUFG     |    2 |                Clock |
 | PS7      |    1 | Specialized Resource |
-| BUFG     |    1 |                Clock |
 +----------+------+----------------------+
 
 

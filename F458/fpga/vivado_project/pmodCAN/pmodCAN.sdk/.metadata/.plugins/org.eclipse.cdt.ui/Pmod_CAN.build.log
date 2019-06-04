@@ -1,8 +1,23 @@
-17:32:41 **** Incremental Build of configuration Debug for project Pmod_CAN ****
+13:10:57 **** Auto Build of configuration Debug for project Pmod_CAN ****
 make pre-build main-build 
 a9-linaro-pre-build-step
  
-make: 'main-build'을(를) 위해 할 일이 없습니다.
+Building file: ../src/Tx.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/Tx.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Pmod_CAN_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/Tx.d" -MT"src/Tx.o" -o "src/Tx.o" "../src/Tx.c"
+Finished building: ../src/Tx.c
+ 
+Building target: Pmod_CAN.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Pmod_CAN_bsp/ps7_cortexa9_0/lib -o "Pmod_CAN.elf"  ./src/Tx.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: Pmod_CAN.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size Pmod_CAN.elf  |tee "Pmod_CAN.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  30928	   1176	  22680	  54784	   d600	Pmod_CAN.elf
+Finished building: Pmod_CAN.elf.size
+ 
 
-17:32:42 Build Finished (took 316ms)
+13:10:57 Build Finished (took 361ms)
 

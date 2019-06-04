@@ -27,7 +27,6 @@
 #define PLATFORM_ZYNQ
  
 /* Definitions for sleep timer configuration */
-#define XSLEEP_TIMER_IS_DEFAULT_TIMER
  
  
 /******************************************************************/
@@ -273,18 +272,6 @@
 #define XPAR_XQSPIPS_0_QSPI_MODE 0
 #define XPAR_XQSPIPS_0_QSPI_BUS_WIDTH 2
 
-
-/******************************************************************/
-
-/* Definitions for Fabric interrupts connected to ps7_scugic_0 */
-#define XPAR_FABRIC_PMODCAN_0_SPI_INTERRUPT_INTR 61U
-#define XPAR_FABRIC_PMODCAN_0_GPIO_INTERRUPT_INTR 62U
-
-/******************************************************************/
-
-/* Canonical definitions for Fabric interrupts connected to ps7_scugic_0 */
-#define XPAR_FABRIC_PMODCAN_0_SPI_INTERRUPT_VEC_ID XPAR_FABRIC_PMODCAN_0_SPI_INTERRUPT_INTR
-#define XPAR_FABRIC_PMODCAN_0_GPIO_INTERRUPT_VEC_ID XPAR_FABRIC_PMODCAN_0_GPIO_INTERRUPT_INTR
 
 /******************************************************************/
 
