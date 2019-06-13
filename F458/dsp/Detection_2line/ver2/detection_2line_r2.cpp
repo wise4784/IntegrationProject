@@ -353,7 +353,7 @@ std::string LaneDetector::predictTurn() {
         vanish_x = static_cast<double>(((right_m*right_b.x) -
     (left_m*left_b.x) - right_b.y + left_b.y) / (right_m - left_m));
 
-        if(!((110< vanish_y) &&  (vanish_y< 240))){
+       
             if (vanish_x < (img_center - thr_vp))
                     output = "Left Turn";
             else if (vanish_x > (img_center + thr_vp))
@@ -361,7 +361,7 @@ std::string LaneDetector::predictTurn() {
             else if (vanish_x >= (img_center - thr_vp) &&
                     vanish_x <= (img_center + thr_vp))
                     output = "Straight";
-        }
+        
 
         return output;
 }
