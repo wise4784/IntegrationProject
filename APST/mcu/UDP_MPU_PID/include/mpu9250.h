@@ -299,7 +299,9 @@ uint8 readByte(uint8 devAddr, uint8 regAddr)
     i2cSetCount(i2cREG2, 1);
     i2cSetMode(i2cREG2, I2C_MASTER);
     i2cSetStop(i2cREG2);
+    wait(1000);
     i2cSetStart(i2cREG2);
+    wait(1000);
     i2cSendByte(i2cREG2, regAddr);
 
     while (i2cIsBusBusy(i2cREG2) == true)
@@ -317,8 +319,10 @@ uint8 readByte(uint8 devAddr, uint8 regAddr)
 
     while (i2cIsBusBusy(i2cREG2) == true)
         ;
+
     while (i2cIsStopDetected(i2cREG2) == 0)
         ;
+
     i2cClearSCD(i2cREG2);
 
     return data;

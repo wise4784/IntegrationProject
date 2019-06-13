@@ -93,7 +93,12 @@ extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_addr *addr, u16_t port);
 void const_velocity(int preCNT, int setCNT, int *error, float c_time);
 void fl2in(float a, int *b);
-SemaphoreHandle_t xSemaphore = NULL;
+
+void set_Status(uint8 bit); /* bit0 : Charge / bit1 : 각도 */
+void reset_Status(uint8 bit);
+
+#define DEGREE      1
+#define VOLTAGE     0
 
 /* Define Task Handles */
 xTaskHandle xTask1Handle;
@@ -114,6 +119,7 @@ xTaskHandle xTask6Handle;
 
 /* USER CODE BEGIN (2) */
 #define SCI_DEBUG   1 // If this value set 1, sciREG1 prints Debug messages.
+#define I2C_DEBUG   1 // If this value set 1, I2C_2 & MPU will work
 
 #if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
@@ -130,6 +136,14 @@ uint8_t mpuGyro[] = {"Gyro_offset_setting Success!!\n\r\0"};
 uint8_t mpuYPR[] = {"Init YPR Success!!\n\r\0"};
 uint8_t mpuErr[] = {"MPU9250 doesn`t work!!!"};
 #endif
+
+/* for Velocity */
+char vbuf[32] = {0};
+unsigned int vbuflen = 0;
+/* for CMPA */
+char cbuf[32] = {0};
+unsigned int cbuflen = 0;
+
 /*********************************************************** For PID ***********************************************************************/
 int pwm_CMPA;
 char buf[32] = {0};
@@ -142,7 +156,7 @@ float ppr = 3000; // 엔코더 ppr
 // ppr = 3000, 감속비 24, Quadrature 모드
 // 1 res의 pcnt = 3000 * 24 * 4
 // 1 res의 pcnt = 288000
-int setCNT = 7200; // 20rpm으로 동작시키기 위한 10ms당 cnt값
+int setCNT; // 20rpm으로 동작시키기 위한 10ms당 cnt값
 int error[2] = {0,0};
 
 // Count 초기화 주기 10ms
@@ -167,7 +181,7 @@ float D_term;
 /*******************************************************************************************************************************************/
 
 /*********************************************************** For MPU ***********************************************************************/
-int i;
+int setDGR; // DSP에서 준 각도 값
 int apa[2];
 int ara[2];
 int yd[2];
@@ -234,6 +248,15 @@ void initYPR(void)
 }
 /*******************************************************************************************************************************************/
 
+/*********************************************************** For UDP ***********************************************************************/
+struct udp_pcb *pcb;
+
+char msg[] = "udp test\r\n";
+struct pbuf *p;
+
+uint8 status_flag; /* 1 : Charge / 2 : 각도  / 3 : All Ready */
+/*******************************************************************************************************************************************/
+
 /* USER CODE END */
 
 uint8	emacAddress[6U] = 	{0x00U, 0x08U, 0xeeU, 0x03U, 0xa6U, 0x6cU};
@@ -248,33 +271,47 @@ int main(void)
     esmREG->EKR = 0x0000000A;
     esmREG->EKR = 0x00000000;
 
+    /* clear MCU status */
+    status_flag = 0x00;
+
     sciInit();
     i2cInit();
     //VCLK3_FREQ; // 37.500F
     etpwmInit();
     QEPInit();
-
+#if I2C_DEBUG
     uint8 c = readByte(MPU9250_ADDRESS, WHO_AM_I_MPU9250);
+#if SCI_DEBUG
     sprintf(buf, "I AM = %x\n\r\0", c);
     buflen = strlen(buf);
     sciSend(sciREG1, buflen, (uint8 *)buf);
-
+#endif
     if (c == 0x71)
     {
         calibrateMPU9250(gyroBias, accelBias);
+#if SCI_DEBUG
         sciSend(sciREG1, sizeof(mpuTest), mpuTest);
+#endif
 
         initMPU9250();
+#if SCI_DEBUG
         sciSend(sciREG1, sizeof(mpuInit), mpuInit);
+#endif
 
         initAK8963(magCalibration);
+#if SCI_DEBUG
         sciSend(sciREG1, sizeof(mpuAKInit), mpuAKInit);
+#endif
 
         get_offset_value();
+#if SCI_DEBUG
         sciSend(sciREG1, sizeof(mpuGyro), mpuGyro);
+#endif
 
         initYPR();
+#if SCI_DEBUG
         sciSend(sciREG1, sizeof(mpuYPR), mpuYPR);
+#endif
     }
     else
     {
@@ -282,6 +319,7 @@ int main(void)
         while (1)
             ;
     }
+#endif
     etpwmStartTBCLK();
     eqepEnableCounter(eqepREG1);
     eqepEnableUnitTimer(eqepREG1);
@@ -291,11 +329,20 @@ int main(void)
     gioSetDirection(gioPORTA, 0xFFFF);
     gioSetDirection(gioPORTB, 0xFFFF);
 
-#if 1
+#if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtlwIP), txtlwIP);
+#endif
     EMAC_LwIP_Main(emacAddress);
+#if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtOK), txtOK);
 #endif
+
+#if 1
+    pcb = udp_new();
+    udp_bind(pcb, IP_ADDR_ANY, 7777);
+    udp_recv(pcb, udp_echo_recv, NULL);
+#endif
+    wait(100000);
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
@@ -330,13 +377,13 @@ int main(void)
 #endif
     /* Create Task 5 */
 #if 1
-    if(xTaskCreate(udpTask, "UDP", 2 * configMINIMAL_STACK_SIZE, NULL, 8, &xTask4Handle) != pdTRUE)
+    if(xTaskCreate(udpTask, "UDP", 4 * configMINIMAL_STACK_SIZE, NULL, 8, &xTask4Handle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 6 */
-#if 1
+#if I2C_DEBUG
     if(xTaskCreate(mpuTask, "MPU", configMINIMAL_STACK_SIZE, NULL, 5, &xTask6Handle) != pdTRUE)
     {
         while(1);
@@ -351,9 +398,8 @@ int main(void)
 
     return 0;
 }
-
-
 /* USER CODE BEGIN (4) */
+
 /* Task1 */
 void vTask1(void *pvParameters)
 {
@@ -387,10 +433,10 @@ void pidTask(void *pvParameters)
             pcnt = eqepReadPosnLatch(eqepREG1); // 정해놓은 시간동안 들어온 CNT 갯수
             velocity = ((float)pcnt * ppd / c_time) / 6.0; // rpm
             const_velocity(pcnt, setCNT, error, c_time);
-
             // Flag가 자동 초기화가 안됌.
             eqepClearInterruptFlag(eqepREG1, QEINT_Uto);
         }
+
         taskEXIT_CRITICAL();
         vTaskDelay(10);
     }
@@ -427,63 +473,38 @@ void sciTask(void *pvParameters)
     sciSend(sciREG1, sizeof(txtCRLF), txtCRLF);
     sciSend(sciREG1, length, sciTest);
 #endif
-
     for(;;)
     {
         taskENTER_CRITICAL();
 #if 0
-        sprintf(buf, "CMPA = %d\n\r\0", pwm_CMPA);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-
-        sprintf(buf, "Velocity = %f\n\r\0", velocity);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-#endif
-
-#if 1
         sprintf(buf, "CMPA = %d\t setCNT = %d\n\r\0", pwm_CMPA, setCNT);
         buflen = strlen(buf);
         sciSend(sciREG1, buflen, (uint8 *)buf);
-//#else
+
         sprintf(buf, "Velocity = %d\n\r\0", (int)velocity);
         buflen = strlen(buf);
         sciSend(sciREG1, buflen, (uint8 *)buf);
 #endif
 
 #if 0
-        duty = pwm_CMPA * 100 / PWM_freq;
-        sprintf(buf, "CMPA = %d\t Duty = %.1f%%\n\r\0", pwm_CMPA, duty);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-
-        sprintf(buf, "POSCNT = %d\n\r\0", pcnt);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-
-        sprintf(buf, "setCNT = %d,\t duty = %d\n\r\0", setCNT, (pcnt * 100) / setCNT);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-
-        sprintf(buf, "Velocity = %f\n\r\0", velocity);
-        buflen = strlen(buf);
-        sci_display_txt(sciREG1, (uint8 *)buf, buflen);
-#endif
-
-#if 0
         printf("CMPA = %d\n", pwm_CMPA);
         printf("Velocity = %.2f\n", velocity);
 #endif
+
+#if SCI_DEBUG & I2C_DEBUG
         fl2in(angle_pitch_acc, apa);
         fl2in(angle_roll_acc, ara);
         fl2in(yaw * R2D, yd);
-
         sprintf(buf, "roll = %d.%d \t pitch = %d.%d \t yaw = %d.%d \n\r\0",
                 apa[0],apa[1], ara[0],ara[1], yd[0],yd[1]);
-
         buflen = strlen(buf);
         sciSend(sciREG1, buflen, (uint8 *) buf);
+#endif
 
+#if SCI_DEBUG
+        vbuflen = strlen(vbuf);
+        sciSend(sciREG1, vbuflen, (uint8 *) vbuf);
+#endif
         taskEXIT_CRITICAL();
         vTaskDelay(500);
     }
@@ -494,7 +515,36 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
 {
     if (p != NULL)
     {
-        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777); //dest port
+        char *rx_pk = p->payload;
+        if(rx_pk[0] == 's')
+        {
+#if 1
+            setCNT = rx_pk[1] << 24U |
+                     rx_pk[2] << 16U |
+                     rx_pk[3] << 8U  |
+                     rx_pk[4];
+#endif
+            setDGR = rx_pk[5] << 24U |
+                     rx_pk[6] << 16U |
+                     rx_pk[7] << 8U  |
+                     rx_pk[8];
+
+#if SCI_DEBUG
+        sprintf(vbuf,"%d,%d\n\r",setCNT,setDGR);
+#endif
+        }
+        /* MCU가 준비되서 Ready signal을 전송하면 DSP에서 받고 준비되면 'g'를 보내서 MCU 전체 테스크 동작 시작. */
+        else if(rx_pk[0] == 'g')
+        {
+        }
+
+        /* 다른값이 날라오면 에러 */
+        else
+        {
+#if SCI_DEBUG
+            sprintf(vbuf,"UDP Receive ERR\n\r");
+#endif
+        }
         pbuf_free(p);
     }
 }
@@ -515,41 +565,37 @@ void udpTask(void *pvParameters)
     tcp_arg(pcb, pcb);
     tcp_accept(pcb, http_accept);
 #endif
+
+#if 0
     struct udp_pcb *pcb;
+
     char msg[] = "udp test\r\n";
     struct pbuf *p;
     err_t err;
 
-#if 0
-    xSemaphoreTake(xSemaphore, (TickType_t) 10);
-    if(xSemaphore)
-    {
-        pcb = udp_new();
-        err = udp_bind(pcb, IP_ADDR_ANY, 7777);
-        udp_recv(pcb, udp_echo_recv, NULL);
-        xSemaphoreGive(xSemaphore);
-    }
-#else
-
     pcb = udp_new();
     udp_bind(pcb, IP_ADDR_ANY, 7777);
     udp_recv(pcb, udp_echo_recv, NULL);
-
 #endif
-
     for(;;)
     {
         taskENTER_CRITICAL();
-
+#if 0
         p = pbuf_alloc(PBUF_TRANSPORT, sizeof(msg), PBUF_RAM);
         memcpy(p->payload, msg, sizeof(msg));
         udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+#else
+        sprintf(cbuf, "CMPA = %d\t Velocity = %d\n\r\0", etpwmREG1->CMPA, (int)velocity);
+        cbuflen = strlen(cbuf);
+        p = pbuf_alloc(PBUF_TRANSPORT, sizeof(cbuf), PBUF_RAM);
+        memcpy(p->payload, cbuf, sizeof(cbuf));
+        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+#endif
         pbuf_free(p);
 
         taskEXIT_CRITICAL();
 
-        vTaskDelay(500);
-        //vTaskDelay(200);
+        vTaskDelay(10);
     }
 }
 
@@ -615,9 +661,30 @@ void mpuTask(void *pvParameters)
             gz = (float) gyroCount[2] * gRes;
 
             get_YPR();
+
+            /*
+            if(roll == setDGR)
+            {
+                set_Status(DEGREE);
+            }
+            */
         }
         taskEXIT_CRITICAL();
         vTaskDelay(10);
     }
+}
+
+void set_Status(uint8 bit)
+{
+    /* 표시할 항목
+     * 충전상태 0: 충전중 1: 완충(700V)
+     * DSP에서 날려준 각도값으로 포대 설정 했는지
+     */
+    status_flag |= 0x1U << bit;
+}
+
+void reset_Status(uint8 bit)
+{
+    status_flag |= 0x0U << bit;
 }
 /* USER CODE END */
