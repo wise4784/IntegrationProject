@@ -37,9 +37,10 @@ Control period : 10ms
 Quadrature MODE
 
 
-
 ****** PIN MAP ******
 
 etpwm1A - J4-7
 eQEP1A	- J1-7
 eQEP1B	- J5-8
+I2C2_SCL- J10-8
+I2C2_SDA- J10-9

@@ -126,3 +126,38 @@ SCI Task는 최소 스택의 2배
 나머지는 최소스택이면 충분
 UDP Task는 최소 스택이면 충분하지만 혹시 몰라 2배를 준 상태.
 
+
+*************** 6/10 ***************
+
+sprintf를 udp task에서 해야됌. oo 성공
+프로토콜 설계해야됌.
+
+DSP에서 send to 할때 buff에 sprintf를 사용하니까 ASCII 코드로 들어감. 이렇게되면 나중에 데이터 활용하기 힘듬.
+
+      buff_snd[0] = (setCNT & 0xFF000000) >> 24;
+      buff_snd[1] = (setCNT & 0x00FF0000) >> 16;
+      buff_snd[2] = (setCNT & 0x0000FF00) >> 8;
+      buff_snd[3] = setCNT & 0x000000FF;
+      buff_snd[4] = (degree & 0xFF000000) >> 24;
+      buff_snd[5] = (degree & 0x00FF0000) >> 16;
+      buff_snd[6] = (degree & 0x0000FF00) >> 8;
+      buff_snd[7] = degree & 0x000000FF;
+      buff_snd[8] = 0;
+      buff_snd[9] = 0;
+      buff_snd[10] = 0;
+      buff_snd[11] = 1;
+
+이런식으로 직접 줘야함
+why? int형은 4byte단위라서 char배열로 선언되어있는 buff_snd의 4개공간이 필요함. char은 1byte.
+int형으로 선언 안하고 배열에 직접 1을 넣고 send해도 mcu에서 받을때 4byte단위로 받아서 0x10000000로 받아들임.
+
+        int *a = (int *)p->payload;
+        //int *bb = (int *)(p->payload + 0x4);
+        int *bb = a + 1;
+bb에 값을 넣을때 둘다 같은 동작을 함. 왜인진 모르겠지만 +1을 하면 4byte뒤의 주소값을 입력
+MCU PID에 들어가는 setCNT값은 DSP의 usleep에 따라 달라짐. MCU에서 첫 세팅값은 0임.
+	-> 반응성을 빠르게하려면 usleep을 낮춰야함. 너무 낮추면(= 빠르면) mcu에서 receive만 하느라 아무것도 못함.
+
+******************* 6/12 *******************
+MPU가 안됐던 이유는 선도 문제고, wait도 문제임. stop과 start뒤에 wait(1000) 안하면 명령이 씹히는거같음.
+스텝모터 한 바퀴당 포대 몇 도 움직이는지 알아야함.
