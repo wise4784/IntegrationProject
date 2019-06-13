@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: KOITT
+// Engineer: Sanghoon Lee
 // 
 // Create Date: 12/01/2018 04:30:13 PM
 // Design Name: 
