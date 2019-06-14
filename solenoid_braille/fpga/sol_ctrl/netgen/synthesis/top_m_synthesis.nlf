@@ -1,0 +1,24 @@
+Release 14.7 - netgen P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -filter
+C:/Users/acer/Desktop/fan/rpmfanuart/iseconfig/filter.filter -intstyle ise
+-insert_glbl true -w -dir netgen/synthesis -ofmt verilog -sim top_m.ngc
+top_m_synthesis.v  
+
+Reading design 'top_m.ngc' ...
+Flattening design ...
+Processing design ... 
+  Preping design's networks ...
+  Preping design's macros ...
+Writing Verilog netlist file
+'C:\Users\acer\Desktop\fan\rpmfanuart\netgen\synthesis\top_m_synthesis.v' ...
+WARNING:NetListWriters - Padding or triming the value for hex property
+   FACTORY_JF:
+Triming from 16'B1100000010000000 to 0000.
+INFO:NetListWriters:633 - The generated Verilog netlist contains Xilinx UNISIM
+   simulation primitives and has to be used with UNISIM simulation library for
+   correct compilation and simulation. 
+Number of warnings: 1
+Number of info messages: 1
+Total memory usage is 159712 kilobytes

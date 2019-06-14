@@ -7,6 +7,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT./home/jabinkim/IntegrationProject/mixergi/mcu/sine_wave/targetConfigs/TMS570LC43xx.ccxml.Texas Instruments XDS110 USB Debug Probe/CortexR5" value="sine_wave"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT./home/jabinkim/lec/workspace/rf_ control/targetConfigs/TMS570LC43xx.ccxml.Texas Instruments XDS100v2 USB Debug Probe/CortexR5" value="sine_wave"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:sine_wave}"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM./home/jabinkim/IntegrationProject/mixergi/mcu/sine_wave/targetConfigs/TMS570LC43xx.ccxml.Texas Instruments XDS110 USB Debug Probe/CortexR5" value="/home/jabinkim/IntegrationProject/mixergi/mcu/sine_wave/Debug/sine_wave.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/sine_wave"/>
 </listAttribute>

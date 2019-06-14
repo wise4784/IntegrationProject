@@ -55,7 +55,7 @@
 #include "HL_emac.h"
 #include "HL_emac_phyConfig.h"
 #include <stdio.h>
-//extern void EMAC_LwIP_Main (uint8_t * emacAddress);
+extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 
 /* USER CODE END */
 

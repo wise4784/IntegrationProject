@@ -36,8 +36,6 @@ set_property ip_cache_permissions {read write} [current_project]
 read_ip -quiet /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/design_1_PmodCAN_0_2.xci
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_pmod_bridge_0_0/PmodCAN_pmod_bridge_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_pmod_bridge_0_0/src/pmod_concat_ooc.xdc]
-set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/design_1_PmodCAN_0_2_board.xdc]
-set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_quad_spi_0_0/PmodCAN_axi_quad_spi_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_quad_spi_0_0/PmodCAN_axi_quad_spi_0_0.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_quad_spi_0_0/PmodCAN_axi_quad_spi_0_0_ooc.xdc]
@@ -45,6 +43,8 @@ set_property used_in_implementation false [get_files -all /home/roro/fpga_worksp
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_gpio_0_0/PmodCAN_axi_gpio_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_gpio_0_0/PmodCAN_axi_gpio_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_axi_gpio_0_0/PmodCAN_axi_gpio_0_0.xdc]
+set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/design_1_PmodCAN_0_2_board.xdc]
+set_property used_in_implementation false [get_files -all /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_PmodCAN_0_2/src/PmodCAN_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

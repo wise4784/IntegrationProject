@@ -52,7 +52,7 @@
 /* USER CODE END */
 
 /* Defining interface for all the emac instances */
-hdkif_t hdkif_data[MAX_EMAC_INSTANCE];
+volatile hdkif_t hdkif_data[MAX_EMAC_INSTANCE];
 /*SAFETYMCUSW 25 D MR:8.7 <APPROVED> "Statically allocated memory needs to be available to entire application." */
 static uint8_t pbuf_array[MAX_RX_PBUF_ALLOC][MAX_TRANSFER_UNIT];
 /*******************************************************************************

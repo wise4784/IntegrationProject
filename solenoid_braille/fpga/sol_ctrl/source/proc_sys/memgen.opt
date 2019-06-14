@@ -1,0 +1,8 @@
+-p
+xc6slx9tqg144-2
+-pe
+microblaze_0
+C:/Xilinx/14.7/ISE_DS/EDK/sw/lib/microblaze/mb_bootloop.elf
+-od
+C:/Users/acer/Desktop/fan/rpmfanuart
+C:/Users/acer/Desktop/fan/rpmfanuart/proc_sys/proc_sys.mhs

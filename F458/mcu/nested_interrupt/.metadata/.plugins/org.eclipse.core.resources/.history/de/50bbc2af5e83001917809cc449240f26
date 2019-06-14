@@ -1,0 +1,38 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+ASM_SRCS += \
+/home/koitt/nested_interrupt/IRQ\ Dispatcher/irqDispatch_a.asm 
+
+C_SRCS += \
+/home/koitt/nested_interrupt/IRQ\ Dispatcher/irqDispatch_c.c 
+
+C_DEPS += \
+./NESTED_INTTERUPT/irqDispatch_c.d 
+
+OBJS += \
+./NESTED_INTTERUPT/irqDispatch_a.obj \
+./NESTED_INTTERUPT/irqDispatch_c.obj 
+
+ASM_DEPS += \
+./NESTED_INTTERUPT/irqDispatch_a.d 
+
+OBJS__QUOTED += \
+"NESTED_INTTERUPT/irqDispatch_a.obj" \
+"NESTED_INTTERUPT/irqDispatch_c.obj" 
+
+C_DEPS__QUOTED += \
+"NESTED_INTTERUPT/irqDispatch_c.d" 
+
+ASM_DEPS__QUOTED += \
+"NESTED_INTTERUPT/irqDispatch_a.d" 
+
+ASM_SRCS__QUOTED += \
+"/home/koitt/nested_interrupt/IRQ Dispatcher/irqDispatch_a.asm" 
+
+C_SRCS__QUOTED += \
+"/home/koitt/nested_interrupt/IRQ Dispatcher/irqDispatch_c.c" 
+
+

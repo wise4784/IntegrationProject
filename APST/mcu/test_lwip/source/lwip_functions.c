@@ -76,7 +76,19 @@ void EMAC_LwIP_Main (uint8_t * macAddress)
 
 
   /* Initialze the lwIP library, using DHCP.*/
-  ipAddr = lwIPInit(0, macAddress, 0, 0, 0, IPADDR_USE_DHCP);
+  //ipAddr = lwIPInit(0, macAddress, 0, 0, 0, IPADDR_USE_DHCP);
+
+  /* Initialize the lwIP library, using Static.*/
+#if 1
+    uint8 ip_addr[4] = { 192, 168, 3, 77 };
+    uint8 netmask[4] = { 255, 255, 255, 0 };
+    uint8 gateway[4] = { 192, 168, 3, 1 };
+    ipAddr = lwIPInit(0, macAddress,
+            *((uint32_t *)ip_addr),
+            *((uint32_t *)netmask),
+            *((uint32_t *)gateway),
+            IPADDR_USE_STATIC);
+#endif
 
   if (0 == ipAddr) {
     sciDisplayText(sciREGx, txtCRLF, sizeof(txtCRLF));

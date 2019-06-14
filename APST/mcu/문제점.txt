@@ -1,0 +1,163 @@
+FreeRTOS 에서 제공해주는 TCP/IP 예제 압축 파일에는 CCS 와 Hercules를 지원하지 않음.
+	-> 직접 헤더파일과 .c파일 등등을 CCS에서 컴파일 할 수 있게 수정해야하고, 보드에 맞게 변경해줘야함
+	-> 포기
+
+TI 직원 Wang 이 준 lwIP 프로젝트는 코드 중간에 버그가 있음.
+	-> Break Point를 단계별로 하고 디버깅해서 위치파악 후 해당 코드 주석처리해서 해결
+
+TI에서 제공해준 TCP 예제는 IP를 잡긴 하는데 너무 오래걸림 + 통신이 안됌.
+	-> 서로 연결이 되있는건 Lan선의 LED 점멸을 통해 확인할 수 있는데, 서로 Ping을 보내면 받질 못함.
+
+
+
+러시안 친구가 TCP 예제를 올려준게 있어서 실험해봄.
+	->그게 위에서 말한 TCP 예제
+	->약간의 설정 변경 후 실험 시 핑 TEST ok
+	-> TASK 추가하면 핑 RX가 안됌
+	-> 테스크 우선순위 문제같음. -> 패링해야함 -> 바텀하프 방식을 찾아서 적용
+	-> 적용하려면 EMac RX를 어디서 하는지 찾아야함
+	-> 그 전에 세마포어로 IP_Init 하는 곳을 block 해봤는데 안됌. 프로그램이 전체가 멈춤
+	-> 우선순위를 직접 지정해도 모든 테스크가 안돌아감.
+
+**	VCLK3을 37.5Khz로 분할했는데 이게 문제였음@@@@@@@@@@@
+
+	-> VCLK3을 어디서 쓰는지 알아내야됌
+	-> system.h에서 직접 수정했더니 됌. systemREG2->CLK2CNTL에 값을 직접 입력하면 동작 x.
+					-> 데이터 sheet읽어보니 쓰기 권한을 갖은 상태에서만 수정가능하다고 써져있음.
+
+
+**************************** 05.27 월 진행사항
+Wang's lwip 는 HDK에서만 동작.
+
+
+test_lwip 프로젝트는 launch에서 동작하는데 rtos로 안되어있음.
+
+위 두개의 프로젝트를 합쳐서 가능하게 만드는게 목표.
+문제점 : Wang's의 프로젝트는 MDIO_Init에서 Control REG에 값을 쓰는 타이밍에 MDIO_ALIVE, LINK가 set 되어야 하는데,
+런치패드로 동작 시 set을 안함. 이 문제를 해결해야됌
+
+확인 OK
+HL_phy_dp83640.c
+HL_phy_tlk111.c
+HL_sys_core.asm -- user stack point 시작 위치가 다름. 
+$ vimdiff Wang_RTOS_lwIP_HDK/source/HL_sys_core.asm test_lwip/source/HL_sys_core.asm
+
+Wang's의 ELCK는 GIO로 연결되어있고, NR은 ECLK로 연결되어 있음.
+
+Wang꺼 프로젝트 할코겐으로 수정 가능. 수정하면 HL_sys_link.cmd 파일 중복된 디스크만 수정해주면 됌
+처음 수정하면 VIM 인터럽트 이름 수정해줘야함 EMAC rx tx.
+
+Hello Erkan,
+
+In HALCoGen pinmux, please check the column of "Alternate Terminal". The "Default Terminal" is for Launchpad, and the "Alternate Terminal" is for HDK.
+
+Thanks and Regards,
+QJ Wang
+
+
+
+************************* 5/28 문제 ***************************
+
+MDIO 문제 해결!!!!!!
+Schematic 살펴보니 GIOA[3], [4]가 DP83630 enable에 연결되어있음. -> [3],[4]를 OUTPUT으로 설정하고 출력 1줬더니 해결됐음.
+Emac 해결했더니 SCI가 안됌. 이유는 불확실하지만 인터럽트 도중 인터럽트가 발생해서 코드가 꼬이는것 같음.
+** 할코겐 제너레이트 할때마다 HL_emac.c와 HL_sys_link.cmd 원상복구 시켜줘야함.
+
+태스크를 돌릴때 for문 안에 동작에 아무 영향을 주지 않는 코드를 넣어놓으면, for문이 씹히고 태스크가 끝남.
+	-> FreeRTOS쪽에서 최적화 시켜놓은거 같음.
+
+태스크 3개돌리는데, 태스크가 죽음. -> 강사님 의견은 vTaskDelay가 서로 꼬이는것 같다고 말씀해주심.
+-> 세마포어하면 다 해결됌. 대신 동작이 느려짐.
+
+******************** 5/29 ******************
+
+HALcogen에서 PINMUX MII체크하고 D19, K19만 해제하면 연결 쪽 핀먹스에는 이상 x.
+
+CCS에서 플래쉬하고 MCU전원 뽑았다 낀 다음 리셋하고 LAN선 뺐다가 끼면 동작함.
+
+
+
+
+
+************** 5/30 *************
+
+Send Receive 를 같이 하면 레이스 컨디션 발생..
+테스크를 둘로 나누어야함. + DSP에서도 리시브 센드를 따로 해야할듯.
+
+핑 테스트 시 멈추는 버그는 Tx, Rx 인터럽트를 FIQ로 설정해놨었는데, 핑을 보내는 인터럽트 핸들러에서 Protect sys arch를 하는데,
+이 동작이 IRQ 인터럽트를 disable한다. 인터럽트를 해제한 상태인데, Tx인터럽트 FIQ가 들어와버리니까 두 인터럽트 사이에
+레이스 컨디션이 발생해서 테스크가 멈춘다.
+Tx, Rx를 FIQ로 했던 이유는 초기에 UDP_send TEST 전 부터 LED 블링크 테스크와 핑 테스트간의 레이스 컨디션이 발생하는거 아닌가 싶어서
+Tx, Rx를 FIQ로 하면 인터럽트를 빠르게 처리해서 레이스 컨디션이 안걸리지 않을까 하는 생각으로 시도했던거임.
+까먹고 있다가 디버깅 중 Tx하면서 ping을 주고받을 때 브레이크 포인트를 걸고 한단계씩 코드를 분석하다 보니 발견했음. 
+전송 할 데이터량이 크다 보니, 테스크 스택사이즈도 영향을 미쳤을 수도있음. 사이즈를 최소 * 8배로 늘림.
+
+Binary Semaphore는 테스크 2개가 하나의 공유자원에 접근하는 프로그램일 때 사용하면 좋음. 우리 프로젝트는 여러 공유 자원에 여러 디바이스가 붙는 프로그램이라
+Binary Semaphore를 사용하면 오히려 능률이 떨어짐.
+
+
+***************** 5/31 *********************
+
+PID 컨트롤 코드랑 합침.
+실험 X
+
+
+**************** 6/4 ***************
+
+PID 코드 합쳤더니 레이스 컨디션 발생해서 디버깅 도중에 알아낸것.
+SCI 태스크에서 sprintf를 2번하면 멈춤.
+sciSend 를 2번하는건 ㄱㅊ
+	-----------------------> sprintf 가 2번이여서 멈춘게 아니라 float형을 넣었더니 멈춤. 이유는 모르겠음. int형으로 명시적 형변환 했더니 통신 잘됌. sprintf 갯수는 전혀 상관없음.
+float형을 sci에 표시하고싶으면 나눠서 정수 부분과 소수부분을 따로 변수에 저장하고 int형으로 출력해야할듯.
+
+해야 할 일: MPU 코드랑 결합!
+MPU가 계산을 끝내면 인터럽트 핀에서 신호가 하나 날아옴. 그때 출력하게 코드를 수정하면 좋은데 이건 나중에 시간나면 하기.
+
+MPU 전원쪽에 103 커패시터 달아서 필터 장착.
+MPU에 누적오차가 점점 쌓이는데 30초마다 리셋해주는 코드 작성
+CNTL2: Control 2 (SRST)를 셋 하면 register가 initialize 됌.
+
+
+합치는데 문제점 : Stack이 부족했음.
+		그리고 UDP Task가 최소스택에 8배를 받아가는데, UDP를 4배로 줄였더니 해결됌.
+		더이상 태스크 늘리기는 힘들어보임.
+		모든 태스크의 Size 합이 13을 초과 안됌. configMINIMAL_STACK_SIZE * 13이면 멈춤. 이건 레이스 컨디션이 아닌거같음.
+SCI Task는 최소 스택의 2배
+나머지는 최소스택이면 충분
+UDP Task는 최소 스택이면 충분하지만 혹시 몰라 2배를 준 상태.
+
+
+*************** 6/10 ***************
+
+sprintf를 udp task에서 해야됌. oo 성공
+프로토콜 설계해야됌.
+
+DSP에서 send to 할때 buff에 sprintf를 사용하니까 ASCII 코드로 들어감. 이렇게되면 나중에 데이터 활용하기 힘듬.
+
+      buff_snd[0] = (setCNT & 0xFF000000) >> 24;
+      buff_snd[1] = (setCNT & 0x00FF0000) >> 16;
+      buff_snd[2] = (setCNT & 0x0000FF00) >> 8;
+      buff_snd[3] = setCNT & 0x000000FF;
+      buff_snd[4] = (degree & 0xFF000000) >> 24;
+      buff_snd[5] = (degree & 0x00FF0000) >> 16;
+      buff_snd[6] = (degree & 0x0000FF00) >> 8;
+      buff_snd[7] = degree & 0x000000FF;
+      buff_snd[8] = 0;
+      buff_snd[9] = 0;
+      buff_snd[10] = 0;
+      buff_snd[11] = 1;
+
+이런식으로 직접 줘야함
+why? int형은 4byte단위라서 char배열로 선언되어있는 buff_snd의 4개공간이 필요함. char은 1byte.
+int형으로 선언 안하고 배열에 직접 1을 넣고 send해도 mcu에서 받을때 4byte단위로 받아서 0x10000000로 받아들임.
+
+        int *a = (int *)p->payload;
+        //int *bb = (int *)(p->payload + 0x4);
+        int *bb = a + 1;
+bb에 값을 넣을때 둘다 같은 동작을 함. 왜인진 모르겠지만 +1을 하면 4byte뒤의 주소값을 입력
+MCU PID에 들어가는 setCNT값은 DSP의 usleep에 따라 달라짐. MCU에서 첫 세팅값은 0임.
+	-> 반응성을 빠르게하려면 usleep을 낮춰야함. 너무 낮추면(= 빠르면) mcu에서 receive만 하느라 아무것도 못함.
+
+******************* 6/12 *******************
+MPU가 안됐던 이유는 선도 문제고, wait도 문제임. stop과 start뒤에 wait(1000) 안하면 명령이 씹히는거같음.
+스텝모터 한 바퀴당 포대 몇 도 움직이는지 알아야함.

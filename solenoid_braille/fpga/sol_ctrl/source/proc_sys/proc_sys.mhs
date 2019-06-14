@@ -1,0 +1,195 @@
+
+# ##############################################################################
+# Created by Base System Builder Wizard for Xilinx EDK 13.4 Build EDK_O.87xd
+# Tue Nov 19 04:07:43 2013
+# Target Board:  Custom
+# Family:    spartan6
+# Device:    xc6slx9
+# Package:   tqg144
+# Speed Grade:  -3
+# Processor number: 1
+# Processor 1: microblaze_0
+# System clock frequency: 50.0
+# Debug Interface: On-Chip HW Debug Module
+# ##############################################################################
+ PARAMETER VERSION = 2.1.0
+
+
+ PORT fpga_0_RS232_RX_pin = fpga_0_RS232_RX_pin, DIR = I
+ PORT fpga_0_RS232_TX_pin = fpga_0_RS232_TX_pin, DIR = O
+ PORT fpga_0_clk_1_sys_clk_pin = CLK_S, DIR = I, SIGIS = CLK, CLK_FREQ = 50000000
+ PORT fpga_0_rst_1_sys_rst_pin = sys_rst_s, DIR = I, SIGIS = RST, RST_POLARITY = 1
+ PORT xps_epc_0_PRH_CS_n_pin = xps_epc_0_PRH_CS_n, DIR = O
+ PORT xps_epc_0_PRH_Addr_pin = xps_epc_0_PRH_Addr, DIR = O, VEC = [0:31]
+ PORT xps_epc_0_PRH_RNW_pin = xps_epc_0_PRH_RNW, DIR = O
+ PORT xps_epc_0_PRH_Rdy_pin = xps_epc_0_PRH_Rdy, DIR = I
+ PORT xps_epc_0_PRH_Clk_pin = net_xps_epc_0_PRH_Clk_pin, DIR = I, SIGIS = CLK, CLK_FREQ = 50000000
+ PORT xps_epc_0_PRH_Rst_pin = net_xps_epc_0_PRH_Rst_pin, DIR = I, SIGIS = RST, RST_POLARITY = 1
+ PORT xps_epc_0_PRH_Data_I_pin = net_xps_epc_0_PRH_Data_I_pin, DIR = I, VEC = [0:31]
+ PORT xps_epc_0_PRH_Data_O_pin = xps_epc_0_PRH_Data_O, DIR = O, VEC = [0:31]
+ PORT xps_mch_emc_0_Mem_DQ = xps_mch_emc_0_Mem_DQ, DIR = IO, VEC = [0:15]
+ PORT xps_mch_emc_0_Mem_A_pin = xps_mch_emc_0_Mem_A, DIR = O, VEC = [0:31]
+ PORT xps_mch_emc_0_Mem_CEN_pin = xps_mch_emc_0_Mem_CEN, DIR = O, VEC = [0:0]
+ PORT xps_mch_emc_0_Mem_WEN_pin = xps_mch_emc_0_Mem_WEN, DIR = O
+ PORT xps_mch_emc_0_Mem_OEN_pin = xps_mch_emc_0_Mem_OEN, DIR = O, VEC = [0:0]
+
+
+BEGIN microblaze
+ PARAMETER INSTANCE = microblaze_0
+ PARAMETER C_USE_BARREL = 1
+ PARAMETER C_DEBUG_ENABLED = 1
+ PARAMETER HW_VER = 8.50.c
+ BUS_INTERFACE DLMB = dlmb
+ BUS_INTERFACE ILMB = ilmb
+ BUS_INTERFACE DPLB = mb_plb
+ BUS_INTERFACE IPLB = mb_plb
+ BUS_INTERFACE DEBUG = microblaze_0_mdm_bus
+ PORT MB_RESET = mb_reset
+END
+
+BEGIN plb_v46
+ PARAMETER INSTANCE = mb_plb
+ PARAMETER HW_VER = 1.05.a
+ PORT PLB_Clk = clk_50_0000MHz
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = ilmb
+ PARAMETER HW_VER = 2.00.b
+ PORT LMB_Clk = clk_50_0000MHz
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = dlmb
+ PARAMETER HW_VER = 2.00.b
+ PORT LMB_Clk = clk_50_0000MHz
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = dlmb_cntlr
+ PARAMETER HW_VER = 3.10.c
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00007fff
+ BUS_INTERFACE SLMB = dlmb
+ BUS_INTERFACE BRAM_PORT = dlmb_port
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = ilmb_cntlr
+ PARAMETER HW_VER = 3.10.c
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00007fff
+ BUS_INTERFACE SLMB = ilmb
+ BUS_INTERFACE BRAM_PORT = ilmb_port
+END
+
+BEGIN bram_block
+ PARAMETER INSTANCE = lmb_bram
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE PORTA = ilmb_port
+ BUS_INTERFACE PORTB = dlmb_port
+END
+
+BEGIN xps_uartlite
+ PARAMETER INSTANCE = RS232
+ PARAMETER C_BAUDRATE = 115200
+ PARAMETER C_DATA_BITS = 8
+ PARAMETER C_USE_PARITY = 0
+ PARAMETER C_ODD_PARITY = 0
+ PARAMETER HW_VER = 1.02.a
+ PARAMETER C_BASEADDR = 0x84000000
+ PARAMETER C_HIGHADDR = 0x8400ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT RX = fpga_0_RS232_RX_pin
+ PORT TX = fpga_0_RS232_TX_pin
+END
+
+BEGIN clock_generator
+ PARAMETER INSTANCE = clock_generator_0
+ PARAMETER C_CLKIN_FREQ = 50000000
+ PARAMETER C_CLKOUT0_FREQ = 50000000
+ PARAMETER C_CLKOUT0_PHASE = 0
+ PARAMETER C_CLKOUT0_GROUP = NONE
+ PARAMETER C_CLKOUT0_BUF = TRUE
+ PARAMETER C_EXT_RESET_HIGH = 1
+ PARAMETER HW_VER = 4.03.a
+ PORT CLKIN = CLK_S
+ PORT CLKOUT0 = clk_50_0000MHz
+ PORT RST = sys_rst_s
+ PORT LOCKED = Dcm_all_locked
+END
+
+BEGIN mdm
+ PARAMETER INSTANCE = mdm_0
+ PARAMETER C_MB_DBG_PORTS = 1
+ PARAMETER C_USE_UART = 1
+ PARAMETER HW_VER = 2.10.a
+ PARAMETER C_BASEADDR = 0x84400000
+ PARAMETER C_HIGHADDR = 0x8440ffff
+ BUS_INTERFACE MBDEBUG_0 = microblaze_0_mdm_bus
+ BUS_INTERFACE SPLB = mb_plb
+ PORT Debug_SYS_Rst = Debug_SYS_Rst
+END
+
+BEGIN proc_sys_reset
+ PARAMETER INSTANCE = proc_sys_reset_0
+ PARAMETER C_EXT_RESET_HIGH = 1
+ PARAMETER HW_VER = 3.00.a
+ PORT Slowest_sync_clk = clk_50_0000MHz
+ PORT Ext_Reset_In = sys_rst_s
+ PORT MB_Debug_Sys_Rst = Debug_SYS_Rst
+ PORT Dcm_locked = Dcm_all_locked
+ PORT MB_Reset = mb_reset
+ PORT Bus_Struct_Reset = sys_bus_reset
+ PORT Peripheral_Reset = sys_periph_reset
+END
+
+BEGIN xps_epc
+ PARAMETER INSTANCE = xps_epc_0
+ PARAMETER HW_VER = 1.02.a
+ PARAMETER C_PRH0_BASEADDR = 0x20000000
+ PARAMETER C_PRH0_HIGHADDR = 0x2007FFFF
+ PARAMETER C_PRH_CLK_PERIOD_PS = 20000
+ PARAMETER C_PRH_CLK_SUPPORT = 1
+ PARAMETER C_PRH0_RDY_TOUT = 500000
+ PARAMETER C_PRH0_RDY_WIDTH = 500001
+ BUS_INTERFACE SPLB = mb_plb
+ PORT PRH_CS_n = xps_epc_0_PRH_CS_n
+ PORT PRH_Addr = xps_epc_0_PRH_Addr
+ PORT PRH_RNW = xps_epc_0_PRH_RNW
+ PORT PRH_Rdy = xps_epc_0_PRH_Rdy
+ PORT PRH_Clk = net_xps_epc_0_PRH_Clk_pin
+ PORT PRH_Rst = net_xps_epc_0_PRH_Rst_pin
+ PORT PRH_Data_I = net_xps_epc_0_PRH_Data_I_pin
+ PORT PRH_Data_O = xps_epc_0_PRH_Data_O
+END
+
+BEGIN xps_mch_emc
+ PARAMETER INSTANCE = xps_mch_emc_0
+ PARAMETER HW_VER = 3.01.a
+ PARAMETER C_MEM0_BASEADDR = 0x40000000
+ PARAMETER C_MEM0_HIGHADDR = 0x4FFFFFFF
+ PARAMETER C_NUM_CHANNELS = 0
+ PARAMETER C_MAX_MEM_WIDTH = 16
+ PARAMETER C_MEM0_WIDTH = 16
+ PARAMETER C_INCLUDE_DATAWIDTH_MATCHING_0 = 1
+ PARAMETER C_TCEDV_PS_MEM_0 = 120000
+ PARAMETER C_TAVDV_PS_MEM_0 = 120000
+ PARAMETER C_THZCE_PS_MEM_0 = 30000
+ PARAMETER C_THZOE_PS_MEM_0 = 25000
+ PARAMETER C_TWC_PS_MEM_0 = 90000
+ PARAMETER C_TWP_PS_MEM_0 = 60000
+ PARAMETER C_TLZWE_PS_MEM_0 = 10000
+ PARAMETER C_TPACC_PS_FLASH_0 = 30000
+ BUS_INTERFACE SPLB = mb_plb
+ PORT Mem_DQ = xps_mch_emc_0_Mem_DQ
+ PORT Mem_A = xps_mch_emc_0_Mem_A
+ PORT Mem_CEN = xps_mch_emc_0_Mem_CEN
+ PORT Mem_WEN = xps_mch_emc_0_Mem_WEN
+ PORT Mem_OEN = xps_mch_emc_0_Mem_OEN
+ PORT RdClk = CLK_S
+END
+

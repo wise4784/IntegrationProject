@@ -1,0 +1,13 @@
+-p
+xc6slx9tqg144-2
+-lang
+verilog
+-intstyle
+ise
+-toplevel
+no
+-ti
+proc_sys_i
+-msg
+__xps/ise/xmsgprops.lst
+proc_sys.mhs

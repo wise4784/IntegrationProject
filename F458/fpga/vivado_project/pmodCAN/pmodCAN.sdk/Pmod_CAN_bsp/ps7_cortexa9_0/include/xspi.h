@@ -638,6 +638,7 @@ typedef struct {
 *****************************************************************************/
 #define XSpi_GetControlReg(InstancePtr) \
 	XSpi_ReadReg(((InstancePtr)->BaseAddr), XSP_CR_OFFSET)
+	//xspi_l.h
 
 /***************************************************************************/
 /**

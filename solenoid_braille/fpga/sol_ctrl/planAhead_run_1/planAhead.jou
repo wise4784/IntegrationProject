@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Fri Oct 13 14:53:59 2017
+# Process ID: 18520
+# Log file: C:/Users/acer/Desktop/fan/rpmfanuart/planAhead_run_1/planAhead.log
+# Journal file: C:/Users/acer/Desktop/fan/rpmfanuart/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source C:/Users/acer/Desktop/fan/rpmfanuart/pa.fromNetlist.tcl
