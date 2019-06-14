@@ -53,9 +53,9 @@
 #include "HL_rti.h"
 #include "HL_epc.h"
 #include "HL_sys_dma.h"
-#include "HL_reg_het.h"
 
 /* USER CODE BEGIN (0) */
+#include "HL_reg_het.h"
 /* USER CODE END */
 #pragma WEAK(esmGroup1Notification)
 void esmGroup1Notification(esmBASE_t *esm, uint32 channel)

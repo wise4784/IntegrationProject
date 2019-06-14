@@ -3,4 +3,6 @@
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
 		<item value="/home/koitt/nested_interrupt/TMDX570LC43HDK"/>
 	</list>
+	<section name="NewWizardAction">
+	</section>
 </section>

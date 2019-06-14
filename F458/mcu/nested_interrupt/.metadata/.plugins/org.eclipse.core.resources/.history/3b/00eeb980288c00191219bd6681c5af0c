@@ -1,0 +1,20 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Each subdirectory must supply rules for building sources it contributes
+NESTED_INTTERUPT/irqDispatch_a.obj: /home/koitt/nested_interrupt/IRQ\ Dispatcher/irqDispatch_a.asm $(GEN_OPTS) | $(GEN_FILES)
+	@echo 'Building file: "$<"'
+	@echo 'Invoking: ARM Compiler'
+	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/bin/armcl" -mv7R5 --code_state=32 --float_support=VFPv3D16 --include_path="/home/koitt/nested_interrupt/test_nested2" --include_path="/home/koitt/nested_interrupt/test_nested2/include" --include_path="/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include" --define=__TI_VIM_128CH__ -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="NESTED_INTTERUPT/$(basename $(<F)).d_raw" --obj_directory="NESTED_INTTERUPT" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: "$<"'
+	@echo ' '
+
+NESTED_INTTERUPT/irqDispatch_c.obj: /home/koitt/nested_interrupt/IRQ\ Dispatcher/irqDispatch_c.c $(GEN_OPTS) | $(GEN_FILES)
+	@echo 'Building file: "$<"'
+	@echo 'Invoking: ARM Compiler'
+	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/bin/armcl" -mv7R5 --code_state=32 --float_support=VFPv3D16 --include_path="/home/koitt/nested_interrupt/test_nested2" --include_path="/home/koitt/nested_interrupt/test_nested2/include" --include_path="/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include" --define=__TI_VIM_128CH__ -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --preproc_with_compile --preproc_dependency="NESTED_INTTERUPT/$(basename $(<F)).d_raw" --obj_directory="NESTED_INTTERUPT" $(GEN_OPTS__FLAG) "$(shell echo $<)"
+	@echo 'Finished building: "$<"'
+	@echo ' '
+
+

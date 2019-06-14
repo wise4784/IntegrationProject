@@ -43,6 +43,7 @@
 
     .ref _c_int00
     .ref _irqDispatch
+    .ref dispatch
     .ref phantomInterrupt
     .def resetEntry
 
@@ -60,7 +61,7 @@ prefetchEntry
 dataEntry
         b   dataEntry
         b   phantomInterrupt
-        b   _irqDispatch
+        b   dispatch
         ldr pc,[pc,#-0x1b0]
 
     
