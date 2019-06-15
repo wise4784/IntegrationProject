@@ -43,6 +43,7 @@
 
     .ref _c_int00
     .ref vPortSWI
+    .ref _select_dispatch
     .ref phantomInterrupt
     .def resetEntry
 
@@ -57,9 +58,9 @@ undefEntry
 prefetchEntry
         b   prefetchEntry
 dataEntry
-        b   dataEntry
+        b   _c_int00;b   dataEntry
         b   phantomInterrupt
-        ldr pc,[pc,#-0x1b0]
+        b   _select_dispatch
         ldr pc,[pc,#-0x1b0]
 
     

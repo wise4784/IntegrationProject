@@ -53,6 +53,10 @@
 #include "HL_gio.h"
 #include "HL_rti.h"
 #include "HL_reg_het.h"
+#include "HL_sci.h"
+
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -64,12 +68,16 @@
 */
 
 /* USER CODE BEGIN (2) */
+void sci_display(sciBASE_t *sci,char *buf, int len);
 /* USER CODE END */
 
 int main(void)
 {
 /* USER CODE BEGIN (3) */
+    char buf[64];
+    int len;
     gioInit();
+    sciInit();
 
         gioSetDirection(hetPORT1, (1ull << 0) | (1ull << 31)); /* Enable N2HET1_00 and N2HET1_31 output buffer */
 
@@ -85,7 +93,11 @@ int main(void)
 
         _enable_IRQ();
 
-        while(1);
+        while(1){
+           // sprintf(buf,"main\n\r\0");
+            //len=strlen(buf);
+           // sci_display(sciREG1,buf,len);
+        }
 /* USER CODE END */
 
     return 0;
@@ -93,4 +105,49 @@ int main(void)
 
 
 /* USER CODE BEGIN (4) */
+void sci_display(sciBASE_t *sci,char *buf, int len){
+    while(len--){
+        while(sci->FLR&0x4==4)
+            ;
+        sciSendByte(sci,*buf++);
+    }
+}
+
+void rtiNotification(rtiBASE_t *rtiREG, uint32 notification)
+{
+    uint32 u32Period;
+    uint32 u32CurrCmp;
+    char buf[64];
+    int len;
+
+    if(notification==rtiNOTIFICATION_COMPARE0){
+        sprintf(buf,"cmp0 start------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,buf,len);
+
+         u32Period  = rtiGetPeriod(rtiREG1, rtiCOMPARE0);
+         u32CurrCmp = rtiREG1->CMP[rtiCOMPARE0].COMPx;
+
+        while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
+
+        sprintf(buf,"cmp0 end------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,buf,len);
+    }else{
+        sprintf(buf,"cmp1 start------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,buf,len);
+
+         u32Period  = rtiGetPeriod(rtiREG1, rtiCOMPARE1);
+         u32CurrCmp = rtiREG1->CMP[rtiCOMPARE1].COMPx;
+
+        while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
+
+        sprintf(buf,"cmp1 end------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,buf,len);
+    }
+
+}
+
 /* USER CODE END */

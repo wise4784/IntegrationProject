@@ -42,6 +42,7 @@
 ; import reference for interrupt routines
 
     .ref _c_int00
+    .ref test_dispatch
     .ref phantomInterrupt
     .def resetEntry
 
@@ -59,7 +60,7 @@ prefetchEntry
 dataEntry
         b   dataEntry
         b   phantomInterrupt
-        ldr pc,[pc,#-0x1b0]
+        b   test_dispatch
         ldr pc,[pc,#-0x1b0]
 
     

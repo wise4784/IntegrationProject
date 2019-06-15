@@ -53,6 +53,8 @@
 #include "HL_gio.h"
 #include "HL_rti.h"
 #include "HL_reg_het.h"
+
+#include <stdio.h>
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -78,14 +80,16 @@ int main(void)
 
           rtiInit();
 
-          rtiEnableNotification(rtiREG1, rtiNOTIFICATION_COMPARE0);
+          //rtiEnableNotification(rtiREG1, rtiNOTIFICATION_COMPARE0);
           rtiEnableNotification(rtiREG1, rtiNOTIFICATION_COMPARE1);
 
           rtiStartCounter(rtiREG1, rtiCOUNTER_BLOCK0);
 
           _enable_IRQ();
 
-          while(1);
+          while(1){
+              printf("main\n");
+          }
 /* USER CODE END */
 
     return 0;

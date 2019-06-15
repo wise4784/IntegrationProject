@@ -55,6 +55,7 @@
 #include "FreeRTOS.h"
 #include "os_queue.h"
 #include "os_task.h"
+#include "HL_het.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -75,6 +76,7 @@ TaskHandle_t t2;
 void dummyTask(void* pbParamaters);
 void dummyTask2(void* pbParamaters);
 void sci_display(sciBASE_t* sci, uint8* buf, int len);
+void hetRAMinit();
 void wait(int delay);
 /* USER CODE END */
 
@@ -84,10 +86,17 @@ int main(void)
     char buf[64];
     int len;
     int f1,f2;
-    sciInit();
 
-    f1=xTaskCreate(dummyTask,"t1",configMINIMAL_STACK_SIZE*2,NULL,1,&t1);
-    f2=xTaskCreate(dummyTask2,"t2",configMINIMAL_STACK_SIZE*2,NULL,1,&t2);
+    sprintf(buf,"reset\n\r\0");
+    len=strlen(buf);
+    sci_display(sciREG1,(uint8 *)buf,len);
+
+    sciInit();
+    hetInit();
+    hetRAMinit();
+
+    f1=xTaskCreate(dummyTask,"t1",configMINIMAL_STACK_SIZE*5,NULL,1,&t1);
+    f2=xTaskCreate(dummyTask2,"t2",configMINIMAL_STACK_SIZE*5,NULL,1,&t2);
 
     if(f1!=pdPASS||f2!=pdPASS){
         sprintf(buf,"error!!\n\r\0");
@@ -95,7 +104,7 @@ int main(void)
         sci_display(sciREG1,(uint8 *)buf,len);
     }
 
-    ecapInit();
+    //ecapInit();
     //ecapStartCounter(ecapREG1);
     //ecapStartCounter(ecapREG2);
 
@@ -140,23 +149,23 @@ void ecapNotification(ecapBASE_t *ecap,uint16 flags){
     int len;
 
     if(ecap==ecapREG1){
-        sprintf(buf,"-----------------CAP1 Start-----------------\n\r\0");
+        sprintf(buf,"CAP1 Start\n\r\0");
         len=strlen(buf);
         sci_display(sciREG1,(uint8 *)buf,len);
         wait(100);
 
-        sprintf(buf,"-----------------CAP1 END-----------------\n\r\0");
+        sprintf(buf,"CAP1 END\n\r\0");
         len=strlen(buf);
         sci_display(sciREG1,(uint8*)buf,len);
         ecapDisableInterrupt(ecapREG1,ecapInt_CEVT3);
 
     }
     if(ecap==ecapREG2){
-        sprintf(buf,"^^^^^^^^^^^^^^^^^CAP2 Start^^^^^^^^^^^^^^^\n\r\0");
+        sprintf(buf,"CAP2 Start\n\r\0");
         len=strlen(buf);
         sci_display(sciREG1,(uint8*)buf,len);
-        wait(100);
-        sprintf(buf,"^^^^^^^^^^^^^^^^^^^CAP2 END^^^^^^^^^^^^^^^^^^^^\n\r\0");
+        wait(10000);
+        sprintf(buf,"CAP2 END\n\r\0");
         len=strlen(buf);
         sci_display(sciREG1,(uint8*)buf,len);
     }
@@ -166,5 +175,62 @@ void wait(int delay){
     int i;
     for(i=0;i<delay;i++)
         ;
+}
+
+void hetNotification(hetBASE_t *het, uint32 offset){
+    int len;
+    char buf[64];
+    int tmp;
+
+    if(het==hetREG1){
+        sprintf(buf,"----------------het1 start--------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,(uint8*)buf,len);
+
+       // tmp=5*1000*1000*0.5;
+
+        //while((hetRAM1->Instruction[0].Data>>7)<tmp)
+        //    ;
+
+
+        sprintf(buf,"----------------het1 end-------------\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,(uint8*)buf,len);
+    }else{
+        sprintf(buf,"*****************het2 start*****************\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,(uint8*)buf,len);
+
+
+        tmp=5*1000*1000*2;
+
+
+        while((hetRAM2->Instruction[0].Data>>7)<tmp)
+            ;
+
+        sprintf(buf,"*****************het2 end*****************\n\r\0");
+        len=strlen(buf);
+        sci_display(sciREG1,(uint8*)buf,len);
+    }
+}
+
+void hetRAMinit(){
+    int sec=5*1000*1000;
+    int cnt1=1, cnt2=4;
+
+    cnt1=sec*cnt1;
+    cnt2=sec*cnt2;
+
+    hetRAM1->Instruction[0].Program=0x00000C81U;
+    hetRAM1->Instruction[0].Control=cnt1;
+    hetRAM1->Instruction[0].Data=0;
+
+    hetRAM2->Instruction[0].Program=0x00000C81U;
+    hetRAM2->Instruction[0].Control=cnt2;
+    hetRAM2->Instruction[0].Data=0;
+
+    hetREG1->INTENAS=1;
+    hetREG2->INTENAS=1;
+
 }
 /* USER CODE END */

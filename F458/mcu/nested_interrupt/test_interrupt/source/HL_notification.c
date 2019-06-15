@@ -50,12 +50,13 @@
 
 #include "HL_esm.h"
 #include "HL_gio.h"
+#include "HL_sci.h"
 #include "HL_rti.h"
 #include "HL_epc.h"
 #include "HL_sys_dma.h"
-#include "HL_reg_het.h"
 
 /* USER CODE BEGIN (0) */
+#include <stdio.h>
 /* USER CODE END */
 #pragma WEAK(esmGroup1Notification)
 void esmGroup1Notification(esmBASE_t *esm, uint32 channel)
@@ -108,43 +109,20 @@ void dmaGroupANotification(dmaInterrupt_t inttype, uint32 channel)
 /* USER CODE END */
 
 /* USER CODE BEGIN (11) */
+
 /* USER CODE END */
 #pragma WEAK(rtiNotification)
 void rtiNotification(rtiBASE_t *rtiREG, uint32 notification)
 {
 /*  enter user code between the USER CODE BEGIN and USER CODE END. */
-    switch(notification)
-        {
-        case rtiNOTIFICATION_COMPARE0:
-        {
-            uint32 u32Period  = rtiGetPeriod(rtiREG1, rtiCOMPARE0);
-            uint32 u32CurrCmp = rtiREG1->CMP[rtiCOMPARE0].COMPx;
-
-            gioSetBit(hetPORT1, 31ull, 1ull); /* Switch on LED D4 */
-
-            /* Wait for half the period proir to switch off the LED */
-            while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
-
-            gioSetBit(hetPORT1, 31ull, 0ull); /* Switch off LED D4 */
-        }
-        break;
-        case rtiNOTIFICATION_COMPARE1:
-        {
-            uint32 u32Period  = rtiGetPeriod(rtiREG1, rtiCOMPARE1);
-            uint32 u32CurrCmp = rtiREG1->CMP[rtiCOMPARE1].COMPx;
-
-            gioSetBit(hetPORT1, 0ull, 1ull); /* Switch on LED D5 */
-
-            /* Wait for half the period proir to switch off the LED */
-            while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
-
-            gioSetBit(hetPORT1, 0ull, 0ull); /* Switch off LED D5 */
-        }
-        break;
-        default:
-            break;
-        }
 /* USER CODE BEGIN (12) */
+    uint32 u32Period  = rtiGetPeriod(rtiREG1, rtiCOMPARE0);
+    uint32 u32CurrCmp = rtiREG1->CMP[rtiCOMPARE0].COMPx;
+    if(notification==rtiNOTIFICATION_COMPARE0){
+        //while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
+    }else{
+        //while(rtiREG1->CNT[0].FRCx < (u32CurrCmp - (u32Period >> 1)));
+    }
 /* USER CODE END */
 }
 
@@ -161,6 +139,16 @@ void gioNotification(gioPORT_t *port, uint32 bit)
 /* USER CODE BEGIN (23) */
 /* USER CODE END */
 
+#pragma WEAK(sciNotification)
+void sciNotification(sciBASE_t *sci, uint32 flags)     
+{
+/*  enter user code between the USER CODE BEGIN and USER CODE END. */
+/* USER CODE BEGIN (32) */
+/* USER CODE END */
+}
+
+/* USER CODE BEGIN (33) */
+/* USER CODE END */
 
 
 
