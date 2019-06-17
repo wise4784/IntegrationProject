@@ -116,7 +116,7 @@ context_switch:			;cmp 명령어 결과로 인해 cpsr이 변경되기 때문에
 
 		ldmfd sp!, 	{r1}
 		ldmfd sp!,	{r0}
-		b vPortPreemptiveTick	;context switching start
+		;b vPortPreemptiveTick	;context switching start
 
       .endasmfunc
 
