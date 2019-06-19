@@ -76,12 +76,6 @@ void C_irqDispatch(void)
 	  */
 
 	/* IRQIVEC is zero if no interrupt is pending */
-
-	if(u32IrqIndex==3){
-	    u32IrqIndex=0;
-	    return ;
-	}
-
 	if (0U == u32IrqIndex)
 	{
 		/* Phantom Interrupt */
@@ -165,8 +159,8 @@ void C_irqDispatch(void)
 			{
 
 				vimREG->REQMASKCLR0 = ((0xFFFFFFFFU << (u32IrqIndex -  1U)) & (~vimREG->FIRQPR0));
-				vimREG->REQMASKCLR0;
-				vimREG->REQMASKCLR0=(~vimREG->REQMASKCLR0)|0x4;
+				//vimREG->REQMASKCLR0;
+				//vimREG->REQMASKCLR0=(~vimREG->REQMASKCLR0)|0x4;
 				vimREG->REQMASKCLR1 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR1));
 				vimREG->REQMASKCLR2 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR2));
 #if defined(__TI_VIM_128CH__)
