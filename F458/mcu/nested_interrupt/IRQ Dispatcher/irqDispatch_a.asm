@@ -6,9 +6,14 @@
 
       ; Export Symbols
       .def _irqDispatch
+      .def _select_dispatch
+      .def test_dispatch
       
       ; Import Symbols
       .ref C_irqDispatch
+      .ref vPortPreemptiveTick
+      .ref test_c_dispatch
+
 
       ; The following should be placed in the .text section
       .text
@@ -69,6 +74,104 @@ _irqDispatch: .asmfunc
       ; TI ASM Step 7
       RFEIA    SP!                     ; Return using RFE from System mode stack
       .endasmfunc
-      
+
+
+
+      .align 4
+      .armfunc _select_dispatch
+      .arm
+
+_select_dispatch: .asmfunc
+		stmfd sp!,	{r0}
+		stmfd sp!,	{r1}
+
+		mrs r0, spsr
+		stmfd sp!,	{r0}
+		mrs r0, cpsr
+		stmfd sp!,	{r0}
+
+		movw r0,#0xFE00	;address of IRQINDEX
+		movt r0,#0xFFFF
+		ldr r1,[r0]
+
+		cmp r1, #3			;case: rti=context switching, rti_int_number=3
+		beq context_switch
+
+		ldmfd sp!,	{r0}	;restore cpsr
+		msr	cpsr_CSXF,	r0	;restore r0
+		ldmfd sp!,	{r0}
+		msr	spsr_CSXF,	r0
+
+		ldmfd sp!,	{r1}
+		ldmfd sp!,	{r0}
+
+		b _irqDispatch		;interrupt dispatch
+		;b test_dispatch
+
+context_switch:			;cmp 명령어 결과로 인해 cpsr이 변경되기 때문에 코드 중복.
+		ldmfd sp!,	{r0}
+		msr	cpsr_CSXF, r0
+		ldmfd sp!,	{r0}
+		msr	spsr_CSXF,	r0
+
+		ldmfd sp!, 	{r1}
+		ldmfd sp!,	{r0}
+		b vPortPreemptiveTick	;context switching start
+
+      .endasmfunc
+
+
+      .align 4
+      .armfunc test_dispatch
+      .arm
+
+test_dispatch: .asmfunc
+		stmfd sp!, {r0-r12}	;save context, return address
+
+		; Align stack to a 64 Bit boundary
+      	AND      R3, SP, #4              ; Calculate Stack adjustment to 64bit boundary
+      	SUB      SP, SP, R3              ; Adjust System Stack
+      	push  {R3, LR}                ; Put Stack adjustment and System Mode LR on Stack
+
+
+		stmfd sp!, {lr}
+		mrs r0, cpsr
+		stmfd sp!, {r0}
+		mrs r0, spsr
+		stmfd sp!, {r0}
+
+		bl test_c_dispatch	; call c interrupt handler
+		cmp r0, #1			; interrupt로 복귀하는 경우 별도 처리.
+		bge nested
+
+		ldmfd sp!, {r0}
+		msr spsr_csxf, r0
+		ldmfd sp!, {r0}
+		msr cpsr_csxf, r0		;restore context, return address
+		ldmfd sp!, {lr}
+
+		pop {R3, lr}
+		ADD      SP, SP, R3              ; Undo System Stack adjustment
+
+		ldmfd sp!, {r0-r12}
+
+		subs pc, lr, #4		;exit exception
+
+nested:
+		ldmfd sp!, {r0}
+		msr spsr_csxf, r0
+		ldmfd sp!, {r0}
+		msr cpsr_csxf, r0
+
+		ldmfd sp!, {lr}
+
+		pop {R3, lr}
+		ADD      SP, SP, R3
+
+		ldmfd sp!, {r0-r12}
+		sub lr, lr, #4
+		mov pc, lr			;exit nested interrupt
+      .endasmfunc
       .end
+
 ;-------------------------------------------------------------------------------

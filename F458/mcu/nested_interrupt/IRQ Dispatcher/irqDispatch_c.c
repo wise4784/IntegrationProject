@@ -13,7 +13,7 @@
 #error File irqDispatcher.c requires either __TI_VIM_96CH__ or __TI_VIM_128CH__ to be defined.
 #endif
 
-
+#include <stdio.h>
 /** @typedef vimRAM_t
  * @brief Vim Ram Definition
  *
@@ -41,6 +41,7 @@ static const vimRAM_t * const vimRAM = ((vimRAM_t *)0xFFF82000U);
  */
 
 static sint32 s32NestingLevel = 0;
+
 
 
 /** @def   MAX_NESTING_LEVEL
@@ -75,6 +76,12 @@ void C_irqDispatch(void)
 	  */
 
 	/* IRQIVEC is zero if no interrupt is pending */
+
+	if(u32IrqIndex==3){
+	    u32IrqIndex=0;
+	    return ;
+	}
+
 	if (0U == u32IrqIndex)
 	{
 		/* Phantom Interrupt */
@@ -82,6 +89,8 @@ void C_irqDispatch(void)
 		/** @todo
 		 * Add custom fault handler, if necessary.
 		 */
+	    return;
+
 
 		while(1);
 	}
@@ -110,6 +119,7 @@ void C_irqDispatch(void)
 				/* REG->REQMASKCLR0 = ( 0xFFFFFFFCU                         & (~vimREG->FIRQPR0)); Higher priority */
 				/* REG->REQMASKCLR1 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR1)); Higher priority */
 				/* REG->REQMASKCLR2 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR2)); Higher priority */
+			    vimREG->REQMASKCLR0=(~SaveREQMASKSET0)|0x4;
 				vimREG->REQMASKCLR3 = ((0xFFFFFFFFU << (u32IrqIndex - 97U)) & (~vimREG->FIRQPR3));
 				vimREG->REQMASKCLR3; /* Readback Mask to ensure that the previous write was finished before enabling interrupts again */
 #elif defined(__TI_VIM_96CH__)
@@ -125,6 +135,7 @@ void C_irqDispatch(void)
 			{
 				/* REG->REQMASKCLR0 = ( 0xFFFFFFFCU                         & (~vimREG->FIRQPR0)); Higher priority */
 				/* REG->REQMASKCLR1 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR1)); Higher priority */
+			    vimREG->REQMASKCLR0=(~SaveREQMASKSET0)|0x4;
 				vimREG->REQMASKCLR2 = ((0xFFFFFFFFU << (u32IrqIndex - 65U)) & (~vimREG->FIRQPR2));
 #if defined(__TI_VIM_128CH__)
 				vimREG->REQMASKCLR3 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR3));
@@ -138,6 +149,7 @@ void C_irqDispatch(void)
 			else if (32U < u32IrqIndex) /* 32-63 */
 			{
 				/* REG->REQMASKCLR0 = ( 0xFFFFFFFCU                         & (~vimREG->FIRQPR0)); Higher priority */
+			    vimREG->REQMASKCLR0=(~SaveREQMASKSET0)|0x4;
 				vimREG->REQMASKCLR1 = ((0xFFFFFFFFU << (u32IrqIndex - 33U)) & (~vimREG->FIRQPR1));
 				vimREG->REQMASKCLR2 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR2));
 #if defined(__TI_VIM_128CH__)
@@ -153,6 +165,8 @@ void C_irqDispatch(void)
 			{
 
 				vimREG->REQMASKCLR0 = ((0xFFFFFFFFU << (u32IrqIndex -  1U)) & (~vimREG->FIRQPR0));
+				vimREG->REQMASKCLR0;
+				vimREG->REQMASKCLR0=(~vimREG->REQMASKCLR0)|0x4;
 				vimREG->REQMASKCLR1 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR1));
 				vimREG->REQMASKCLR2 = ( 0xFFFFFFFFU                         & (~vimREG->FIRQPR2));
 #if defined(__TI_VIM_128CH__)
@@ -174,9 +188,6 @@ void C_irqDispatch(void)
 
 				while (1); /* Fault */
 			}
-
-	        vimREG->REQMASKCLR0=0x8;
-	        vimREG->REQMASKCLR0;
 
 			/* TI C Step 5 */
 			_enable_IRQ();    /* Enable IRQ, to allow preemption of IRQ routine */
@@ -211,3 +222,74 @@ void C_irqDispatch(void)
 	/* TI C Step 9 */
 	return; /* Return to First Level IRQ Dispatcher Assembly routine */
 }
+
+int test_c_dispatch(void){
+    uint32 u32IrqIndex = vimREG->IRQINDEX;
+    t_isrFuncPTR irqhandler=vimRAM->ISR[u32IrqIndex];
+    uint32 save_req_mask[4];
+
+    save_req_mask[0]=vimREG->REQMASKSET0;
+    save_req_mask[1]=vimREG->REQMASKSET1;
+    save_req_mask[2]=vimREG->REQMASKSET2;
+    save_req_mask[3]=vimREG->REQMASKSET3;
+
+    if(u32IrqIndex==0){//phantom interrupt 처리. 아무 일도 안하고 복귀하는 것으로 처리.
+        return s32NestingLevel;
+        for(;;)
+            ;
+    }
+
+
+    if(u32IrqIndex>96){
+        vimREG->REQMASKCLR0|=(~save_req_mask[0])|0x4;
+        vimREG->REQMASKCLR3 = ((0xFFFFFFFFU << (u32IrqIndex-97U)) & (~vimREG->FIRQPR3));
+        //vimREG->REQMASKCLR3|=(1<<(u32IrqIndex-97U));
+        vimREG->REQMASKCLR3;
+    }else if(u32IrqIndex>64){
+        vimREG->REQMASKCLR0=(~save_req_mask[0])|0x4;
+        vimREG->REQMASKCLR2 = ((0xFFFFFFFFU << (u32IrqIndex - 65U)) & (~vimREG->FIRQPR2));
+        vimREG->REQMASKCLR3 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR3));
+        vimREG->REQMASKCLR3;
+    }else if(u32IrqIndex>32){
+       vimREG->REQMASKCLR0|=(~save_req_mask[0])|0x4;
+        vimREG->REQMASKCLR1 = ((0xFFFFFFFFU << (u32IrqIndex-33U)) & (~vimREG->FIRQPR1));
+        vimREG->REQMASKCLR2 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR2));
+        vimREG->REQMASKCLR3 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR3));
+        vimREG->REQMASKCLR3;
+    }else if(u32IrqIndex>2){
+       // vimREG->REQMASKCLR0 = (((0xFFFFFFFFU << (u32IrqIndex -  1U)) & (~vimREG->FIRQPR0))|0x4);
+        vimREG->REQMASKCLR0 = ((0xFFFFFFFFU << (u32IrqIndex -  1U)) & (~vimREG->FIRQPR0));
+        vimREG->REQMASKCLR0;
+        vimREG->REQMASKCLR0=(~vimREG->REQMASKCLR0)|0x4;
+        vimREG->REQMASKCLR1 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR1));
+        vimREG->REQMASKCLR2 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR2));
+        vimREG->REQMASKCLR3 = ((0xFFFFFFFFU) & (~vimREG->FIRQPR3));
+        vimREG->REQMASKCLR3;
+    }
+
+    s32NestingLevel++;
+    _enable_IRQ();
+    (*irqhandler)();
+    _disable_IRQ();
+    s32NestingLevel--;
+
+    vimREG->REQMASKSET0=save_req_mask[0];
+    vimREG->REQMASKSET1=save_req_mask[1];
+    vimREG->REQMASKSET2=save_req_mask[2];
+    vimREG->REQMASKSET3=save_req_mask[3];
+
+    /*if(s32NestingLevel){// interrupt가 중첩된 경우 다르게 복귀.
+        asm(" ldmfd sp!, {r0}\n ");
+        asm(" msr spsr_csxf, r0 ");
+        asm(" ldmfd sp!, {r0}\n ");
+        asm(" msr cpsr_csxf, r0 ");
+        asm(" cps #18");
+        asm(" ldmfd sp!, {lr}");
+        asm(" ldmfd sp!, {r0-r12}");
+        asm(" sub lr, lr, #4 ");
+        asm(" mov pc, lr");
+    }*/
+
+    return s32NestingLevel;
+}
+

@@ -18,6 +18,7 @@
 #include "os_task.h"
 #include "os_timer.h"
 
+
 #define remote_receive gioPORTA,7
 #define top_drop gioPORTB,2
 // ir
@@ -30,7 +31,7 @@ volatile int step;
 
 //weight sensor
 volatile long weight,weight_zero;
-// drop
+// drop 10ms마다 1번 검사했더니 10번에 한번정도 씹히고 잘 되는듯. -> 씹히는거 gap avg 380ms 찍히는 이상한 애랑 관려있는듯.
 volatile uint8 drop_before, drop_time_counter;
 volatile uint8 drop_count=0,drop_time_avg=0;
 volatile uint8 drop_time_array[5];
@@ -66,7 +67,6 @@ void sci_display(sciBASE_t *sci, uint8 *txt, uint32 len)
         sciSendByte(sciREG1, *txt++);
     }
 }
-
 
 void delay_us(uint32 time){
     int i=28*time;
@@ -115,8 +115,6 @@ void lcd_string(char *);
 void lcd_init(void);
 
 void remote_data_calc(void);
-
-
 
 /* Task1 */
 void vTask1(void *pvParameters) // remote data calc + sci display   with semaphore
@@ -168,7 +166,7 @@ void vTask2(void *pvParameters){
     for(;;)
     {
         if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
-
+#if 0
         if((remote_now%2)==0){
 
         gioSetBit(gioPORTB,3,0);
@@ -242,20 +240,16 @@ void vTask2(void *pvParameters){
             lcd_char(((int)temp%10)+48);
             lcd_char(223);  //degree display
             lcd_string("C");
-
         }
-
-
+#endif
         //gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1); //user_led_1_toggle
-        step=200;   //step motor move.
+        step=0;   //step motor move. -200 open  +200 close
         }
         xSemaphoreGive(sem1);
         vTaskDelay(1000);
         //vTaskDelay(1000);
     }
 }
-
-
 
 void main(void)
 {
@@ -269,14 +263,13 @@ void main(void)
     gioSetDirection(gioPORTB, 0b11001000);
     //gioSetDirection(hetPORT1,0b00110001001000001010100000000000);
     hetInit();
+    lcd_init();
 
     gioEnableNotification(remote_receive);
     pwmEnableNotification(hetREG2,pwm0,pwmEND_OF_PERIOD);
     pwmEnableNotification(hetREG2,pwm1,pwmEND_OF_PERIOD);
     //pwmStart(hetRAM2,pwm0);
     _enable_IRQ_interrupt_();
-
-    lcd_init();
 
     sprintf(buf,"Initializing Success \n\r");
     buf_len = strlen(buf);
@@ -368,7 +361,7 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
          temp = -66.875 + (float)(217.75*3.3*temp);
 
          // display sensed
-         sprintf(buf,"weight calculated : %d, temperature : %f\n\r\0",count,temp);
+         sprintf(buf,"weight calculated : %d, temperature : %f\n\r\0",weight,temp);
          buf_len = strlen(buf);
          sci_display(sciREG1, (uint8 *)buf, buf_len);
 
@@ -393,7 +386,7 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
             drop_before=drop_now;
         }
 
-        if(time%10==0){
+        if(time%20==0){
             sprintf(buf,"drop_count : %d , drop gap avg = %d ms \n\r",drop_count, drop_time_avg*10);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *) buf, buf_len);
@@ -533,9 +526,11 @@ void lcd_command(unsigned char cmmd){
     gioSetBit(gioPORTA,1,((cmmd>>5) & 0x01));
     gioSetBit(gioPORTA,0,((cmmd>>4) & 0x01));
 
-    delay_us(1);
+    wait_us(20);
+    //delay_us(1);
     gioSetBit(gioPORTA,6,1);
-    delay_ms(1);
+    wait_66us(200);
+    //delay_ms(1);
     gioSetBit(gioPORTA,6,0);
 
 }
@@ -549,10 +544,12 @@ void lcd_char(unsigned char cmmd)
 
 
     gioSetBit(gioPORTA,6,1);
-    delay_ms(1);
+    wait_66us(200);
+    //delay_ms(1);
     gioSetBit(gioPORTA,6,0);
 
-    delay_us(200);
+    wait_us(600);
+    //delay_us(200);
 
     gioSetBit(gioPORTA,5,((cmmd>>3) & 0x01));
     gioSetBit(gioPORTA,2,((cmmd>>2) & 0x01));
@@ -560,9 +557,11 @@ void lcd_char(unsigned char cmmd)
     gioSetBit(gioPORTA,0,(cmmd & 0x01));
 
     gioSetBit(gioPORTA,6,1);
-    delay_ms(1);
+    wait_66us(200);
+    //delay_ms(1);
     gioSetBit(gioPORTA,6,0);
-    delay_ms(2);
+    wait_66us(400);
+    //delay_ms(2);
 }
 
 void lcd_char_variable(unsigned char cmmd)
@@ -603,19 +602,21 @@ void lcd_string(char *str)
 }
 
 void lcd_init(void){
-
-    int i=0;
+    char data[5]={0};
+    int i=0, num;
 
     //rw=0, RS=0, E=0
     gioSetBit(gioPORTB,2,0);
     gioSetBit(gioPORTB,3,0);
     gioSetBit(gioPORTA,6,0);
-    delay_ms(35);
+    wait_66us(2000);
+    //delay_ms(35);
     //func set
     for(i=0;i<2;i++)
     {
         lcd_command(0x30);
-        delay_ms(1);
+        wait_66us(100);
+        //delay_ms(1);
     }
     //lcd_command(0x30);
     //delay_us(150);
@@ -643,14 +644,53 @@ void lcd_init(void){
 #endif
 
     gioSetBit(gioPORTB,6, (0x00 & (0x10 >>4))); //bit moving is working
-    delay_ms(5);
+
+    wait_66us(1000);
+    //delay_ms(5);
+
     lcd_string("hello");
 
     gioSetBit(gioPORTB,3,0);
     lcd_char(0xc0); // go to 2nd line
     lcd_string("HELLO LCD");
-}
 
+    for(i=0;i<5;i++){
+    gioSetBit(gioPORTB,3,0);
+    lcd_char(0x80);             //  first line
+    lcd_string("value : ");
+
+    gioSetBit(gioPORTB,3,0);
+    lcd_char(0x88);
+    num=77777;
+
+    gioSetBit(gioPORTB,3,1);    //rs=1
+
+    data[0]=(num/10000)%10;
+    data[1]=(num/1000)%10;
+    data[2]=(num/100)%10;
+    data[3]=(num/10)%10;
+    data[4]=num%10;
+
+    lcd_char(0x88);             //  first line. 0x8f : last word. 0x88 9번째
+    //printf("%d",data[0]);
+    gioSetBit(gioPORTB,3,1);    //rs=1
+    for(i=0;i<5;i++)
+    {
+        lcd_char(data[i]+48);
+    }
+
+
+    //lcd_char(48);
+    //lcd_char(49);
+
+    gioSetBit(gioPORTB,3,0);
+    lcd_char(0xc0);             // second line
+    lcd_string("HELLO LCD");
+    wait_66us(200);
+    //delay_ms(1);
+    }
+
+}
 
 // IR REMOTE CONTROLLER CODE
 

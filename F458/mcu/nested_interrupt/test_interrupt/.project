@@ -24,4 +24,17 @@
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>IRQ_DISPATCH</name>
+			<type>2</type>
+			<locationURI>IRQ_DISPATCH</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>IRQ_DISPATCH</name>
+			<value>file:/home/koitt/nested_interrupt/IRQ%20Dispatcher</value>
+		</variable>
+	</variableList>
 </projectDescription>

@@ -821,8 +821,6 @@ void ecap6GetConfigValue(ecap_config_reg_t *config_reg, config_value_type_t type
 *   Interrupt handler for eCAP1 interrupt 
 *
 */
-#pragma CODE_STATE(ecap1Interrupt, 32)
-#pragma INTERRUPT(ecap1Interrupt, IRQ)
 
 /* SourceId : ECAP_SourceId_032 */
 /* DesignId : ECAP_DesignId_021 */
@@ -857,8 +855,6 @@ void ecap1Interrupt(void)
 *   Interrupt handler for eCAP2 interrupt 
 *
 */
-#pragma CODE_STATE(ecap2Interrupt, 32)
-#pragma INTERRUPT(ecap2Interrupt, IRQ)
 
 /* SourceId : ECAP_SourceId_033 */
 /* DesignId : ECAP_DesignId_021 */

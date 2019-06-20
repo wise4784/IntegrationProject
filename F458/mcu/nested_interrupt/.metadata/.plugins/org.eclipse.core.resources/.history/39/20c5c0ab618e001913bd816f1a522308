@@ -1,0 +1,152 @@
+;-------------------------------------------------------------------------------
+; irqDispatch_a.asm
+;
+; (c) Texas Instruments 2009-2012, All rights reserved.
+;
+
+      ; Export Symbols
+      .def _irqDispatch
+      .def _select_dispatch
+      .def test_dispatch
+      
+      ; Import Symbols
+      .ref C_irqDispatch
+      .ref vPortPreemptiveTick
+      .ref test_c_dispatch
+
+
+      ; The following should be placed in the .text section
+      .text
+      
+      ; Function: _irqDispatch
+      .align 4
+      .armfunc _irqDispatch
+
+      ; Use ARM mode assembly
+      .arm
+      
+       ; Note: This implementation is for ARMv7-R (Cortex-R4) in ARM mode only.
+
+_irqDispatch: .asmfunc
+      ; TI ASM Step 1:
+      SUB      LR, LR, #4              ; construct the return address
+      SRSDB    #31!                    ; Save LR_irq and SPSR_irq to System mode stack
+
+      ; TI ASM Step 2:
+      CPS      #31                     ; Switch to System mode
+
+      ; TI ASM Step 3:
+      PUSH     {R0-R12}            ; Store AAPCS registers
+
+   .if __TI_VFPV3D16_SUPPORT__ = 1     ; If VFPV3D16 is used
+      FMRX      R12, FPSCR
+      STMFD     SP!, {R12}
+      FMRX      R12, FPEXC
+      STMFD     SP!, {R12}
+      FSTMDBD   SP!, {D0-D7}
+   .endif
+      
+      ; TI ASM Step 4
+      ; Align stack to a 64 Bit boundary
+      AND      R3, SP, #4              ; Calculate Stack adjustment to 64bit boundary
+      SUB      SP, SP, R3              ; Adjust System Stack
+      PUSH     {R3, LR}                ; Put Stack adjustment and System Mode LR on Stack
+
+      ; TI ASM Step 5
+      BL       C_irqDispatch           ; Call Second Level IRQ Dispatcher C routine
+      
+      ; TI ASM Step 6
+      ; Undo stack alignment
+      POP      {R3, LR}                ; Get Stack adjustment and System Mode LR from Stack
+      ADD      SP, SP, R3              ; Undo System Stack adjustment
+      
+      ; TI ASM Step 7
+   .if __TI_VFPV3D16_SUPPORT__ = 1     ; If VFPV3D16 is used
+      FLDMIAD   SP!, {D0-D7}
+      LDMFD     SP!, {R12}
+      FMXR      FPEXC, R12
+      LDMFD     SP!, {R12}
+      FMXR      FPSCR, R12
+   .endif
+
+      POP      {R0-R12}            ; Restore AAPCS registers
+
+      ; TI ASM Step 7
+      RFEIA    SP!                     ; Return using RFE from System mode stack
+      .endasmfunc
+
+
+
+      .align 4
+      .armfunc _select_dispatch
+      .arm
+
+_select_dispatch: .asmfunc
+		stmfd sp!,	{r0}
+		stmfd sp!,	{r1}
+		mrs r0, spsr
+		stmfd sp!,	{r0}
+
+		movw r0,#0xFE00	;address of IRQINDEX
+		movt r0,#0xFFFF
+		ldr r1,[r0]
+
+		cmp r1, #3			;case: rti=context switching, rti_int_number=3
+		beq context_switch
+
+		ldmfd sp!,	{r0}	;restore cpsr
+		msr	spsr_CSXF,	r0	;restore r0
+		ldmfd sp!,	{r1}
+		ldmfd sp!,	{r0}
+
+		;b _irqDispatch		;interrupt dispatch
+		b test_dispatch
+
+context_switch:			;cmp 명령어 결과로 인해 cpsr이 변경되기 때문에 코드 중복.
+		ldmfd sp!,	{r0}
+		msr	spsr_CSXF, r0
+		ldmfd sp!, 	{r1}
+		ldmfd sp!,	{r0}
+		b vPortPreemptiveTick	;context switching start
+
+      .endasmfunc
+
+
+      .align 4
+      .armfunc test_dispatch
+      .arm
+
+test_dispatch: .asmfunc
+		stmfd sp!, {r0-r12}	;save context, return address
+		stmfd sp!, {lr}
+		;mrs r0, cpsr
+		;stmfd sp!, {r0}
+		mrs r0, spsr
+		stmfd sp!, {r0}
+
+		bl test_c_dispatch	; call c interrupt handler
+		cmp r0, #1			; interrupt로 복귀하는 경우 별도 처리.
+		bge nested
+
+		ldmfd sp!, {r0}
+		msr spsr_csxf, r0
+		;ldmfd sp!, {r0}
+		;msr cpsr_csxf, r0		;restore context, return address
+		ldmfd sp!, {lr}
+		ldmfd sp!, {r0-r12}
+
+		subs pc, lr, #4		;exit exception
+
+nested:
+		ldmfd sp!, {r0}
+		msr spsr_csxf, r0
+		;ldmfd sp!, {r0}
+		;msr cpsr_csxf, r0
+		ldmfd sp!, {lr}
+		ldmfd sp!, {r0-r12}
+		sub lr, lr, #4
+		mov pc, lr			;exit nested interrupt
+      .endasmfunc
+      .end
+
+;-------------------------------------------------------------------------------
