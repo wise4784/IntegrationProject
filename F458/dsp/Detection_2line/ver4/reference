@@ -5,3 +5,8 @@ Only detect 2 lines in straight.
 when the vehicle out of its line, code is stop.
 
 
+--------------------------
+
+
+detect_lines_f3.cpp have some trouble.
+
