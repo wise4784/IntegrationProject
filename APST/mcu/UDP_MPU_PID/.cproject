@@ -37,17 +37,17 @@
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/include}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/example/hdk/inc}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/src/include}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/src/include/ipv4}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/ports/hdk/check}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/ports/hdk/include/netif}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/ports/hdk/include}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/ports/hdk/netif}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/ports/hdk}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/lwip-1.4.1/apps/httpserver_raw}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/include"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/example/hdk/inc"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/src/include"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/src/include/ipv4"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/ports/hdk/check"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/ports/hdk/include/netif"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/ports/hdk/include"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/ports/hdk/netif"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/ports/hdk"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}}/lwip-1.4.1/apps/httpserver_raw"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.compilerID.DEFINE.950503305" name="Pre-define NAME (--define, -D)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.compilerID.DEFINE" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="_TMS570LC43x_"/>
@@ -73,7 +73,7 @@
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.MAP_FILE.1283154321" name="Link information (map) listed into &lt;file&gt; (--map_file, -m)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.MAP_FILE" value="${ProjName}.map" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.OUTPUT_FILE.647950853" name="Specify output file name (--output_file, -o)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.OUTPUT_FILE" value="${ProjName}.out" valueType="string"/>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.LIBRARY.317156289" name="Include library file or command file as input (--library, -l)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.LIBRARY" valueType="libs">
-									<listOptionValue builtIn="false" value="/home/leedh/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib/rtsv7R4_T_be_v3D16_eabi.lib"/>
+									<listOptionValue builtIn="false" value="${CCS_INSTALL_ROOT}/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib/rtsv7R4_T_be_v3D16_eabi.lib"/>
 									<listOptionValue builtIn="false" value="rtsv7R4_T_be_v3D16_eabi.lib"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.SEARCH_PATH.1656285520" name="Add &lt;dir&gt; to library search path (--search_path, -i)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.linkerID.SEARCH_PATH" valueType="libPaths">
@@ -88,6 +88,15 @@
 								<inputType id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exeLinker.inputType__GEN_CMDS.1310765478" name="Generated Linker Command Files" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exeLinker.inputType__GEN_CMDS"/>
 							</tool>
 							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.1841558613" name="ARM Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Debug.1642299987.1292231457" name="/" resourcePath="lwip-1.4.1">
+						<toolChain id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.DebugToolchain.412545536" name="TI Build Tools" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.DebugToolchain" unusedChildren="">
+							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.1048993563.71366538" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.1048993563"/>
+							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.1136486931.1225837597" name="Compiler version" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.1136486931"/>
+							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.compilerDebug.87827055" name="ARM Compiler" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.compilerDebug.1584824536"/>
+							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.linkerDebug.513657762" name="ARM Linker" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.exe.linkerDebug.1505339367"/>
+							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.318321516" name="ARM Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.1841558613"/>
 						</toolChain>
 					</folderInfo>
 					<folderInfo id="com.ti.ccstudio.buildDefinitions.TMS470.Debug.1642299987.example" name="example" resourcePath="example">
