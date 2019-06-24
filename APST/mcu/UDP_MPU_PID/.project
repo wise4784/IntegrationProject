@@ -28,12 +28,12 @@
 		<link>
 			<name>example</name>
 			<type>2</type>
-			<location>/home/leedh/proj/IntegrationProject/APST/mcu/UDP_MPU_PID/example</location>
+			<locationURI>PROJECT_LOC/example</locationURI>
 		</link>
 		<link>
 			<name>lwip-1.4.1</name>
 			<type>2</type>
-			<location>/home/leedh/proj/IntegrationProject/APST/mcu/UDP_MPU_PID/lwip-1.4.1</location>
+			<locationURI>PROJECT_LOC/lwip-1.4.1</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
