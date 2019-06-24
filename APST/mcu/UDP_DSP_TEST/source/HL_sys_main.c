@@ -275,7 +275,7 @@ int main(void)
 
     /* clear MCU status */
     status_flag = 0x00;
-
+    err_t bind_err =-1;
     sciInit();
     i2cInit();
     //VCLK3_FREQ; // 37.500F
@@ -334,17 +334,22 @@ int main(void)
 #if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtlwIP), txtlwIP);
 #endif
+
     EMAC_LwIP_Main(emacAddress);
+    wait(1000);
+#if 1
+    pcb = udp_new();
+    while(bind_err)
+    {
+        bind_err = udp_bind(pcb, IP_ADDR_ANY, 7777);
+        wait(100);
+    }
+    udp_recv(pcb, udp_echo_recv, NULL);
 #if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtOK), txtOK);
 #endif
-
-#if 1
-    pcb = udp_new();
-    udp_bind(pcb, IP_ADDR_ANY, 7777);
-    udp_recv(pcb, udp_echo_recv, NULL);
 #endif
-    wait(100000);
+    wait(100);
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
@@ -356,7 +361,7 @@ int main(void)
     }
 #endif
     /* Create Task 2 */
-#if 0
+#if 1
     if (xTaskCreate(pidTask,"PID", configMINIMAL_STACK_SIZE, NULL, 6, &xTask2Handle) != pdTRUE)
     {
         /* Task could not be created */
@@ -517,6 +522,7 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
 {
     if (p != NULL)
     {
+        sprintf(vbuf,"UDP on data\n\r");
         char *rx_pk = p->payload;
         if(rx_pk[0] == 's')
         {
@@ -552,12 +558,16 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
         }
         pbuf_free(p);
     }
+    else
+    {
+        sprintf(vbuf,"UDP No data\n\r");
+    }
 }
 
+char udbuf[3] ={0,0,0};
 void udpTask(void *pvParameters)
 {
-    char status_flag =0x07;
-    char udbuf[2] ={0,0};
+    char status_flag_test =0x07;
 #if 0
     struct tcp_pcb *pcb;
     err_t err;
@@ -594,24 +604,35 @@ void udpTask(void *pvParameters)
 #else
 
 #if 1
+        p = pbuf_alloc(PBUF_TRANSPORT, 3, PBUF_RAM);
         if(start_send_flag)
         {
-            p = pbuf_alloc(PBUF_TRANSPORT, sizeof(udbuf), PBUF_RAM);
             udbuf[0] ='s';
-            udbuf[1] = status_flag;
-            memcpy(p->payload,udbuf, sizeof(udbuf));
+            udbuf[1] = (status_flag_test-1);
+            udbuf[2] = 0;
+            memcpy(p->payload,udbuf, 3);
             udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
         }
+        else
+        {
+            udbuf[0] = 's';
+            udbuf[1] = status_flag_test;
+            udbuf[2] = 0;
+            memcpy(p->payload,udbuf, 3);
+            udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+        }
+
+        pbuf_free(p);
 #else
             sprintf(cbuf, "CMPA = %d\t Velocity = %d\n\r\0", etpwmREG1->CMPA, (int)velocity);
             cbuflen = strlen(cbuf);
             p = pbuf_alloc(PBUF_TRANSPORT, sizeof(cbuf), PBUF_RAM);
             memcpy(p->payload, cbuf, sizeof(cbuf));
             udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+            pbuf_free(p);
 #endif
 
 #endif
-        pbuf_free(p);
 
         taskEXIT_CRITICAL();
 
