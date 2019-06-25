@@ -119,7 +119,7 @@ xTaskHandle xTask6Handle;
 
 /* USER CODE BEGIN (2) */
 #define SCI_DEBUG   1 // If this value set 1, sciREG1 prints Debug messages.
-#define I2C_DEBUG   1 // If this value set 1, I2C_2 & MPU will work
+#define I2C_DEBUG   0 // If this value set 1, I2C_2 & MPU will work
 
 #if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
