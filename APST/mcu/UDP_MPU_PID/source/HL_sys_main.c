@@ -119,7 +119,7 @@ xTaskHandle xTask6Handle;
 
 /* USER CODE BEGIN (2) */
 #define SCI_DEBUG   1 // If this value set 1, sciREG1 prints Debug messages.
-#define I2C_DEBUG   1 // If this value set 1, I2C_2 & MPU will work
+#define I2C_DEBUG   0 // If this value set 1, I2C_2 & MPU will work
 
 #if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
@@ -252,6 +252,7 @@ void initYPR(void)
 struct udp_pcb *pcb;
 
 char msg[] = "udp test\r\n";
+uint8_t err_bind[] = {"bind error!!!\r\n"};
 struct pbuf *p;
 
 uint8 status_flag; /* 1 : Charge / 2 : 각도  / 3 : All Ready */
@@ -339,7 +340,19 @@ int main(void)
 
 #if 1
     pcb = udp_new();
+
+#if 1
     udp_bind(pcb, IP_ADDR_ANY, 7777);
+#else
+    while(!(udp_bind(pcb, IP_ADDR_ANY, 7777) == 0))
+    {
+        wait(1000000);
+#if SCI_DEBUG
+        sciSend(sciREG1, sizeof(err_bind), err_bind);
+#endif
+    }
+#endif
+
     udp_recv(pcb, udp_echo_recv, NULL);
 #endif
     wait(100000);
