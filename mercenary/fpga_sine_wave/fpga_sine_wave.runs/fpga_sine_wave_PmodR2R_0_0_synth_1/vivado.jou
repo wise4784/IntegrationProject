@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Thu Jun 27 19:55:20 2019
+# Process ID: 10566
+# Current directory: /home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.runs/fpga_sine_wave_PmodR2R_0_0_synth_1
+# Command line: vivado -log fpga_sine_wave_PmodR2R_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fpga_sine_wave_PmodR2R_0_0.tcl
+# Log file: /home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.runs/fpga_sine_wave_PmodR2R_0_0_synth_1/fpga_sine_wave_PmodR2R_0_0.vds
+# Journal file: /home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.runs/fpga_sine_wave_PmodR2R_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source fpga_sine_wave_PmodR2R_0_0.tcl -notrace
