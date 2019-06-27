@@ -30,12 +30,13 @@ void decode_ir(void);
 volatile int step;
 
 //weight sensor
-volatile long weight,weight_zero;
+ volatile long weight,weight_zero;
 // drop 10ms마다 1번 검사했더니 10번에 한번정도 씹히고 잘 되는듯. -> 씹히는거 gap avg 380ms 찍히는 이상한 애랑 관려있는듯.
-volatile uint8 drop_before, drop_time_counter;
-volatile uint8 drop_count=0,drop_time_avg=0;
-volatile uint8 drop_time_array[5];
-volatile uint8 drop_sens_timing=0;
+ volatile uint8 drop_before;
+ volatile uint32 drop_time_counter;
+ volatile uint32 drop_count, drop_time_avg;
+ volatile uint32 drop_time_array[5];
+ volatile uint32 drop_sens_timing=0;
 
 //temperature
 volatile uint32 value;
@@ -43,7 +44,7 @@ volatile float temp;
 adcData_t adc_data[1];
 
 // valuable valuables
-uint8 time_gap_set=300;
+uint32 time_gap_set=300;
 double time_left=0;
 volatile long cnt;
 
@@ -121,7 +122,7 @@ void vTask1(void *pvParameters) // remote data calc + sci display   with semapho
 {
     for(;;)
     {
-        if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
+//        if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
 /*
             sprintf(buf,"drop gap avg = %d ms \n\r",drop_time_avg*10);
             buf_len = strlen(buf);
@@ -132,6 +133,7 @@ void vTask1(void *pvParameters) // remote data calc + sci display   with semapho
                 remote_data_calc();
             }
             //delay_4us(2);
+
             sprintf(buf,"remote data calc finished \n\r\0");
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
@@ -153,9 +155,9 @@ void vTask1(void *pvParameters) // remote data calc + sci display   with semapho
             if(remote_now==48)  // 숫자0 버튼 눌리면 USER_LED2 TOGGLE
             gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
 
-        }
-        xSemaphoreGive(sem1);
-        vTaskDelay(1000);
+//        }
+//        xSemaphoreGive(sem1);
+        vTaskDelay(1111);
     }
 }
 
@@ -165,63 +167,13 @@ void vTask2(void *pvParameters){
     int num=0,i=0;
     for(;;)
     {
-        if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
-#if 0
-        if((remote_now%2)==0){
+        char data[5]={0};
+        int num=0, i=0;
 
-        gioSetBit(gioPORTB,3,0);
-        lcd_char(0x80);             //  first line
-        lcd_string("T:");
-        lcd_char((((int)time_left/10000)%10)+48);
-        lcd_char((((int)time_left/1000)%10)+48);
-        lcd_char((((int)time_left/100)%10)+48);
-        lcd_char((((int)time_left/10)%10)+48);
-        lcd_char(((int)time_left%10)+48);
-
-        lcd_string(", Gap:");
-        lcd_char((((time_gap_set)/100)%10)+48);
-        lcd_string(".");
-        lcd_char((((time_gap_set)/10)%10)+48);
-        lcd_string("s");
-    /*
-        //디스플레이 표시 숫자
-        num=cnt;
-
-        data[0]=(num/10000)%10;
-        data[1]=(num/1000)%10;
-        data[2]=(num/100)%10;
-        data[3]=(num/10)%10;
-        data[4]=num%10;
-
-        gioSetBit(gioPORTB,3,0);
-        lcd_char(0x88);             //  first line. 0x8f : last word. 0x88 9번째
-        gioSetBit(gioPORTB,3,1);    //rs=1distance_sensor_to_water_ground 17.5
-        for(i=0;i<5;i++)
-        {
-            lcd_char(data[i]+48);
-        }
-
-        lcd_char(223);  //degree display
-        //lcd_char(48);
-        //lcd_char(49);
-         *
-         *
-         */
-
-        gioSetBit(gioPORTB,3,0);
-        lcd_char(0xc0);             // second line
-        lcd_string("on for ");
-        lcd_char((((int)cnt/10000)%10)+48);
-        lcd_char((((int)cnt/1000)%10)+48);
-        lcd_char((((int)cnt/100)%10)+48);
-        lcd_string("sec   ");
-
-        }
-
-        if((remote_now%2)==1){
 
             gioSetBit(gioPORTB,3,0);
             lcd_char(0x80);             //  first line
+            /*
             lcd_string("water : ");
 
             lcd_char(0x88);             //  first line. 0x8f : last word. 0x88 9번째
@@ -232,22 +184,34 @@ void vTask2(void *pvParameters){
                 lcd_char(((int)weight%10)+48);
                 lcd_string("  cm ");
             }
+            */
+            lcd_string("remote :   ");
+            lcd_char(remote_now);
+            //lcd_char((remote_now%10));
 
             gioSetBit(gioPORTB,3,0);
+            lcd_char(0x88);             //  first line. 0x8f : last word. 0x88 9번째
+            gioSetBit(gioPORTB,3,1);
+            delay_ms(1);
+            gioSetBit(gioPORTB,3,0);
             lcd_char(0xc0);             // second line
-            lcd_string("temperature: ");
-            lcd_char(((int)temp/10)+48);
-            lcd_char(((int)temp%10)+48);
+            lcd_string("w:    ");
+
+            lcd_char((weight/1000000)%10+48);
+            lcd_char((weight/100000)%10+48);
+            lcd_char((weight/10000)%10+48);
+            lcd_char((weight/1000)%10+48);
+            lcd_char((weight/100)%10+48);
+            lcd_char((weight/10)%10+48);
+            lcd_char((weight%10)+48);
             lcd_char(223);  //degree display
             lcd_string("C");
-        }
-#endif
+
         //gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1); //user_led_1_toggle
         step=0;   //step motor move. -200 open  +200 close
-        }
-        xSemaphoreGive(sem1);
-        vTaskDelay(1000);
-        //vTaskDelay(1000);
+ //       }
+ //       xSemaphoreGive(sem1);
+        vTaskDelay(100);
     }
 }
 
@@ -361,6 +325,7 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
          temp = -66.875 + (float)(217.75*3.3*temp);
 
          // display sensed
+
          sprintf(buf,"weight calculated : %d, temperature : %f\n\r\0",weight,temp);
          buf_len = strlen(buf);
          sci_display(sciREG1, (uint8 *)buf, buf_len);
@@ -371,23 +336,32 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
         break;
 
     case 1 :
+        if(time > 0xfffffff0)
+            time=0; // if 'time' overflows, we need higher class of 'time' to memorize
         time++;
-        for(j=0;j<2;j++){
+//        for(j=0;j<1;j++){
 
             drop_now=gioGetBit(top_drop);
-            if((drop_before==1)&&(drop_now==0)){
+            if((drop_before - drop_now) == 1){
+            //if((drop_before==1)&&(drop_now==0)){
                 drop_count++;
                 drop_time_array[drop_count%5]=time;
                 if((drop_count%5)==4){
                     drop_time_avg=(drop_time_array[4]-drop_time_array[0])/4;
-
                 }
             }
             drop_before=drop_now;
-        }
-
-        if(time%20==0){
-            sprintf(buf,"drop_count : %d , drop gap avg = %d ms \n\r",drop_count, drop_time_avg*10);
+            //wait(15000);
+ //       }
+          //00000011100000000001110000000000001111000000 1초1번드랍일때 이정도로 뜬다.
+        // 20ms당 한번 기록할 때는 드랍 카운트가 종종씹힌다.
+        /*
+        sprintf(buf,"%d", gioGetBit(top_drop));
+         buf_len = strlen(buf);
+         sci_display(sciREG1, (uint8 *) buf, buf_len);
+        */
+        if(time%50==0){
+            sprintf(buf,"drop_count : %d , drop gap avg = %d ms, time = %d\n\r",drop_count, drop_time_avg*10, time);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *) buf, buf_len);
         }
@@ -661,7 +635,7 @@ void lcd_init(void){
 
     gioSetBit(gioPORTB,3,0);
     lcd_char(0x88);
-    num=77777;
+    num=7777;
 
     gioSetBit(gioPORTB,3,1);    //rs=1
 
@@ -678,10 +652,6 @@ void lcd_init(void){
     {
         lcd_char(data[i]+48);
     }
-
-
-    //lcd_char(48);
-    //lcd_char(49);
 
     gioSetBit(gioPORTB,3,0);
     lcd_char(0xc0);             // second line
