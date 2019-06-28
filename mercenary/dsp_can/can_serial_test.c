@@ -26,7 +26,7 @@ void emergency(int signo)
 }
 
 void vcp_can_tx(int fd)
-	{
+{
 	int usb2can = fd;
 
 	char start[32] = {0, '1', '5', '6', '0'};	// first bit must be 0
