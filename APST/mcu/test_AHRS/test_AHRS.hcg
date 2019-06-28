@@ -266,7 +266,9 @@
       <HDRSCI>
         <NAME>HL_sci.h</NAME>
       </HDRSCI>
-      <SRCSCI/>
+      <SRCSCI>
+        <NAME>HL_sci.c</NAME>
+      </SRCSCI>
       <HDRLIN_R>
         <NAME>HL_reg_lin.h</NAME>
       </HDRLIN_R>
@@ -295,8 +297,7 @@
         <NAME>HL_can.h</NAME>
       </HDRCAN>
       <SRCCAN>
-        <NAME>HL_can.c</NAME>
-      </SRCCAN>
+        </SRCCAN>
       <HDRADC_R>
         <NAME>HL_reg_adc.h</NAME>
       </HDRADC_R>
@@ -536,7 +537,7 @@
         <PATH>include\HL_sci.h</PATH>
       </HDRSCI>
       <SRCSCI>
-        <PATH/>
+        <PATH>source\HL_sci.c</PATH>
       </SRCSCI>
     </FILENAMES>
   </SCI>
@@ -588,7 +589,7 @@
         <PATH>include\HL_can.h</PATH>
       </HDRCAN>
       <SRCCAN>
-        <PATH>source\HL_can.c</PATH>
+        <PATH></PATH>
       </SRCCAN>
     </FILENAMES>
   </CAN>

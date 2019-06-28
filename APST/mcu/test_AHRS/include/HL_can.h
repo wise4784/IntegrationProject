@@ -630,98 +630,6 @@ typedef struct can_config_reg
 
 
 
-/* Configuration registers initial value for CAN2*/
-#define CAN2_CTL_CONFIGVALUE      ((uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)((uint32)0x00000005U  << 10U) | 0x00020002U)
-#define CAN2_ES_CONFIGVALUE      0x00000007U 
-#define CAN2_BTR_CONFIGVALUE      ((uint32)((uint32)0U << 16U) \
-                                 | (uint32)((uint32)(4U - 1U) << 12U) \
-                                 | (uint32)((uint32)((3U + 4U) - 1U) << 8U) \
-                                 | (uint32)((uint32)(4U - 1U) << 6U) | (uint32)24U)
-#define CAN2_TEST_CONFIGVALUE    0x00000080U 
-#define CAN2_ABOTR_CONFIGVALUE    ((uint32)(0U))
-#define CAN2_INTMUX0_CONFIGVALUE  ((uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U)
-
-#define CAN2_INTMUX1_CONFIGVALUE  ((uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U \
-                                 | (uint32)0x00000000U)
-
-#define CAN2_INTMUX2_CONFIGVALUE 0x00000000U
-#define CAN2_INTMUX3_CONFIGVALUE 0x00000000U
-#define CAN2_TIOC_CONFIGVALUE    ((uint32)((uint32)1U  << 18U ) \
-                                 |(uint32)((uint32)0U  << 17U ) \
-								 |(uint32)((uint32)0U  << 16U )\
-                                 |(uint32)((uint32)1U  << 3U ) \
-                                 |(uint32)((uint32)0U  << 2U ) \
-                                 |(uint32)((uint32)0U << 1U ))
-#define CAN2_RIOC_CONFIGVALUE    ((uint32)((uint32)1U  << 18U ) \
-                                 |(uint32)((uint32)0U  << 17U ) \
-								 |(uint32)((uint32)0U  << 16U )\
-                                 |(uint32)((uint32)1U  << 3U ) \
-                                 |(uint32)((uint32)0U  << 2U ) \
-                                 |(uint32)((uint32)0U << 1U ))
-
 
 
 /** 
@@ -764,7 +672,6 @@ void   canIoSetDirection(canBASE_t *node,uint32 TxDir,uint32 RxDir);
 void   canIoSetPort(canBASE_t *node, uint32 TxValue, uint32 RxValue);
 uint32 canIoTxGetBit(canBASE_t *node);
 uint32 canIoRxGetBit(canBASE_t *node);
-void can2GetConfigValue(can_config_reg_t *config_reg, config_value_type_t type);
 /** @fn void canErrorNotification(canBASE_t *node, uint32 notification)
 *   @brief Error notification
 *   @param[in] node Pointer to CAN node:

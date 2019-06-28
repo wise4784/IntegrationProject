@@ -8,7 +8,6 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./source/HL_can.obj" \
 "./source/HL_epc.obj" \
 "./source/HL_errata.obj" \
 "./source/HL_errata_SSWF021_45.obj" \
@@ -17,6 +16,7 @@ ORDERED_OBJS += \
 "./source/HL_nmpu.obj" \
 "./source/HL_notification.obj" \
 "./source/HL_pinmux.obj" \
+"./source/HL_sci.obj" \
 "./source/HL_sys_core.obj" \
 "./source/HL_sys_dma.obj" \
 "./source/HL_sys_intvecs.obj" \
@@ -172,8 +172,8 @@ test_AHRS.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "source/HL_can.obj" "source/HL_epc.obj" "source/HL_errata.obj" "source/HL_errata_SSWF021_45.obj" "source/HL_esm.obj" "source/HL_gio.obj" "source/HL_nmpu.obj" "source/HL_notification.obj" "source/HL_pinmux.obj" "source/HL_sys_core.obj" "source/HL_sys_dma.obj" "source/HL_sys_intvecs.obj" "source/HL_sys_main.obj" "source/HL_sys_mpu.obj" "source/HL_sys_pcr.obj" "source/HL_sys_phantom.obj" "source/HL_sys_pmm.obj" "source/HL_sys_pmu.obj" "source/HL_sys_startup.obj" "source/HL_sys_vim.obj" "source/HL_system.obj" 
-	-$(RM) "source/HL_can.d" "source/HL_epc.d" "source/HL_errata.d" "source/HL_errata_SSWF021_45.d" "source/HL_esm.d" "source/HL_gio.d" "source/HL_nmpu.d" "source/HL_notification.d" "source/HL_pinmux.d" "source/HL_sys_dma.d" "source/HL_sys_main.d" "source/HL_sys_pcr.d" "source/HL_sys_phantom.d" "source/HL_sys_pmm.d" "source/HL_sys_startup.d" "source/HL_sys_vim.d" "source/HL_system.d" 
+	-$(RM) "source/HL_epc.obj" "source/HL_errata.obj" "source/HL_errata_SSWF021_45.obj" "source/HL_esm.obj" "source/HL_gio.obj" "source/HL_nmpu.obj" "source/HL_notification.obj" "source/HL_pinmux.obj" "source/HL_sci.obj" "source/HL_sys_core.obj" "source/HL_sys_dma.obj" "source/HL_sys_intvecs.obj" "source/HL_sys_main.obj" "source/HL_sys_mpu.obj" "source/HL_sys_pcr.obj" "source/HL_sys_phantom.obj" "source/HL_sys_pmm.obj" "source/HL_sys_pmu.obj" "source/HL_sys_startup.obj" "source/HL_sys_vim.obj" "source/HL_system.obj" 
+	-$(RM) "source/HL_epc.d" "source/HL_errata.d" "source/HL_errata_SSWF021_45.d" "source/HL_esm.d" "source/HL_gio.d" "source/HL_nmpu.d" "source/HL_notification.d" "source/HL_pinmux.d" "source/HL_sci.d" "source/HL_sys_dma.d" "source/HL_sys_main.d" "source/HL_sys_pcr.d" "source/HL_sys_phantom.d" "source/HL_sys_pmm.d" "source/HL_sys_startup.d" "source/HL_sys_vim.d" "source/HL_system.d" 
 	-$(RM) "source/HL_sys_core.d" "source/HL_sys_intvecs.d" "source/HL_sys_mpu.d" "source/HL_sys_pmu.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

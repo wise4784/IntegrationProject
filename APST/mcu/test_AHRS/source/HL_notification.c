@@ -49,8 +49,8 @@
 /* Include Files */
 
 #include "HL_esm.h"
-#include "HL_can.h"
 #include "HL_gio.h"
+#include "HL_sci.h"
 #include "HL_epc.h"
 #include "HL_sys_dma.h"
 
@@ -108,32 +108,6 @@ void dmaGroupANotification(dmaInterrupt_t inttype, uint32 channel)
 
 /* USER CODE BEGIN (11) */
 /* USER CODE END */
-#pragma WEAK(canErrorNotification)
-void canErrorNotification(canBASE_t *node, uint32 notification)
-{
-/*  enter user code between the USER CODE BEGIN and USER CODE END. */
-/* USER CODE BEGIN (16) */
-/* USER CODE END */
-}
-
-#pragma WEAK(canStatusChangeNotification)
-void canStatusChangeNotification(canBASE_t *node, uint32 notification)  
-{
-/*  enter user code between the USER CODE BEGIN and USER CODE END. */
-/* USER CODE BEGIN (17) */
-/* USER CODE END */
-}
-
-#pragma WEAK(canMessageNotification)
-void canMessageNotification(canBASE_t *node, uint32 messageBox)  
-{
-/*  enter user code between the USER CODE BEGIN and USER CODE END. */
-/* USER CODE BEGIN (18) */
-/* USER CODE END */
-}
-
-/* USER CODE BEGIN (19) */
-/* USER CODE END */
 #pragma WEAK(gioNotification)
 void gioNotification(gioPORT_t *port, uint32 bit)
 {
@@ -145,6 +119,16 @@ void gioNotification(gioPORT_t *port, uint32 bit)
 /* USER CODE BEGIN (23) */
 /* USER CODE END */
 
+#pragma WEAK(sciNotification)
+void sciNotification(sciBASE_t *sci, uint32 flags)     
+{
+/*  enter user code between the USER CODE BEGIN and USER CODE END. */
+/* USER CODE BEGIN (32) */
+/* USER CODE END */
+}
+
+/* USER CODE BEGIN (33) */
+/* USER CODE END */
 
 
 

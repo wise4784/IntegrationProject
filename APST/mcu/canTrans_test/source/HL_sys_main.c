@@ -65,10 +65,13 @@
 
 /* USER CODE BEGIN (2) */
 int i;
-
+int error;
+int check;
+int id;
+int id2;
 #define DCNT        8
 
-uint8_t tx_data[DCNT] = {'A','B','C','1','2','3','a','\0'};
+uint8_t tx_data[DCNT] = {'A','\0'};
 uint8_t tx_data2[DCNT] = {0x18, 0x18, 0x00, 0x00, 0xE8, 0x03, 0x00, 0x00};
 #if 1
 const uint8_t roll_data[DCNT] = {0x3C, 0x35, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00};
@@ -92,16 +95,19 @@ int main(void)
     printf("gio initializing..\n");
 
     canInit();
+    //canEnableloopback(canREG2,External_Lbk);
     printf("can initializing..\n");
 
     _enable_interrupt_();
-
+    canEnableErrorNotification(canREG2);
     for(;;)
     {
         gioToggleBit(gioPORTB, 6);
 
+        check = canFillMessageObjectData(canREG2, canMESSAGE_BOX1, tx_data);
+        printf("check : %d\t", check);
         canTransmit(canREG2, canMESSAGE_BOX1, tx_data);
-#if 0
+#if 1
         if(canIsRxMessageArrived(canREG2, canMESSAGE_BOX2))
         {
             canGetData(canREG2, canMESSAGE_BOX2, rx_data);
@@ -115,8 +121,13 @@ int main(void)
         }
 #endif
         wait(3000000);
+        id = canGetID(canREG2, canMESSAGE_BOX1);
+        id2 = canGetID(canREG2, canMESSAGE_BOX2);
+        error = canGetLastError(canREG2);
+        printf("can error : %d\t ID : %d\n",error, id2);
     }
 /* USER CODE END */
+
     return 0;
 }
 

@@ -104,18 +104,18 @@ static const t_isrFuncPTR s_vim_init[128U] =
     &phantomInterrupt,          /* Channel 32  */
     &phantomInterrupt,          /* Channel 33  */
     &phantomInterrupt,          /* Channel 34  */
-    &can2HighLevelInterrupt,       /* Channel 35  */
+    &phantomInterrupt,          /* Channel 35  */
     &phantomInterrupt,          /* Channel 36  */
     &phantomInterrupt,          /* Channel 37  */
     &phantomInterrupt,          /* Channel 38  */
     &phantomInterrupt,          /* Channel 39  */
     &phantomInterrupt,          /* Channel 40  */
     &phantomInterrupt,          /* Channel 41  */
-    &can2LowLevelInterrupt,       /* Channel 42  */
+    &phantomInterrupt,          /* Channel 42  */
     &phantomInterrupt,          /* Channel 43  */
     &phantomInterrupt,          /* Channel 44  */
     &phantomInterrupt,          /* Channel 45  */
-    &phantomInterrupt,       /* Channel 46  */
+    &phantomInterrupt,          /* Channel 46  */
     &phantomInterrupt,          /* Channel 47  */
     &phantomInterrupt,          /* Channel 48  */
     &phantomInterrupt,          /* Channel 49  */
@@ -400,18 +400,18 @@ void vimInit(void)
     vimREG->REQMASKSET1 = (uint32)((uint32)0U << 0U)
                         | (uint32)((uint32)0U << 1U)
                         | (uint32)((uint32)0U << 2U)
-                        | (uint32)((uint32)1U << 3U)
+                        | (uint32)((uint32)0U << 3U)
                         | (uint32)((uint32)0U << 4U)
                         | (uint32)((uint32)0U << 5U)
                         | (uint32)((uint32)0U << 6U)
                         | (uint32)((uint32)0U << 7U)
                         | (uint32)((uint32)0U << 8U)
                         | (uint32)((uint32)0U << 9U)
-                        | (uint32)((uint32)1U << 10U)
+                        | (uint32)((uint32)0U << 10U)
                         | (uint32)((uint32)0U << 11U)
                         | (uint32)((uint32)0U << 12U)
                         | (uint32)((uint32)0U << 13U)
-                        | (uint32)((uint32)1U << 14U)
+                        | (uint32)((uint32)0U << 14U)
                         | (uint32)((uint32)0U << 15U)
                         | (uint32)((uint32)0U << 16U)
                         | (uint32)((uint32)0U << 17U)

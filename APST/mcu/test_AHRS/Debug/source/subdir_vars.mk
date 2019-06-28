@@ -13,7 +13,6 @@ ASM_SRCS += \
 ../source/HL_sys_pmu.asm 
 
 C_SRCS += \
-../source/HL_can.c \
 ../source/HL_epc.c \
 ../source/HL_errata.c \
 ../source/HL_errata_SSWF021_45.c \
@@ -22,6 +21,7 @@ C_SRCS += \
 ../source/HL_nmpu.c \
 ../source/HL_notification.c \
 ../source/HL_pinmux.c \
+../source/HL_sci.c \
 ../source/HL_sys_dma.c \
 ../source/HL_sys_main.c \
 ../source/HL_sys_pcr.c \
@@ -32,7 +32,6 @@ C_SRCS += \
 ../source/HL_system.c 
 
 C_DEPS += \
-./source/HL_can.d \
 ./source/HL_epc.d \
 ./source/HL_errata.d \
 ./source/HL_errata_SSWF021_45.d \
@@ -41,6 +40,7 @@ C_DEPS += \
 ./source/HL_nmpu.d \
 ./source/HL_notification.d \
 ./source/HL_pinmux.d \
+./source/HL_sci.d \
 ./source/HL_sys_dma.d \
 ./source/HL_sys_main.d \
 ./source/HL_sys_pcr.d \
@@ -51,7 +51,6 @@ C_DEPS += \
 ./source/HL_system.d 
 
 OBJS += \
-./source/HL_can.obj \
 ./source/HL_epc.obj \
 ./source/HL_errata.obj \
 ./source/HL_errata_SSWF021_45.obj \
@@ -60,6 +59,7 @@ OBJS += \
 ./source/HL_nmpu.obj \
 ./source/HL_notification.obj \
 ./source/HL_pinmux.obj \
+./source/HL_sci.obj \
 ./source/HL_sys_core.obj \
 ./source/HL_sys_dma.obj \
 ./source/HL_sys_intvecs.obj \
@@ -80,7 +80,6 @@ ASM_DEPS += \
 ./source/HL_sys_pmu.d 
 
 OBJS__QUOTED += \
-"source/HL_can.obj" \
 "source/HL_epc.obj" \
 "source/HL_errata.obj" \
 "source/HL_errata_SSWF021_45.obj" \
@@ -89,6 +88,7 @@ OBJS__QUOTED += \
 "source/HL_nmpu.obj" \
 "source/HL_notification.obj" \
 "source/HL_pinmux.obj" \
+"source/HL_sci.obj" \
 "source/HL_sys_core.obj" \
 "source/HL_sys_dma.obj" \
 "source/HL_sys_intvecs.obj" \
@@ -103,7 +103,6 @@ OBJS__QUOTED += \
 "source/HL_system.obj" 
 
 C_DEPS__QUOTED += \
-"source/HL_can.d" \
 "source/HL_epc.d" \
 "source/HL_errata.d" \
 "source/HL_errata_SSWF021_45.d" \
@@ -112,6 +111,7 @@ C_DEPS__QUOTED += \
 "source/HL_nmpu.d" \
 "source/HL_notification.d" \
 "source/HL_pinmux.d" \
+"source/HL_sci.d" \
 "source/HL_sys_dma.d" \
 "source/HL_sys_main.d" \
 "source/HL_sys_pcr.d" \
@@ -128,7 +128,6 @@ ASM_DEPS__QUOTED += \
 "source/HL_sys_pmu.d" 
 
 C_SRCS__QUOTED += \
-"../source/HL_can.c" \
 "../source/HL_epc.c" \
 "../source/HL_errata.c" \
 "../source/HL_errata_SSWF021_45.c" \
@@ -137,6 +136,7 @@ C_SRCS__QUOTED += \
 "../source/HL_nmpu.c" \
 "../source/HL_notification.c" \
 "../source/HL_pinmux.c" \
+"../source/HL_sci.c" \
 "../source/HL_sys_dma.c" \
 "../source/HL_sys_main.c" \
 "../source/HL_sys_pcr.c" \
