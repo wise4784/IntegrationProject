@@ -1,0 +1,21 @@
+/include/ "system-conf.dtsi"
+/ {
+	chosen {
+		bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio root=/dev/mmcblk0p2 rw rootwait";
+	};
+};
+
+&axi_gpio_0 {
+	compatible = "generic-uio";
+};
+&spi0 {
+	is-decoded-cs = <0>;
+	num-cs = <1>;
+	status = "okay";
+	spidev@0x00 {
+		compatible = "spidev";
+		spi-max-frequency = <10000000>;
+		reg = <0>;
+	};
+};
+
