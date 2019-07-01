@@ -207,7 +207,6 @@ int main(void)
     return 0;
 }
 
-
 /* USER CODE BEGIN (4) */
 void convert(unsigned char *arr, unsigned char *num)
 {
