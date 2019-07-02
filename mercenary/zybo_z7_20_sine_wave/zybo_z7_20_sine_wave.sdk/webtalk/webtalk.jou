@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# 
+# Start of session at: Tue Jul  2 11:52:44 2019
+# Process ID: 4394
+# Current directory: /media/wrg/evo_860/proj/IntegrationProject/mercenary/zybo_z7_20_sine_wave/zybo_z7_20_sine_wave.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /media/wrg/evo_860/proj/IntegrationProject/mercenary/zybo_z7_20_sine_wave/zybo_z7_20_sine_wave.sdk/webtalk/webtalk.log
+# Journal file: /media/wrg/evo_860/proj/IntegrationProject/mercenary/zybo_z7_20_sine_wave/zybo_z7_20_sine_wave.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl
