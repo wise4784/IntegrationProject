@@ -171,19 +171,19 @@ void etpwmInit(void)
     /** @b initialize @b ETPWM2 */
 
     /** - Sets high speed time-base clock prescale bits */
-    etpwmREG2->TBCTL = (uint16)0U << 7U;
+    etpwmREG2->TBCTL = (uint16)2U << 7U;
 
     /** - Sets time-base clock prescale bits */
     etpwmREG2->TBCTL |= (uint16)((uint16)0U << 10U);
 
     /** - Sets time period or frequency for ETPWM block both PWMA and PWMB*/
-    etpwmREG2->TBPRD = 37U;
+    etpwmREG2->TBPRD = 1171U;
 
     /** - Setup the duty cycle for PWMA */
-    etpwmREG2->CMPA = 19U;
+    etpwmREG2->CMPA = 0U;
 
     /** - Setup the duty cycle for PWMB */
-    etpwmREG2->CMPB = 19U;
+    etpwmREG2->CMPB = 0U;
 
     /** - Force EPWMxA output high when counter reaches zero and low when counter reaches Compare A value */
     etpwmREG2->AQCTLA = ((uint16)((uint16)ActionQual_Set   << 0U)
@@ -272,13 +272,13 @@ void etpwmInit(void)
     etpwmREG3->TBCTL |= (uint16)((uint16)0U << 10U);
 
     /** - Sets time period or frequency for ETPWM block both PWMA and PWMB*/
-    etpwmREG3->TBPRD = 37U;
+    etpwmREG3->TBPRD = 37499U;
 
     /** - Setup the duty cycle for PWMA */
-    etpwmREG3->CMPA = 19U;
+    etpwmREG3->CMPA = 0U;
 
     /** - Setup the duty cycle for PWMB */
-    etpwmREG3->CMPB = 19U;
+    etpwmREG3->CMPB = 18750U;
 
     /** - Force EPWMxA output high when counter reaches zero and low when counter reaches Compare A value */
     etpwmREG3->AQCTLA = ((uint16)((uint16)ActionQual_Set   << 0U)
