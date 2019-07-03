@@ -54,7 +54,7 @@ void Udp_Send2MCU(int *sock, sockad_in *client_addr, int ins,int setCnt, int set
     else
     {
         buff_snd[0] = 'g';
-        printf("sand_data g\r\n");
+        printf("send_data g\r\n");
         sendto(*sock, buff_snd, 2, 0, (sockad *)client_addr, sizeof(*client_addr));
     }
 
@@ -70,6 +70,7 @@ void Udp_Receive2MCU(int *sock, sockad_in *client_addr)
 #else
     recvfrom(*sock, rcv_buf, 3, 0 , (sockad *)client_addr, &client_addr_size);
 #endif
+
     if(rcv_buf[0] == 's')
     {
         	mcu_state = rcv_buf[1];

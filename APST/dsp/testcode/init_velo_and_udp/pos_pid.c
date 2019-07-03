@@ -35,8 +35,8 @@ int position_pid(int target_deg, int current_deg,int reset)
     pos_pid_cnt++;
     if(pos_pid_cnt>100000)
     {
+        error_sum =0;
         ouput_offset  = IGAIN*error_sum;
-		  error_sum =0;
         pos_pid_cnt =0;
     }
     error_old = error;
