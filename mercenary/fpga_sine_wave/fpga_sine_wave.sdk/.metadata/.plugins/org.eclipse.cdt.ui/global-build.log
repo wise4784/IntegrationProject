@@ -1,0 +1,41 @@
+23:11:55 **** Incremental Build of configuration Debug for project Pmods ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building target: Pmods.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Pmods_bsp/ps7_cortexa9_0/lib -o "Pmods.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/main.o: In function `DemoRun':
+/home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.sdk/Pmods/Debug/../src/main.c:60: undefined reference to `sin'
+makefile:39: recipe for target 'Pmods.elf' failed
+collect2: error: ld returned 1 exit status
+make: *** [Pmods.elf] Error 1
+23:17:08 **** Clean-only build of configuration Debug for project Pmods ****
+make clean 
+rm -rf  ./src/main.o  ./src/main.d  Pmods.elf.size  Pmods.elf
+ 
+23:17:09 **** Auto Build of configuration Debug for project Pmods ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../Pmods_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: Pmods.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../Pmods_bsp/ps7_cortexa9_0/lib -o "Pmods.elf"  ./src/main.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: Pmods.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size Pmods.elf  |tee "Pmods.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  27496	   1148	  22584	  51228	   c81c	Pmods.elf
+Finished building: Pmods.elf.size
+ 
+23:17:10 **** Auto Build of configuration Debug for project Pmods ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
