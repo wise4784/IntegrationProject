@@ -492,12 +492,12 @@ typedef struct etpwm_config_reg
 #define ETPWM1_DCFWINDOW_CONFIGVALUE      0x00000000U
 #define ETPWM1_DCFWINDOWCNT_CONFIGVALUE   0x00000000U
 
-#define ETPWM2_TBCTL_CONFIGVALUE          ((uint16)((uint16)0U << 7U) | (uint16)((uint16)0U << 10U))
+#define ETPWM2_TBCTL_CONFIGVALUE          ((uint16)((uint16)2U << 7U) | (uint16)((uint16)0U << 10U))
 #define ETPWM2_TBPHS_CONFIGVALUE          0x00000000U
-#define ETPWM2_TBPRD_CONFIGVALUE          37U
+#define ETPWM2_TBPRD_CONFIGVALUE          1171U
 #define ETPWM2_CMPCTL_CONFIGVALUE         0x00000000U
-#define ETPWM2_CMPA_CONFIGVALUE           19U
-#define ETPWM2_CMPB_CONFIGVALUE           19U
+#define ETPWM2_CMPA_CONFIGVALUE           0U
+#define ETPWM2_CMPB_CONFIGVALUE           0U
 #define ETPWM2_AQCTLA_CONFIGVALUE         ((uint16)((uint16)ActionQual_Set << 0U) | (uint16)((uint16)ActionQual_Clear << 4U))
 #define ETPWM2_AQCTLB_CONFIGVALUE         ((uint16)((uint16)ActionQual_Set << 0U) | (uint16)((uint16)ActionQual_Clear << 8U))
 #define ETPWM2_DBCTL_CONFIGVALUE          ((uint16)((uint16)0U << 5U) | (uint16)((uint16)0u << 4U) | (uint16)((uint16)0U << 3U) | (uint16)((uint16)0U << 2U) | (uint16)((uint16)0U << 1U) | (uint16)((uint16)0U << 0U)) 
@@ -520,10 +520,10 @@ typedef struct etpwm_config_reg
 
 #define ETPWM3_TBCTL_CONFIGVALUE          ((uint16)((uint16)0U << 7U) | (uint16)((uint16)0U << 10U))
 #define ETPWM3_TBPHS_CONFIGVALUE          0x00000000U
-#define ETPWM3_TBPRD_CONFIGVALUE          37U
+#define ETPWM3_TBPRD_CONFIGVALUE          37499U
 #define ETPWM3_CMPCTL_CONFIGVALUE         0x00000000U
-#define ETPWM3_CMPA_CONFIGVALUE           19U
-#define ETPWM3_CMPB_CONFIGVALUE           19U
+#define ETPWM3_CMPA_CONFIGVALUE           0U
+#define ETPWM3_CMPB_CONFIGVALUE           18750U
 #define ETPWM3_AQCTLA_CONFIGVALUE         ((uint16)((uint16)ActionQual_Set << 0U) | (uint16)((uint16)ActionQual_Clear << 4U))
 #define ETPWM3_AQCTLB_CONFIGVALUE         ((uint16)((uint16)ActionQual_Set << 0U) | (uint16)((uint16)ActionQual_Clear << 8U))
 #define ETPWM3_DBCTL_CONFIGVALUE          ((uint16)((uint16)0U << 5U) | (uint16)((uint16)0u << 4U) | (uint16)((uint16)0U << 3U) | (uint16)((uint16)0U << 2U) | (uint16)((uint16)0U << 1U) | (uint16)((uint16)0U << 0U)) 

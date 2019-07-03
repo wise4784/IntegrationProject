@@ -60,8 +60,6 @@
 #include "HL_het.h"
 #include "HL_esm.h"
 
-#include "mpu9250.h"
-
 #include "HL_gio.h"
 #include "HL_sci.h"
 #include "HL_eqep.h"
@@ -81,9 +79,9 @@ __error__(char *pcFilename, uint32_t ui32Line)
 }
 #endif
 
-void vTask1(void *pvParameters);
+void ctrlTask(void *pvParameters);
 void pidTask(void *pvParameters);
-void pwmTask(void *pvParameters);
+void stepTask(void *pvParameters);
 void udpTask(void *pvParameters);
 void sciTask(void *pvParameters);
 void imuTask(void *pvParameters);
@@ -93,11 +91,15 @@ extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_addr *addr, u16_t port);
 void const_velocity(int preCNT, int setCNT, int *error, float c_time);
 void fl2in(float a, int *b);
+void wait(uint32 delay);
+void reload(uint8 cnt);
 
 void set_Status(uint8 bit); /* bit0 : Charge / bit1 : 각도 */
 void reset_Status(uint8 bit);
 
 void convert(unsigned char *ch, unsigned char *fl); /* ASCII to float */
+
+void imu_check(void);
 
 #define VOLTAGE     0
 #define DEGREE      1
@@ -105,12 +107,12 @@ void convert(unsigned char *ch, unsigned char *fl); /* ASCII to float */
 #define MCU_GO      3
 
 /* Define Task Handles */
-xTaskHandle xTask1Handle;
-xTaskHandle xTask2Handle;
-xTaskHandle xTask3Handle;
-xTaskHandle xTask4Handle;
-xTaskHandle xTask5Handle;
-xTaskHandle xTask6Handle;
+xTaskHandle CtrlTaskHandle;
+xTaskHandle PidTaskHandle;
+xTaskHandle StepTaskHandle;
+xTaskHandle SciTaskHandle;
+xTaskHandle UdpTaskHandle;
+xTaskHandle ImuTaskHandle;
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -122,16 +124,20 @@ xTaskHandle xTask6Handle;
 */
 
 /* USER CODE BEGIN (2) */
-#define SCI_DEBUG   1 // If this value set 1, sciREG1 prints Debug messages.
+#define SCI_DEBUG   0 // If this value set 1, sciREG1 prints Debug messages.
 #define I2C_DEBUG   0 // If this value set 1, I2C_2 & MPU will work
 #define IMU_DEBUG   1 // If this value set 1, AHRSv1 will work
+#define AHRS_SET    0 // If this value set 1, IMU setting : No period Data, flash save.
+                         // 센서를 처음 실행시킬 때 한번만 하면 됩니다. 다음부턴 안해도 센서 메모리에 저장되서 동작합니다.
 
 #if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
 uint8 length = sizeof(sciTest);
 uint8_t txtCRLF[] = {'\r', '\n'};
-
+uint8_t txtInit[] = {"All peripheral Initialize\n\r"};
 uint8_t txtlwIP[] = {"lwIP Initializing......\n\r"};
+uint8_t txtSys[] = {"ALL SYSTEM START !!!!!!!! \n\r"};
+uint8_t txtTask[] = {"Task START !!!!!\n\r"};
 uint8_t txtOK[] = {"Success!!!\n\r"};
 #endif
 
@@ -198,6 +204,7 @@ struct pbuf *p;
      *
  */
 uint8 status_flag; /* 1 : Charge / 2 : 각도  / 3 : All Ready / 4 : Go */
+
 /*******************************************************************************************************************************************/
 
 /*********************************************************** For AHRS **********************************************************************/
@@ -212,7 +219,14 @@ uint8_t rx[13] = {0};
 int setDGR; // DSP에서 준 각도 값 ( 100배 뻥튀기 해서 옴 )
 float setRoll; // (float)setDGR / 100.0
 float roll; // IMU 측정값
+float angError;
+uint32 step_cnt;
+#define Y       1 // 각도-cnt 계수 값.
 /*******************************************************************************************************************************************/
+
+/*********************************************************** For PWM ***********************************************************************/
+
+uint16 servo_pwm = 420; // 420 = 0 degree,  1910 = 180 degree
 
 /* USER CODE END */
 
@@ -228,11 +242,13 @@ int main(void)
     esmREG->EKR = 0x0000000A;
     esmREG->EKR = 0x00000000;
 
+    /* gio Pin initialize */
+    gioInit();
+
     /* clear MCU status */
     status_flag = 0x00;
-
     sciInit();
-    i2cInit();
+
     //VCLK3_FREQ; // 37.500F
     etpwmInit();
     QEPInit();
@@ -241,10 +257,30 @@ int main(void)
     eqepEnableCounter(eqepREG1);
     eqepEnableUnitTimer(eqepREG1);
 
-    /* Set high end timer GIO port pin direction to all output */
-    gioInit();
-    gioSetDirection(gioPORTA, 0xFFFF);
-    gioSetDirection(gioPORTB, 0xFFFF);
+#if SCI_DEBUG
+    sciSend(sciREG1, sizeof(txtInit), txtInit);
+    sciSend(sciREG1, sizeof(txtOK), txtOK);
+#endif
+
+    /* 전원 (PW_sw)를 안누르면 동작 X.
+     * 전원버튼 누르면 A0에 LOW가 들어오고 while문 벗어남.
+   */
+#if 0 // for DEBUG
+    while(gioGetBit(gioPORTB, 4))
+        ;
+#else
+    while(gioGetBit(gioPORTA, 0))
+        ;
+#endif
+    // Almost  1 sec
+    wait(5000000);
+
+    /* ALL DEVICE, System ON! */
+    gioSetPort(gioPORTA, 0xFE);
+
+#if SCI_DEBUG
+    sciSend(sciREG1,sizeof(txtSys), txtSys);
+#endif
 
 #if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtlwIP), txtlwIP);
@@ -254,43 +290,39 @@ int main(void)
     sciSend(sciREG1, sizeof(txtOK), txtOK);
 #endif
 
-#if 1
     pcb = udp_new();
-#if 0
+#if 1
     udp_bind(pcb, IP_ADDR_ANY, 7777);
-#else
-    while(udp_bind(pcb, IP_ADDR_ANY, 7777))
-    {
-        wait(1000000);
 #if SCI_DEBUG
         sciSend(sciREG1, sizeof(err_bind), err_bind);
 #endif
-    }
-#endif
     udp_recv(pcb, udp_echo_recv, NULL);
 #endif
-    wait(100000);
+    wait(1000);
     set_Status(MCU_READY); // MCU Initialize finish.
-
-    p = pbuf_alloc(PBUF_TRANSPORT, sizeof(udp_msg), PBUF_RAM);
-    udp_msg[0] ='s';
-    udp_msg[1] = status_flag;
-    udp_msg[2] = 0;
-    memcpy(p->payload,udp_msg, sizeof(udp_msg));
-    udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
-
-    pbuf_free(p);
 
     while(!(status_flag & 0x08))
     {
-        printf("Waiting for DSP....\n");
+        p = pbuf_alloc(PBUF_TRANSPORT, 3, PBUF_RAM);
+        udp_msg[0] ='s';
+        udp_msg[1] = status_flag;
+        udp_msg[2] = 0;
+        memcpy(p->payload, udp_msg, sizeof(udp_msg));
+        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+        pbuf_free(p);
+
         wait(10000);
     }
+
+#if SCI_DEBUG
+    sciSend(sciREG1, sizeof(txtTask), txtTask);
+#endif
+
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
 #if 1
-    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
+    if (xTaskCreate(ctrlTask,"Control", configMINIMAL_STACK_SIZE, NULL, 1, &CtrlTaskHandle) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
@@ -298,36 +330,36 @@ int main(void)
 #endif
     /* Create Task 2 */
 #if 1
-    if (xTaskCreate(pidTask,"PID", configMINIMAL_STACK_SIZE, NULL, 6, &xTask2Handle) != pdTRUE)
+    if (xTaskCreate(pidTask,"PID", configMINIMAL_STACK_SIZE, NULL, 6, &PidTaskHandle) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
     }
 #endif
     /* Create Task 3 */
-#if 0
-    if(xTaskCreate(pwmTask, "PWM", configMINIMAL_STACK_SIZE, NULL, 2, &xTask3Handle) != pdTRUE)
+#if 1
+    if(xTaskCreate(stepTask, "STEP", configMINIMAL_STACK_SIZE, NULL, 2, &StepTaskHandle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 4 */
 #if SCI_DEBUG
-    if(xTaskCreate(sciTask, "SCI", 2 * configMINIMAL_STACK_SIZE, NULL, 7, &xTask5Handle) != pdTRUE)
+    if(xTaskCreate(sciTask, "SCI", 2 * configMINIMAL_STACK_SIZE, NULL, 7, &SciTaskHandle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 5 */
 #if 1
-    if(xTaskCreate(udpTask, "UDP", 4 * configMINIMAL_STACK_SIZE, NULL, 8, &xTask4Handle) != pdTRUE)
+    if(xTaskCreate(udpTask, "UDP", 4 * configMINIMAL_STACK_SIZE, NULL, 8, &UdpTaskHandle) != pdTRUE)
     {
         while(1);
     }
 #endif
     /* Create Task 6 */
-#if IMU_DEBUG
-    if(xTaskCreate(imuTask, "IMU", configMINIMAL_STACK_SIZE, NULL, 5, &xTask6Handle) != pdTRUE)
+#if AHRS_SET
+    if(xTaskCreate(imuTask, "IMU", configMINIMAL_STACK_SIZE, NULL, 5, &ImuTaskHandle) != pdTRUE)
     {
         while(1);
     }
@@ -346,14 +378,25 @@ int main(void)
 /* USER CODE BEGIN (4) */
 
 /* Task1 */
-void vTask1(void *pvParameters)
+void ctrlTask(void *pvParameters)
 {
+    /*
+     * All Task control.
+     * Task들을 일시정지 시키거나 재시작 시키는 Task
+     */
+    //vTaskSuspend(StepTaskHandle); // Step 모터 테스크 일시정지.
+
 #if 1
     for(;;)
     {
         taskENTER_CRITICAL();
             /* Taggle GIOB[6] with timer tick */
-            gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
+        gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
+#if 0
+        if(1)
+            ;
+        vTaskSuspend(SciTaskHandle);
+#endif
         taskEXIT_CRITICAL();
 
         vTaskDelay(300);
@@ -385,20 +428,63 @@ void pidTask(void *pvParameters)
     }
 }
 
-#if 0
-void pwmTask(void *pvParameters)
+#if 1
+void stepTask(void *pvParameters)
 {
+    int i;
     for(;;)
     {
+        vTaskSuspend(NULL);
+
         taskENTER_CRITICAL();
-        if(pwm_CMPA < 3750)
+        while(!(status_flag & 0x02))
         {
-            etpwmREG1->CMPA = 10 * pwm_CMPA++;
+            imu_check();
+            angError = setRoll - roll;
+
+            if(angError < 0)
+            {
+                // 포대 방향 아래로 -> step 모터는 위로
+                //gioSetBit(gioPORTB, 3, 1);  // 방향은 실험해봐야 함.
+                if(angError > -0.1)
+                {
+                    // step모터 Stop
+                      // 조준 완료
+                    set_Status(DEGREE);
+                }
+                else
+                {
+                    step_cnt = -1 * angError * Y;
+                    for(i = 0; i < step_cnt * 2; i++)
+                    {
+                        gioToggleBit(gioPORTA, 2);
+                        wait(500);
+                    }
+                }
+            }
+            else
+            {
+                // 포대 방향 위로 -> step 모터는 아래로
+                //gioSetBit(gioPORTB, 3, 0);
+
+                if(angError < 0.1)
+                {
+                    // step모터 Stop
+                      // 조준 완료
+                    set_Status(DEGREE);
+                }
+                else
+                {
+                    step_cnt = angError * Y;
+                    for(i = 0; i < step_cnt * 2; i++)
+                    {
+                        gioToggleBit(gioPORTA, 2);
+                        wait(500);
+                    }
+                }
+            }
         }
-        else
-            pwm_CMPA = 0;
         taskEXIT_CRITICAL();
-        vTaskDelay(10);
     }
 }
 #endif
@@ -460,29 +546,48 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
         switch(rx_pk[0])
         {
             case 's' :
-#if 1
+                /* DSP에서 CNT (속도) 값만 보내줌 */
                 setCNT = rx_pk[1] << 24U |
                          rx_pk[2] << 16U |
                          rx_pk[3] << 8U  |
                          rx_pk[4];
-#endif
-                setDGR = rx_pk[5] << 24U |
-                         rx_pk[6] << 16U |
-                         rx_pk[7] << 8U  |
-                         rx_pk[8];
-                setRoll = (float)setDGR / 100.0;
 #if SCI_DEBUG
             sprintf(vbuf,"%d,%d\n\r",setCNT,setDGR);
 #endif
                 break;
+
                 /* MCU가 준비되서 Ready signal을 전송하면 DSP에서 받고 준비되면 'g'를 보내서 MCU 전체 테스크 동작 시작. */
             case 'g' :
-#if 1
                 set_Status(MCU_GO);
                 break;
-#endif
+
             case 't' :
                 /* DSP의 Trigger Signal. 레일건 or 레이저 발사. (gio A? B? n bit SET!) */
+                gioSetBit(gioPORTB, 0, 0);
+                wait(100);
+                gioSetBit(gioPORTB, 0, 1);
+
+                /* Volatge flag reset, 재장전 */
+                reset_Status(VOLTAGE);
+                reload(1);
+                break;
+
+            case 'd' :
+                /* DSP에서 속도 + 각도 보내준 것. */
+                setCNT = rx_pk[1] << 24U |
+                         rx_pk[2] << 16U |
+                         rx_pk[3] << 8U  |
+                         rx_pk[4];
+                setDGR = rx_pk[5] << 24U |
+                         rx_pk[6] << 16U |
+                         rx_pk[7] << 8U  |
+                         rx_pk[8];
+
+                setRoll = (float)setDGR / 100.0;
+                vTaskResume(StepTaskHandle);
+#if SCI_DEBUG
+            sprintf(vbuf,"%d,%d\n\r",setCNT,setDGR);
+#endif
                 break;
 
             default:
@@ -495,34 +600,18 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
 
 void udpTask(void *pvParameters)
 {
-#if 0
-    struct udp_pcb *pcb;
-
-    char msg[] = "udp test\r\n";
-    struct pbuf *p;
-    err_t err;
-
-    pcb = udp_new();
-    udp_bind(pcb, IP_ADDR_ANY, 7777);
-    udp_recv(pcb, udp_echo_recv, NULL);
-#endif
     for(;;)
     {
         taskENTER_CRITICAL();
-#if 0
-        p = pbuf_alloc(PBUF_TRANSPORT, sizeof(msg), PBUF_RAM);
-        memcpy(p->payload, msg, sizeof(msg));
-        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
-#else
+
         p = pbuf_alloc(PBUF_TRANSPORT, sizeof(udp_msg), PBUF_RAM);
 
-        udp_msg[0] ='s';
+        udp_msg[0] = 's';
         udp_msg[1] = status_flag;
         udp_msg[2] = 0;
 
         memcpy(p->payload, udp_msg, sizeof(udp_msg));
         udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
-#endif
         pbuf_free(p);
 
         taskEXIT_CRITICAL();
@@ -530,7 +619,13 @@ void udpTask(void *pvParameters)
         vTaskDelay(10);
     }
 }
+void wait(uint32 delay)
+{
+    int i;
 
+    for (i = 0; i < delay; i++)
+        ;
+}
 void const_velocity(int preCNT, int setCNT, int *error, float c_time)
 {
     error[0] = setCNT - preCNT;
@@ -554,24 +649,64 @@ void const_velocity(int preCNT, int setCNT, int *error, float c_time)
     }
     etpwmREG1->CMPA = pwm_CMPA;
 }
-
+#if AHRS_SET
 void imuTask(void *pvParameters)
 {
+    taskENTER_CRITICAL();
+
+    while(!sciIsTxReady(sciREG3))
+        ;
+    sciSend(sciREG3, sizeof(period_stop),period_stop);
+
+    while(!sciIsRxReady(sciREG3))
+        ;
+    sciReceive(sciREG3, sizeof(rx), rx);
+    printf("RS232 No data : ");
+    for(i = 0; i < sizeof(rx); i++)
+        {
+            printf("%2x",rx[i]);
+        }
+    printf("\n");
+        while(!sciIsTxReady(sciREG3))
+            ;
+        sciSend(sciREG3, sizeof(fw_save), fw_save);
+
+        while(!sciIsRxReady(sciREG3))
+            ;
+        sciReceive(sciREG3, sizeof(rx), rx);
+
+        printf("Flash save : ");
+        for(i = 0; i < sizeof(rx); i++)
+        {
+            printf("%2x",rx[i]);
+        }
+        printf("\n");
+
+        taskEXIT_CRITICAL();
     for (;;)
     {
         taskENTER_CRITICAL();
 
+        while(!sciIsTxReady(sciREG3))
+            ;
+        sciSend(sciREG3, sizeof(send_roll), send_roll);
+
+        while(!sciIsRxReady(sciREG3))
+            ;
+        sciReceive(sciREG3, sizeof(rx), rx);
+
         taskEXIT_CRITICAL();
-        vTaskDelay(10);
+        vTaskSuspend(NULL);
     }
 }
-
+#endif
 void set_Status(uint8 bit)
 {
     status_flag |= 0x1U << bit;
 }
 
 void reset_Status(uint8 bit)
+
 {
     status_flag  = status_flag &~(0x1U << bit);
 }
@@ -583,4 +718,64 @@ void convert(unsigned char *arr, unsigned char *num)
         num[i]  = arr[10 - i];
 }
 
+void imu_check(void)
+{
+#if SCI_DEBUG & 0
+        while(!sciIsTxReady(sciREG1))
+                    ;
+        sciSend(sciREG1, sizeof(rx), rx);
+        while(!sciIsTxReady(sciREG1))
+                    ;
+        sciSend(sciREG1, sizeof(txtCRLF),txtCRLF);
+#endif
+#if 0
+        printf("roll data : ");
+        for(i = 0; i < sizeof(rx); i++)
+        {
+            printf("%2x",rx[i]);
+        }
+        printf("\n");
+#endif
+
+#if 0
+        printf("data : %f\n", roll);
+        /*
+        sprintf(buf,"roll = %f\r\n", roll);
+        buflen = strlen(buf);
+
+        while(!sciIsTxReady(sciREG1))
+                ;
+        sciSend(sciREG1, buflen, buf);
+        */
+#endif
+
+    while(!sciIsTxReady(sciREG3))
+        ;
+    sciSend(sciREG3, sizeof(send_roll), send_roll);
+
+    while(!sciIsRxReady(sciREG3))
+        ;
+    sciReceive(sciREG3, sizeof(rx), rx);
+    /*
+        roll = rx_data2[10] << 24
+                | rx_data2[9] << 16
+                | rx_data2[8] << 8
+                | rx_data2[7];
+    */
+    convert(rx, &roll);
+}
+
+void reload(uint8 cnt)
+{
+    cnt = cnt * 15;
+    servo_pwm += cnt;
+    if(servo_pwm > 1910)
+    {
+        servo_pwm = 1910;
+    }
+    etpwmREG4->CMPA = servo_pwm;
+    wait(300000 * (cnt + 1));
+    servo_pwm = 420;
+    etpwmREG4->CMPA = servo_pwm;
+}
 /* USER CODE END */

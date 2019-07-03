@@ -5,6 +5,9 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT./home/leedh/proj/IntegrationProject/APST/mcu/AHRS_UDP_PID/targetConfigs/TMS570LC43xx.ccxml.Texas Instruments XDS110 USB Debug Probe_0/CortexR5" value="AHRS_UDP_PID"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:AHRS_UDP_PID}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM./home/leedh/proj/IntegrationProject/APST/mcu/AHRS_UDP_PID/targetConfigs/TMS570LC43xx.ccxml.Texas Instruments XDS110 USB Debug Probe_0/CortexR5" value="/home/leedh/proj/IntegrationProject/APST/mcu/AHRS_UDP_PID/Debug/AHRS_UDP_PID.out"/>
+<mapAttribute key="com.ti.ccstudio.debug.ui.displayFormats">
+<mapEntry key="Texas Instruments XDS110 USB Debug Probe_0/CortexR5@##separator##@0" value="32-Bit Hex - TI Style"/>
+</mapAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/AHRS_UDP_PID"/>
 </listAttribute>
