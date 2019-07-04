@@ -147,7 +147,7 @@ void vTask1(void *pvParameters)
         {
 #endif
             /* Taggle GIOB[6] with timer tick */
-            gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
+            //gioSetBit(gioPORTB, 6, gioGetBit(gioPORTB, 6) ^ 1);
 #if 0
             xSemaphoreGive(xSemaphore);
         }
@@ -206,7 +206,8 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
 {
     if (p != NULL)
     {
-        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777); //dest port
+        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7767); //dest port
+        gioSetBit(gioPORTB,6,1);
         pbuf_free(p);
     }
 }
@@ -243,7 +244,7 @@ void udpTask(void *pvParameters)
     }
 #else
     pcb = udp_new();
-    udp_bind(pcb, IP_ADDR_ANY, 7777);
+    udp_bind(pcb, IP_ADDR_ANY, 7767);
 #endif
 
     for(;;)
@@ -252,7 +253,7 @@ void udpTask(void *pvParameters)
         sprintf(msg, "udp variable test! temp = %d, drop_count = %d\n\r",temperature, drop_count);
         p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg), PBUF_RAM);
         memcpy(p->payload, msg, strlen(msg));
-        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7777);
+        udp_sendto(pcb, p, IP_ADDR_BROADCAST, 7767);
         pbuf_free(p);
 
         taskEXIT_CRITICAL();

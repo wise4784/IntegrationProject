@@ -172,34 +172,34 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-UDPSuccess.out \
+UDPSuccess_OK.out \
 
 EXE_OUTPUTS__QUOTED += \
-"UDPSuccess.out" \
+"UDPSuccess_OK.out" \
 
 BIN_OUTPUTS += \
-UDPSuccess.hex \
+UDPSuccess_OK.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"UDPSuccess.hex" \
+"UDPSuccess_OK.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "UDPSuccess.out"
+	@$(MAKE) --no-print-directory -Onone "UDPSuccess_OK.out"
 
 # Tool invocations
-UDPSuccess.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+UDPSuccess_OK.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --define=_TMS570LC43x_ -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --endian=big -z -m"UDPSuccess.map" --heap_size=0x800 --stack_size=0x800 -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib" -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="UDPSuccess_linkInfo.xml" --rom_model --be32 -o "UDPSuccess.out" $(ORDERED_OBJS)
+	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armcl" -mv7R4 --code_state=32 --float_support=VFPv3D16 --define=_TMS570LC43x_ -g --diag_warning=225 --diag_wrap=off --display_error_number --enum_type=packed --abi=eabi --endian=big -z -m"UDPSuccess_OK.map" --heap_size=0x800 --stack_size=0x800 -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib" -i"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="UDPSuccess_OK_linkInfo.xml" --rom_model --be32 -o "UDPSuccess_OK.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-UDPSuccess.hex: $(EXE_OUTPUTS)
+UDPSuccess_OK.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armhex"  -o "UDPSuccess.hex" $(EXE_OUTPUTS__QUOTED)
+	"/home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armhex"  -o "UDPSuccess_OK.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 

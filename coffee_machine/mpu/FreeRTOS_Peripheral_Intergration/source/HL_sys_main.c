@@ -120,6 +120,9 @@ void remote_data_calc(void);
 /* Task1 */
 void vTask1(void *pvParameters) // remote data calc + sci display   with semaphore
 {
+    unsigned long count=0;
+    int i=0;
+
     for(;;)
     {
 //        if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
@@ -128,15 +131,47 @@ void vTask1(void *pvParameters) // remote data calc + sci display   with semapho
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *) buf, buf_len);
 */
+
+
+
+
+
+            //delay_4us(2);
+        count=0;
+
+        if(xSemaphoreTake(sem1, (TickType_t)0x05)==pdTRUE){
+
             if(decode==1)
             {
+                gioSetBit(gioPORTB,7,1);
                 remote_data_calc();
+                decode=0;
             }
-            //delay_4us(2);
 
-            sprintf(buf,"remote data calc finished \n\r\0");
-            buf_len = strlen(buf);
-            sci_display(sciREG1, (uint8 *)buf, buf_len);
+        gioSetBit(hetPORT1,18,1);
+         gioSetBit(hetPORT1,2,0);
+         while(gioGetBit(hetPORT1,18));
+         wait_us(1);
+         wait(3);                        //   > 0.1us
+
+         for(i=0;i<24;i++){
+             gioSetBit(hetPORT1,2,1);
+             count=count<<1;
+             wait_us(1);                   //1us
+             gioSetBit(hetPORT1,2,0);
+             wait_us(1);
+             if(gioGetBit(hetPORT1,18)) count++;
+         }
+
+         gioSetBit(hetPORT1,2,1);
+         wait_us(1);
+         count=count^0x800000;
+         weight=count;
+         gioSetBit(hetPORT1,2,0);
+
+         xSemaphoreGive(sem1);
+        }
+
 
             if(remote_now<10)
                 remote_now+=48;
@@ -148,16 +183,24 @@ void vTask1(void *pvParameters) // remote data calc + sci display   with semapho
             */
 /*     위의 문제점 아래 3줄로 해결했다. -> uint8로 보내니까 먹통안되고 루프 잘 돈다.
 */
+            /*
             text[7]=remote_now;
             sci_display(sciREG1, &text[0], TSIZE);
             wait_66us(10);
+             */
+            if(remote_now==49)  // 숫자1 버튼 눌리면,
+            step = -200;
 
-            if(remote_now==48)  // 숫자0 버튼 눌리면 USER_LED2 TOGGLE
-            gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
+            else if(remote_now==50)  // 숫자2 버튼 눌리면,
+            step = 0;
+
+            else if(remote_now==51)  // 숫자1 버튼 눌리면,
+            step = 200;
+
 
 //        }
 //        xSemaphoreGive(sem1);
-        vTaskDelay(1111);
+        vTaskDelay(2222);
     }
 }
 
@@ -189,6 +232,7 @@ void vTask2(void *pvParameters){
             lcd_char(remote_now);
             //lcd_char((remote_now%10));
 
+            lcd_string("   ");
             gioSetBit(gioPORTB,3,0);
             lcd_char(0x88);             //  first line. 0x8f : last word. 0x88 9번째
             gioSetBit(gioPORTB,3,1);
@@ -232,6 +276,7 @@ void main(void)
     gioEnableNotification(remote_receive);
     pwmEnableNotification(hetREG2,pwm0,pwmEND_OF_PERIOD);
     pwmEnableNotification(hetREG2,pwm1,pwmEND_OF_PERIOD);
+    //pwmEnableNotification(hetREG2,pwm2,pwmEND_OF_PERIOD);
     //pwmStart(hetRAM2,pwm0);
     _enable_IRQ_interrupt_();
 
@@ -248,7 +293,7 @@ void main(void)
     /* Set high end timer GIO port hetPort pin direction to all output */
 
     /* Create Task 1 */
-    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, NULL) != pdTRUE)
+    if (xTaskCreate(vTask1,"Task1", 3 * configMINIMAL_STACK_SIZE, NULL, 8, NULL) != pdTRUE)
     {
         /* Task could not be created */
         while(1);
@@ -266,24 +311,17 @@ void main(void)
 /* USER CODE END */
 }
 
-void gioNotification(gioPORT_t *port, uint32 bit)
-{
-   // _disable_IRQ_interrupt_();
-
-    //gioSetBit(gioPORTB, 6, 1);
-    if(decode==0){
-        decode_ir();
-    }
-
-    //_enable_IRQ_interrupt_();
-}
 //void   pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification);
 void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
     static uint32 time=0;
     static int stp=0;
+    static int ir_count=0;
+    static int ir_ready=0;
+    static int ir_cnt=0;
     int i=0,j=0;
     uint8 drop_now=0;
     unsigned long count=0;
+
 
     switch(pwm) {
 
@@ -291,26 +329,28 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
         //j++;
         //if(j%2==0){
         //if(xSemaphoreTake(sem1, (TickType_t)0x01)==pdTRUE){
+        /*
             gioSetBit(hetPORT1,18,1);
             gioSetBit(hetPORT1,2,0);
             while(gioGetBit(hetPORT1,18));
-
+            wait_us(40);
             wait(3);                        //   > 0.1us
 
             for(i=0;i<24;i++){
                 gioSetBit(hetPORT1,2,1);
                 count=count<<1;
-                wait_us(1);                   //1us
+                wait_us(60);                   //1us
                 gioSetBit(hetPORT1,2,0);
                 wait_us(1);
                 if(gioGetBit(hetPORT1,18)) count++;
             }
 
             gioSetBit(hetPORT1,2,1);
-            wait_us(1);
+            wait_us(60);
             count=count^0x800000;
             weight=count;
             gioSetBit(hetPORT1,2,0);
+            */
  //        }
  //        xSemaphoreGive(sem1);
          //vTaskDelay(6000);
@@ -325,14 +365,14 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
          temp = -66.875 + (float)(217.75*3.3*temp);
 
          // display sensed
-
+/*
          sprintf(buf,"weight calculated : %d, temperature : %f\n\r\0",weight,temp);
          buf_len = strlen(buf);
          sci_display(sciREG1, (uint8 *)buf, buf_len);
-
+*/
          // user_led_toggle
 
-         gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
+         //gioSetBit(gioPORTB, 7, gioGetBit(gioPORTB, 7) ^ 1);
         break;
 
     case 1 :
@@ -355,17 +395,20 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
  //       }
           //00000011100000000001110000000000001111000000 1초1번드랍일때 이정도로 뜬다.
         // 20ms당 한번 기록할 때는 드랍 카운트가 종종씹힌다.
-        /*
+/*
         sprintf(buf,"%d", gioGetBit(top_drop));
          buf_len = strlen(buf);
          sci_display(sciREG1, (uint8 *) buf, buf_len);
-        */
-        if(time%50==0){
+*/
+
+
+/*
+        if(time%100==0){
             sprintf(buf,"drop_count : %d , drop gap avg = %d ms, time = %d\n\r",drop_count, drop_time_avg*10, time);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *) buf, buf_len);
         }
-
+*/
         if(step>0){
             if(stp>step){
                 step=0;
@@ -490,6 +533,56 @@ void pwmNotification(hetBASE_t *port, uint32 pwm,uint32 notification){
             }
         }
         break;
+
+    case 2:
+        break;
+#if 0
+
+
+
+        if(decode==1){
+            //for(i=0;i<122;i++)
+        // {
+             //delay_4us(167);  //670us
+        //     wait_us(562);
+            /*
+            if(ir_count==0){
+                while(gioGetBit(gioPORTA,7)==1){
+                    ;
+                }
+            }
+            */
+
+
+            if(gioGetBit(gioPORTA,7)==0){
+                ir_ready=1;
+                wait(3);
+            }
+            if(ir_ready==1){
+             if((ir_cnt%4)==0)
+             {
+                 if(gioGetBit(gioPORTA,7)==1)
+                     bitcount[ir_count]=1+48;
+                 else
+                     bitcount[ir_count]=0+48;
+
+                 ir_count++;
+
+
+                 if(ir_count == 122){
+                     ir_count = 0;
+                     ir_cnt=0;
+                     ir_ready=0;
+                     decode=2;
+                 }
+             }
+             ir_cnt++;
+            }
+        }
+
+        break;
+    }
+#endif
     }
 }
 
@@ -617,7 +710,7 @@ void lcd_init(void){
     lcd_char(0x70);
 #endif
 
-    gioSetBit(gioPORTB,6, (0x00 & (0x10 >>4))); //bit moving is working
+    //gioSetBit(gioPORTB,6, (0x00 & (0x10 >>4))); //bit moving is working
 
     wait_66us(1000);
     //delay_ms(5);
@@ -664,14 +757,23 @@ void lcd_init(void){
 
 // IR REMOTE CONTROLLER CODE
 
+void gioNotification(gioPORT_t *port, uint32 bit)
+{
+   // _disable_IRQ_interrupt_();
+
+    gioSetBit(gioPORTB, 6, 1);
+
+    if(decode==0)
+        decode_ir();
+    //_enable_IRQ_interrupt_();
+}
+
 void decode_ir(void){
     int i=0;
+    int num=0;
     //_disable_IRQ_interrupt_();
 
-    while(gioGetBit(gioPORTA,7)==1){
-
-    }
-
+/*
     for(i=0;i<122;i++)
     {
         //delay_4us(167);  //670us
@@ -682,19 +784,51 @@ void decode_ir(void){
         else
             bitcount[i]=0+48;
     }
+*/
+
+
+//    wait(26500);-> for문으로 카운트했을시 나왔던숫자
+//    wait(29500);-> 실제 테스트시 버튼 반이상 맞춘 숫자
+    wait(29000);
+    /*
+    while(gioGetBit(gioPORTA,7)==1){
+        num++;
+         ;
+ }
+*/
+
+/*
+    sprintf(buf,"--%d",num);
+    buf_len = strlen(buf);
+    sci_display(sciREG1, (uint8 *)buf, buf_len);
+*/
+
+     for(i=0;i<122;i++)
+      {
+          //delay_4us(167);  //670us
+          wait_us(562);
+
+          if(gioGetBit(gioPORTA,7)==1)
+              bitcount[i]=1+48;
+          else
+              bitcount[i]=0+48;
+
+
+      }
 
     decode=1;
 
-    sci_display(sciREG1,bitcount,122);
+//    sci_display(sciREG1,bitcount,122);
     wait(10);
 }
 void remote_data_calc()
 {
     //gioSetPort(gioPORTB, gioGetPort(gioPORTB)^ 0x0000080);
+    /*
     sprintf(buf,"access in remote_data_calc \n\r\0");
     buf_len = strlen(buf);
     sci_display(sciREG1, (uint8 *)buf, buf_len);
-
+*/
     int i=0;
     while(!((bitcount[i]==48)&&(bitcount[i+1]==49)&&(bitcount[i+2]==49)&&(bitcount[i+3]==49)&&(bitcount[i+4]==48)&&(bitcount[i+5]==49)&&(bitcount[i+6]==49)&&(bitcount[i+7]==49)&&(bitcount[i+8]==48)))
     {
@@ -761,11 +895,13 @@ void remote_data_calc()
       letter[11]+=bitcount[i+77]*pow(2,2);
       letter[11]+=bitcount[i+78]*pow(2,1);
       letter[11]+=bitcount[i+79]*pow(2,0);
-/*
+
       sprintf(buf," result : %x %x %x %x %x %x %x %x %x %x %x %x !\n\r\0",letter[0],letter[1],letter[2],letter[3],letter[4],letter[5],letter[6],letter[7],letter[8],letter[9],letter[10],letter[11]);
       buf_len = strlen(buf);
       sci_display(sciREG1, (uint8 *)buf, buf_len);
-*/
+
+      gioSetBit(gioPORTB,6,1);
+
     switch (letter[0]){
     case 0xd7 :
 

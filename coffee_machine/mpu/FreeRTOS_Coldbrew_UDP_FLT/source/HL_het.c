@@ -1796,7 +1796,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00004007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)8U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        60288U,
         /* Reserved */
         0x00000000U
     },
@@ -1813,7 +1813,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00052007U),
         /* Data */
-        74880U,
+        119936U,
         /* Reserved */
         0x00000000U
     },
@@ -1830,7 +1830,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00008007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)10U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        375296U,
+        6000128U,
         /* Reserved */
         0x00000000U
     },
@@ -1847,7 +1847,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00056007U),
         /* Data */
-        749952U,
+        11999872U,
         /* Reserved */
         0x00000000U
     },
@@ -1864,7 +1864,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0000C007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)12U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        337408U,
         /* Reserved */
         0x00000000U
     },
@@ -1881,7 +1881,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0005A007U),
         /* Data */
-        74880U,
+        674304U,
         /* Reserved */
         0x00000000U
     },
@@ -1898,7 +1898,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00010007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)14U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        600192U,
         /* Reserved */
         0x00000000U
     },
@@ -1915,7 +1915,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0005E007U),
         /* Data */
-        74880U,
+        1199872U,
         /* Reserved */
         0x00000000U
     },
@@ -1932,7 +1932,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00014007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)16U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        600192U,
         /* Reserved */
         0x00000000U
     },
@@ -1949,7 +1949,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00062007U),
         /* Data */
-        74880U,
+        1199872U,
         /* Reserved */
         0x00000000U
     },
@@ -1966,7 +1966,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00018007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)17U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        600192U,
         /* Reserved */
         0x00000000U
     },
@@ -1983,7 +1983,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00066007U),
         /* Data */
-        74880U,
+        1199872U,
         /* Reserved */
         0x00000000U
     },
@@ -2000,7 +2000,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0001C007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)18U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        600192U,
         /* Reserved */
         0x00000000U
     },
@@ -2017,7 +2017,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0006A007U),
         /* Data */
-        74880U,
+        1199872U,
         /* Reserved */
         0x00000000U
     },
@@ -2034,7 +2034,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x00020007U | (uint32)((uint32)0U << 22U) | (uint32)((uint32)19U << 8U) | (uint32)((uint32)3U << 3U)),
         /* Data */
-        37760U,
+        600192U,
         /* Reserved */
         0x00000000U
     },
@@ -2051,7 +2051,7 @@ static const hetINSTRUCTION_t het2PROGRAM[58U] =
         /* Control */
         (0x0006E007U),
         /* Data */
-        74880U,
+        1199872U,
         /* Reserved */
         0x00000000U
     },
@@ -2152,7 +2152,7 @@ void hetInit(void)
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U
-                 | (uint32) 0x00000000U
+                 | (uint32) 0x00000004U
                  | (uint32) 0x00000000U
                  | (uint32) 0x00000000U;
 
@@ -2685,8 +2685,8 @@ void hetInit(void)
     *     - Loop resolution prescaler
     *     - High resolution prescaler
     */
-    hetREG2->PFR = (uint32)((uint32) 7U << 8U)
-                | ((uint32) 1U);
+    hetREG2->PFR = (uint32)((uint32) 4U << 8U)
+                | ((uint32) 0U);
 
    /** - Parity control register
     *     - Enable/Disable Parity check
@@ -2708,8 +2708,8 @@ void hetInit(void)
     *     - Loop resolution prescaler
     *     - High resolution prescaler
     */
-    hetREG2->PFR = (uint32)((uint32) 7U << 8U)
-                | ((uint32) 1U);
+    hetREG2->PFR = (uint32)((uint32) 4U << 8U)
+                | ((uint32) 0U);
 
     /** - Setup interrupt priority level
     *     - PWM 0 end of duty  level
@@ -2795,7 +2795,7 @@ void hetInit(void)
                      | (uint32) 0x00000000U
                      | (uint32) 0x00000010U
                      | (uint32) 0x00000000U
-                     | (uint32) 0x00000000U
+                     | (uint32) 0x00000040U
                      | (uint32) 0x00000000U
                      | (uint32) 0x00000000U
                      | (uint32) 0x00000000U
@@ -2981,7 +2981,7 @@ void pwmSetSignal(hetRAMBASE_t * hetRAM, uint32 pwm, hetSIGNAL_t signal)
     }
     else
     {
-        pwmPeriod = (signal.period * 1000.0F) / 1706.667F;
+        pwmPeriod = (signal.period * 1000.0F) / 106.667F;
         pwmPolarity = s_het2pwmPolarity[pwm];
     }
     if (signal.duty == 0U)
@@ -3040,7 +3040,7 @@ void pwmGetSignal(hetRAMBASE_t * hetRAM, uint32 pwm, hetSIGNAL_t* signal)
     }
     else
     {
-        signal->period = ((float64)pwmPeriod * 1706.667F) / 1000.0F;
+        signal->period = ((float64)pwmPeriod * 106.667F) / 1000.0F;
     }
 }
 
@@ -3238,7 +3238,7 @@ void capGetSignal(hetRAMBASE_t * hetRAM, uint32 cap, hetSIGNAL_t *signal)
     }
     else
     {
-        signal->period = ((float64)pwmPeriod * 1706.667F) / 1000.0F;
+        signal->period = ((float64)pwmPeriod * 106.667F) / 1000.0F;
     }
 }
 

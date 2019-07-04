@@ -64,9 +64,13 @@ int main(void)
     for(;;)
     {
         data=read_count();
+
+        /*
         sprintf(buf,"hx711 adc result = %d\n\r\0",data);
         buf_len = strlen(buf);
         sci_display(UART, (uint8 *)buf, buf_len);
+        */
+
 
         wait(2800000);  //0.1s
     }
