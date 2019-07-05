@@ -58,7 +58,7 @@ int   main( void)
       recvfrom( sock, buff_rcv, BUFF_SIZE, 0 , 
                      ( struct sockaddr*)&client_addr, &client_addr_size);
       printf( "receive: %s", buff_rcv);
-      fd = open("adc_data.txt", O_RDWR);
+      fd = open("udp_data.txt", O_RDWR);
       new_pos = lseek(fd, (off_t)0, SEEK_END);
 	  write(fd, buff_rcv, strlen(buff_rcv));
 
