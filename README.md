@@ -7,7 +7,7 @@ Integration Project
 
 ![sanghoon](./member_profile/sanghoon_profile_1.jpg)
 
-### Mercenary
+### Mercenary Works
 
 FPGA Based Sine Wave Generator, AM5728 CAN, UART Device Driver, Audio SW Codec, AHRS Algorithm, TMS570 LWiP, Multi Lane Dectection  
 
