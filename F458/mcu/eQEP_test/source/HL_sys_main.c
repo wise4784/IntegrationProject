@@ -66,15 +66,19 @@
 */
 
 /* USER CODE BEGIN (2) */
+#define UnitPeriod 1000000
+
 char buf[128] = {0};
 uint8 receive_data[5]={0};
 unsigned int buf_len;
-uint32 value = 0;
+float value = 0.0;
 int flag = 0;
+
+float set_p = 0;
 
 void wait(int);
 void sci_display(sciBASE_t * sci, uint8 * text, uint32 len);
-void catch_command(void);
+void catch_command(sciBASE_t * sci);
 /* USER CODE END */
 
 int main(void)
@@ -84,13 +88,17 @@ int main(void)
     uint32 deltapos = 0U;
     uint32 deltaT = 0U;
     float velocity = 0U;
+    float t_angle = 0U;
+    float t_time = 0U;
 
     sciInit();
     wait(1000);
 
+    //sciREG1 : UART
     sprintf(buf, "SCI Init Success!!!\n\r\0");
     buf_len = strlen(buf);
     sci_display(sciREG1, (uint8 *)buf, buf_len);
+    wait(100);
 
     etpwmInit();
     wait(1000);
@@ -98,48 +106,65 @@ int main(void)
     sprintf(buf, "PWM Init Success!!!\n\r\0");
     buf_len = strlen(buf);
     sci_display(sciREG1, (uint8 *)buf, buf_len);
+    wait(100);
 
     QEPInit();
     wait(1000);
 
-    eqepSetUnitPeriod(eqepREG2, 10000000);
+    //Unit Period Setting (QUPRD 설정)
+    eqepSetUnitPeriod(eqepREG2, UnitPeriod);
+    //Counter 활성화
     eqepEnableCounter(eqepREG2);
+    //Unit Timer 활성화
     eqepEnableUnitTimer(eqepREG2);
+    //capture 활성
     eqepEnableCapture(eqepREG2);
 
     sprintf(buf, "QEP Init Success!!!\n\r\0");
     buf_len = strlen(buf);
     sci_display(sciREG1, (uint8 *)buf, buf_len);
+    wait(100);
 
     for(;;)
     {
-        if((eqepREG2->QFLG & 0x800U) == 0x800U)
+        //위에서 QFLG:UTO비트(12번)가 set 되었는지 확인
+       if((eqepREG2->QFLG & 0x800U) == 0x800U)
         {
-            flag = (eqepREG2->QEPSTS & 0x20) >> 5;
+          // QEPSTS의 0x20은 direction을 나타냄
+           //현재의 방향을 shift해서 flag에 저장, 1이면 정방향, 0이면 역방향
+          flag = (eqepREG2->QEPSTS & 0x20) >> 5;
             //0010 0000
 
-            sprintf(buf, "flag : %d\n\r\0", flag);
-            buf_len = strlen(buf);
-            sci_display(sciREG1, (uint8 *)buf, buf_len);
+          sprintf(buf, "direction : %d\n\r\0", flag);
+          buf_len = strlen(buf);
+          sci_display(sciREG1, (uint8 *)buf, buf_len);
+          wait(100);
 
-            deltaT = 0;
+          //deltaT : QUPRD값을 저장하는 변수
+         deltaT = 0;
 
-            if(flag == 1)
-            {
+         //flag가 1이면 정방
+         if(flag == 1)
+          {
+                 //deltapos에 QPOSLAT 값을 읽음
                 deltapos = eqepReadPosnLatch(eqepREG2);
 
                 sprintf(buf, "delta : %d\n\r\0", deltapos);
                 buf_len = strlen(buf);
                 sci_display(sciREG1, (uint8 *)buf, buf_len);
+                wait(100);
+
             }
             else
-            {
+            {//0이면 역방향
                 deltapos = eqepReadPosnLatch(eqepREG2);
                 deltapos = ~deltapos + 1;
 
                 sprintf(buf, "delta : %d\n\r\0", deltapos);
                 buf_len = strlen(buf);
                 sci_display(sciREG1, (uint8 *)buf, buf_len);
+                wait(100);
+
             }
 
             deltaT = eqepREG2->QUPRD;
@@ -147,42 +172,38 @@ int main(void)
             sprintf(buf, "QUPRD : %d\n\r\0", deltaT);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
+            wait(100);
 
-            velocity = (360.0 * (float)deltapos )/( 1560.0 * 0.0000001 * (float)eqepREG2->QUPRD);
+            //각속도 계산 = 각도 / 시간
+            // 시간 = deltaT(QUPRD) * (VCLK3 주기)
+            //                     VCLK3 = 10MHz이므로 주기는 1/10000000
+            // 각도 = (360/500) * deltapos * 0.25
+            //                              0.25를 곱하는 이유는 우리가 사용하는 QCLK를 QUADRATURE_COUNT로 설정했기 때문
+            t_time = (float)deltaT * 0.0000001;
+            t_angle = (360.0 / 500.0) * (float)deltapos * 0.25;
+            velocity = t_angle / t_time;
 
             sprintf(buf, "velocity : %f\n\r\0", velocity);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
+            wait(100);
 
+            //위의 velocity는 1초당 이동 각도
+            //rpm은 1분당 rotation이므로 60 / 360 을 곱해줌
             sprintf(buf, "rpm : %f\n\n\r\0", velocity / 6.0);
             buf_len = strlen(buf);
             sci_display(sciREG1, (uint8 *)buf, buf_len);
+            wait(100);
 
+            //interrupt flag를 clear함
             eqepClearInterruptFlag(eqepREG2, QEINT_Uto);
-
-
         }
-
-        /*
-        catch_command();
-        value = (receive_data[0]-48)*1000
-                + (receive_data[1]-48)*100
-                + (receive_data[2]-48)*10
-                + (receive_data[3]-48);
-
-        etpwmREG1->CMPA = 1.25 * value;
-
-        sprintf(buf, "value = %d\n\r\0", value);
-        buf_len = strlen(buf);
-        sci_display(sciREG1, (uint8 *)buf, buf_len);
-        */
     }
 
 /* USER CODE END */
 
     return 0;
 }
-
 
 /* USER CODE BEGIN (4) */
 void sci_display(sciBASE_t * sci, uint8 * text, uint32 len)
@@ -200,17 +221,5 @@ void wait(int delay)
     int i;
     for(i=0; i<delay; i++)
         ;
-}
-
-void catch_command(void)
-{
-    int i;
-    while((sciREG1->FLR & 0x4) == 4)
-        ;
-
-    for(i=0; i<5; i++)
-    {
-        receive_data[i] = sciReceiveByte(sciREG1);
-    }
 }
 /* USER CODE END */
