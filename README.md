@@ -5,7 +5,7 @@ Integration Project
 ### Sanghoon Lee
 ### E-mail Address - gcccompil3r@gmail.com
 
-![sanghoon](./member_profile/sanghoon_profile_1.jpg)
+![sanghoon](./member/sanghoon.png)
 
 ### Mercenary Works
 
