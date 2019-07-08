@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Thu Apr 18 11:34:38 2019
+// Date        : Fri May 24 09:48:18 2019
 // Host        : roro-Lenovo-Y520-15IKBN running 64-bit Ubuntu 16.04.5 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/roro/fpga_workspace/pmodCAN/pmodCAN.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_100M_0/design_1_rst_ps7_0_100M_0_stub.v

@@ -1,0 +1,343 @@
+
+*** Running vivado
+    with args -log system_lut_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_lut_0_0.tcl
+
+
+****** Vivado v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source system_lut_0_0.tcl -notrace
+Command: synth_design -top system_lut_0_0 -part xc7z010clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 7051 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:04 . Memory (MB): peak = 1366.984 ; gain = 86.863 ; free physical = 8367 ; free virtual = 12022
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_lut_0_0' [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/bd/system/ip/system_lut_0_0/synth/system_lut_0_0.v:58]
+INFO: [Synth 8-6157] synthesizing module 'lut' [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:22]
+	Parameter ADDRESS_WIDTH bound to: 8 - type: integer 
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter FILENAME bound to: sin.hex - type: string 
+CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'sin.hex'; please make sure the file is added to project and has read permission, ignoring [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:33]
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: Unable to determine number of words or word size in RAM. 
+	2: No valid read/write found for RAM. 
+RAM dissolved into registers
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+WARNING: [Synth 8-3848] Net mem in module/entity lut does not have driver. [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:31]
+INFO: [Common 17-14] Message 'Synth 8-3848' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'lut' (1#1) [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/new/lut.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'system_lut_0_0' (2#1) [/home/wrg/tmp/sine_wave_generator/sine_wave_generator.srcs/sources_1/bd/system/ip/system_lut_0_0/synth/system_lut_0_0.v:58]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.609 ; gain = 131.488 ; free physical = 8326 ; free virtual = 11983
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.609 ; gain = 131.488 ; free physical = 8365 ; free virtual = 12024
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.609 ; gain = 131.488 ; free physical = 8364 ; free virtual = 12024
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1419.617 ; gain = 139.496 ; free physical = 8355 ; free virtual = 12016
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module lut 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[0]' (FD) to 'inst/data_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[1]' (FD) to 'inst/data_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[2]' (FD) to 'inst/data_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[3]' (FD) to 'inst/data_reg[4]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[4]' (FD) to 'inst/data_reg[5]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[5]' (FD) to 'inst/data_reg[6]'
+INFO: [Synth 8-3886] merging instance 'inst/data_reg[6]' (FD) to 'inst/data_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/data_reg[7] )
+INFO: [Synth 8-3332] Sequential element (inst/data_reg[7]) is unused and will be removed from module system_lut_0_0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:42 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7772 ; free virtual = 11463
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:43 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7766 ; free virtual = 11457
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:43 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7765 ; free virtual = 11456
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7696 ; free virtual = 11393
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7695 ; free virtual = 11392
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7694 ; free virtual = 11391
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7693 ; free virtual = 11390
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7692 ; free virtual = 11389
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7691 ; free virtual = 11388
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |     0|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7688 ; free virtual = 11385
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 1 critical warnings and 256 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.961 ; gain = 237.840 ; free physical = 7687 ; free virtual = 11384
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:44 . Memory (MB): peak = 1517.969 ; gain = 237.840 ; free physical = 7696 ; free virtual = 11393
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 100 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:47 . Memory (MB): peak = 1611.992 ; gain = 344.461 ; free physical = 7613 ; free virtual = 11328
+WARNING: [Constraints 18-5210] No constraint will be written out.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Common 17-1381] The checkpoint '/home/wrg/tmp/sine_wave_generator/sine_wave_generator.runs/system_lut_0_0_synth_1/system_lut_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:17 ; elapsed = 00:00:38 . Memory (MB): peak = 1993.582 ; gain = 381.590 ; free physical = 8830 ; free virtual = 12563
+WARNING: [Constraints 18-5210] No constraint will be written out.
+INFO: [Common 17-1381] The checkpoint '/home/wrg/tmp/sine_wave_generator/sine_wave_generator.runs/system_lut_0_0_synth_1/system_lut_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_lut_0_0_utilization_synth.rpt -pb system_lut_0_0_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1993.582 ; gain = 0.000 ; free physical = 8853 ; free virtual = 12582
+INFO: [Common 17-206] Exiting Vivado at Mon Jun 24 17:27:42 2019...

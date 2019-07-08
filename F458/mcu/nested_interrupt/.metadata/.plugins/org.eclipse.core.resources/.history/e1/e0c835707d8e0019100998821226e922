@@ -1,0 +1,17 @@
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/nested_interrupt/IRQ Dispatcher/irqDispatch_c.c
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/nested_interrupt/test_nested/include/HL_sys_common.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/nested_interrupt/test_nested/include/HL_hal_stdtypes.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdint.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/stdint.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/cdefs.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_types.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_types.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/machine/_stdint.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/sys/_stdint.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdbool.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/nested_interrupt/test_nested/include/HL_sys_vim.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/nested_interrupt/test_nested/include/HL_reg_vim.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdio.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/_ti_config.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/linkage.h
+IRQ_INSTALL_ROOT/irqDispatch_c.obj: /home/koitt/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.3.LTS/include/stdarg.h

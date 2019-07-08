@@ -1,0 +1,6 @@
+23:03:16 INFO  : Registering command handlers for SDK TCF services
+23:03:21 INFO  : Launching XSCT server: xsct -n -interactive /home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.sdk/temp_xsdb_launch_script.tcl
+23:03:23 INFO  : XSCT server has started successfully.
+23:03:24 INFO  : Successfully done setting XSCT server connection channel  
+23:03:24 INFO  : Successfully done setting SDK workspace  
+23:03:24 INFO  : Processing command line option -hwspec /home/sdr/project/IntegrationProject/mercenary/fpga_sine_wave/fpga_sine_wave.sdk/fpga_sine_wave_wrapper.hdf.

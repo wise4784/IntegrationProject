@@ -1,0 +1,37 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+| Date         : Thu May 16 17:54:07 2019
+| Host         : roro-Lenovo-Y520-15IKBN running 64-bit Ubuntu 16.04.5 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_PmodCAN_0_2'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of design_1_PmodCAN_0_2 (digilentinc.com:IP:PmodCAN:1.0 (Rev. 13)) to Vivado generation flows.
+
+
+
+
+
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+| Date         : Tue May 14 16:48:16 2019
+| Host         : roro-Lenovo-Y520-15IKBN running 64-bit Ubuntu 16.04.5 LTS
+| Command      : upgrade_ip
+| Device       : xc7z010clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_PmodCAN_0_2'
+
+1. Summary
+----------
+
+SUCCESS in the conversion of design_1_PmodCAN_0_2 (digilentinc.com:IP:PmodCAN:1.0 (Rev. 13)) to Vivado generation flows.
+

@@ -111,8 +111,20 @@ PDE_DEPS__QUOTED :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+lwIP_INSTALL_ROOT/apps/httpserver_raw \
+lwIP_INSTALL_ROOT/apps/httpserver_raw/makefsdata \
 lwIP_INSTALL_ROOT/ports/hdk \
+lwIP_INSTALL_ROOT/ports/hdk/netif \
+lwIP_INSTALL_ROOT/src/api \
 lwIP_INSTALL_ROOT/src/core \
+lwIP_INSTALL_ROOT/src/core/ipv4 \
+lwIP_INSTALL_ROOT/src/core/snmp \
 lwIP_INSTALL_ROOT/src/netif \
+lwIP_INSTALL_ROOT/src/netif/ppp \
+lwIP_INSTALL_ROOT/test/unit/core \
+lwIP_INSTALL_ROOT/test/unit/etharp \
+lwIP_INSTALL_ROOT/test/unit \
+lwIP_INSTALL_ROOT/test/unit/tcp \
+lwIP_INSTALL_ROOT/test/unit/udp \
 source \
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="enable_IRQ" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="enable_IRQ"/>
+			<item value="cpsr"/>
+			<item value="_enable_IRQ"/>
+			<item value="portSAVE_CONTEXT"/>
+			<item value="high"/>
+			<item value="restore"/>
+			<item value="enable"/>
+			<item value="ineter"/>
+			<item value="highlevel"/>
+			<item value="het"/>
+			<item value="taskCHECK_FOR_STACK_OVERFLOW"/>
+			<item value="portRESTORE_CONTEXT"/>
+			<item value="traceTASK_SWITCHED_OUT"/>
+			<item value="vTaskSwitchContext"/>
+			<item value="SUBS"/>
+		</list>
+		<list key="replacehistory">
+			<item value="irq_func_pnt"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="294" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="422" key="DIALOG_HEIGHT"/>
+		<item value="959" key="DIALOG_X_ORIGIN"/>
+		<item value="279" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
