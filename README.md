@@ -12,8 +12,12 @@ Integration Project
 FPGA Based Sine Wave Generator, AM5728 CAN, UART Device Driver, Audio SW Codec, AHRS Algorithm, TMS570 LWiP, Multi Lane Dectection  
 
 ## Students
-### 
-### E-mail Address -
+### Sungmin Yang
+### E-mail Address - ysmin1993@hanmail.net
+
+![sungmin](./member/sungmin_yang.png)
+
+RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선작업(HW)
 
 ### Works
 
