@@ -24,7 +24,8 @@
 #define MAX_RPM 30
 #define MAX_CNT MAX_RPM*MOTOR_REF
 
-#define DEG_CAL 1
+#define VELO    1.0
+#define GRAVITY 9.8
 
 extern pthread_mutex_t ctrl_mutex;
 extern pthread_mutex_t ctrl_mutex2;

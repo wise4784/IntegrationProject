@@ -8,6 +8,7 @@
 #include "ctrl.h"
 #include "udp_com.h"
 #include "dsp_total.h"
+#include "math.h"
 
 pthread_mutex_t ctrl_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t ctrl_mutex2 = PTHREAD_MUTEX_INITIALIZER;
@@ -214,7 +215,7 @@ void Auto_Deg_ctrl(void)
     {
         if(lidar_det_flag ==0)
         {
-            degree = DEG_CAL*distance;
+            degree = 5*asin(0.2*GRAVITY*(float)distance/(VELO*VELO));
             lidar_det_flag =1;
 
             if(degree>=MAX_DEG)
