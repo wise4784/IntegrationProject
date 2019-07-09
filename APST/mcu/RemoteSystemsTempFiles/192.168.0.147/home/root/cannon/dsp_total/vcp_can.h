@@ -1,3 +1,6 @@
+#ifndef VCP_CAN_H
+#define VCP_CAN_H
+
 #include "can_serial.h"
 #include "vcp_can.h"
 
@@ -7,18 +10,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int main(void)
-{
-    init_can();
+void init_can(void);
+void send_ins2fpga(void);
+int Recieve_fpga_data(void);
+void close_can(void);
 
-    while(1)
-    {
-        Recieve_fpga_data();
-        usleep(10000);
-    }
-
-    close_can();
-
-    return 0;
-
-}
+#endif

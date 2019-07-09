@@ -1,6 +1,6 @@
 #include "can_serial.h"
 #include "vcp_can.h"
-
+#include "dsp_total.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +18,6 @@ int lidar_data = -1;
 int encoder_data = -1;
 
 pthread_mutex_t can_mutx = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  can_cond = PTHREAD_COND_INITIALIZER;
 
 void init_can(void)
 {
@@ -26,8 +25,7 @@ void init_can(void)
 	int can_mutx_state;
 	*tmp_fd = can_serial_config(can_dev0);
 	can_fd = tmp_fd;
-//	char command[6] = {'T','=','1','\r','\n',0};
-//	can_send_data(*can_fd,command,5,2);
+
 	can_recv_data(*can_fd);
 
 	can_mutx_state = pthread_mutex_init(&can_mutx,NULL);
@@ -79,7 +77,7 @@ int Recieve_fpga_data(void)
         can_txdata_L = can_txdata & (0x0000FFFF);
 
         if(lidar_data == -1)
-                lidar_data = can_txdata_L;
+            lidar_data = can_txdata_L;
         if(encoder_data == -1)
             encoder_data = can_txdata_H;
         return 0;

@@ -1,5 +1,6 @@
 #include "bluetooth.h"
 #include "serial.h"
+#include "dsp_total.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -8,12 +9,11 @@
 #include <unistd.h>
 #include <pthread.h>
 
-extern char rx_buf;
+extern char rx_buf[2];
 const int *bl_fd;
 char *bl_dev0 = "/dev/ttyUSB0";
 char *bl_dev1 = "/dev/ttyUSB1";
 pthread_mutex_t bl_mutx = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  bl_cond = PTHREAD_COND_INITIALIZER;
 
 char read_bl_ins =0;
 
@@ -21,7 +21,7 @@ void init_bl(void)
 {
     int *tmp_fd =(int *)malloc(sizeof(int));
     int bl_mutx_state;
-    *tmp_fd = serial_config(bl_dev0);
+    *tmp_fd = serial_config(bl_dev1);
     bl_fd = tmp_fd;
 
     bl_mutx_state = pthread_mutex_init(&bl_mutx,NULL);
@@ -39,13 +39,11 @@ void recieve_bl(void)
     char bl_ins =0;
 
 #if 0
-    char *bl_rc_data = &rx_buf;
-    printf("wait data\n");
-    memset(bl_rc_data,0,1);
+    char *bl_rc_data = rx_buf;
+    memset(bl_rc_data,0,2);
     recv_data(*bl_fd);
-    printf("data receive\n");
 #else
-    char bl_rc_data[2] ={0,0};
+    char bl_rc_data[2] = {0,0};
     read(*bl_fd,bl_rc_data,1);
 #endif
 
@@ -64,4 +62,5 @@ void close_bl_dv(void)
     close_dev(*bl_fd);
     free((void *)bl_fd);
     pthread_mutex_destroy(&bl_mutx);
+    printf("close bl\r\n");
 }
