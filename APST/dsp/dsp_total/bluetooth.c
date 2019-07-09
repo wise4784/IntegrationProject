@@ -1,5 +1,6 @@
 #include "bluetooth.h"
 #include "serial.h"
+#include "dsp_total.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -13,7 +14,6 @@ const int *bl_fd;
 char *bl_dev0 = "/dev/ttyUSB0";
 char *bl_dev1 = "/dev/ttyUSB1";
 pthread_mutex_t bl_mutx = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  bl_cond = PTHREAD_COND_INITIALIZER;
 
 char read_bl_ins =0;
 
@@ -62,4 +62,5 @@ void close_bl_dv(void)
     close_dev(*bl_fd);
     free((void *)bl_fd);
     pthread_mutex_destroy(&bl_mutx);
+    printf("close bl\r\n");
 }

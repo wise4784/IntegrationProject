@@ -73,7 +73,7 @@ void Udp_Receive2MCU(int *sock, sockad_in *client_addr)
 
     if(rcv_buf[0] == 's')
     {
-        	mcu_state = rcv_buf[1];
+            mcu_state = rcv_buf[1];
         printf("Receive data %c%d\r\n", rcv_buf[0],rcv_buf[1]);
     }
 

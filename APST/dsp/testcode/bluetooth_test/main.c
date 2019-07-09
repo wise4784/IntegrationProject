@@ -6,8 +6,6 @@
 
 int main(void)
 {
-
-
     printf("init_start\r\n");
     init_bl();
     printf("init_success\r\n");
@@ -30,6 +28,10 @@ int main(void)
                 printf("laser\n");
             else if(read_bl_ins==6)
                 printf("shoot\n");
+            else if(read_bl_ins==7)
+                printf("mode\n");
+            else
+                printf("start\n");
             read_bl_ins = 0;
         }
     }
