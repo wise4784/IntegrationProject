@@ -67,34 +67,35 @@ void QEPInit(void)
 {
 
 
-/* USER CODE BEGIN (1) */
+/* USER CODE BEGIN (4) */
 /* USER CODE END */
 
+
   /** - Clear Position Counter register   */
-  eqepREG1->QPOSCNT  =  0x00000000U;
+  eqepREG2->QPOSCNT  =  0x00000000U;
   
   /** - Initialize Position Counter value register   */ 
-  eqepREG1->QPOSINIT =  0x00000000U;
+  eqepREG2->QPOSINIT =  0x00000000U;
   
   /** - Set Maximum position counter value   */ 
-  eqepREG1->QPOSMAX  =  0xFFFFFFFFU;
+  eqepREG2->QPOSMAX  =  0xFFFFFFFFU;
   
   /** - Set the initial Position compare value   */ 
-  eqepREG1->QPOSCMP  =  0x00000000U;
+  eqepREG2->QPOSCMP  =  0x00000000U;
   
   /** - Clear the time base   */ 
-  eqepREG1->QUTMR    =  0x00000000U;
+  eqepREG2->QUTMR    =  0x00000000U;
   
   /** - Configure unit period register   */ 
-  eqepREG1->QUPRD    =  (uint32) 0x00393870U;
+  eqepREG2->QUPRD    =  (uint32) 0x00393870U;
   
   /** - Clear Watchdog Timer register  */ 
-  eqepREG1->QWDTMR   = 	(uint16) 0x00000000U;
+  eqepREG2->QWDTMR   = 	(uint16) 0x00000000U;
   
   /** - Configure Watchdog Period   */ 
-  eqepREG1->QWDPRD   =  (uint16) 0x0000U;
+  eqepREG2->QWDPRD   =  (uint16) 0x0000U;
   
-/* USER CODE BEGIN (2) */
+/* USER CODE BEGIN (5) */
 /* USER CODE END */
 
   /** - Setup Decoder Control Register
@@ -109,7 +110,7 @@ void QEPInit(void)
   *     - Enable / Disable Negate QEPI input
   *     - Enable / Disable Negate QEPS input  
   */
-  eqepREG1->QDECCTL  = (uint16)((uint16)((uint16)eQEP_QUADRATURE_COUNT << 14U)
+  eqepREG2->QDECCTL  = (uint16)((uint16)((uint16)eQEP_QUADRATURE_COUNT << 14U)
                        | (uint16)((uint16)0U << 13U) 
 					   | (uint16)((uint16)eQEP_INDEX_PIN << 12U) 
 					   | (uint16)((uint16)eQEP_RESOLUTION_2x << 11U)
@@ -117,25 +118,25 @@ void QEPInit(void)
 					   | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)0U << 8U)
 					   | (uint16)((uint16)0U << 7U)					   
-					   | (uint16)((uint16)0U << 6U)				   
+					   | (uint16)((uint16)0U << 6U)					   
 					   | (uint16)((uint16)0U << 5U)
 					   | (uint16)0x0000U);
 
   /** - Setup eQEP Control Register
   *     - Select Position counter Reset Mode
-  *     - Enable & Select Stobe event initialization of position counter
+  *     - Enable & Select Strobe event initialization of position counter
   *     - Enable & Select Index event initialization of position counter
   *     - Enable / Disable Software Initialization of Position counter.
   *     - Select Strobe event latch of position counter.
   *     - Select Index event latch of position counter.
   *     - Select EQEP capture Latch mode
   */				   
-  eqepREG1->QEPCTL   = (uint16)((uint16)((uint16)eQEP_UNITTIME_EVENT << 12U)
-                       | (uint16)((uint16)0U << 11U )
+  eqepREG2->QEPCTL   = (uint16)((uint16)((uint16)eQEP_UNITTIME_EVENT << 12U)
+                       | (uint16)((uint16)0U << 11U) 
 					   | (uint16)((uint16)eQEP_RISING_EDGE << 10U)
                        | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)eQEP_RISING_EDGE << 8U)
-					   | (uint16)((uint16)0U << 7U)
+					   | (uint16)((uint16)1U << 7U)
 					   | (uint16)((uint16)eQEP_RISING_EDGE << 6U)
 					   | (uint16)((uint16)eQEP_LATCH_RISING_EDGE << 4U)
 					   | (uint16)((uint16)eQEP_ON_UNIT_TIMOUT_EVENT << 2U)
@@ -147,7 +148,7 @@ void QEPInit(void)
   *     - Select Polarity of Sync output.
   *     - Select Position compare sync output pulse width.
   */			   
-  eqepREG1->QPOSCTL  = (uint16)((uint16)((uint16)0U << 15U)
+  eqepREG2->QPOSCTL  = (uint16)((uint16)((uint16)0U << 15U)
 					   | (uint16)((uint16)eQEP_QPOSCNT_EQ_QPSCMP << 14U)
 					   | (uint16)((uint16)eQEP_ACTIVE_HIGH << 13U)
 					   | (uint16)((uint16)0x000U)					   
@@ -157,15 +158,15 @@ void QEPInit(void)
   *     - Select capture timer clock prescaler.
   *     - Select Unit position event prescaler.
   */					   
-  eqepREG1->QCAPCTL  = (uint16)((uint16)((uint16)eQEP_PS_8 << 4U)
+  eqepREG2->QCAPCTL  = (uint16)((uint16)((uint16)eQEP_PS_8 << 4U)
 					   | (uint16)((uint16)eQEP_PS_512)
 					   | (uint16)0x0000U);
 
-/* USER CODE BEGIN (3) */
+/* USER CODE BEGIN (6) */
 /* USER CODE END */
 
   /** - Clear Interrupt Flag register  */					   
-  eqepREG1->QCLR     = (uint16) 0xFFFFU;
+  eqepREG2->QCLR     = (uint16) 0xFFFFU;
 
   /** - Setup eQEP Interrupt Enable Register
   *     Enable / Diable UTO Interrupt
@@ -180,7 +181,7 @@ void QEPInit(void)
   *     Enable / Diable QPE Interrupt
   *     Enable / Diable PCE Interrupt
   */  
-  eqepREG1->QEINT    = (uint16)((uint16)((uint16)1U << 11U)
+  eqepREG2->QEINT    = (uint16)((uint16)((uint16)1U << 11U)
 					   | (uint16)((uint16)1U << 10U)
 					   | (uint16)((uint16)0U << 9U)
 					   | (uint16)((uint16)0U << 8U)
@@ -188,21 +189,20 @@ void QEPInit(void)
 					   | (uint16)((uint16)0U << 6U)
 					   | (uint16)((uint16)0U << 5U)
 					   | (uint16)((uint16)0U << 4U)
-					   | (uint16)((uint16)0U << 3U)       
+					   | (uint16)((uint16)0U << 3U)
 					   | (uint16)((uint16)0U << 2U)
 					   | (uint16)((uint16)0U << 1U));
 
   /** - Clear Capture Timer register  */
-  eqepREG1->QCTMR    = (uint16)0x0000U;	
+  eqepREG2->QCTMR    = (uint16)0x0000U;	
 
   /** - Clear the Capture Period regiter */  
-  eqepREG1->QCPRD    = (uint16)0x0000U;	
+  eqepREG2->QCPRD    = (uint16)0x0000U;	
   
   /** - Clear Period Latch register */					   
-  eqepREG1->QCPRDLAT = (uint16)0x0000U;
+  eqepREG2->QCPRDLAT = (uint16)0x0000U;
   
-
-/* USER CODE BEGIN (4) */
+/* USER CODE BEGIN (7) */
 /* USER CODE END */
 
   
@@ -1094,7 +1094,8 @@ void eqepWritePosnCompare (eqepBASE_t *eqep, uint32 posn)
   return;
 } /*end of eQEP_write_posn_compare () function */
 
-/** @fn void eqep1GetConfigValue(eqep_config_reg_t *config_reg, config_value_type_t type)
+
+/** @fn void eqep2GetConfigValue(eqep_config_reg_t *config_reg, config_value_type_t type)
 *   @brief Get the initial or current values of the configuration registers
 *
 *    @param[in] *config_reg: pointer to the struct to which the initial or current
@@ -1109,40 +1110,39 @@ void eqepWritePosnCompare (eqepBASE_t *eqep, uint32 posn)
 *   of the configuration registers to the struct pointed by config_reg
 *
 */
-/* SourceId : EQEP_SourceId_061 */
-/* DesignId : EQEP_DesignId_061 */
-/* Requirements : HL_CONQ_QEP_SR64 */
-void eqep1GetConfigValue(eqep_config_reg_t *config_reg, config_value_type_t type)
+/* SourceId : EQEP_SourceId_062 */
+/* DesignId : EQEP_DesignId_062 */
+/* Requirements : HL_CONQ_QEP_SR65 */
+void eqep2GetConfigValue(eqep_config_reg_t *config_reg, config_value_type_t type)
 {
     if (type == InitialValue)
     {
-        config_reg->CONFIG_QPOSINIT		= EQEP1_QPOSINIT_CONFIGVALUE;
-        config_reg->CONFIG_QPOSMAX		= EQEP1_QPOSMAX_CONFIGVALUE;
-        config_reg->CONFIG_QPOSCMP      = EQEP1_QPOSCMP_CONFIGVALUE;
-        config_reg->CONFIG_QUPRD      	= EQEP1_QUPRD_CONFIGVALUE;
-        config_reg->CONFIG_QWDPRD      	= EQEP1_QWDPRD_CONFIGVALUE;
-        config_reg->CONFIG_QDECCTL      = EQEP1_QDECCTL_CONFIGVALUE;
-        config_reg->CONFIG_QEPCTL      	= EQEP1_QEPCTL_CONFIGVALUE;
-        config_reg->CONFIG_QCAPCTL      = EQEP1_QCAPCTL_CONFIGVALUE;
-        config_reg->CONFIG_QPOSCTL      = EQEP1_QPOSCTL_CONFIGVALUE;
-        config_reg->CONFIG_QEINT       	= EQEP1_QEINT_CONFIGVALUE;
+        config_reg->CONFIG_QPOSINIT		= EQEP2_QPOSINIT_CONFIGVALUE;
+        config_reg->CONFIG_QPOSMAX		= EQEP2_QPOSMAX_CONFIGVALUE;
+        config_reg->CONFIG_QPOSCMP      = EQEP2_QPOSCMP_CONFIGVALUE;
+        config_reg->CONFIG_QUPRD      	= EQEP2_QUPRD_CONFIGVALUE;
+        config_reg->CONFIG_QWDPRD      	= EQEP2_QWDPRD_CONFIGVALUE;
+        config_reg->CONFIG_QDECCTL      = EQEP2_QDECCTL_CONFIGVALUE;
+        config_reg->CONFIG_QEPCTL      	= EQEP2_QEPCTL_CONFIGVALUE;
+        config_reg->CONFIG_QCAPCTL      = EQEP2_QCAPCTL_CONFIGVALUE;
+        config_reg->CONFIG_QPOSCTL      = EQEP2_QPOSCTL_CONFIGVALUE;
+        config_reg->CONFIG_QEINT       	= EQEP2_QEINT_CONFIGVALUE;
     }
     else
     {
     /*SAFETYMCUSW 134 S MR:12.2 <APPROVED> "LDRA Tool issue" */
-        config_reg->CONFIG_QPOSINIT		= eqepREG1->QPOSINIT;
-        config_reg->CONFIG_QPOSMAX		= eqepREG1->QPOSMAX;
-        config_reg->CONFIG_QPOSCMP      = eqepREG1->QPOSCMP;
-        config_reg->CONFIG_QUPRD      	= eqepREG1->QUPRD;
-        config_reg->CONFIG_QWDPRD      	= eqepREG1->QWDPRD;
-        config_reg->CONFIG_QDECCTL      = eqepREG1->QDECCTL;
-        config_reg->CONFIG_QEPCTL      	= eqepREG1->QEPCTL;
-        config_reg->CONFIG_QCAPCTL      = eqepREG1->QCAPCTL;
-        config_reg->CONFIG_QPOSCTL      = eqepREG1->QPOSCTL;
-        config_reg->CONFIG_QEINT       	= eqepREG1->QEINT;
+        config_reg->CONFIG_QPOSINIT		= eqepREG2->QPOSINIT;
+        config_reg->CONFIG_QPOSMAX		= eqepREG2->QPOSMAX;
+        config_reg->CONFIG_QPOSCMP      = eqepREG2->QPOSCMP;
+        config_reg->CONFIG_QUPRD      	= eqepREG2->QUPRD;
+        config_reg->CONFIG_QWDPRD      	= eqepREG2->QWDPRD;
+        config_reg->CONFIG_QDECCTL      = eqepREG2->QDECCTL;
+        config_reg->CONFIG_QEPCTL      	= eqepREG2->QEPCTL;
+        config_reg->CONFIG_QCAPCTL      = eqepREG2->QCAPCTL;
+        config_reg->CONFIG_QPOSCTL      = eqepREG2->QPOSCTL;
+        config_reg->CONFIG_QEINT       	= eqepREG2->QEINT;
     }
 }
-
 
 
 /*end of file*/
