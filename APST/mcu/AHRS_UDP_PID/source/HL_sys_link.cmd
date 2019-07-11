@@ -57,6 +57,7 @@ MEMORY
     FLASH0  (RX) : origin=0x00008020 length=0x001F7FE0
     FLASH1  (RX) : origin=0x00200000 length=0x00200000
 
+    
 /* USER CODE BEGIN (2) */
     STACKS  (RW) : origin=0x08000000 length=0x00008000
     KRAM    (RW) : origin=0x08008000 length=0x00000800

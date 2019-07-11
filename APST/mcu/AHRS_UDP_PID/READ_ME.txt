@@ -2,7 +2,7 @@
 
 GIO A :	0 - 자기유지용 (입력, Active LOW)
 	1 - 장치, System On
-	2 - Step On-off (pwm대용)
+	2 - Step On-off (pwm대용) -> STEP이 IC로 안됐을 경우
 	3 - Ethernet (DPS83630)_ON (저전력모드 off)
 	4 - Ethernet (DPS83630)_Reset
 	5 - FPGA_ON
@@ -13,7 +13,6 @@ GIO B :	0 - Fire (Active Low)
 	1 - Laser On
 	2 - DC모터 방향
 	3 - Step모터 방향
-	6 - STEP, DC 모터 ON
 
 
 ***** SCI *******
@@ -71,9 +70,14 @@ etpwmREG4 (Servo 모터 / 총알 장전)
 
 ****** eQEP ********
 
+DRIVE 2
 Control period : 10ms
 Quadrature MODE
 
+
+****** ADC ********
+
+adcREG1
 
 ****** PIN MAP ******
 
@@ -82,8 +86,8 @@ etpwm2B - J10-20
 etpwm3B - J10-25
 etpwm4A - J10-26
 
-eQEP1A	- J1-7
-eQEP1B	- J5-8
+eQEP2A	- J10-21
+eQEP2B	- J10-22
 
 I2C2_SCL- J10-8
 I2C2_SDA- J10-9
@@ -91,5 +95,5 @@ I2C2_SDA- J10-9
 sciREG3_Tx - J1-4 ( Max232 - 10 )
 sciREG3_Rx - J1-3 ( Max232 - 9	)
 
-
+ADC1_21	- J3-8
 
