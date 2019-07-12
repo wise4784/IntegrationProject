@@ -134,7 +134,7 @@ xTaskHandle AdcTaskHandle;
 #define IMU_DEBUG   1 // If this value set 1, AHRSv1 will work
 #define AHRS_SET    0 // If this value set 1, IMU setting : No period Data, flash save.
                          // 센서를 처음 실행시킬 때 한번만 하면 됩니다. 다음부턴 안해도 센서 메모리에 저장되서 동작합니다.
-#define DSP_DEBUG   1 // DSP 통신 테스트
+#define DSP_DEBUG   0 // DSP 통신 테스트 If this value set 1, it works for TEST MODE
 #define ADC_DEBUG   1 // For ADC checking. If this value set 1, it works.
 
 #if SCI_DEBUG
@@ -238,12 +238,14 @@ uint16 servo_pwm = 420; // 420 = 0 degree,  1910 = 180 degree
 
 /* STEP */
 uint32 step_cnt;
-#define Y       1 // 각도-cnt 계수 값.
+#define STEP       1024.2 // 각도-cnt 계수 값.
 /*******************************************************************************************************************************************/
 
 
 /*********************************************************** FOR ADC ***********************************************************************/
-#define vCoeff  0.24176              //cap_bank voltage-coefficent
+
+/* ADC1_9 */
+#define vCoeff  0.24176              //cap_bank voltage-coefficient
 #define dSize   10                   // data 10
 
 float cVolt;
@@ -272,6 +274,8 @@ int main(void)
 
     /* gio Pin initialize */
     gioInit();
+    /* het Pin initialize */
+    hetInit();
 
     /* clear MCU status */
     status_flag = 0x00;
@@ -298,7 +302,7 @@ int main(void)
     /* 전원 (PW_sw)를 안누르면 동작 X.
      * 전원버튼 누르면 A0에 LOW가 들어오고 while문 벗어남.
    */
-#if 1 // for DEBUG
+#if DSP_DEBUG // for DEBUG
     while(gioGetBit(gioPORTB, 4))
         ;
 #else
@@ -354,7 +358,7 @@ int main(void)
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
-#if 1
+#if 0
     if (xTaskCreate(ctrlTask,"Control", configMINIMAL_STACK_SIZE, NULL, 1, &CtrlTaskHandle) != pdTRUE)
     {
         /* Task could not be created */
@@ -484,7 +488,7 @@ void stepTask(void *pvParameters)
             if(angError < 0)
             {
                 // 포대 방향 아래로 -> step 모터는 위로
-                //gioSetBit(gioPORTB, 3, 1);  // 방향은 실험해봐야 함.
+                gioSetBit(gioPORTB, 3, 1);  // 방향은 실험해봐야 함.
                 if(angError > -0.1)
                 {
                     // step모터 Stop
@@ -493,7 +497,7 @@ void stepTask(void *pvParameters)
                 }
                 else
                 {
-                    step_cnt = -1 * angError * Y;
+                    step_cnt = -1 * angError * STEP;
                     for(i = 0; i < step_cnt * 2; i++)
                     {
                         gioToggleBit(gioPORTA, 2);
@@ -504,7 +508,7 @@ void stepTask(void *pvParameters)
             else
             {
                 // 포대 방향 위로 -> step 모터는 아래로
-                //gioSetBit(gioPORTB, 3, 0);
+                gioSetBit(gioPORTB, 3, 0);
 
                 if(angError < 0.1)
                 {
@@ -514,7 +518,7 @@ void stepTask(void *pvParameters)
                 }
                 else
                 {
-                    step_cnt = angError * Y;
+                    step_cnt = angError * STEP;
                     for(i = 0; i < step_cnt * 2; i++)
                     {
                         gioToggleBit(gioPORTA, 2);
@@ -613,7 +617,8 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
                 /* Volatge flag reset, 재장전 */
 #if !DSP_DEBUG
                 reset_Status(VOLTAGE);
-                reload(1);
+                // reload(val) : 1 =< val =< 190
+                reload(50);
 #endif
                 break;
 
@@ -840,7 +845,7 @@ void imu_check(void)
 
 void reload(uint8 cnt)
 {
-    cnt = cnt * 15;
+    cnt = cnt * 10;
     servo_pwm += cnt;
     if(servo_pwm > 1910)
     {

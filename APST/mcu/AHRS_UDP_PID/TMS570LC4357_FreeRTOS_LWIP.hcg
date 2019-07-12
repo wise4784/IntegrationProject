@@ -393,7 +393,8 @@
         <NAME>HL_htu.h</NAME>
       </HDRHTU>
       <SRCHET>
-        </SRCHET>
+        <NAME>HL_het.c</NAME>
+      </SRCHET>
       <HET2ASMHDR>
         <NAME/>
       </HET2ASMHDR>
@@ -768,7 +769,7 @@
         <PATH>include\HL_htu.h</PATH>
       </HDRHTU>
       <SRCHET>
-        <PATH></PATH>
+        <PATH>source\HL_het.c</PATH>
       </SRCHET>
     </FILENAMES>
   </HET>
