@@ -95,5 +95,6 @@ I2C2_SDA- J10-9
 sciREG3_Tx - J1-4 ( Max232 - 10 )
 sciREG3_Rx - J1-3 ( Max232 - 9	)
 
-ADC1_21	- J3-8
+ADC1_9	- J5-2
 
+HET
