@@ -200,7 +200,7 @@ int lidar_data_antinoise(int ld_dat)
 void *can_thread(void *x)
 {
     volatile int can_success =-1;
-    init_can();
+    //init_can();
     usleep(10);
 
     while(1)
@@ -208,6 +208,7 @@ void *can_thread(void *x)
         pthread_mutex_lock(&sync_mutex);
         if(sync_flag ==1)
         {
+            /*
             printf("sync_flag %d\n",sync_flag);
             while(can_success == -1)
             {
@@ -227,7 +228,9 @@ void *can_thread(void *x)
                  encoder_data = -1;
                  sync_flag =2;
                  can_success = -1;
-             }
+             }*/
+
+            sync_flag =2;
         }
         pthread_mutex_unlock(&sync_mutex);
         usleep(10);
