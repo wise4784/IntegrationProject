@@ -64,6 +64,7 @@
 #include "HL_sci.h"
 #include "HL_eqep.h"
 #include "HL_etpwm.h"
+#include "HL_adc.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -85,6 +86,7 @@ void stepTask(void *pvParameters);
 void udpTask(void *pvParameters);
 void sciTask(void *pvParameters);
 void imuTask(void *pvParameters);
+void adcTask(void *pvParameters);
 extern void vApplicationStackOverflowHook(xTaskHandle *pxTask, signed char *pcTaskName );
 extern void EMAC_LwIP_Main (uint8_t * emacAddress);
 
@@ -98,8 +100,9 @@ void set_Status(uint8 bit); /* bit0 : Charge / bit1 : 각도 */
 void reset_Status(uint8 bit);
 
 void convert(unsigned char *ch, unsigned char *fl); /* ASCII to float */
-
 void imu_check(void);
+
+float getAvg(int *buf, int value);  // MoveAvgFilter
 
 #define VOLTAGE     0
 #define DEGREE      1
@@ -113,6 +116,8 @@ xTaskHandle StepTaskHandle;
 xTaskHandle SciTaskHandle;
 xTaskHandle UdpTaskHandle;
 xTaskHandle ImuTaskHandle;
+xTaskHandle AdcTaskHandle;
+
 /* USER CODE END */
 
 /** @fn void main(void)
@@ -129,6 +134,8 @@ xTaskHandle ImuTaskHandle;
 #define IMU_DEBUG   1 // If this value set 1, AHRSv1 will work
 #define AHRS_SET    0 // If this value set 1, IMU setting : No period Data, flash save.
                          // 센서를 처음 실행시킬 때 한번만 하면 됩니다. 다음부턴 안해도 센서 메모리에 저장되서 동작합니다.
+#define DSP_DEBUG   0 // DSP 통신 테스트 If this value set 1, it works for TEST MODE
+#define ADC_DEBUG   1 // For ADC checking. If this value set 1, it works.
 
 #if SCI_DEBUG
 uint8_t sciTest[] = {"SCI very well\r\n"};
@@ -220,13 +227,36 @@ int setDGR; // DSP에서 준 각도 값 ( 100배 뻥튀기 해서 옴 )
 float setRoll; // (float)setDGR / 100.0
 float roll; // IMU 측정값
 float angError;
-uint32 step_cnt;
-#define Y       1 // 각도-cnt 계수 값.
+
 /*******************************************************************************************************************************************/
+
 
 /*********************************************************** For PWM ***********************************************************************/
 
+/* SERVO */
 uint16 servo_pwm = 420; // 420 = 0 degree,  1910 = 180 degree
+
+/* STEP */
+uint32 step_cnt;
+#define STEP       1024.2 // 각도-cnt 계수 값.
+/*******************************************************************************************************************************************/
+
+
+/*********************************************************** FOR ADC ***********************************************************************/
+
+/* ADC1_9 */
+#define vCoeff  0.24176              //cap_bank voltage-coefficient
+#define dSize   10                   // data 10
+
+float cVolt;
+int dBuf[dSize] = {0};
+
+uint16 adc_val;
+
+adcData_t adc_data[2];
+
+/*******************************************************************************************************************************************/
+
 
 /* USER CODE END */
 
@@ -244,6 +274,8 @@ int main(void)
 
     /* gio Pin initialize */
     gioInit();
+    /* het Pin initialize */
+    hetInit();
 
     /* clear MCU status */
     status_flag = 0x00;
@@ -257,6 +289,11 @@ int main(void)
     eqepEnableCounter(eqepREG1);
     eqepEnableUnitTimer(eqepREG1);
 
+    /* adc Initialize */
+#if ADC_DEBUG
+    adcInit();
+    adcStartConversion(adcREG1, adcGROUP1);
+#endif
 #if SCI_DEBUG
     sciSend(sciREG1, sizeof(txtInit), txtInit);
     sciSend(sciREG1, sizeof(txtOK), txtOK);
@@ -265,7 +302,7 @@ int main(void)
     /* 전원 (PW_sw)를 안누르면 동작 X.
      * 전원버튼 누르면 A0에 LOW가 들어오고 while문 벗어남.
    */
-#if 0 // for DEBUG
+#if DSP_DEBUG // for DEBUG
     while(gioGetBit(gioPORTB, 4))
         ;
 #else
@@ -321,7 +358,7 @@ int main(void)
     // ((configMAX_PRIORITIES-1)|portPRIVILEGE_BIT)
     /* Create Task 1 */
     //    if (xTaskCreate(vTask1,"Task1", configMINIMAL_STACK_SIZE, NULL, 1, &xTask1Handle) != pdTRUE)
-#if 1
+#if 0
     if (xTaskCreate(ctrlTask,"Control", configMINIMAL_STACK_SIZE, NULL, 1, &CtrlTaskHandle) != pdTRUE)
     {
         /* Task could not be created */
@@ -360,6 +397,12 @@ int main(void)
     /* Create Task 6 */
 #if AHRS_SET
     if(xTaskCreate(imuTask, "IMU", configMINIMAL_STACK_SIZE, NULL, 5, &ImuTaskHandle) != pdTRUE)
+    {
+        while(1);
+    }
+#endif
+#if ADC_DEBUG
+    if(xTaskCreate(adcTask, "ADC", configMINIMAL_STACK_SIZE, NULL, 4, &AdcTaskHandle) != pdTRUE)
     {
         while(1);
     }
@@ -445,7 +488,7 @@ void stepTask(void *pvParameters)
             if(angError < 0)
             {
                 // 포대 방향 아래로 -> step 모터는 위로
-                //gioSetBit(gioPORTB, 3, 1);  // 방향은 실험해봐야 함.
+                gioSetBit(gioPORTB, 3, 1);  // 방향은 실험해봐야 함.
                 if(angError > -0.1)
                 {
                     // step모터 Stop
@@ -454,7 +497,7 @@ void stepTask(void *pvParameters)
                 }
                 else
                 {
-                    step_cnt = -1 * angError * Y;
+                    step_cnt = -1 * angError * STEP;
                     for(i = 0; i < step_cnt * 2; i++)
                     {
                         gioToggleBit(gioPORTA, 2);
@@ -465,7 +508,7 @@ void stepTask(void *pvParameters)
             else
             {
                 // 포대 방향 위로 -> step 모터는 아래로
-                //gioSetBit(gioPORTB, 3, 0);
+                gioSetBit(gioPORTB, 3, 0);
 
                 if(angError < 0.1)
                 {
@@ -475,7 +518,7 @@ void stepTask(void *pvParameters)
                 }
                 else
                 {
-                    step_cnt = angError * Y;
+                    step_cnt = angError * STEP;
                     for(i = 0; i < step_cnt * 2; i++)
                     {
                         gioToggleBit(gioPORTA, 2);
@@ -559,17 +602,24 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
                 /* MCU가 준비되서 Ready signal을 전송하면 DSP에서 받고 준비되면 'g'를 보내서 MCU 전체 테스크 동작 시작. */
             case 'g' :
                 set_Status(MCU_GO);
+#if DSP_DEBUG
+                set_Status(DEGREE);
+                set_Status(VOLTAGE);
+#endif
                 break;
 
             case 't' :
-                /* DSP의 Trigger Signal. 레일건 or 레이저 발사. (gio A? B? n bit SET!) */
+                /* DSP의 Trigger Signal. 레일건 (gio A? B? n bit SET!) */
                 gioSetBit(gioPORTB, 0, 0);
                 wait(100);
                 gioSetBit(gioPORTB, 0, 1);
 
                 /* Volatge flag reset, 재장전 */
+#if !DSP_DEBUG
                 reset_Status(VOLTAGE);
-                reload(1);
+                // reload(val) : 1 =< val =< 190
+                reload(50);
+#endif
                 break;
 
             case 'd' :
@@ -584,10 +634,22 @@ void udp_echo_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, struct ip_add
                          rx_pk[8];
 
                 setRoll = (float)setDGR / 100.0;
+#if !DSP_DEBUG
                 vTaskResume(StepTaskHandle);
+#endif
 #if SCI_DEBUG
             sprintf(vbuf,"%d,%d\n\r",setCNT,setDGR);
 #endif
+                break;
+
+            case 'l' :
+                // laser on 레이저 발사.
+                gioSetBit(gioPORTB, 1, 1);
+                break;
+
+            case 'o' :
+                // laser off
+                gioSetBit(gioPORTB, 1, 0);
                 break;
 
             default:
@@ -615,6 +677,22 @@ void udpTask(void *pvParameters)
         pbuf_free(p);
 
         taskEXIT_CRITICAL();
+
+        vTaskDelay(10);
+    }
+}
+
+void adcTask(void *pvParameters)
+{
+    for(;;)
+    {
+        while((adcIsConversionComplete(adcREG1, adcGROUP1))==0)
+            ;
+
+        adcGetData(adcREG1, adcGROUP1, &adc_data[0]);
+
+        adc_val = adc_data[0].value;
+        cVolt = getAvg(dBuf, adc_val);
 
         vTaskDelay(10);
     }
@@ -767,7 +845,7 @@ void imu_check(void)
 
 void reload(uint8 cnt)
 {
-    cnt = cnt * 15;
+    cnt = cnt * 10;
     servo_pwm += cnt;
     if(servo_pwm > 1910)
     {
@@ -777,5 +855,23 @@ void reload(uint8 cnt)
     wait(300000 * (cnt + 1));
     servo_pwm = 420;
     etpwmREG4->CMPA = servo_pwm;
+}
+
+float getAvg(int *buf, int value)
+{
+    int i, total;
+
+    for(i = 0; i < dSize-1; i++)
+     {
+            buf[i] = buf[i+1];
+     }
+     buf[dSize-1] = value;
+
+     for(i = 0; i < dSize; i++)
+     {
+         total += buf[i];
+
+     }
+    return (((total/dSize) * vCoeff)+24.703);           //0.2298x+14.703
 }
 /* USER CODE END */
