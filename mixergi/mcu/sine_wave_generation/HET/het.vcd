@@ -1,0 +1,338 @@
+$date
+     Jun 14, 2019       17:41:40
+$end
+
+$version
+              SystemC 2.2.0 --- Aug  7 2015 17:35:54
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaa  HETCLK       $end
+$var wire    1  aab  LOOP_RESOLUTION_CLK       $end
+$var wire    1  aac  HIGH_RESOLUTION_CLK       $end
+$var wire   32  aad  A [31:0]  $end
+$var wire   32  aae  B [31:0]  $end
+$var wire   32  aaf  T [31:0]  $end
+$var wire    1  aag  Z       $end
+$var wire    1  aah  X       $end
+$var wire    1  aai  SWT       $end
+$var wire    1  aaj  NAF       $end
+$var wire    1  aak  AF       $end
+$var wire    1  aal  DCF       $end
+$var wire    1  aam  GPF       $end
+$var wire   32  aan  Loop_Count [31:0]  $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+1aaa
+0aab
+1aac
+b0 aad
+b0 aae
+b0 aaf
+0aag
+0aah
+0aai
+0aaj
+0aak
+0aal
+0aam
+b0 aan
+$end
+
+#6250
+0aaa
+0aac
+
+#12500
+1aaa
+1aac
+
+#18750
+0aaa
+0aac
+
+#25000
+1aaa
+1aac
+
+#31250
+0aaa
+0aac
+
+#37500
+1aaa
+1aac
+
+#43750
+0aaa
+0aac
+
+#50000
+1aaa
+1aac
+
+#56250
+0aaa
+0aac
+
+#62500
+1aaa
+1aac
+
+#68750
+0aaa
+0aac
+
+#75000
+1aaa
+1aac
+
+#81250
+0aaa
+0aac
+
+#87500
+1aaa
+1aab
+1aac
+
+#93750
+0aaa
+0aac
+
+#100000
+1aaa
+0aab
+1aac
+b1 aad
+b1 aan
+
+#106250
+0aaa
+0aac
+
+#112500
+1aaa
+1aac
+
+#118750
+0aaa
+0aac
+
+#125000
+1aaa
+1aac
+
+#131250
+0aaa
+0aac
+
+#137500
+1aaa
+1aac
+
+#143750
+0aaa
+0aac
+
+#150000
+1aaa
+1aac
+
+#156250
+0aaa
+0aac
+
+#162500
+1aaa
+1aac
+
+#168750
+0aaa
+0aac
+
+#175000
+1aaa
+1aac
+
+#181250
+0aaa
+0aac
+
+#187500
+1aaa
+1aab
+1aac
+
+#193750
+0aaa
+0aac
+
+#200000
+1aaa
+0aab
+1aac
+b0 aad
+1aag
+b10 aan
+
+#206250
+0aaa
+0aac
+
+#212500
+1aaa
+1aac
+
+#218750
+0aaa
+0aac
+
+#225000
+1aaa
+1aac
+
+#231250
+0aaa
+0aac
+
+#237500
+1aaa
+1aac
+
+#243750
+0aaa
+0aac
+
+#250000
+1aaa
+1aac
+
+#256250
+0aaa
+0aac
+
+#262500
+1aaa
+1aac
+
+#268750
+0aaa
+0aac
+
+#275000
+1aaa
+1aac
+
+#281250
+0aaa
+0aac
+
+#287500
+1aaa
+1aab
+1aac
+
+#293750
+0aaa
+0aac
+
+#300000
+1aaa
+0aab
+1aac
+b1 aad
+0aag
+b11 aan
+
+#306250
+0aaa
+0aac
+
+#312500
+1aaa
+1aac
+
+#318750
+0aaa
+0aac
+
+#325000
+1aaa
+1aac
+
+#331250
+0aaa
+0aac
+
+#337500
+1aaa
+1aac
+
+#343750
+0aaa
+0aac
+
+#350000
+1aaa
+1aac
+
+#356250
+0aaa
+0aac
+
+#362500
+1aaa
+1aac
+
+#368750
+0aaa
+0aac
+
+#375000
+1aaa
+1aac
+
+#381250
+0aaa
+0aac
+
+#387500
+1aaa
+1aab
+1aac
+
+#393750
+0aaa
+0aac
+
+#400000
+1aaa
+0aab
+1aac
+b0 aad
+1aag
+b100 aan
+
+#406250
+0aaa
+0aac
+
+#412500
+1aaa
+1aac
+
+#418750
+0aaa
+0aac
+
