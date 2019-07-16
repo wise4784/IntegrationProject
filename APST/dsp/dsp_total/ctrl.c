@@ -13,6 +13,7 @@
 pthread_mutex_t ctrl_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t ctrl_mutex2 = PTHREAD_MUTEX_INITIALIZER;
 
+int lidar_det_flag =0;
 int shoot_ready_flag = 0;
 int shoot_fin_flag =0;
 int Auto_mode_sl = 0;
@@ -77,7 +78,12 @@ void set_ctrl_flag(void)
         else if(ct_flag == 6)
             shoot_flag =1;
         else if(ct_flag == 7)
-            Auto_mode_sl ^= 1;
+        {
+            Auto_mode_sl ++;
+
+            if(Auto_mode_sl >= NUM_OF_MODD)
+                Auto_mode_sl =0;
+        }
         else
             ctrl_start_flag ^= 1;
 
@@ -206,8 +212,6 @@ void manual_mod(void)
         shoot_fin_flag =0;
 }
 
-int lidar_det_flag =0;
-
 void Auto_Deg_ctrl(void)
 {
     pthread_mutex_lock(&ctrl_mutex2);
@@ -252,6 +256,34 @@ void Auto_Deg_ctrl(void)
     pthread_mutex_unlock(&ctrl_mutex2);
 }
 
+void semi_auto_mod(void)
+{
+    int delta_ps_deg;
+    float delta_cn_deg;
+
+    if(ctrl_start_flag)
+        delta_ps_deg = 20;
+    else
+        delta_ps_deg = 2;
+
+    if(left_flag)
+    {
+        setCNT = position_pid(cur_dg+delta_ps_deg, cur_dg, 1);
+        left_flag =0;
+    }
+    else if(right_flag)
+    {
+        setCNT = position_pid(cur_dg-delta_ps_deg, cur_dg, 1);
+        right_flag =0;
+    }
+    else
+    {
+        setCNT =0;
+    }
+
+    Auto_Deg_ctrl();
+}
+
 void Auto_mod(void)
 {
     if(ctrl_start_flag)
@@ -271,14 +303,12 @@ void sys_cotroller(void)
         pthread_mutex_lock(&ctrl_mutex2);
         printf("sync_flag %d\n",sync_flag);
 
-        if(Auto_mode_sl)
-        {
+        if(Auto_mode_sl == 2)
             Auto_mod();
-        }
+        else if(Auto_mode_sl ==1)
+            semi_auto_mod();
         else
-        {
             manual_mod();
-        }
 
         sync_flag=3;
         pthread_mutex_unlock(&ctrl_mutex2);

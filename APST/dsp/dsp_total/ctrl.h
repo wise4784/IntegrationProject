@@ -20,6 +20,8 @@
 #define IGAIN (double)(IC*ENCODER_REF*MOTOR_COF)
 #define DGAIN (double)(DC*ENCODER_REF*MOTOR_COF)
 
+#define NUM_OF_MODD 4
+
 #define MAX_DEG 320
 #define MAX_RPM 30
 #define MAX_CNT MAX_RPM*MOTOR_REF
