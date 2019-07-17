@@ -1,0 +1,40 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This example illustrates how to generate a PWM asymmetrically. The duty cycle
+; is to be updated by the host application by writing the new duty cycle (compare value) to 
+; the MOV32 data field. When there is a compare match, the MOV32 instruction will move
+; the new compare value to the ECMP instruction. The update of the ECMP is considered
+; synchronous as the update is only done with respect to the LRP (loop resolution period)
+; time base and only when there is a compare match.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+PWM_PERIOD           .equ 10
+PWM_PIN_NUM         .equ 2
+INIT_COMPARE         .equ 3
+INIT_HR_DELAY        .equ 5
+
+; Use CNT to generate a virtual counter. The counter period is changable by the host 
+; application. When counter reaches the PWM_PERIOD value, a DMA request is generated. The 
+; HTU is setup to take this request and return a new duty cycle. The new duty cycle will 
+; be written to the MOV32 data field as the new compare value.
+
+L00   CNT { reqnum=0,request=GENREQ,reg=A,irq=OFF,max=PWM_PERIOD};
+
+; ECMP is setup in high resolution mode to create a compare value against the current 
+; counter value in CNT instruction. Whenever, there is a match, it will set the specified
+; pin low until the end of the PWM period. The pin starts as high at the beginning of the
+; PWM cycle. The specified pin is changable by the host application. 
+
+L01   ECMP { next=L03,hr_lr=HIGH,en_pin_action=ON,cond_addr=L02,pin=PWM_PIN_NUM,
+             action=PULSELO,reg=A,irq=OFF,data=INIT_COMPARE,hr_data=INIT_HR_DELAY};
+
+; MOV32 instruction is only executed when ECMP has a compare match. When this instruction
+; is executed, it will copy its data field value which contains the latest duty cycle (
+; the compare value) back to ECMP's data field. The MOV32's data field is updated by the HTU
+; with the new duty cycle value when responding to the request by the CNT instruction.
+
+L02   MOV32 { remote=L01,type=IMTOREG&REM,reg=NONE,data=INIT_COMPARE,hr_data=INIT_HR_DELAY};
+
+; Branch back to the beginning.
+
+L03   BR { next= L00, cond_addr=L00, event= NOCOND }

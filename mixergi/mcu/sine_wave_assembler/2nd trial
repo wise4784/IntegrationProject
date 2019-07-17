@@ -1,0 +1,3 @@
+1. sine_wave_assembler.c sine_wave_assembler.h가 읽어오지 않는지 파형 발생 안됨
+2. het pin과 pwm pin을 연결하면 내가 원하는 고속 파형이 나오지 않음.
+3. instruction error...?
