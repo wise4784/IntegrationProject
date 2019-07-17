@@ -170,22 +170,22 @@ void manual_mod(void)
     if(ctrl_start_flag)
     {
         delta_ps_deg = 20;
-        delta_cn_deg = 10;
+        delta_cn_deg = 100;
     }
     else
     {
         delta_ps_deg = 2;
-        delta_cn_deg = 2;
+        delta_cn_deg = 20;
     }
 
     if(left_flag)
     {
-        setCNT = position_pid(cur_dg+delta_ps_deg, cur_dg, 1);
+        setCNT = 3000;//position_pid(cur_dg+delta_ps_deg, cur_dg, 1);
         left_flag =0;
     }
     else if(right_flag)
     {
-        setCNT = position_pid(cur_dg-delta_ps_deg, cur_dg, 1);
+        setCNT = -3000;//position_pid(cur_dg-delta_ps_deg, cur_dg, 1);
         right_flag =0;
     }
     else
