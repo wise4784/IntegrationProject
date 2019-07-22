@@ -1,0 +1,9 @@
+1.https://stackoverflow.com/questions/42765782/irq-handling-from-user-space-linux
+
+2.http://lkml.iu.edu/hypermail/linux/kernel/9809.3/0922.html
+
+3.https://lwn.net/Articles/127698/
+
+4.http://wiki.tldp.org/kernel_user_space_howto
+
+5.http://wiki.tldp.org/kernel_user_space_howto#Sending_Signals_from_the_Kernel_to_the_User_Space
