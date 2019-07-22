@@ -17,18 +17,18 @@ FPGA Based Sine Wave Generator, AM5728 CAN, UART Device Driver, Audio SW Codec, 
 
 ![sungmin](./member/sungmin_yang.png)
 
-RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선작업(HW)
+### Works
+
+RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선작업(HW)  
+
+### Hyeonseung Kim
+### E-mail Address - euureka@naver.com
+
+![hyeonseung](./member/hyeonseung_kim)
 
 ### Works
 
-![]()
-
-### 
-### E-mail Address -
-
-### Works
-
-![]()
+F458 Vehicle Hardware Build Up, FreeRTOS Based TMS570 MCU Control(eCAP, etPWM, CAN, eQEP, GIO, SCI)
 
 ### 
 ### E-mail Address -
