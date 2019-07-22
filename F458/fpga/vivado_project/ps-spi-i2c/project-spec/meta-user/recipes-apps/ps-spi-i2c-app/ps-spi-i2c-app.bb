@@ -1,13 +1,13 @@
 #
-# This file is the integration-app recipe.
+# This file is the ps-spi-i2c-app recipe.
 #
 
-SUMMARY = "Simple integration-app application"
+SUMMARY = "Simple ps-spi-i2c-app application"
 SECTION = "PETALINUX/apps"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRC_URI = "file://integration-app.c \
+SRC_URI = "file://ps-spi-i2c-app.c \
 	   file://Makefile \
 		  "
 
@@ -17,7 +17,9 @@ do_compile() {
 	     oe_runmake
 }
 
+CLEANBROKEN = "1"
+
 do_install() {
 	     install -d ${D}${bindir}
-	     install -m 0755 integration-app ${D}${bindir}
+	     install -m 0755 ps-spi-i2c-app ${D}${bindir}
 }

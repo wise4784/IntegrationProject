@@ -23,4 +23,5 @@ do_install() {
  install -d ${D}${sysconfdir}/init.d
  install -m 0755 ${S}/myapp-init ${D}${sysconfdir}/init.d/myapp-init
 }
+
 FILES_${PN} += "${sysconfdir}/*"

@@ -1,5 +1,5 @@
 /*
-opyright (C) 2013 - 2016  Xilinx, Inc.  All rights reserved.
+* Copyright (C) 2013 - 2016  Xilinx, Inc.  All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -343,10 +343,12 @@ uint8_t txbuf;
 
 int main(int argc, char **argv)
 {
-	usleep(10000000);
-	usleep(10000000);
-	usleep(10000000);
-	
+	wait(10000000);
+	wait(10000000);
+	wait(10000000);
+	wait(10000000);
+	wait(10000000);
+
 	//lidar variable
 	unsigned char receives[8] = {AR_VELOCITY, 0, 0, AR_PEAK_CORR, AR_NOISE_PEAK,
 								AR_SIGNAL_STRENGTH, AR_FULL_DELAY_HIGH, AR_FULL_DELAY_LOW};
@@ -522,7 +524,7 @@ void measurement(int fd, unsigned char is_corr, unsigned char opt, unsigned char
     for(i = 1; i < 6; i++)
 		buf[i] = buf[i + 2];
 
-    display(fd, opt, buf);
+    //display(fd, opt, buf);
 }
 
 void display(int fd, unsigned char opt, unsigned char *buf)
@@ -543,11 +545,12 @@ void display(int fd, unsigned char opt, unsigned char *buf)
 
 void composeData(uint8_t *  data, unsigned char * receives)
 {
-	receives[AR_FULL_DELAY_HIGH] << 8 | receives[AR_FULL_DELAY_LOW];
+	uint16_t recv_data = receives[AR_FULL_DELAY_HIGH] << 8 | receives[AR_FULL_DELAY_LOW];
+	data[0] = (uint8_t)((recv_data & 0xff00) >> 8);
+	data[1] = (uint8_t)(recv_data & 0xff);
 
-	data[0] = (uint8_t)((receives[AR_FULL_DELAY_HIGH] & 0xff00) >> 8);
-	data[1] = (uint8_t)(receives[AR_FULL_DELAY_LOW] & 0xff);
-
+	printf("recv_data = %d\n", recv_data);
+	printf("data[0] = %d, data[1] = %d\n", data[0], data[1]);
 }
 
 void wait(int delay)

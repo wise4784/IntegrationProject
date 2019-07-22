@@ -1,7 +1,7 @@
-APP = integration-app
+APP = ps-spi-i2c-app
 
 # Add any other object files to this list below
-APP_OBJS = integration-app.o
+APP_OBJS = ps-spi-i2c-app.o
 
 all: build
 
