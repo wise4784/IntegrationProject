@@ -9,7 +9,13 @@ Integration Project
 
 ### Mercenary Works
 
-FPGA Based Sine Wave Generator, AM5728 CAN, UART Device Driver, Audio SW Codec, AHRS Algorithm, TMS570 LWiP, Multi Lane Dectection  
+- FPGA Based Sine Wave Generator
+- AM5728 CAN
+- UART Device Driver
+- Audio SW Codec
+- AHRS Algorithm
+- TMS570 LWiP
+- Multi Lane Dectection  
 
 ## Students  
 ### Sungmin Yang  
@@ -38,7 +44,7 @@ RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선�
 
 ### Works
 
-- TMS570 EQEP(PDF)  
+- [TMS570 EQEP(PDF)](https://github.com/koittintegration3/IntegrationProject/blob/master/F458/mcu/doc/eQEP.pdf)
 - TMS570 EQEP(code)  
 - ZYBO Z7-10 CAN using PmodCAN(vivado design)  
 - ZYBO Z7-10 CAN using PmodCAN(SDK code analysis)  
