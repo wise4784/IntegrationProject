@@ -57,5 +57,16 @@ RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선�
 
 
 
-### Final Result
+# Final Result
 
+## Semi-Autonomous RC Car
+
+## Manual Mode RC Car
+
+## Coffee Machine
+
+## Function Generator
+
+## Automation Firearm(Coil Gun)
+
+## Braille Identifier with very small Solenoid
