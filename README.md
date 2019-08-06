@@ -36,6 +36,10 @@ RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선�
 
 - HW: F458 Vehicle Hardware Build Up(Electrical Wiring, Circuit Analysis, Vehicle Frame Renovate)
 - FW: FreeRTOS Based TMS570 MCU Control(eCAP, etPWM, CAN, eQEP, GIO, SCI)
+- [F-458 Semi Autonomous Vehicle Final Report](https://github.com/KimHS87/IntegrationProject/blob/master/F458/mcu/%EA%B0%9C%EC%9D%B8_F458_final.pdf)
+- [F-458 Data Sheet](https://github.com/KimHS87/IntegrationProject/tree/master/F458/mcu/F458_DATASHEET)
+- [F-458 HalCoGen Settings](https://github.com/KimHS87/IntegrationProject/blob/master/F458/mcu/TMDX570LC43HDK_HALCOGEN%EC%84%A4%EC%A0%95.pdf)
+- [F-458 Video](https://github.com/KimHS87/IntegrationProject/blob/master/F458/mcu/%EC%8B%9C%EC%97%B0%EC%98%81%EC%83%81/F458_%C3%80%C3%9A%C3%80%C2%B2%C3%81%C3%96%C3%87%C3%A0.mp4)
 
 ### Daero Lee  
 ### E-mail Address - skseofh@naver.com 
