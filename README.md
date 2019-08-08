@@ -76,7 +76,7 @@ RTOS Test(etPWM, eCAP, CAN), HET(High End Timer) Test, Nested Interrupt, 배선�
 ## Automation Firearm(Coil Gun)
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/EWnDoego784" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://www.youtube.com/watch?v=EWnDoego784" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 ## Braille Identifier with very small Solenoid
